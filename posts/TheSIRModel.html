@@ -180,7 +180,7 @@ window.Quarto = {
 <thead>
 <tr class="header">
 <th>Disease</th>
-<th style="text-align: left;">R_0</th>
+<th style="text-align: left;"><span class="math inline">\(R_0\)</span></th>
 </tr>
 </thead>
 <tbody>
@@ -210,6 +210,7 @@ window.Quarto = {
 <section id="mathematical-modelling-of-infectious-diseases" class="level1">
 <h1>Mathematical modelling of infectious diseases</h1>
 <p>We can use mathematics to study the dynamics of an infectious disease within a population.</p>
+<div class="{-callout.note}">
 <p>At Dundee, the mathematical tools needed are developed in modules:</p>
 <ul>
 <li>Maths 1A, 1B, 2A and 2B (Core maths modules)</li>
@@ -218,9 +219,7 @@ window.Quarto = {
 <li>Mathematical Biology II</li>
 </ul>
 <p>You can find out more about these modules <a href="https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment">here</a>.</p>
-</section>
-<section id="the-sir-model" class="level1">
-<h1>The SIR model</h1>
+</div>
 <p>The SIR model is the most basic way to model the spread of an infectious disease.</p>
 <p>The variables in the model are:</p>
 <ul>
@@ -233,7 +232,7 @@ window.Quarto = {
 <li><span class="math inline">\(r\)</span> - infection rate</li>
 <li><span class="math inline">\(a\)</span> - recovery rate</li>
 </ul>
-<p>From a public health mangement perspective, one could propose that there is some level of infectiousness, <span class="math inline">\(I_{max}\)</span>, which must be avoided.</p>
+<p>From a public health mangement perspective, one could propose that there is some level of infectiousness, <span class="math inline">\(I_{max}\)</span>, which must be avoided. The challenge is to manage the disease such that <span class="math inline">\(I(t)&lt;I_{max}\)</span> for all <span class="math inline">\(t\)</span>.</p>
 <section id="a-mathematical-model" class="level2">
 <h2 class="anchored" data-anchor-id="a-mathematical-model">A mathematical model</h2>
 <p>The SIR model equations are: <span class="math display">\[

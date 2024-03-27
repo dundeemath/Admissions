@@ -11,7 +11,7 @@
     "href": "posts/TheSIRModel.html",
     "title": "SIR model",
     "section": "",
-    "text": "Infectious diseases can have severe health outcomes for individuals who contract them. They can also place an unmanageably large demand on the health service.\nInfectious diseases can be characterised using their basic reproduction number.\n\nInfectious disease basic reproduction numbers Source.\n\n\nDisease\nR_0\n\n\n\n\nMeasles\n12-18\n\n\nChickenpox\n10-12\n\n\nRubella\n6-7\n\n\nCommon cold\n2-3\n\n\nCovid 19 (Omicron)\n9.5"
+    "text": "Infectious diseases can have severe health outcomes for individuals who contract them. They can also place an unmanageably large demand on the health service.\nInfectious diseases can be characterised using their basic reproduction number.\n\nInfectious disease basic reproduction numbers Source.\n\n\nDisease\n\\(R_0\\)\n\n\n\n\nMeasles\n12-18\n\n\nChickenpox\n10-12\n\n\nRubella\n6-7\n\n\nCommon cold\n2-3\n\n\nCovid 19 (Omicron)\n9.5"
   },
   {
     "objectID": "posts/TheSIRModel.html#a-mathematical-model",
