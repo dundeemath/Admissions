@@ -1,0 +1,146 @@
+---
+title: "SIR model"
+format: html 
+filters:
+  - shinylive
+---
+
+
+# The SIR model
+
+Variables:
+
+* $S(t)$ - size of susceptible population at time $t$
+* $I(t)$ - size of susceptible population at time $t$
+* $R(t)$ - size of susceptible population at time $t$
+
+Parameters:
+
+* $r$ - infection rate
+* $a$ - recovery rate 
+
+Public health:
+
+* $I_{max}$ - the maximum allowed number of infectious people in the population
+
+## A mathematical model 
+
+Model equations:
+$$ 
+\begin{aligned}
+\frac{dS}{dt}&=-rIS, \\
+\frac{dI}{dt}&=rIS-aI, \\
+\frac{dR}{dt}&=aI, 
+\end{aligned}
+$$
+
+Initial conditions:
+
+$$ 
+\begin{aligned}
+S(t=0)&=S_0 \\
+I(t=0)&=I_0 \\
+R(t=0)&=R_0.
+\end{aligned}
+$$
+
+
+
+
+
+## Exploring the model with an app
+
+
+
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 800
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+    ui.input_slider(id="r",label="Infectivity",min=0.00001,max=0.001,value=0.001,step=0.00001),
+    ui.input_slider(id="S0",label="initial suscetible pop size",min=1000.0,max=8000.0,value=4000.1,step=5.0),
+    ui.input_slider(id="a",label="Num days infectiousness",min=2.0,max=8.0,value=0.1,step=0.1),            
+    ui.input_slider(id="I0",label="Initial infectious population size",min=0.0,max=17.0,value=17.0,step=0.5),  
+    ui.input_slider(id="T",label="Simulation time",min=0.0,max=20.0,value=20.0,step=0.5),
+    ui.input_slider(id="max_inf",label="Max. infectiousness",min=0.0,max=10000.0,value=3500.0,step=100.5),             
+          
+            ),
+
+        ui.panel_main(ui.output_plot("plot"),),
+    ),
+)
+
+def server(input, output, session):
+    
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots()
+        #ax.set_ylim([-2, 2])
+        # Filter fata
+        
+        
+        r=float(input.r())
+        S_0=float(input.S0())
+        a=float(np.log(2)/(input.a()))
+        I_0=float(input.I0())
+        T=float(input.T())
+        max_inf=float(input.max_inf())
+
+        R_0=r*S_0/a
+        
+        # Define rhs of LV ODEs
+        def rhs_sir_model(x,t,r,a):
+          rhs=np.zeros_like(x,dtype=float)
+          S=x[0]
+          I=x[1]
+          R=x[2]
+
+          
+
+          dS_dt=-r*I*S
+          dI_dt=r*I*S-a*I
+          dR_dt=a*I
+
+          rhs[0]=dS_dt
+          rhs[1]=dI_dt
+          rhs[2]=dR_dt
+
+          return rhs
+
+        # Define discretised t domain
+        t = np.linspace(0, T, 1000)
+
+        # define initial conditions
+        init_cond=[S_0,I_0,0.0]
+        
+        # Compute numerical solution of ODEs
+        sol1 = odeint(rhs_sir_model, init_cond,t,args=(r,a))
+
+        # Plot results
+        S=sol1[:,0]
+        I=sol1[:,1]
+        R=sol1[:,2]
+        
+        ax.plot(t, S, 'b',t,I,'r',t,R,'k')
+        ax.plot(t,max_inf*np.ones_like(t),'--')
+        ax.legend(['S','I','R','Max. allowed infectiousness'],loc='best')
+        ax.set_xlabel('$t$')
+        ax.set_title('R_0 =' + str(R_0))
+
+        #plt.grid()
+        #plt.show()
+    
+app = App(app_ui, server)
+```
+
