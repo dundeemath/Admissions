@@ -6,7 +6,38 @@ filters:
 ---
 
 
+# Infectious disease modelling
+
+Infectious diseases can place a severe burden on the health service.
+
+Infectious diseases can be characterised using the basic reproduction number.
+
+| Disease | R_0  |
+|---------|:-----|
+| Measles      | 12-18    |
+| Chickenpox     | 10-12   |
+| Rubella       | 6-7    |
+| Common cold       | 2-3  |   
+| Covid 19 (Omicron)       | 9.5    |     
+: Infectious disease basic reproduction numbers [Source](https://en.wikipedia.org/wiki/Basic_reproduction_number).
+
+
 # The SIR model
+
+We can use mathematics to study the dynamics of an infectious disease within a population. 
+
+At Dundee, the tools needed are developed in modules such as:
+
+* Maths 1A, 1B, 2A and 2B (Core maths modules)
+* Computer algebra and dynamical systems
+* Mathematical Biology I
+* Mathematical Biology II
+
+You can find out more about these modules [here](https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment).
+
+
+
+The SIR is the most basic way to model the spread of an infectious disease.
 
 Variables:
 
