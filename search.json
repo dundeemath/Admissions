@@ -11,14 +11,7 @@
     "href": "posts/TheSIRModel.html",
     "title": "SIR model",
     "section": "",
-    "text": "Infectious diseases can have severe health outcomes for individuals who contract them. They can also place an unmanageably large demand on the health service.\nWe can use mathematics to study the dynamics of an infectious disease within a population.\nAt Dundee, the mathematical tools needed are developed in modules:\n\nMaths 1A, 1B, 2A and 2B (Core maths modules)\nComputer algebra and dynamical systems\nMathematical Biology I\nMathematical Biology II\n\nYou can find out more about these modules here.\n\n\nInfectious diseases can be characterised using the basic reproduction number.\n\nInfectious disease basic reproduction numbers Source.\n\n\nDisease\nR_0\n\n\n\n\nMeasles\n12-18\n\n\nChickenpox\n10-12\n\n\nRubella\n6-7\n\n\nCommon cold\n2-3\n\n\nCovid 19 (Omicron)\n9.5"
-  },
-  {
-    "objectID": "posts/TheSIRModel.html#different-infectious-diseases",
-    "href": "posts/TheSIRModel.html#different-infectious-diseases",
-    "title": "SIR model",
-    "section": "",
-    "text": "Infectious diseases can be characterised using the basic reproduction number.\n\nInfectious disease basic reproduction numbers Source.\n\n\nDisease\nR_0\n\n\n\n\nMeasles\n12-18\n\n\nChickenpox\n10-12\n\n\nRubella\n6-7\n\n\nCommon cold\n2-3\n\n\nCovid 19 (Omicron)\n9.5"
+    "text": "Infectious diseases can have severe health outcomes for individuals who contract them. They can also place an unmanageably large demand on the health service.\nInfectious diseases can be characterised using their basic reproduction number.\n\nInfectious disease basic reproduction numbers Source.\n\n\nDisease\nR_0\n\n\n\n\nMeasles\n12-18\n\n\nChickenpox\n10-12\n\n\nRubella\n6-7\n\n\nCommon cold\n2-3\n\n\nCovid 19 (Omicron)\n9.5"
   },
   {
     "objectID": "posts/TheSIRModel.html#a-mathematical-model",
