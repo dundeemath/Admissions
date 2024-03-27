@@ -14,13 +14,6 @@
     "text": "Infectious diseases can have severe health outcomes for individuals who contract them. They can also place an unmanageably large demand on the health service.\nInfectious diseases can be characterised using their basic reproduction number.\n\nInfectious disease basic reproduction numbers Source.\n\n\nDisease\n\\(R_0\\)\n\n\n\n\nMeasles\n12-18\n\n\nChickenpox\n10-12\n\n\nRubella\n6-7\n\n\nCommon cold\n2-3\n\n\nCovid 19 (Omicron)\n9.5"
   },
   {
-    "objectID": "posts/TheSIRModel.html#a-mathematical-model",
-    "href": "posts/TheSIRModel.html#a-mathematical-model",
-    "title": "SIR model",
-    "section": "A mathematical model",
-    "text": "A mathematical model\nThe SIR model equations are: \\[\n\\begin{aligned}\n\\frac{dS}{dt}&=-rIS, \\\\\n\\frac{dI}{dt}&=rIS-aI, \\\\\n\\frac{dR}{dt}&=aI,\n\\end{aligned}\n\\]\nThe initial conditions are:\n\\[\n\\begin{aligned}\nS(t=0)&=S_0 \\\\\nI(t=0)&=I_0 \\\\\nR(t=0)&=R_0.\n\\end{aligned}\n\\]"
-  },
-  {
     "objectID": "posts/TheSIRModel.html#exploring-the-model-with-an-app",
     "href": "posts/TheSIRModel.html#exploring-the-model-with-an-app",
     "title": "SIR model",
@@ -32,13 +25,13 @@
     "href": "posts/welcome/index.html",
     "title": "Welcome",
     "section": "",
-    "text": "Welcome to the Dundee Mathematics Admissions blog.\nYou can find lots of interesting information about mathematics careers here."
+    "text": "Welcome to the Dundee Mathematics Admissions page.\nYou can find lots of interesting information about mathematics careers here.\nYou can find a link to the Dundee Mathematics student society here."
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Maths-admissions",
     "section": "",
-    "text": "Welcome to this blog.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSIR model\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome\n\n\n\n\n\n\nWelcome\n\n\n\n\n\n\n\n\n\nMar 24, 2024\n\n\nPhilip Murray\n\n\n\n\n\n\nNo matching items"
+    "text": "SIR model\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome\n\n\n\n\n\n\nWelcome\n\n\n\n\n\n\n\n\n\nMar 24, 2024\n\n\nPhilip Murray\n\n\n\n\n\n\nNo matching items"
   }
 ]
