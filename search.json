@@ -11,7 +11,7 @@
     "href": "posts/TheSIRModel.html",
     "title": "SIR model",
     "section": "",
-    "text": "Infectious diseases can place a severe burden on the health service.\nInfectious diseases can be characterised using the basic reproduction number.\n\nInfectious disease basic reproduction numbers .\n\n\nDisease\nR_0\n\n\n\n\nMeasles\n12-18\n\n\nChickenpox\n10-12\n\n\nRubella\n6-7\n\n\nCommon cold\n2-3\n\n\nCovid 19 (Omicron)\n9.5"
+    "text": "Infectious diseases can place a severe burden on the health service.\nInfectious diseases can be characterised using the basic reproduction number.\n\nInfectious disease basic reproduction numbers Source.\n\n\nDisease\nR_0\n\n\n\n\nMeasles\n12-18\n\n\nChickenpox\n10-12\n\n\nRubella\n6-7\n\n\nCommon cold\n2-3\n\n\nCovid 19 (Omicron)\n9.5"
   },
   {
     "objectID": "posts/TheSIRModel.html#a-mathematical-model",
@@ -32,7 +32,7 @@
     "href": "posts/welcome/index.html",
     "title": "Welcome",
     "section": "",
-    "text": "Welcome to the Dundee Mathematics Admissions blog.\nYou can find lots of interesting information about mathematics careers ."
+    "text": "Welcome to the Dundee Mathematics Admissions blog.\nYou can find lots of interesting information about mathematics careers here."
   },
   {
     "objectID": "index.html",
