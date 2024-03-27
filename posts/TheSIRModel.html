@@ -209,29 +209,8 @@ window.Quarto = {
 </section>
 <section id="mathematical-modelling-of-infectious-diseases" class="level1">
 <h1>Mathematical modelling of infectious diseases</h1>
-<p>We can use mathematics to study the dynamics of an infectious disease within a population (see app at the bottom of the page).</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Relevant modules
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>At Dundee, the mathematical tools needed are developed in modules:</p>
-<ul>
-<li>Maths 1A, 1B, 2A and 2B (Core maths modules)</li>
-<li>Computer algebra and dynamical systems</li>
-<li>Mathematical Biology I</li>
-<li>Mathematical Biology II</li>
-</ul>
-<p>You can find out more about these modules <a href="https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment">here</a>.</p>
-</div>
-</div>
-<p>The SIR model is the most basic way to model the spread of an infectious disease.</p>
-<p>The variables in the model are:</p>
+<p>We can use mathematics to study the dynamics of an infectious disease within a population. In the app below we are simulating a model of infectious disease.</p>
+<p>The model is known as the SIR model as the the variables in the model are:</p>
 <ul>
 <li><span class="math inline">\(S(t)\)</span> - size of susceptible population at time <span class="math inline">\(t\)</span></li>
 <li><span class="math inline">\(I(t)\)</span> - size of infected population at time <span class="math inline">\(t\)</span></li>
@@ -243,24 +222,6 @@ Relevant modules
 <li><span class="math inline">\(a\)</span> - recovery rate</li>
 </ul>
 <p>From a public health mangement perspective, one could propose that there is some level of infectiousness, <span class="math inline">\(I_{max}\)</span>, which must be avoided. The challenge is to manage the disease such that <span class="math inline">\(I(t)&lt;I_{max}\)</span> for all <span class="math inline">\(t\)</span>.</p>
-<p>The SIR model equations are: <span class="math display">\[
-\begin{aligned}
-\frac{dS}{dt}&amp;=-rIS, \\
-\frac{dI}{dt}&amp;=rIS-aI, \\
-\frac{dR}{dt}&amp;=aI,
-\end{aligned}
-\]</span></p>
-<p>The initial conditions are:</p>
-<p><span class="math display">\[
-\begin{aligned}
-S(t=0)&amp;=S_0 \\
-I(t=0)&amp;=I_0 \\
-R(t=0)&amp;=R_0.
-\end{aligned}
-\]</span></p>
-<section id="exploring-the-model-with-an-app" class="level2">
-<h2 class="anchored" data-anchor-id="exploring-the-model-with-an-app">Exploring the model with an app</h2>
-<p>The app below allows you to explore how the behaviour of the model depends on the different initial conditions and model parameters. The challenge is to make sure that the level of infectiousness in the population does not go above the maximum allowed value (horizontal line).</p>
 <pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| components: [viewer]
 #| viewerHeight: 800
@@ -350,9 +311,47 @@ def server(input, output, session):
         #plt.show()
     
 app = App(app_ui, server)</code></pre>
-
-
 </section>
+<section id="the-sir-model-equations" class="level1">
+<h1>The SIR model equations</h1>
+<p>The SIR model is formulated as a system of ordinary differential equations.</p>
+<p>The governing equations are: <span class="math display">\[
+\begin{aligned}
+\frac{dS}{dt}&amp;=-rIS, \\
+\frac{dI}{dt}&amp;=rIS-aI, \\
+\frac{dR}{dt}&amp;=aI,
+\end{aligned}
+\]</span></p>
+<p>The initial conditions are:</p>
+<p><span class="math display">\[
+\begin{aligned}
+S(t=0)&amp;=S_0 \\
+I(t=0)&amp;=I_0 \\
+R(t=0)&amp;=R_0.
+\end{aligned}
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At Dundee, the mathematical tools needed are developed in modules:</p>
+<ul>
+<li>Maths 1A, 1B, 2A and 2B (Core maths modules)</li>
+<li>Computer algebra and dynamical systems</li>
+<li>Mathematical Biology I</li>
+<li>Mathematical Biology II</li>
+</ul>
+<p>You can find out more about these modules <a href="https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment">here</a>.</p>
+</div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->
