@@ -7,6 +7,41 @@
     "text": "About this blog"
   },
   {
+    "objectID": "posts/GraduateEmployment.html",
+    "href": "posts/GraduateEmployment.html",
+    "title": "Graduate employment",
+    "section": "",
+    "text": "A mathematics degree will enable you to become a logical numerate problem solver. Over the course of your degree you will develop * core mathematical skills * programming skills * transferable skills (e.g. report writing, presentation skills)"
+  },
+  {
+    "objectID": "posts/GraduateEmployment.html#career-earnings",
+    "href": "posts/GraduateEmployment.html#career-earnings",
+    "title": "Graduate employment",
+    "section": "Career earnings",
+    "text": "Career earnings"
+  },
+  {
+    "objectID": "posts/GraduateEmployment.html#section",
+    "href": "posts/GraduateEmployment.html#section",
+    "title": "Graduate employment",
+    "section": "",
+    "text": "Data provided by HESA (2020/2021)"
+  },
+  {
+    "objectID": "posts/GraduateEmployment.html#where-our-graduates-get-employed",
+    "href": "posts/GraduateEmployment.html#where-our-graduates-get-employed",
+    "title": "Graduate employment",
+    "section": "Where our graduates get employed?",
+    "text": "Where our graduates get employed?\n\nData analyst\nActuary\nAccountant\nPhD\nData scientist\nTransport engineer\nManagement consultant\nTeacher\nOperations analyst\nFinancial engineer\nOperations research\nTax consultant\nEnergy risk analyst\nInsurance underwriter\nSoftware engineer\nCredit risk analyst\nHedge fund analyst"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "Welcome to the Dundee Mathematics Admissions page.\nYou can find lots of interesting information about mathematics careers here.\nYou can find a link to the Dundee Mathematics student society here."
+  },
+  {
     "objectID": "posts/TheSIRModel.html",
     "href": "posts/TheSIRModel.html",
     "title": "The SIR model",
@@ -18,20 +53,13 @@
     "href": "posts/TheSIRModel.html#exploring-the-model-with-an-app",
     "title": "The SIR model",
     "section": "Exploring the model with an app",
-    "text": "Exploring the model with an app\nThe app below allows you to explore how the behaviour of the model depends on the different initial conditions and model parameters. The challenge is to make sure that the level of infectiousness in the population does not go above the maximum allowed value (horizontal line).\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 800\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.panel_sidebar(\n    ui.input_slider(id=\"r\",label=\"Infectivity\",min=0.00001,max=0.001,value=0.001,step=0.00001),\n    ui.input_slider(id=\"S0\",label=\"initial suscetible pop size\",min=1000.0,max=8000.0,value=4000.1,step=5.0),\n    ui.input_slider(id=\"a\",label=\"Num days infectiousness\",min=2.0,max=8.0,value=0.1,step=0.1),            \n    ui.input_slider(id=\"I0\",label=\"Initial infectious population size\",min=0.0,max=17.0,value=17.0,step=0.5),  \n    ui.input_slider(id=\"T\",label=\"Simulation time\",min=0.0,max=20.0,value=20.0,step=0.5),\n    ui.input_slider(id=\"max_inf\",label=\"Max. infectiousness\",min=0.0,max=10000.0,value=3500.0,step=100.5),             \n          \n            ),\n\n        ui.panel_main(ui.output_plot(\"plot\"),),\n    ),\n)\n\ndef server(input, output, session):\n    \n    @render.plot\n    def plot():\n        fig, ax = plt.subplots()\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        r=float(input.r())\n        S_0=float(input.S0())\n        a=float(np.log(2)/(input.a()))\n        I_0=float(input.I0())\n        T=float(input.T())\n        max_inf=float(input.max_inf())\n\n        R_0=r*S_0/a\n        \n        # Define rhs of LV ODEs\n        def rhs_sir_model(x,t,r,a):\n          rhs=np.zeros_like(x,dtype=float)\n          S=x[0]\n          I=x[1]\n          R=x[2]\n\n          \n\n          dS_dt=-r*I*S\n          dI_dt=r*I*S-a*I\n          dR_dt=a*I\n\n          rhs[0]=dS_dt\n          rhs[1]=dI_dt\n          rhs[2]=dR_dt\n\n          return rhs\n\n        # Define discretised t domain\n        t = np.linspace(0, T, 1000)\n\n        # define initial conditions\n        init_cond=[S_0,I_0,0.0]\n        \n        # Compute numerical solution of ODEs\n        sol1 = odeint(rhs_sir_model, init_cond,t,args=(r,a))\n\n        # Plot results\n        S=sol1[:,0]\n        I=sol1[:,1]\n        R=sol1[:,2]\n        \n        ax.plot(t, S, 'b',t,I,'r',t,R,'k')\n        ax.plot(t,max_inf*np.ones_like(t),'--')\n        ax.legend(['S','I','R','Max. allowed infectiousness'],loc='best')\n        ax.set_xlabel('$t$')\n        ax.set_title('R_0 =' + str(R_0))\n\n        #plt.grid()\n        #plt.show()\n    \napp = App(app_ui, server)"
-  },
-  {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome",
-    "section": "",
-    "text": "Welcome to the Dundee Mathematics Admissions page.\nYou can find lots of interesting information about mathematics careers here.\nYou can find a link to the Dundee Mathematics student society here."
+    "text": "Exploring the model with an app\nThe app below allows you to explore how the behaviour of the model depends on the different initial conditions and model parameters. The challenge is to make sure that the level of infectiousness in the population does not go above the maximum allowed value (horizontal line).\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 800\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.panel_sidebar(\n    ui.input_slider(id=\"r\",label=\"Infectivity\",min=0.00001,max=0.001,value=0.001,step=0.00001),\n    ui.input_slider(id=\"S0\",label=\"initial suscetible pop size\",min=1000.0,max=8000.0,value=4000.1,step=5.0),\n    ui.input_slider(id=\"a\",label=\"Num days infectiousness\",min=2.0,max=8.0,value=5.0,step=0.1),            \n    ui.input_slider(id=\"I0\",label=\"Initial infectious population size\",min=0.0,max=17.0,value=17.0,step=0.5),  \n    ui.input_slider(id=\"T\",label=\"Simulation time\",min=0.0,max=20.0,value=20.0,step=0.5),\n    ui.input_slider(id=\"max_inf\",label=\"Max. infectiousness\",min=0.0,max=10000.0,value=3500.0,step=100.5),             \n          \n            ),\n\n        ui.panel_main(ui.output_plot(\"plot\"),),\n    ),\n)\n\ndef server(input, output, session):\n    \n    @render.plot\n    def plot():\n        fig, ax = plt.subplots()\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        r=float(input.r())\n        S_0=float(input.S0())\n        a=float(np.log(2)/(input.a()))\n        I_0=float(input.I0())\n        T=float(input.T())\n        max_inf=float(input.max_inf())\n\n        R_0=r*S_0/a\n        \n        # Define rhs of LV ODEs\n        def rhs_sir_model(x,t,r,a):\n          rhs=np.zeros_like(x,dtype=float)\n          S=x[0]\n          I=x[1]\n          R=x[2]\n\n          \n\n          dS_dt=-r*I*S\n          dI_dt=r*I*S-a*I\n          dR_dt=a*I\n\n          rhs[0]=dS_dt\n          rhs[1]=dI_dt\n          rhs[2]=dR_dt\n\n          return rhs\n\n        # Define discretised t domain\n        t = np.linspace(0, T, 1000)\n\n        # define initial conditions\n        init_cond=[S_0,I_0,0.0]\n        \n        # Compute numerical solution of ODEs\n        sol1 = odeint(rhs_sir_model, init_cond,t,args=(r,a))\n\n        # Plot results\n        S=sol1[:,0]\n        I=sol1[:,1]\n        R=sol1[:,2]\n        \n        ax.plot(t, S, 'b',t,I,'r',t,R,'k')\n        ax.plot(t,max_inf*np.ones_like(t),'--')\n        ax.legend(['S','I','R','Max. allowed infectiousness'],loc='best')\n        ax.set_xlabel('$t$')\n        ax.set_title('R_0 =' + str(R_0))\n\n        #plt.grid()\n        #plt.show()\n    \napp = App(app_ui, server)"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Maths-admissions",
     "section": "",
-    "text": "The SIR model\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome\n\n\n\n\n\n\nWelcome\n\n\n\n\n\n\n\n\n\nMar 24, 2024\n\n\nPhilip Murray\n\n\n\n\n\n\nNo matching items"
+    "text": "The SIR model\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGraduate employment\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWelcome\n\n\n\n\n\n\nWelcome\n\n\n\n\n\n\n\n\n\nMar 24, 2024\n\n\nPhilip Murray\n\n\n\n\n\n\nNo matching items"
   }
 ]
