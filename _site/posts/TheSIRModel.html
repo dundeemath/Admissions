@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Maths-admissions - SIR model</title>
+<title>Maths-admissions - The SIR model</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">SIR model</h1>
+      <h1 class="title">The SIR model</h1>
                       </div>
   </div>
     
@@ -171,16 +171,16 @@ window.Quarto = {
 
 
 
-<section id="infectious-disease-modelling" class="level1">
-<h1>Infectious disease modelling</h1>
-<p>Infectious diseases can place a severe burden on the health service.</p>
-<p>Infectious diseases can be characterised using the basic reproduction number.</p>
+<section id="infectious-disease" class="level1">
+<h1>Infectious disease</h1>
+<p>Infectious diseases can have severe health outcomes for individuals who contract them. They can also place an unmanageably large demand on the health service.</p>
+<p>Infectious diseases can be characterised using their basic reproduction number.</p>
 <table class="table">
 <caption>Infectious disease basic reproduction numbers <a href="https://en.wikipedia.org/wiki/Basic_reproduction_number">Source</a>.</caption>
 <thead>
 <tr class="header">
 <th>Disease</th>
-<th style="text-align: left;">R_0</th>
+<th style="text-align: left;"><span class="math inline">\(R_0\)</span></th>
 </tr>
 </thead>
 <tbody>
@@ -207,53 +207,21 @@ window.Quarto = {
 </tbody>
 </table>
 </section>
-<section id="the-sir-model" class="level1">
-<h1>The SIR model</h1>
-<p>We can use mathematics to study the dynamics of an infectious disease within a population.</p>
-<p>At Dundee, the tools needed are developed in modules such as:</p>
-<ul>
-<li>Maths 1A, 1B, 2A and 2B (Core maths modules)</li>
-<li>Computer algebra and dynamical systems</li>
-<li>Mathematical Biology I</li>
-<li>Mathematical Biology II</li>
-</ul>
-<p>You can find out more about these modules <a href="https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment">here</a>.</p>
-<p>The SIR is the most basic way to model the spread of an infectious disease.</p>
-<p>Variables:</p>
+<section id="mathematical-modelling-of-infectious-diseases" class="level1">
+<h1>Mathematical modelling of infectious diseases</h1>
+<p>We can use mathematics to study the dynamics of an infectious disease within a population. In the app below we simulating a model of infectious disease (more details on the model below).</p>
+<p>The model is known as the SIR model as the the variables in the model are:</p>
 <ul>
 <li><span class="math inline">\(S(t)\)</span> - size of susceptible population at time <span class="math inline">\(t\)</span></li>
-<li><span class="math inline">\(I(t)\)</span> - size of susceptible population at time <span class="math inline">\(t\)</span></li>
-<li><span class="math inline">\(R(t)\)</span> - size of susceptible population at time <span class="math inline">\(t\)</span></li>
+<li><span class="math inline">\(I(t)\)</span> - size of infected population at time <span class="math inline">\(t\)</span></li>
+<li><span class="math inline">\(R(t)\)</span> - size of recovered/post-infected population at time <span class="math inline">\(t\)</span></li>
 </ul>
-<p>Parameters:</p>
+<p>The SIR model has two parameters:</p>
 <ul>
 <li><span class="math inline">\(r\)</span> - infection rate</li>
 <li><span class="math inline">\(a\)</span> - recovery rate</li>
 </ul>
-<p>Public health:</p>
-<ul>
-<li><span class="math inline">\(I_{max}\)</span> - the maximum allowed number of infectious people in the population</li>
-</ul>
-<section id="a-mathematical-model" class="level2">
-<h2 class="anchored" data-anchor-id="a-mathematical-model">A mathematical model</h2>
-<p>Model equations: <span class="math display">\[
-\begin{aligned}
-\frac{dS}{dt}&amp;=-rIS, \\
-\frac{dI}{dt}&amp;=rIS-aI, \\
-\frac{dR}{dt}&amp;=aI,
-\end{aligned}
-\]</span></p>
-<p>Initial conditions:</p>
-<p><span class="math display">\[
-\begin{aligned}
-S(t=0)&amp;=S_0 \\
-I(t=0)&amp;=I_0 \\
-R(t=0)&amp;=R_0.
-\end{aligned}
-\]</span></p>
-</section>
-<section id="exploring-the-model-with-an-app" class="level2">
-<h2 class="anchored" data-anchor-id="exploring-the-model-with-an-app">Exploring the model with an app</h2>
+<p>From a public health perspective, one could propose that there is some level of infectiousness, <span class="math inline">\(I_{max}\)</span>, which must be avoided. The challenge is to manage the disease such that <span class="math inline">\(I(t)&lt;I_{max}\)</span> for all <span class="math inline">\(t\)</span>.</p>
 <pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| components: [viewer]
 #| viewerHeight: 800
@@ -270,11 +238,11 @@ app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.panel_sidebar(
     ui.input_slider(id="r",label="Infectivity",min=0.00001,max=0.001,value=0.001,step=0.00001),
-    ui.input_slider(id="S0",label="initial suscetible pop size",min=1000.0,max=8000.0,value=4000.1,step=5.0),
-    ui.input_slider(id="a",label="Num days infectiousness",min=2.0,max=8.0,value=0.1,step=0.1),            
-    ui.input_slider(id="I0",label="Initial infectious population size",min=0.0,max=17.0,value=17.0,step=0.5),  
-    ui.input_slider(id="T",label="Simulation time",min=0.0,max=20.0,value=20.0,step=0.5),
-    ui.input_slider(id="max_inf",label="Max. infectiousness",min=0.0,max=10000.0,value=3500.0,step=100.5),             
+    ui.input_slider(id="S0",label="initial susceptible pop",min=1000.0,max=8000.0,value=4000.1,step=5.0),
+    ui.input_slider(id="a",label="Num days infectiousness",min=2.0,max=8.0,value=5.0,step=0.1),            
+    ui.input_slider(id="I0",label="Initial infectious population ",min=0.0,max=17.0,value=17.0,step=0.5),  
+    ui.input_slider(id="T",label="Simulation time",min=0.0,max=60.0,value=20.0,step=0.5),
+    ui.input_slider(id="max_inf",label="Max. infectiousness",min=0.0,max=10000.0,value=2500.0,step=100.5),             
           
             ),
 
@@ -343,9 +311,55 @@ def server(input, output, session):
         #plt.show()
     
 app = App(app_ui, server)</code></pre>
-
-
 </section>
+<section id="exercises-with-the-app" class="level1">
+<h1>Exercises with the app</h1>
+<ul>
+<li>can you determine what value the infectivity parameter must go below in order that <span class="math inline">\(I(t)&lt;I_{max}\)</span>?</li>
+<li>if covid omicron has an <span class="math inline">\(R_0=9.5\)</span> and an infectious period of 6 days, can you estimate the value of the infectivity parameter for a susceptible population of 5000?</li>
+<li>which parameters in the app best represent the effect of vaccination of a section of the population?</li>
+</ul>
+</section>
+<section id="the-sir-model-equations" class="level1">
+<h1>The SIR model equations</h1>
+<p>The SIR model is formulated as a system of ordinary differential equations.</p>
+<p>The governing equations are: <span class="math display">\[
+\begin{aligned}
+\frac{dS}{dt}&amp;=-rIS, \\
+\frac{dI}{dt}&amp;=rIS-aI, \\
+\frac{dR}{dt}&amp;=aI.
+\end{aligned}
+\]</span></p>
+<p>The initial conditions are:</p>
+<p><span class="math display">\[
+\begin{aligned}
+S(t=0)&amp;=S_0, \\
+I(t=0)&amp;=I_0, \\
+R(t=0)&amp;=R_0.
+\end{aligned}
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At Dundee, the mathematical tools needed are developed in modules:</p>
+<ul>
+<li>Maths 1A, 1B, 2A and 2B (Core maths modules)</li>
+<li>Computer algebra and dynamical systems</li>
+<li>Mathematical Biology I</li>
+<li>Mathematical Biology II</li>
+</ul>
+<p>You can find out more about these modules <a href="https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment">here</a>.</p>
+</div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->

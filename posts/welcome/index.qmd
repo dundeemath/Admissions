@@ -5,7 +5,9 @@ date: "2024-03-24"
 categories: [Welcome]
 ---
 
-Welcome to the Dundee Mathematics Admissions blog.
+Welcome to the Dundee Mathematics Admissions page.
 
 You can find lots of interesting information about mathematics careers [here](https://ima.org.uk/support/careers/).
+
+You can find a link to the Dundee Mathematics student society [here](https://www.dusa.co.uk/project/maths).
 

@@ -1,18 +1,18 @@
 ---
-title: "SIR model"
+title: "The SIR model"
 format: html 
+image: 'SIRAppImage.png'
 filters:
   - shinylive
 ---
 
+# Infectious disease 
 
-# Infectious disease modelling
+Infectious diseases can have severe health outcomes for individuals who contract them. They can also place an unmanageably large demand on the health service.
 
-Infectious diseases can place a severe burden on the health service.
+Infectious diseases can be characterised using their basic reproduction number.
 
-Infectious diseases can be characterised using the basic reproduction number.
-
-| Disease | R_0  |
+| Disease | $R_0$  |
 |---------|:-----|
 | Measles      | 12-18    |
 | Chickenpox     | 10-12   |
@@ -21,65 +21,22 @@ Infectious diseases can be characterised using the basic reproduction number.
 | Covid 19 (Omicron)       | 9.5    |     
 : Infectious disease basic reproduction numbers [Source](https://en.wikipedia.org/wiki/Basic_reproduction_number).
 
+# Mathematical modelling of infectious diseases
 
-# The SIR model
+We can use mathematics to study the dynamics of an infectious disease within a population. In the app below we  simulating a model of infectious disease (more details on the model below). 
 
-We can use mathematics to study the dynamics of an infectious disease within a population. 
-
-At Dundee, the tools needed are developed in modules such as:
-
-* Maths 1A, 1B, 2A and 2B (Core maths modules)
-* Computer algebra and dynamical systems
-* Mathematical Biology I
-* Mathematical Biology II
-
-You can find out more about these modules [here](https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment).
-
-
-
-The SIR is the most basic way to model the spread of an infectious disease.
-
-Variables:
+The model is known as the SIR model as the the variables in the model are:
 
 * $S(t)$ - size of susceptible population at time $t$
-* $I(t)$ - size of susceptible population at time $t$
-* $R(t)$ - size of susceptible population at time $t$
+* $I(t)$ - size of infected population at time $t$
+* $R(t)$ - size of recovered/post-infected population at time $t$
 
-Parameters:
+The SIR model has two parameters:
 
 * $r$ - infection rate
 * $a$ - recovery rate 
 
-Public health:
-
-* $I_{max}$ - the maximum allowed number of infectious people in the population
-
-## A mathematical model 
-
-Model equations:
-$$ 
-\begin{aligned}
-\frac{dS}{dt}&=-rIS, \\
-\frac{dI}{dt}&=rIS-aI, \\
-\frac{dR}{dt}&=aI, 
-\end{aligned}
-$$
-
-Initial conditions:
-
-$$ 
-\begin{aligned}
-S(t=0)&=S_0 \\
-I(t=0)&=I_0 \\
-R(t=0)&=R_0.
-\end{aligned}
-$$
-
-
-
-
-
-## Exploring the model with an app
+From a public health perspective, one could propose that there is some level of infectiousness, $I_{max}$, which must be avoided. The challenge is to manage the disease such that $I(t)<I_{max}$ for all $t$. 
 
 
 
@@ -100,11 +57,11 @@ app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.panel_sidebar(
     ui.input_slider(id="r",label="Infectivity",min=0.00001,max=0.001,value=0.001,step=0.00001),
-    ui.input_slider(id="S0",label="initial suscetible pop size",min=1000.0,max=8000.0,value=4000.1,step=5.0),
-    ui.input_slider(id="a",label="Num days infectiousness",min=2.0,max=8.0,value=0.1,step=0.1),            
-    ui.input_slider(id="I0",label="Initial infectious population size",min=0.0,max=17.0,value=17.0,step=0.5),  
-    ui.input_slider(id="T",label="Simulation time",min=0.0,max=20.0,value=20.0,step=0.5),
-    ui.input_slider(id="max_inf",label="Max. infectiousness",min=0.0,max=10000.0,value=3500.0,step=100.5),             
+    ui.input_slider(id="S0",label="initial susceptible pop",min=1000.0,max=8000.0,value=4000.1,step=5.0),
+    ui.input_slider(id="a",label="Num days infectiousness",min=2.0,max=8.0,value=5.0,step=0.1),            
+    ui.input_slider(id="I0",label="Initial infectious population ",min=0.0,max=17.0,value=17.0,step=0.5),  
+    ui.input_slider(id="T",label="Simulation time",min=0.0,max=60.0,value=20.0,step=0.5),
+    ui.input_slider(id="max_inf",label="Max. infectiousness",min=0.0,max=10000.0,value=2500.0,step=100.5),             
           
             ),
 
@@ -174,4 +131,52 @@ def server(input, output, session):
     
 app = App(app_ui, server)
 ```
+
+# Exercises with the app
+
+* can you determine what value the infectivity parameter must go below in order that $I(t)<I_{max}$?
+* if covid omicron has an $R_0=9.5$ and an infectious period of 6 days, can you estimate the value of the infectivity parameter for a susceptible population of 5000? 
+* which parameters in the app best represent the effect of vaccination of a section of the population? 
+
+
+# The SIR model equations
+
+
+The SIR model is formulated as a system of ordinary differential equations.
+
+The governing equations are:
+$$ 
+\begin{aligned}
+\frac{dS}{dt}&=-rIS, \\
+\frac{dI}{dt}&=rIS-aI, \\
+\frac{dR}{dt}&=aI. 
+\end{aligned}
+$$
+
+The initial conditions are:
+
+$$ 
+\begin{aligned}
+S(t=0)&=S_0, \\
+I(t=0)&=I_0, \\
+R(t=0)&=R_0.
+\end{aligned}
+$$
+
+:::{.callout-note}
+
+At Dundee, the mathematical tools needed are developed in modules:
+
+* Maths 1A, 1B, 2A and 2B (Core maths modules)
+* Computer algebra and dynamical systems
+* Mathematical Biology I
+* Mathematical Biology II
+
+You can find out more about these modules [here](https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment).
+
+:::
+
+
+
+
 

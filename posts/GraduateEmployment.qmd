@@ -1,0 +1,74 @@
+---
+title: "Graduate employment"
+format: html 
+---
+
+
+A mathematics degree will enable you to become a *logical numerate problem solver*. Over the course of your degree you will develop
+
+* core mathematical skills
+* programming skills
+* transferable skills (e.g. report writing, presentation skills)
+
+
+## Career earnings 
+
+```{python}
+#| echo: false
+#| fig-cap: "Data provided by HESA (2020/2021)"
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+subjectdict= {"Medicine and dentistry": 35000,
+"Subjects allied to medicine"	:	26000,
+"Biological and sport sciences": 24000, 
+"Psychology": 23000, 
+"Veterinary sciences":32000, 
+"Agriculture, food and related studies":	24000, 
+"Physical sciences": 27000, 
+"Mathematical sciences":29000, 
+"Engineering and technology": 	29500, 
+"Computing": 29000, 
+"Architecture, building and planning": 26000, 
+"Geography, earth and environmental studies (natural sciences)": 25000, 
+"Social sciences"	: 26000, 
+"Law": 23000, 
+"Business and management"	: 25000, 
+"Language and area studies"	: 25000, 
+"Historical, philosophical and religious studies"	:	25000, 
+"Education and teaching":	25500, 
+"Combined and general studies":	26500, 
+"Media, journalism and communications": 23000, 
+"Design, and creative and performing arts": 	22500, 
+"Geography, earth and environmental studies (social sciences)": 26000 
+}
+#df=pd.DataFrame(list(subjectdict.items()))
+#df=pd.DataFrame(subjectdict,index=(subjectdict.items()))
+df=pd.DataFrame.from_dict(subjectdict,orient='index')
+df.rename(index=lambda x: x[:15], inplace=True) #this will truncate the column name. Then print the dataframe
+
+plot_table = df.plot.barh()
+plot_table.set_xlabel('Median salary of new graduates (£)')
+plt.show()
+```
+
+## Where our graduates get employed?
+
+* Data analyst
+* Actuary
+* Accountant
+* PhD
+* Data scientist
+* Transport engineer
+* Management consultant
+* Teacher
+* Operations analyst
+* Financial engineer
+* Operations research
+* Tax consultant
+* Energy risk analyst
+* Insurance underwriter
+* Software engineer
+* Credit risk analyst
+* Hedge fund analyst
