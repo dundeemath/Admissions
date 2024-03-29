@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Maths-admissions - Roots of quadratic/cubics</title>
+<title>Maths-admissions - Roots of quadratic/cubic equations</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Roots of quadratic/cubics</h1>
+      <h1 class="title">Roots of quadratic/cubic equations</h1>
                       </div>
   </div>
     
@@ -171,8 +171,6 @@ window.Quarto = {
 
 
 
-<section id="cubic-equation" class="level1">
-<h1>Cubic equation</h1>
 <p>Consider the cubic equation <span id="eq-cubic"><span class="math display">\[
 ax^3+bx^2+cx+d=0, \ \ \quad a,b,c \in \Re.
 \tag{1}\]</span></span></p>
@@ -270,9 +268,8 @@ def server(input, output, session):
         #plt.show()
     
 app = App(app_ui, server)</code></pre>
-</section>
-<section id="exercises-with-the-app" class="level1">
-<h1>Exercises with the app</h1>
+<section id="exercises" class="level1">
+<h1>Exercises</h1>
 <ul>
 <li>set <span class="math inline">\(a=0\)</span>.
 <ul>
@@ -280,12 +277,10 @@ app = App(app_ui, server)</code></pre>
 <li>how does the local maximum/minimum of the quadratic depend on the sign of the parameter <span class="math inline">\(b\)</span>?</li>
 <li>why are there complex roots when the condition <span class="math inline">\(c^2-4bd&lt;0\)</span> is satisfied?</li>
 </ul></li>
-<li>now choose <span class="math inline">\(a&gt;0\)</span>.
-<ul>
-<li>how many roots are there?</li>
+<li>consider <span class="math inline">\(a&gt;0\)</span>.</li>
+<li>how many real roots are there?</li>
 <li>show there is always a trivial root in the case <span class="math inline">\(d=0\)</span>.</li>
 <li>show that in the case <span class="math inline">\(a=d=1\)</span> with <span class="math inline">\(b=c=0\)</span> that the roots are 1, <span class="math inline">\(\frac{1+j\sqrt{3}}{2}\)</span>, <span class="math inline">\(\frac{1-j\sqrt{3}}{2}\)</span> where <span class="math inline">\(j=\sqrt{-1}\)</span>.</li>
-</ul></li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
