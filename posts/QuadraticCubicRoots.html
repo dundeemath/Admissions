@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Maths-admissions - The SIR model</title>
+<title>Maths-admissions - Roots of quadratic/cubics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -147,7 +147,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">The SIR model</h1>
+      <h1 class="title">Roots of quadratic/cubics</h1>
                       </div>
   </div>
     
@@ -171,57 +171,18 @@ window.Quarto = {
 
 
 
-<section id="infectious-disease" class="level1">
-<h1>Infectious disease</h1>
-<p>Infectious diseases can have severe health outcomes for individuals who contract them. They can also place an unmanageably large demand on the health service.</p>
-<p>Infectious diseases can be characterised using their basic reproduction number.</p>
-<table class="table">
-<caption>Infectious disease basic reproduction numbers <a href="https://en.wikipedia.org/wiki/Basic_reproduction_number">Source</a>.</caption>
-<thead>
-<tr class="header">
-<th>Disease</th>
-<th style="text-align: left;"><span class="math inline">\(R_0\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Measles</td>
-<td style="text-align: left;">12-18</td>
-</tr>
-<tr class="even">
-<td>Chickenpox</td>
-<td style="text-align: left;">10-12</td>
-</tr>
-<tr class="odd">
-<td>Rubella</td>
-<td style="text-align: left;">6-7</td>
-</tr>
-<tr class="even">
-<td>Common cold</td>
-<td style="text-align: left;">2-3</td>
-</tr>
-<tr class="odd">
-<td>Covid 19 (Omicron)</td>
-<td style="text-align: left;">9.5</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="mathematical-modelling-of-infectious-diseases" class="level1">
-<h1>Mathematical modelling of infectious diseases</h1>
-<p>We can use mathematics to study the dynamics of an infectious disease within a population. In the app below we simulating a model of infectious disease (more details on the model below).</p>
-<p>The model is known as the SIR model as the the variables in the model are:</p>
-<ul>
-<li><span class="math inline">\(S(t)\)</span> - size of susceptible population at time <span class="math inline">\(t\)</span></li>
-<li><span class="math inline">\(I(t)\)</span> - size of infected population at time <span class="math inline">\(t\)</span></li>
-<li><span class="math inline">\(R(t)\)</span> - size of recovered/post-infected population at time <span class="math inline">\(t\)</span></li>
-</ul>
-<p>The SIR model has two parameters:</p>
-<ul>
-<li><span class="math inline">\(r\)</span> - infection rate</li>
-<li><span class="math inline">\(a\)</span> - recovery rate</li>
-</ul>
-<p>From a public health perspective, one could propose that there is some level of infectiousness, <span class="math inline">\(I_{max}\)</span>, which must be avoided. The challenge is to manage the disease such that <span class="math inline">\(I(t)&lt;I_{max}\)</span> for all <span class="math inline">\(t\)</span>.</p>
+<section id="cubic-equation" class="level1">
+<h1>Cubic equation</h1>
+<p>Consider the cubic equation <span id="eq-cubic"><span class="math display">\[
+ax^3+bx^2+cx+d=0, \ \ \quad a,b,c \in \Re.
+\tag{1}\]</span></span></p>
+<p>A special case you may have seen before occurs when <span class="math inline">\(a=0\)</span>. Hence <span class="math display">\[
+bx^2+cx+d=0, \ \ \quad b,c \in \Re.
+\]</span></p>
+<p>In this case the roots of the quadratic are <span class="math display">\[
+x=\frac{-c\pm\sqrt{c^2-4bd}}{2b}.
+\]</span></p>
+<p>In the app below you can play with the parameter <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span> and <span class="math inline">\(d\)</span> and explore how they affect the form of the cubic equation <a href="#eq-cubic" class="quarto-xref">Equation&nbsp;1</a>. The roots of the cubic are reported in the figure title and the red crossed depict the real parts of the roots.</p>
 <pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| components: [viewer]
 #| viewerHeight: 800
@@ -237,13 +198,13 @@ from scipy.integrate import odeint
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.panel_sidebar(
-    ui.input_slider(id="r",label="Infectivity",min=0.00001,max=0.001,value=0.001,step=0.00001),
-    ui.input_slider(id="S0",label="initial susceptible pop",min=1000.0,max=8000.0,value=4000.1,step=5.0),
-    ui.input_slider(id="a",label="Num days infectiousness",min=2.0,max=8.0,value=5.0,step=0.1),            
-    ui.input_slider(id="I0",label="Initial infectious population ",min=0.0,max=17.0,value=17.0,step=0.5),  
-    ui.input_slider(id="T",label="Simulation time",min=0.0,max=60.0,value=20.0,step=0.5),
-    ui.input_slider(id="max_inf",label="Max. infectiousness",min=0.0,max=10000.0,value=2500.0,step=100.5),             
-          
+    ui.input_slider(id="a",label="a",min=-5,max=5,value=1.0,step=0.1),
+    ui.input_slider(id="b",label="b",min=-5.0,max=5.0,value=1.0,step=0.1),
+    ui.input_slider(id="c",label="c",min=-5.0,max=10.0,value=5.0,step=0.1),            
+    ui.input_slider(id="d",label="d",min=-5.0,max=10.0,value=5.0,step=0.1),            
+    ui.input_slider(id="min_x",label="Min x ",min=-10.0,max=10.0,value=-5.0,step=0.1),  
+    ui.input_slider(id="max_x",label="Max x",min=-10.0,max=10.0,value=5.0,step=0.1),
+        
             ),
 
         ui.panel_main(ui.output_plot("plot"),),
@@ -259,55 +220,53 @@ def server(input, output, session):
         # Filter fata
         
         
-        r=float(input.r())
-        S_0=float(input.S0())
-        a=float(np.log(2)/(input.a()))
-        I_0=float(input.I0())
-        T=float(input.T())
-        max_inf=float(input.max_inf())
+        a=float(input.a())
+        b=float(input.b())
+        c=float((input.c()))
+        d=float((input.d()))
 
-        R_0=r*S_0/a
+        min_x=float(input.min_x())
+        max_x=float(input.max_x())
+
         
         # Define rhs of LV ODEs
-        def rhs_sir_model(x,t,r,a):
+        def rhs(x,a,b,c,d):
           rhs=np.zeros_like(x,dtype=float)
-          S=x[0]
-          I=x[1]
-          R=x[2]
-
-          
-
-          dS_dt=-r*I*S
-          dI_dt=r*I*S-a*I
-          dR_dt=a*I
-
-          rhs[0]=dS_dt
-          rhs[1]=dI_dt
-          rhs[2]=dR_dt
+          rhs=a*x**3+b*x**2+c*x+d
 
           return rhs
 
         # Define discretised t domain
-        t = np.linspace(0, T, 1000)
+        x = np.linspace(min_x, max_x, 1000)
 
         # define initial conditions
-        init_cond=[S_0,I_0,0.0]
         
         # Compute numerical solution of ODEs
-        sol1 = odeint(rhs_sir_model, init_cond,t,args=(r,a))
+        y = rhs(x,a,b,c,d)
 
-        # Plot results
-        S=sol1[:,0]
-        I=sol1[:,1]
-        R=sol1[:,2]
-        
-        ax.plot(t, S, 'b',t,I,'r',t,R,'k')
-        ax.plot(t,max_inf*np.ones_like(t),'--')
-        ax.legend(['S','I','R','Max. allowed infectiousness'],loc='best')
-        ax.set_xlabel('$t$')
-        ax.set_title('R_0 =' + str(R_0))
+        coeff=[a,b,c,d]
+        roots=np.roots(coeff)
 
-        #plt.grid()
+        roots=np.round(roots,2)
+        ax.plot(x, y,roots,np.zeros_like(roots),'rx')
+        ax.set_xlabel('$x$')
+        ax.set_ylabel('$y$')
+        y_lim_p=-15.0 #np.min([100,np.max(y)])
+        y_lim_m=15.0 #np.max([-100,np.min(y)])
+
+        ax.set_ylim([y_lim_m,y_lim_p])
+
+        ax.grid()
+
+        text_x=0.25*(min_x+max_x)
+        text_y=np.mean(y)
+        #title_Str= = ' '.join(map(str, (roots)))
+        title_Str=[("R"+ str(j) +" = " + str(roots[j]) ) for j in range(len(roots))]
+        title_Str = str(title_Str)[1:-1]
+
+        ax.set_title(title_Str)
+        #ax.set_title([("R"+ str(j) +" = " + str(roots[j]) ) for j in range(len(roots))])
+
         #plt.show()
     
 app = App(app_ui, server)</code></pre>
@@ -315,29 +274,19 @@ app = App(app_ui, server)</code></pre>
 <section id="exercises-with-the-app" class="level1">
 <h1>Exercises with the app</h1>
 <ul>
-<li>can you determine what value the infectivity parameter must go below in order that <span class="math inline">\(I(t)&lt;I_{max}\)</span>?</li>
-<li>if covid omicron has an <span class="math inline">\(R_0=9.5\)</span> and an infectious period of 6 days, can you estimate the value of the infectivity parameter for a susceptible population of 5000?</li>
-<li>which parameters in the app best represent the effect of vaccination of a section of the population?</li>
+<li>set <span class="math inline">\(a=0\)</span>.
+<ul>
+<li>how many roots are there?</li>
+<li>how does the local maximum/minimum of the quadratic depend on the sign of the parameter <span class="math inline">\(b\)</span>?</li>
+<li>why are there complex roots when the condition <span class="math inline">\(c^2-4bd&lt;0\)</span> is satisfied?</li>
+</ul></li>
+<li>now choose <span class="math inline">\(a&gt;0\)</span>.
+<ul>
+<li>how many roots are there?</li>
+<li>show there is always a trivial root in the case <span class="math inline">\(d=0\)</span>.</li>
+<li>show that in the case <span class="math inline">\(a=d=1\)</span> with <span class="math inline">\(b=c=0\)</span> that the roots are 1, <span class="math inline">\(\frac{1+j\sqrt{3}}{2}\)</span>, <span class="math inline">\(\frac{1-j\sqrt{3}}{2}\)</span> where <span class="math inline">\(j=\sqrt{-1}\)</span>.</li>
+</ul></li>
 </ul>
-</section>
-<section id="the-sir-model-equations" class="level1">
-<h1>The SIR model equations</h1>
-<p>The SIR model is formulated as a system of ordinary differential equations.</p>
-<p>The governing equations are: <span class="math display">\[
-\begin{aligned}
-\frac{dS}{dt}&amp;=-rIS, \\
-\frac{dI}{dt}&amp;=rIS-aI, \\
-\frac{dR}{dt}&amp;=aI.
-\end{aligned}
-\]</span></p>
-<p>The initial conditions are:</p>
-<p><span class="math display">\[
-\begin{aligned}
-S(t=0)&amp;=S_0, \\
-I(t=0)&amp;=I_0, \\
-R(t=0)&amp;=R_0.
-\end{aligned}
-\]</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -350,10 +299,8 @@ Note
 <div class="callout-body-container callout-body">
 <p>At Dundee, the mathematical tools needed are developed in modules:</p>
 <ul>
-<li>Maths 1A, 1B, 2A and 2B (Core maths modules)</li>
-<li>Computer algebra and dynamical systems</li>
-<li>Mathematical Biology I</li>
-<li>Mathematical Biology II</li>
+<li>Maths 1A</li>
+<li>Maths 1B</li>
 </ul>
 <p>You can find out more about these modules <a href="https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment">here</a>.</p>
 </div>
