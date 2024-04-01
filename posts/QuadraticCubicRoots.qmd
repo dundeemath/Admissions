@@ -21,8 +21,10 @@ $$
 x=\frac{-c\pm\sqrt{c^2-4bd}}{2b}.
 $$
 
-In the app below you can play with the parameter $a$, $b$, $c$ and $d$ and explore how they affect the form of the cubic equation @eq-cubic. The roots of the cubic are reported in the figure title and the red crossed depict the real parts of the roots. 
+In the app in @fig-plotcubic you can play with the parameter $a$, $b$, $c$ and $d$ and explore how they affect the form of the cubic equation @eq-cubic. 
 
+
+:::{#fig-plotcubic}
 ```{shinylive-python}
 #| standalone: true
 #| components: [viewer]
@@ -112,6 +114,9 @@ def server(input, output, session):
     
 app = App(app_ui, server)
 ```
+
+Plot of a cubic function. The roots of the cubic are reported in the figure title. The red crosses depict the real parts of the roots. 
+:::
 
 # Exercises 
 
