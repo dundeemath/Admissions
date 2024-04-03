@@ -38,8 +38,11 @@ The SIR model has two parameters:
 
 From a public health perspective, one could propose that there is some level of infectiousness, $I_{max}$, which must be avoided. The challenge is to manage the disease such that $I(t)<I_{max}$ for all $t$. 
 
+In the app in @fig-sirmodel you can investigate how the values of the parameters $r$ and $a$ affect the trajectory of the infectious disease.
 
 
+
+::: {#fig-sirmodel}
 ```{shinylive-python}
 #| standalone: true
 #| components: [viewer]
@@ -132,6 +135,9 @@ def server(input, output, session):
 app = App(app_ui, server)
 ```
 
+The sizes of the different populations are plotted against time, $t$. The model parameters are defined using the sliders on the left-hand side. The differential equations are in @eq-sir.
+:::
+
 # Exercises with the app
 
 * can you determine what value the infectivity parameter must go below in order that $I(t)<I_{max}$?
@@ -151,7 +157,7 @@ $$
 \frac{dI}{dt}&=rIS-aI, \\
 \frac{dR}{dt}&=aI. 
 \end{aligned}
-$$
+$$ {#eq-sir}
 
 The initial conditions are:
 

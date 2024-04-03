@@ -222,7 +222,11 @@ window.Quarto = {
 <li><span class="math inline">\(a\)</span> - recovery rate</li>
 </ul>
 <p>From a public health perspective, one could propose that there is some level of infectiousness, <span class="math inline">\(I_{max}\)</span>, which must be avoided. The challenge is to manage the disease such that <span class="math inline">\(I(t)&lt;I_{max}\)</span> for all <span class="math inline">\(t\)</span>.</p>
-<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+<p>In the app in <a href="#fig-sirmodel" class="quarto-xref">Figure&nbsp;1</a> you can investigate how the values of the parameters <span class="math inline">\(r\)</span> and <span class="math inline">\(a\)</span> affect the trajectory of the infectious disease.</p>
+<div id="fig-sirmodel" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sirmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-sirmodel" class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| components: [viewer]
 #| viewerHeight: 800
 
@@ -311,6 +315,12 @@ def server(input, output, session):
         #plt.show()
     
 app = App(app_ui, server)</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sirmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: The sizes of the different populations are plotted against time, <span class="math inline">\(t\)</span>. The model parameters are defined using the sliders on the left-hand side. The differential equations are in <a href="#eq-sir" class="quarto-xref">Equation&nbsp;1</a>.
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="exercises-with-the-app" class="level1">
 <h1>Exercises with the app</h1>
@@ -323,13 +333,13 @@ app = App(app_ui, server)</code></pre>
 <section id="the-sir-model-equations" class="level1">
 <h1>The SIR model equations</h1>
 <p>The SIR model is formulated as a system of ordinary differential equations.</p>
-<p>The governing equations are: <span class="math display">\[
+<p>The governing equations are: <span id="eq-sir"><span class="math display">\[
 \begin{aligned}
 \frac{dS}{dt}&amp;=-rIS, \\
 \frac{dI}{dt}&amp;=rIS-aI, \\
 \frac{dR}{dt}&amp;=aI.
 \end{aligned}
-\]</span></p>
+\tag{1}\]</span></span></p>
 <p>The initial conditions are:</p>
 <p><span class="math display">\[
 \begin{aligned}

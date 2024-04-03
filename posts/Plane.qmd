@@ -1,7 +1,7 @@
 ---
 title: Intersecting lines and linear algebra
 format: html 
-image: CubicAppImage.png
+image: Lines2DDemo.png
 filters:
   - shinylive
 ---
@@ -336,6 +336,10 @@ An app to explore the intersection between two straight lines in 3D. The blue li
 :::{.callout-note}
 
 At Dundee, the parametric equations of lines, spheres and planes are studied in the module  Maths 1B.
+
+Concepts from geometry and linear algebra are generalised in *Maths 2A* and *Maths 2B*.
+
+At Level 3 in the module *Differential Geometry* geometrical concepts and tools that are essential for understanding classical and modern physics and engineering are further developed.
 
 You can find out more about these modules [here](https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment).
 
