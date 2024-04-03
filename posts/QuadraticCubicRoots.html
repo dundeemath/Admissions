@@ -180,8 +180,11 @@ bx^2+cx+d=0, \ \ \quad b,c \in \Re.
 <p>In this case the roots of the quadratic are <span class="math display">\[
 x=\frac{-c\pm\sqrt{c^2-4bd}}{2b}.
 \]</span></p>
-<p>In the app below you can play with the parameter <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span> and <span class="math inline">\(d\)</span> and explore how they affect the form of the cubic equation <a href="#eq-cubic" class="quarto-xref">Equation&nbsp;1</a>. The roots of the cubic are reported in the figure title and the red crossed depict the real parts of the roots.</p>
-<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+<p>In the app in <a href="#fig-plotcubic" class="quarto-xref">Figure&nbsp;1</a> you can play with the parameter <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span> and <span class="math inline">\(d\)</span> and explore how they affect the form of the cubic equation <a href="#eq-cubic" class="quarto-xref">Equation&nbsp;1</a>.</p>
+<div id="fig-plotcubic" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plotcubic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-plotcubic" class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| components: [viewer]
 #| viewerHeight: 800
 
@@ -268,6 +271,12 @@ def server(input, output, session):
         #plt.show()
     
 app = App(app_ui, server)</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plotcubic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Plot of a cubic function. The roots of the cubic are reported in the figure title. The red crosses depict the real parts of the roots.
+</figcaption>
+</figure>
+</div>
 <section id="exercises" class="level1">
 <h1>Exercises</h1>
 <ul>
