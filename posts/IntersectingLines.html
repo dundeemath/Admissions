@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.551">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Maths-admissions - Intersecting lines and linear algebra</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content="..">
+<script src="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/shinylive.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-MQD60ZZ43S"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MQD60ZZ43S', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Maths-admissions</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Intersecting lines and linear algebra</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="intersecting-lines-in-two-dimensional-space" class="level1">
+<h1>Intersecting lines in two dimensional space</h1>
+<p>Consider the equations of two straight lines given by <span id="eq-line1"><span class="math display">\[
+y=m_1x+c_1
+\tag{1}\]</span></span> and <span id="eq-line2"><span class="math display">\[
+y=m_2x+c_2,
+\tag{2}\]</span></span> where <span class="math inline">\(m_1\)</span>, <span class="math inline">\(m_2\)</span>, <span class="math inline">\(c_1\)</span> and <span class="math inline">\(c_2\)</span> are constants.</p>
+<p>To find the intersection of the lines we can rearrange <a href="#eq-line1" class="quarto-xref">Equation&nbsp;1</a> and <a href="#eq-line2" class="quarto-xref">Equation&nbsp;2</a> to obtain <span class="math display">\[
+\begin{aligned}
+m_1x-y&amp;=-c_1, \\
+m_2x-y&amp;=-c_2.
+\end{aligned}
+\]</span> The equations can be written in matrix-vector form as <span class="math display">\[
+A \mathbf{x}=\mathbf{b},
+\]</span> where <span class="math display">\[
+A=\begin{pmatrix} m_1 &amp; -c_1 \\ m_2 &amp; -c_2\end{pmatrix},
+\]</span> and <span class="math display">\[
+\mathbf{b}=\begin{pmatrix} -c_1 \\ -c_2\end{pmatrix},
+\]</span> with <span class="math display">\[
+\mathbf{x}=\begin{pmatrix} x \\ y\end{pmatrix}.
+\]</span></p>
+<p>The matrix determinant is defined to be <span class="math display">\[
+\det{A}=-m_1c_2 +c_1m_2.
+\]</span></p>
+<p>In <a href="#fig-linestwod" class="quarto-xref">Figure&nbsp;1</a> you can play with the slopes and intercepts of the lines. Can you spot a condition that must hold on the matrix determinant such that the straight lines do not intersect?</p>
+<div id="fig-linestwod" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-linestwod-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-linestwod" class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 800
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+    ui.input_slider(id="m_1",label="m_1",min=-5,max=5,value=1.0,step=0.2),
+    ui.input_slider(id="c_1",label="c_1",min=-5.0,max=5.0,value=1.0,step=0.2),
+    ui.input_slider(id="m_2",label="m_2",min=-5.0,max=10.0,value=5.0,step=0.2),            
+    ui.input_slider(id="c_2",label="c_2",min=-5.0,max=10.0,value=5.0,step=0.2),            
+    
+        
+            ),
+
+        ui.panel_main(ui.output_plot("plot"),),
+    ),
+)
+
+def server(input, output, session):
+    
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots()
+        #ax.set_ylim([-2, 2])
+        # Filter fata
+        
+        
+        m_1=float(input.m_1())
+        c_1=float(input.c_1())
+        m_2=float((input.m_2()))
+        c_2=float((input.c_2()))
+
+        # Define discretised t domain
+        x = np.linspace(-10, 10, 100)
+        y_1 = m_1*x+c_1
+        y_2 = m_2*x+c_2
+
+        
+
+        #fig = plt.figure()
+        ax.plot(x, y_1, x,y_2)
+        ax.set_xlabel('x')
+        ax.set_ylabel('y')
+
+
+        matrix=np.zeros((2,2))
+        matrix[0,0]=m_1
+        matrix[0,1]=1.0
+        matrix[1,0]=m_2
+        matrix[1,1]=1.0
+
+        matrix=np.matrix(matrix)
+
+        determinant=np.linalg.det(matrix)
+
+
+
+
+
+        #ax.text(3.0,3.0)
+        my_matrix=np.array2string(matrix, suppress_small=True, formatter={'float': '{:0.4f}'.format})
+        #from matplotlib import rc
+        #rc('text', usetex=True)
+        #my_matrix = "$$A=\\  \\begin{array}{ll} 2 &amp; 3 \\ 4 &amp; 5 \\end{array} \\$$"
+        #text(my_matrix, (1,1))
+       
+        ax.text(-10,40, '$A=$'+my_matrix)
+        #ax.annotate('$A$ = ' + matrix, xy = (-10, 40), fontsize = 16, xytext = (-10, 40), arrowprops = dict(facecolor = 'red'),color = 'g')
+        ax.set_title('$\det{A}$ = ' +str(determinant))
+        ax.set_ylim([-10,10])
+        ax.set_xlim([-10,10])
+        ax.grid(True)
+
+       # ax.annotate(
+    #"$\begin{matrix} a &amp; b  \\ d &amp; e  \end{matrix} $",
+   # (0.25, 0.25),
+   # textcoords='axes fraction', size=20)
+
+        
+
+        #text_x=0.25*(min_x+max_x)
+        #text_y=np.mean(y)
+        #title_Str= = ' '.join(map(str, (roots)))
+        #title_Str=[("R"+ str(j) +" = " + str(roots[j]) ) for j in range(len(roots))]
+        #title_Str = str(title_Str)[1:-1]
+
+        #ax.set_title(title_Str)
+        #ax.set_title([("R"+ str(j) +" = " + str(roots[j]) ) for j in range(len(roots))])
+
+        #plt.show()
+    
+app = App(app_ui, server)</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linestwod-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: A plot of two lines in 2D plane.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="intersecting-lines-in-three-dimensional-space" class="level1">
+<h1>Intersecting lines in three dimensional space</h1>
+<p>Consider a line in 3D with direction vector [1,1,1] that goes through the origin. The equation for the line in parametric form is <span class="math display">\[
+\mathbf{r}_1= \lambda_1 [1,1,1]^T, \quad \lambda_1 \in \Re.
+\]</span></p>
+<p>Consider a second line defined such that <span class="math display">\[
+\mathbf{r}_2= \lambda_2 \mathbf{t}+ \mathbf{c}, \quad \lambda_2 \in \Re.
+\]</span></p>
+<p>In <a href="#fig-linesthreed" class="quarto-xref">Figure&nbsp;2</a> you can play with the direction vector, <span class="math inline">\(\mathbf{t}\)</span>, and the point <span class="math inline">\(\mathbf{c}\)</span> of the second line.</p>
+<p>In the app set <span class="math inline">\(c=[c_1,c_2,c_3]^T=[0,0,0]^T\)</span>. Can you show that</p>
+<ul>
+<li>when <span class="math inline">\(t=[t_1,t_2,t_3]^T=[1,-1,0]^T\)</span> that the lines intersect at the origin?</li>
+<li>when <span class="math inline">\(t=[t_1,t_2,t_3]^T=[1,1,1]^T\)</span> the minimum distance between the lines is reported as <em>nan</em> (not a number)?</li>
+</ul>
+<p>To compute the shortest distance between the two lines we can identify the points on each of the lines (parameters <span class="math inline">\(\lambda^*\)</span> and <span class="math inline">\(\mu^*\)</span>) that define closest approach. The equations to define <span class="math inline">\(\lambda^*\)</span> and <span class="math inline">\(\mu^*\)</span> can be written in matrix-vector form as <span id="eq-shortestdist"><span class="math display">\[
+A \mathbf{x}=\mathbf{b},
+\tag{3}\]</span></span> where <span class="math display">\[
+A=\begin{pmatrix} \mathbf{s}\cdot\mathbf{s} &amp; -\mathbf{t}\cdot \mathbf{s} \\ \mathbf{t}\cdot \mathbf{s} &amp; -\mathbf{t}\cdot \mathbf{t}\end{pmatrix},
+\]</span> and <span class="math display">\[
+\mathbf{b}=\begin{pmatrix} \mathbf{c}\cdot \mathbf{s} \\ \mathbf{c}\cdot \mathbf{t}\end{pmatrix},
+\]</span> with <span class="math display">\[
+\mathbf{x}=\begin{pmatrix} \lambda^* \\ \mu^*\end{pmatrix}.
+\]</span> Here <span class="math inline">\(\mathbf{s}\)</span> represents the direction vector for the first line.</p>
+<p>If a solution to <a href="#eq-shortestdist" class="quarto-xref">Equation&nbsp;3</a> can be found then it is straightforward to calculate the shortest distance, <span class="math inline">\(d\)</span>, between the straight lines.</p>
+<div id="fig-linesthreed" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-linesthreed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-linesthreed" class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 800
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+    
+    ui.input_slider(id="t_1",label="t_1",min=-5.0,max=10.0,value=5.0,step=0.2),            
+    ui.input_slider(id="t_2",label="t_2",min=-5.0,max=10.0,value=2.0,step=0.2),     
+    ui.input_slider(id="t_3",label="t_3",min=-5.0,max=10.0,value=1.0,step=0.2),         
+    ui.input_slider(id="c_1",label="c_1",min=-10.0,max=10.0,value=-5.0,step=0.2),  
+    ui.input_slider(id="c_2",label="c_2",min=-10.0,max=10.0,value=5.0,step=0.2),
+    ui.input_slider(id="c_3",label="c_3",min=-10.0,max=10.0,value=5.0,step=0.2),
+    ui.input_slider(id="azim_ang",label="Rotate view",min=-180.0,max=180.0,value=0.0,step=0.1), 
+            ),        
+
+        ui.panel_main(ui.output_plot("plot"),),
+    ),
+)
+
+
+def server(input, output, session):
+    
+    @render.plot
+    def plot():
+        ax = plt.figure().add_subplot(projection='3d')
+        #ax.set_ylim([-2, 2])
+        # Filter fata
+        
+        s_1=1.0
+        s_2=1.0
+        s_3=1.0
+   
+        t_1=float((input.t_1()))
+        t_2=float((input.t_2()))
+        t_3=float((input.t_3()))
+        c_1=float((input.c_1()))
+        c_2=float((input.c_2()))
+        c_3=float((input.c_3()))
+        azim_ang=float((input.azim_ang()))
+
+        
+
+        # Define discretised t domain
+
+        # L1:r=s*lam+[0,0,0]
+        # L2:r=t*lam+[c_1,c_2,c_3]
+        #  Define  points on lines (need to used scatter as rendering of plot in 3d using matplotlib id a problem)
+        lam=np.linspace(-15.0,15.0,5000)
+        L1_x=lam*[s_1]+[0.0] 
+        L1_y=lam*[s_2]+[0.0] 
+        L1_z=lam*[s_3]+[0.0]
+        L2_x=lam*[t_1]+c_1 
+        L2_y=lam*[t_2]+c_2 
+        L2_z=lam*[t_3]+c_3
+
+
+        # define direction vectors of lines
+        c_0_vec=np.array([0,0,0])
+        c_2_vec=np.array([c_1,c_2,c_3])
+        s_vec=np.array([s_1,s_2,s_3] )
+        t_vec=np.array([t_1,t_2,t_3])  
+        # Find lambdas that define closest point on each lines
+        #lam_2=np.dot(c_2_vec-c_0_vec,s_vec-t_vec)/(np.dot(t_vec,t_vec)-np.dot(t_vec,s_vec))
+
+        A=np.array([[np.dot(s_vec,s_vec), -np.dot(t_vec,s_vec)],[np.dot(s_vec,t_vec), -np.dot(t_vec,t_vec)]])
+        b=np.array([np.dot(c_2_vec-c_0_vec,s_vec), np.dot(c_2_vec-c_0_vec,t_vec)])
+
+        determinant=np.linalg.det(A)
+
+        #A=np.array([[1,0],[0,1]])
+        #b=np.array([1,1])
+        x=np.dot(np.linalg.inv(A),b)
+
+        lam_1=x[0]
+        lam_2=x[1]    
+
+        # Expression for closest points
+        cp_1=lam_1*s_vec+c_0_vec
+        cp_2=lam_2*t_vec+c_2_vec
+        
+        # min distance
+        min_dist=np.linalg.norm(cp_2-cp_1)
+
+        #fig = plt.figure()
+        ax.scatter(L1_x,L1_y,L1_z)
+        ax.scatter(L2_x,L2_y,L2_z,'k*')
+        ax.plot([cp_1[0], cp_2[0]],[cp_1[1], cp_2[1]],[cp_1[2], cp_2[2]],'k')
+        ax.set_title('d = ' + str(np.round(min_dist,3))+ ', $\det(A)$ = ' + str(np.round(determinant,3)))
+        my_matrix=np.array2string(A, suppress_small=True, formatter={'float': '{:0.4f}'.format})
+        
+        ax.text(-5,5,5.0, '$A=$'+my_matrix)
+        #ax.plot([L2_1[0],L2_2[0]], [L2_1[1],L2_2[1]],[L2_1[2],L2_2[2]],'r',alpha=0.8,linewidth=6)
+        ax.set_xlabel('$x$')
+        ax.set_ylabel('$y$')
+        ax.set_zlabel('$z$')
+
+        ax.set_xlim([-10,10])
+
+        ax.set_ylim([-10,10])
+        ax.set_zlim([-10,10])
+        #ax.view_init(elev=30, azim=45.0, roll=15)
+        ax.view_init(elev=30, azim=azim_ang)
+
+        #determinant=np.linalg.det(matrix)
+
+
+
+
+
+        
+        #from matplotlib import rc
+        #rc('text', usetex=True)
+        #my_matrix = "$$A=\\  \\begin{array}{ll} 2 &amp; 3 \\ 4 &amp; 5 \\end{array} \\$$"
+        #text(my_matrix, (1,1))
+       
+        #ax.text(-10,40, '$A=$'+my_matrix)
+        #ax.annotate('$A$ = ' + matrix, xy = (-10, 40), fontsize = 16, xytext = (-10, 40), arrowprops = dict(facecolor = 'red'),color = 'g')
+        
+
+       # ax.annotate(
+    #"$\begin{matrix} a &amp; b  \\ d &amp; e  \end{matrix} $",
+   # (0.25, 0.25),
+   # textcoords='axes fraction', size=20)
+
+        
+
+        #text_x=0.25*(min_x+max_x)
+        #text_y=np.mean(y)
+        #title_Str= = ' '.join(map(str, (roots)))
+        #title_Str=[("R"+ str(j) +" = " + str(roots[j]) ) for j in range(len(roots))]
+        #title_Str = str(title_Str)[1:-1]
+
+        #ax.set_title(title_Str)
+        #ax.set_title([("R"+ str(j) +" = " + str(roots[j]) ) for j in range(len(roots))])
+
+        #plt.show()
+    
+app = App(app_ui, server)</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linesthreed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: An app to explore the intersection between two straight lines in 3D. The blue line passes thorugh the origin and has direction vector <span class="math inline">\([1,1,1]\)</span>. The red line is controlled by the parameters in the left column. The black line connects the points on each line at which the distance between the lines is minimised. The minimal distance between the lines is reported in the title.
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At Dundee, the parametric equations of lines, spheres and planes are studied in the module Maths 1B.</p>
+<p>Concepts from geometry and linear algebra are generalised in the modules <em>Maths 2A</em> and <em>Maths 2B</em>.</p>
+<p>At Level 3 in the module <em>Differential Geometry</em> geometrical concepts and tools that are essential for understanding classical and modern physics and engineering are further developed.</p>
+<p>At Levels 2, 3 and 4 you will learn how to use computer programming to explore and communicate mathematical concepts.</p>
+<p>You can find out more about these modules <a href="https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment">here</a>.</p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/dundeemath\.github\.io\/Admissions\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
