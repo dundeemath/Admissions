@@ -249,7 +249,7 @@ def server(input, output, session):
         roots=np.roots(coeff)
 
         roots=np.round(roots,2)
-        ax.plot(x, y,roots,np.zeros_like(roots),'rx')
+        ax.plot(x, y,np.real(roots),np.zeros_like(np.real(roots)),'rx')
         ax.set_xlabel('$x$')
         ax.set_ylabel('$y$')
         y_lim_p=-15.0 #np.min([100,np.max(y)])
