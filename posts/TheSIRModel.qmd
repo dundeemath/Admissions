@@ -178,6 +178,8 @@ At Dundee, the mathematical tools needed are developed in modules:
 * Mathematical Biology I
 * Mathematical Biology II
 
+At Levels 2, 3 and 4 you will learn how to use computer programming to explore and communicate mathematical concepts.
+
 You can find out more about these modules [here](https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment).
 
 :::

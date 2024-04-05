@@ -3,6 +3,7 @@ project:
 
 website:
   title: "Maths-admissions"
+  google-analytics: "G-MQD60ZZ43S"
   navbar:
     right:
       - about.qmd
