@@ -334,8 +334,8 @@ app_ui = ui.page_fluid(
         ui.panel_sidebar(
     
     ui.input_slider(id="t_1",label="t_1",min=-5.0,max=10.0,value=5.0,step=0.2),            
-    ui.input_slider(id="t_2",label="t_2",min=-5.0,max=10.0,value=5.0,step=0.2),     
-    ui.input_slider(id="t_3",label="t_3",min=-5.0,max=10.0,value=5.0,step=0.2),         
+    ui.input_slider(id="t_2",label="t_2",min=-5.0,max=10.0,value=2.0,step=0.2),     
+    ui.input_slider(id="t_3",label="t_3",min=-5.0,max=10.0,value=1.0,step=0.2),         
     ui.input_slider(id="c_1",label="c_1",min=-10.0,max=10.0,value=-5.0,step=0.2),  
     ui.input_slider(id="c_2",label="c_2",min=-10.0,max=10.0,value=5.0,step=0.2),
     ui.input_slider(id="c_3",label="c_3",min=-10.0,max=10.0,value=5.0,step=0.2),
@@ -401,11 +401,23 @@ def server(input, output, session):
         s_vec=np.array([s_1,s_2,s_3] )
         t_vec=np.array([t_1,t_2,t_3])  
         # Find lambdas that define closest point on each lines
-        lam_2=np.dot(c_2_vec-c_0_vec,s_vec-t_vec)/(np.dot(t_vec,t_vec)-np.dot(t_vec,s_vec))
+        #lam_2=np.dot(c_2_vec-c_0_vec,s_vec-t_vec)/(np.dot(t_vec,t_vec)-np.dot(t_vec,s_vec))
+
+        A=np.array([[np.dot(s_vec,s_vec), -np.dot(t_vec,s_vec)],[np.dot(s_vec,t_vec), -np.dot(t_vec,t_vec)]])
+        b=np.array([np.dot(c_2_vec-c_0_vec,s_vec), np.dot(c_2_vec-c_0_vec,t_vec)])
+
+        determinant=np.linalg.det(A)
+
+        #A=np.array([[1,0],[0,1]])
+        #b=np.array([1,1])
+        x=np.dot(np.linalg.inv(A),b)
+
+        lam_1=x[0]
+        lam_2=x[1]
 
         # lam_1(s.s)- lam2(t.s)=(c_2-c_0).s 
     
-        lam_1= (lam_2*np.dot(t_vec,s_vec)+np.dot(c_2_vec-c_0_vec,s_vec))/np.dot(s_vec,s_vec)
+        #lam_1= (lam_2*np.dot(t_vec,s_vec)+np.dot(c_2_vec-c_0_vec,s_vec))/np.dot(s_vec,s_vec)
 
         # Expression for closest points
         cp_1=lam_1*s_vec+c_0_vec
@@ -418,8 +430,10 @@ def server(input, output, session):
         ax.scatter(L1_x,L1_y,L1_z)
         ax.scatter(L2_x,L2_y,L2_z,'k*')
         ax.plot([cp_1[0], cp_2[0]],[cp_1[1], cp_2[1]],[cp_1[2], cp_2[2]],'k')
-        ax.set_title('Closest dist. = ' + str(min_dist))
-
+        ax.set_title('d = ' + str(np.round(min_dist,3))+ ', $\det(A)$ = ' + str(np.round(determinant,3)))
+        my_matrix=np.array2string(A, suppress_small=True, formatter={'float': '{:0.4f}'.format})
+        
+        ax.text(-5,5,5.0, '$A=$'+my_matrix)
         #ax.plot([L2_1[0],L2_2[0]], [L2_1[1],L2_2[1]],[L2_1[2],L2_2[2]],'r',alpha=0.8,linewidth=6)
         ax.set_xlabel('$x$')
         ax.set_ylabel('$y$')
