@@ -195,6 +195,24 @@ A=\begin{pmatrix} m_1 &amp; -1 \\ m_2 &amp; -1\end{pmatrix},
 \det{A}=-m_1 +m_2.
 \]</span></p>
 <p>In <a href="#fig-linestwod" class="quarto-xref">Figure&nbsp;1</a> you can play with the slopes and intercepts of the lines. Can you spot a condition that must hold on the matrix determinant such that the straight lines do not intersect?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Please note that the app in <a href="#fig-linestwod" class="quarto-xref">Figure&nbsp;1</a> is approximately 20 MB. If it does not display on your device:</p>
+<ul>
+<li>wait a moment (it is downloading the Python code that will run the app)</li>
+<li>refresh your browser.</li>
+</ul>
+<p>If it still does not work, here is a <a href="AppInterSectLinesSnapshot.png">snapshot</a>.</p>
+</div>
+</div>
 <div id="fig-linestwod" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-linestwod-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -246,8 +264,7 @@ def server(input, output, session):
 
         #fig = plt.figure()
         ax.plot(x, y_1, x,y_2)
-        ax.set_xlabel('x')
-        ax.set_ylabel('y')
+        
 
 
         matrix=np.zeros((2,2))
@@ -277,6 +294,8 @@ def server(input, output, session):
         ax.set_ylim([-10,10])
         ax.set_xlim([-10,10])
         ax.grid(True)
+        ax.set_xlabel('$x$')
+        ax.set_ylabel('$y$')
 
        # ax.annotate(
     #"$\begin{matrix} a &amp; b  \\ d &amp; e  \end{matrix} $",
@@ -328,6 +347,24 @@ A=\begin{pmatrix} \mathbf{s}\cdot\mathbf{s} &amp; -\mathbf{t}\cdot \mathbf{s} \\
 \mathbf{x}=\begin{pmatrix} \lambda^* \\ \mu^*\end{pmatrix}.
 \]</span> Here <span class="math inline">\(\mathbf{s}\)</span> represents the direction vector for the first line.</p>
 <p>If a solution to <a href="#eq-shortestdist" class="quarto-xref">Equation&nbsp;3</a> can be found then it is straightforward to calculate the shortest distance, <span class="math inline">\(d\)</span>, between the straight lines.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Please note that the app in <a href="#fig-linesthreed" class="quarto-xref">Figure&nbsp;2</a> is approximately 20 MB. If it does not display on your device:</p>
+<ul>
+<li>wait a moment (it is downloading the Python code that will run the app)</li>
+<li>refresh your browser.</li>
+</ul>
+<p>If it still does not work, here is a <a href="IntersectLines3DSnapshot.png">snapshot</a>.</p>
+</div>
+</div>
 <div id="fig-linesthreed" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-linesthreed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
