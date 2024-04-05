@@ -316,6 +316,16 @@ Figure&nbsp;1: A plot of two lines in 2D plane.
 <li>when <span class="math inline">\(t=[t_1,t_2,t_3]^T=[1,-1,0]^T\)</span> that the lines intersect at the origin?</li>
 <li>when <span class="math inline">\(t=[t_1,t_2,t_3]^T=[1,1,1]^T\)</span> the minimum distance between the lines is reported as <em>nan</em> (not a number)?</li>
 </ul>
+<p>To compute the shortest distance between the two lines we can identify the points on each of the lines (parameters <span class="math inline">\(\lambda^*\)</span> and <span class="math inline">\(\mu^*\)</span>) that define closest approach. The equations to define <span class="math inline">\(\lambda^*\)</span> and <span class="math inline">\(\mu^*\)</span> can be written in matrix-vector form as <span id="eq-shortestdist"><span class="math display">\[
+A \mathbf{x}=\mathbf{b},
+\tag{3}\]</span></span> where <span class="math display">\[
+A=\begin{pmatrix} \mathbf{s}\cdot\mathbf{s} &amp; -\mathbf{t}\cdot \mathbf{s} \\ \mathbf{t}\cdot \mathbf{s} &amp; -\mathbf{t}\cdot \mathbf{t}\end{pmatrix},
+\]</span> and <span class="math display">\[
+\mathbf{b}=\begin{pmatrix} \mathbf{c}\cdot \mathbf{s} \\ \mathbf{c}\cdot \mathbf{t}\end{pmatrix},
+\]</span> with <span class="math display">\[
+\mathbf{x}=\begin{pmatrix} \lambda^* \\ \mu^*\end{pmatrix}.
+\]</span> Here <span class="math inline">\(\mathbf{s}\)</span> represents the direction vector for the first line.</p>
+<p>If a solution to <a href="#eq-shortestdist" class="quarto-xref">Equation&nbsp;3</a> can be found then it is straightforward to calculate the shortest distance, <span class="math inline">\(d\)</span>, between the straight lines.</p>
 <div id="fig-linesthreed" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-linesthreed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -382,18 +392,6 @@ def server(input, output, session):
         L2_y=lam*[t_2]+c_2 
         L2_z=lam*[t_3]+c_3
 
-        # Find values of lambdas that define closest approach
-        #lam_crit: (r_1-r_2).s = (r_1-r_2).t=0.
-        #lam_crit: (lam_1s+c_0-(lam_2t+c_2)).s 
-        # lam_1(s.s)+(c_0-c_2).s - lam2(t.s)=0
-        # lam_1(s.s)- lam2(t.s)=(c_2-c_0).s 
-        # lam_1(s.t)- lam2(t.t)=(c_2-c_0).t
-
-        # lam2(t.t)+(c_2-c_0).t- lam2(t.s)=(c_2-c_0).s 
-        # lam2(t.t)- lam2(t.s)=(c_2-c_0).(s-t)
-        # lam_2=(c_2-c_0).(s-t)/(t.t-t.s)
-        # lam_1=((c_2-c_0).(s-t)/(t.t-t.s)+(c_2-c_0).t)/(s.t)  
-        # 
 
         # define direction vectors of lines
         c_0_vec=np.array([0,0,0])
@@ -413,11 +411,7 @@ def server(input, output, session):
         x=np.dot(np.linalg.inv(A),b)
 
         lam_1=x[0]
-        lam_2=x[1]
-
-        # lam_1(s.s)- lam2(t.s)=(c_2-c_0).s 
-    
-        #lam_1= (lam_2*np.dot(t_vec,s_vec)+np.dot(c_2_vec-c_0_vec,s_vec))/np.dot(s_vec,s_vec)
+        lam_2=x[1]    
 
         # Expression for closest points
         cp_1=lam_1*s_vec+c_0_vec
