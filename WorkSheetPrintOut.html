@@ -179,15 +179,25 @@ window.Quarto = {
 <p>You might have previously encountered differentiation. Suppose that <span class="math inline">\(y\)</span> is some function of <span class="math inline">\(x\)</span>.</p>
 <p>Consider the differential equation</p>
 <p><span class="math display">\[
-\frac{dy}{dx}=1
+\frac{dy}{dx}=1.
 \]</span></p>
 <p>Upon integration</p>
 <p><span class="math display">\[
 y(x)=x+C
-\]</span> where <span class="math inline">\(C\)</span> is an integration.</p>
-<p>Suppose that <span class="math display">\[
-\frac{dy}{dx}=x
+\]</span> where <span class="math inline">\(C\)</span> is an integration constant.</p>
+<p>Now suppose that <span class="math display">\[
+\frac{dy}{dx}=x.
 \]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Can you integrate this ordinary differential equation and identify the solution <span class="math inline">\(y=y(x)\)</span>?</p>
 <div class="line-block"><br>
 <br>
@@ -198,6 +208,8 @@ y(x)=x+C
 <br>
 <br>
 </div>
+</div>
+</div>
 </section>
 <section id="modelling-population-dynamics" class="level1" data-number="3">
 <h1 data-number="3"><span class="header-section-number">3</span> Modelling population dynamics</h1>
@@ -206,11 +218,21 @@ y(x)=x+C
 <p>Let’s consider a model for the number of people in a room at a given time. Let <span class="math inline">\(t\)</span> represent time and <span class="math inline">\(N(t)\)</span> represent the number of people in the room at time <span class="math inline">\(t\)</span>.</p>
 <p>Suppose that there are initially no people in the room, but people enter at a constant rate, <span class="math inline">\(k\)</span>.</p>
 <p>We could formulate a model of population dynamics given by</p>
-<p><span class="math display">\[
+<p><span id="eq-constrhs"><span class="math display">\[
 \frac{dN}{dt}=k, \quad N(0)=0.
-\]</span></p>
+\tag{1}\]</span></span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li>Can you integrate this ODE (Hint is mathematically equivalent to the ODE introduced in <a href="#sec-background" class="quarto-xref">Section&nbsp;2</a>)?</li>
+<li>Can you integrate <a href="#eq-constrhs" class="quarto-xref">Equation&nbsp;1</a> (Hint: it is mathematically equivalent to the ODE introduced in <a href="#sec-background" class="quarto-xref">Section&nbsp;2</a>)?</li>
 </ul>
 <div class="line-block"><br>
 <br>
@@ -221,7 +243,7 @@ y(x)=x+C
 <br>
 </div>
 <ul>
-<li>Can you use the model to determine the amount of time taken for the number of people in the room to reach capacity, <span class="math inline">\(N_C\)</span>.</li>
+<li>Can you use the solution of the model to determine the amount of time taken for the number of people in the room to reach some capacity, <span class="math inline">\(N_C\)</span>.</li>
 </ul>
 <div class="line-block"><br>
 <br>
@@ -230,7 +252,7 @@ y(x)=x+C
 <br>
 </div>
 <ul>
-<li>Can you use the app (<a href="#fig-qrcode" class="quarto-xref">Figure&nbsp;2</a>) to identify what the entry rate, <span class="math inline">\(k\)</span>, needs to be such that the room reaches capacity of 40 people after 20 minutes?</li>
+<li>Can you use the app (see <a href="#fig-qrcode" class="quarto-xref">Figure&nbsp;1</a>) to identify what the entry rate, <span class="math inline">\(k\)</span>, needs to be such that the room reaches capacity of 40 people after 20 minutes?</li>
 </ul>
 <div class="line-block"><br>
 <br>
@@ -241,6 +263,8 @@ y(x)=x+C
 <br>
 <br>
 <br>
+</div>
+</div>
 </div>
 <div id="fig-qrcode" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -255,24 +279,25 @@ Figure&nbsp;1: https://dundeemath.github.io/Admissions/posts/PopulationDynamicsI
 </section>
 <section id="what-if-people-enter-the-room-at-a-constant-rate-but-also-leave-the-room-at-random" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="what-if-people-enter-the-room-at-a-constant-rate-but-also-leave-the-room-at-random"><span class="header-section-number">3.2</span> What if people enter the room at a constant rate but also leave the room at random?</h2>
-<p>Taking the previous model as a starting point, we now assume that people leave the room at a rate proportional to the number of people in the room</p>
-<p>We could formulate a model of population dynamics as before, but not accounting for people entering and leaving the room. The model equation is now given by</p>
-<p><span class="math display">\[
+<p>Taking the previous model as a starting point, we now assume that people can also leave the room at a rate proportional to the number of people in the room</p>
+<p>The model equation is now given by</p>
+<p><span id="eq-constrhsandrem"><span class="math display">\[
 \frac{dN}{dt}=k - dN, \quad N(0)=0.
-\]</span></p>
-<p>It is possible to integrate this ODE (hint: try using an <em>integrating factor</em>)?</p>
-<div class="line-block"><br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+\tag{2}\]</span></span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p>Given that the solution is <span class="math display">\[
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is possible to integrate <a href="#eq-constrhsandrem" class="quarto-xref">Equation&nbsp;2</a> and show that the solution is <span id="eq-constrhsandremsol"><span class="math display">\[
 N(t)=\frac{k}{d}(1-e^{-dt})
-\]</span> can you use the model to determine the amount of time taken for the number of people in the room to reach capacity, <span class="math inline">\(N_C\)</span>. Does a solution always exist?</p>
+\tag{3}\]</span></span></p>
+<p>Can you do this? (hint: try using an <em>integrating factor</em>)?</p>
 <div class="line-block"><br>
 <br>
 <br>
@@ -282,7 +307,19 @@ N(t)=\frac{k}{d}(1-e^{-dt})
 <br>
 <br>
 </div>
-<p>Can you identify what the entry rate needs to be such that the room reaches capacity of 40 people after 20 minutes given <span class="math inline">\(d=0.1\)</span>?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Can you use the model solution (<a href="#eq-constrhsandremsol" class="quarto-xref">Equation&nbsp;3</a>) to determine the amount of time taken for the number of people in the room to reach capacity, <span class="math inline">\(N_C\)</span>. Does a solution always exist?</p>
 <div class="line-block"><br>
 <br>
 <br>
@@ -290,13 +327,37 @@ N(t)=\frac{k}{d}(1-e^{-dt})
 <br>
 <br>
 <br>
+<br>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Can you use the app or the solution (<a href="#eq-constrhsandremsol" class="quarto-xref">Equation&nbsp;3</a>) to identify the entry rate needs to be such that the room reaches capacity of 40 people after 20 minutes given <span class="math inline">\(d=0.1\)</span>?</p>
+<div class="line-block"><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</div>
+</div>
 </div>
 </section>
 </section>
 <section id="the-sir-model" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> The SIR model</h1>
-<p>The SIR model is used to study infectious disease.</p>
-<p>A population is split into three groups:</p>
+<p>The SIR model is used to study the spread of infectious disease.</p>
+<p>In the SIR model a population is split into three groups:</p>
 <ul>
 <li>suspectible (S)</li>
 <li>infectious (I)</li>
@@ -309,7 +370,7 @@ N(t)=\frac{k}{d}(1-e^{-dt})
 \frac{dI}{dt}&amp;=rIS-aI, \\
 \frac{dR}{dt}&amp;=aI.
 \end{aligned}
-\tag{1}\]</span></span></p>
+\tag{4}\]</span></span></p>
 <p>with initial conditions</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -318,13 +379,13 @@ I(t=0)&amp;=I_0, \\
 R(t=0)&amp;=R_0.
 \end{aligned}
 \]</span></p>
-<p>You can explore solution behaviour using this app</p>
-<div id="fig-qrcode" class="quarto-figure quarto-figure-center quarto-float anchored">
+<p>You can explore solution behaviour using this app in <a href="#fig-SIRMOdellink" class="quarto-xref">Figure&nbsp;2</a>.</p>
+<div id="fig-SIRMOdellink" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-qrcode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div aria-describedby="fig-SIRMOdellink-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="MAthsadmissionsSIRQRCode.png" class="img-fluid figure-img" style="width:10.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qrcode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-SIRMOdellink-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: https://dundeemath.github.io/Admissions/posts/TheSIRModel.html
 </figcaption>
 </figure>
