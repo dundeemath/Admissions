@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Maths-admissions</title>
+<title>Maths-admissions - Pop. dynamics worksheet</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -68,35 +66,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-MQD60ZZ43S"></script>
 
 <script type="text/javascript">
@@ -140,10 +109,10 @@ window.Quarto = {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+  <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -169,195 +138,188 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<header id="title-block-header" class="quarto-title-block default page-columns page-full">
-  <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Maths-admissions</h1>
-                      </div>
-  </div>
-    
-  
-  <div class="quarto-title-meta column-page-left">
-
-      
-    
-      
-    </div>
-    
-  
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Welcome">Welcome <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Pop. dynamics worksheet</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
 
+<section id="population-dynamics-modelling" class="level1">
+<h1>Population dynamics modelling</h1>
+<p>The aim of this worksheet is to demonstrate how we can use ideas from calculus to study dynamical systems. You can find an app that explores the worksheet at this link https://dundeemath.github.io/Admissions/posts/WorkSheetPrintOut.html.</p>
+<p>We can use calculus to study how populations change in time.</p>
+</section>
+<section id="sec-background" class="level1">
+<h1>Background</h1>
+<p>You might have previously encountered differentiation. Suppose that <span class="math inline">\(y\)</span> is some function of <span class="math inline">\(x\)</span>.</p>
+<p>Consider the differential equation</p>
+<p><span class="math display">\[
+\frac{dy}{dx}=1
+\]</span></p>
+<p>Upon integration</p>
+<p><span class="math display">\[
+y(x)=x+C
+\]</span> where <span class="math inline">\(C\)</span> is an integration.</p>
+<p>What if <span class="math display">\[
+\frac{dy}{dx}=x
+\]</span></p>
+<p>Can you integrate this ordinary differential equation?</p>
+<section id="formulating-a-model-of-population-dynamics" class="level2">
+<h2 class="anchored" data-anchor-id="formulating-a-model-of-population-dynamics">Formulating a model of population dynamics</h2>
+<p>Let’s consider a model for the number of people in a room at a given time. Let <span class="math inline">\(t\)</span> represent time and <span class="math inline">\(N(t)\)</span> represent the number of people in the room at time <span class="math inline">\(t\)</span>.</p>
+<p>Suppose that there are initially no people in the room, but people enter at a constant rate, <span class="math inline">\(k\)</span>.</p>
+<p>We could formulate a model of population dynamics given by</p>
+<p><span class="math display">\[
+\frac{dN}{dt}=k, \quad N(0)=0.
+\]</span></p>
+<ul>
+<li><p>Can you integrate this ODE (Hint is mathematically equivalent to the ODE introduced in <a href="#sec-background" class="quarto-xref">Section&nbsp;2</a>)?</p></li>
+<li><p>Can you use the model to determine the amount of time taken for the number of people in the room to reach capacity, <span class="math inline">\(N_C\)</span>.</p></li>
+<li><p>The app in <strong>?@fig-popmodel</strong> allows you to explore the solution of the model. Can you identify what the entry rate needs to be such that the room reaches capacity of 40 people after 20 minutes?</p></li>
+</ul>
+</section>
+<section id="what-if-people-enter-the-room-at-a-constant-rate-but-also-leave-the-room-at-random" class="level2">
+<h2 class="anchored" data-anchor-id="what-if-people-enter-the-room-at-a-constant-rate-but-also-leave-the-room-at-random">What if people enter the room at a constant rate but also leave the room at random?</h2>
+<p>Taking the previous model as a starting point, we now assume that people leave the room at a rate proportional to the number of people in the room</p>
+<p>We could formulate a model of population dynamics as before, but not accounting for people entering and leaving the room. The model equation is now given by</p>
+<p><span class="math display">\[
+\frac{dN}{dt}=k - dN, \quad N(0)=0.
+\]</span></p>
+<p>Can you integrate this ODE (hint: try a technique called <em>separation of variables</em>)?</p>
+<p>If so, can you use the model to determine the amount of time taken for the number of people in the room to reach capacity, <span class="math inline">\(N_C\)</span>.</p>
+<p>The app in <a href="#fig-popmodel2" class="quarto-xref">Figure&nbsp;1</a> allows you to explore the solution of the model. Can you identify what the entry rate needs to be such that the room reaches capacity of 40 people after 20 minutes given <span class="math inline">\(d=0.1\)</span>?</p>
+<div id="fig-popmodel2" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-popmodel2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-popmodel2" class="{shinylive-python}"><code>#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 800
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+    ui.input_slider(id="k",label="Entry rate (per minute)",min=0.01,max=10,value=0.1,step=0.00001),
+    ui.input_slider(id="d",label="exit rate (per minute)",min=0.01,max=3,value=0.1,step=0.00001),
+    ui.input_slider(id="N0",label="initial pop",min=0.0,max=20.0,value=0.1,step=1.0),
+    
+    ui.input_slider(id="T",label="Simulation time (minutes)",min=0.0,max=60.0,value=20.0,step=0.5),
+    ui.input_slider(id="max_inf",label="Max. num",min=0.0,max=100.0,value=40.0,step=1.5),             
+          
+            ),
+
+        ui.panel_main(ui.output_plot("plot"),),
+    ),
+)
+
+def server(input, output, session):
+    
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots()
+        #ax.set_ylim([-2, 2])
+        # Filter fata
+        
+        
+        k=float(input.k())
+        d=float(input.d())
+
+        N_0=float(input.N0())
+        T=float(input.T())
+        max_inf=float(input.max_inf())
+
+        
+        # Define rhs of LV ODEs
+        def rhs_pop_model(x,t,k,d):
+          rhs=np.zeros_like(x,dtype=float)
+          N=x[0]
+          dN_dt=k-d*N
+          rhs[0]=dN_dt
+          return rhs
+
+        # Define discretised t domain
+        t = np.linspace(0, T, 1000)
+
+        # define initial conditions
+        init_cond=[N_0]
+        
+        # Compute numerical solution of ODEs
+        sol1 = odeint(rhs_pop_model, init_cond,t,args=(k,d))
+
+        # Plot results
+        N=sol1[:,0]
+        
+        
+        ax.plot(t, N)
+        ax.plot(t,max_inf*np.ones_like(t),'--')
+        ax.legend(['N','Max. room occupancy'],loc='best')
+        ax.set_xlabel('$t$ (minutes)')
+        ax.set_ylim([0,max_inf*1.4])
+
+        #plt.grid()
+        #plt.show()
+    
+app = App(app_ui, server)</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-popmodel2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At Dundee, the mathematical tools needed are developed in modules:</p>
+<ul>
+<li>Maths 1A, 1B, 2A and 2B (Core maths modules)</li>
+<li>Computer algebra and dynamical systems</li>
+<li>Mathematical Biology I</li>
+<li>Mathematical Biology II</li>
+</ul>
+<p>At Levels 2, 3 and 4 you will learn how to use computer programming to explore and communicate mathematical concepts.</p>
+<p>You can find out more about these modules <a href="https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment">here</a>.</p>
+</div>
+</div>
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-listing-file-modified-sort="1712334526412" data-listing-reading-time-sort="5" data-listing-word-count-sort="828">
-<div class="thumbnail">
-<p><a href="./posts/QuadraticCubicRoots.html" class="no-external"></a></p><a href="./posts/QuadraticCubicRoots.html" class="no-external">
-<p><img src="./posts/CubicAppImage.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/QuadraticCubicRoots.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/QuadraticCubicRoots.html" class="no-external">Roots of quadratic/cubic equations</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/QuadraticCubicRoots.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/QuadraticCubicRoots.html" class="no-external">Consider the cubic equation <span id="eq-cubic"><span class="math display">\[
-ax^3+bx^2+cx+d=0, \ \ \quad a,b,c \in \Re.
-\tag{1}\]</span></span></a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./posts/QuadraticCubicRoots.html" class="no-external"></a></p><a href="./posts/QuadraticCubicRoots.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-file-modified-sort="1713527231906" data-listing-reading-time-sort="7" data-listing-word-count-sort="1362">
-<div class="thumbnail">
-<p><a href="./posts/PopulationDynamicsIntro.html" class="no-external"></a></p><a href="./posts/PopulationDynamicsIntro.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/PopulationDynamicsIntro.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/PopulationDynamicsIntro.html" class="no-external">Introduction to population dynamics</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/PopulationDynamicsIntro.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/PopulationDynamicsIntro.html" class="no-external">The aim of this post is to demonstrate how we can use ideas from calculus to study dynamical systems.</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./posts/PopulationDynamicsIntro.html" class="no-external"></a></p><a href="./posts/PopulationDynamicsIntro.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-listing-file-modified-sort="1712334625625" data-listing-reading-time-sort="6" data-listing-word-count-sort="1095">
-<div class="thumbnail">
-<p><a href="./posts/TheSIRModel.html" class="no-external"></a></p><a href="./posts/TheSIRModel.html" class="no-external">
-<p><img src="./posts/SIRAppImage.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/TheSIRModel.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/TheSIRModel.html" class="no-external">The SIR model</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/TheSIRModel.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/TheSIRModel.html" class="no-external">Infectious diseases can have severe health outcomes for individuals who contract them. They can also place an unmanageably large demand on the health service.</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./posts/TheSIRModel.html" class="no-external"></a></p><a href="./posts/TheSIRModel.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-listing-file-modified-sort="1712406792874" data-listing-reading-time-sort="11" data-listing-word-count-sort="2196">
-<div class="thumbnail">
-<p><a href="./posts/IntersectingLines.html" class="no-external"></a></p><a href="./posts/IntersectingLines.html" class="no-external">
-<p><img src="./posts/Lines2DDemo.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/IntersectingLines.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/IntersectingLines.html" class="no-external">Intersecting lines and linear algebra</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/IntersectingLines.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/IntersectingLines.html" class="no-external">Consider the equations of two straight lines given by <span id="eq-line1"><span class="math display">\[
-y=m_1x+c_1
-\tag{1}\]</span></span> and <span id="eq-line2"><span class="math display">\[
-y=m_2x+c_2,
-\tag{2}\]</span></span> where <span class="math inline">\(m_1\)</span>, <span class="math inline">\(m_2\)</span>, <span class="math inline">\(c_1\)</span> and <span class="math inline">\(c_2\)</span> are constants.</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./posts/IntersectingLines.html" class="no-external"></a></p><a href="./posts/IntersectingLines.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-listing-file-modified-sort="1711576589008" data-listing-reading-time-sort="1" data-listing-word-count-sort="197">
-<div class="thumbnail">
-<p><a href="./posts/GraduateEmployment.html" class="no-external"></a></p><a href="./posts/GraduateEmployment.html" class="no-external">
-<p class="card-img-top"><img src="posts/GraduateEmployment_files/figure-html/cell-2-output-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/GraduateEmployment.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/GraduateEmployment.html" class="no-external">Graduate employment</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/GraduateEmployment.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/GraduateEmployment.html" class="no-external">A mathematics degree will enable you to become a <em>logical numerate problem solver</em>. Over the course of your degree you will develop</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./posts/GraduateEmployment.html" class="no-external"></a></p><a href="./posts/GraduateEmployment.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="Welcome" data-listing-date-sort="1711238400000" data-listing-file-modified-sort="1711558498731" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="28">
-<div class="thumbnail">
-<p><a href="./posts/welcome/index.html" class="no-external"></a></p><a href="./posts/welcome/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/welcome/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/welcome/index.html" class="no-external">Welcome</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/welcome/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Welcome'); return false;">
-Welcome
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/welcome/index.html" class="no-external">Welcome to the Dundee Mathematics Admissions page.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/welcome/index.html" class="no-external">
-<div class="listing-date">
-Mar 24, 2024
-</div>
-<div class="listing-author">
-Philip Murray
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</section>
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
