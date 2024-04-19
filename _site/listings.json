@@ -3,8 +3,9 @@
     "listing": "/index.html",
     "items": [
       "/posts/QuadraticCubicRoots.html",
-      "/posts/Plane.html",
+      "/posts/PopulationDynamicsIntro.html",
       "/posts/TheSIRModel.html",
+      "/posts/IntersectingLines.html",
       "/posts/GraduateEmployment.html",
       "/posts/welcome/index.html"
     ]

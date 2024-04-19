@@ -38,9 +38,18 @@ The SIR model has two parameters:
 
 From a public health perspective, one could propose that there is some level of infectiousness, $I_{max}$, which must be avoided. The challenge is to manage the disease such that $I(t)<I_{max}$ for all $t$. 
 
-In the app in @fig-sirmodel you can investigate how the values of the parameters $r$ and $a$ affect the trajectory of the infectious disease.
+In the app in @fig-sirmodel you can investigate how the values of the parameters $r$ and $a$ affect the trajectory of the infectious disease. 
 
+:::{.callout-tip}
+Please note that the app in @fig-sirmodel is approximately 20 MB. If it does not display on your device:
 
+- wait a few moments (it is downloading the Python code that will run the app) 
+- refresh your browser.  
+- try running on a faster connection/ more powerful device.
+
+If it still does not load, here is a [screenshot](SIRDemo.png).
+
+:::
 
 ::: {#fig-sirmodel}
 ```{shinylive-python}

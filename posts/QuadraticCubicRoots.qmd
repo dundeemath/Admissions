@@ -6,6 +6,8 @@ filters:
   - shinylive
 ---
 
+# Roots of quadratic and cubic equations
+
 Consider the cubic equation
 $$
 ax^3+bx^2+cx+d=0, \ \ \quad a,b,c \in \Re.
@@ -23,6 +25,16 @@ $$
 
 In the app in @fig-plotcubic you can play with the parameter $a$, $b$, $c$ and $d$ and explore how they affect the form of the cubic equation @eq-cubic. 
 
+:::{.callout-tip}
+Please note that the app in @fig-plotcubic is approximately 20 MB. If it does not display on your device:
+
+- wait a few moments (it is downloading the Python code that will run the app) 
+- refresh your browser.  
+- try running on a faster connection/ more powerful device.
+
+If it still does not load, here is a [screenshot](CubicRootsDemo.png).
+
+:::
 
 :::{#fig-plotcubic}
 ```{shinylive-python}
@@ -36,7 +48,6 @@ from shiny import reactive
 import numpy as np
 from pathlib import Path
 import matplotlib.pyplot as plt
-from scipy.integrate import odeint
 
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
@@ -91,7 +102,7 @@ def server(input, output, session):
         roots=np.roots(coeff)
 
         roots=np.round(roots,2)
-        ax.plot(x, y,roots,np.zeros_like(roots),'rx')
+        ax.plot(x, y,np.real(roots),np.zeros_like(np.real(roots)),'rx')
         ax.set_xlabel('$x$')
         ax.set_ylabel('$y$')
         y_lim_p=-15.0 #np.min([100,np.max(y)])
