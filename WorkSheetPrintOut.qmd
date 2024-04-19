@@ -1,0 +1,245 @@
+---
+title: " Pop. dynamics worksheet"
+format: 
+    html:
+        number-sections: true
+    pdf:
+        documentclass: scrartcl
+        number-sections: true
+
+---
+
+# Introduction 
+
+The aim of this demonstration is to show how we can use ideas from calculus to study dynamical systems.  
+
+* It is *not* intended that you work through all the questions in the available time.
+* You are encouraged to use your phone to explore the linked apps 
+
+
+
+# Recap {#sec-background}
+
+You might have previously encountered differentiation. Suppose that $y$ is some function of $x$. 
+
+Consider the differential equation
+
+$$
+\frac{dy}{dx}=1.
+$$
+
+Upon integration
+
+$$
+y(x)=x+C
+$$
+where $C$ is an integration constant.
+
+
+Now suppose that
+$$
+\frac{dy}{dx}=x.
+$$
+
+::: {.callout-note}
+# Question
+
+Can you integrate this ordinary differential equation and identify the solution $y=y(x)$?
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+:::
+
+
+# Modelling population dynamics
+
+## Formulating a model of population dynamics
+
+Let's consider a model for the number of people in a room at a given time. Let $t$ represent time and $N(t)$ represent the number of people in the room at time $t$.
+
+Suppose that there are initially no people in the room, but people enter at a constant rate, $k$.
+
+We could formulate a model of population dynamics given by
+
+$$
+\frac{dN}{dt}=k, \quad N(0)=0.
+$$ {#eq-constrhs}
+
+::: {.callout-note}
+# Question
+
+* Can you integrate @eq-constrhs (Hint: it is mathematically equivalent to the ODE introduced in @sec-background)?
+
+|
+|
+|
+|
+|
+|
+|
+|
+
+* Can you use the solution of the model to determine the amount of time taken for the number of people in the room to reach some capacity, $N_C$.
+
+|
+|
+|
+|
+|
+|
+
+*  Can you use the app (see @fig-qrcode) to identify what the entry rate, $k$, needs to be such that the room reaches capacity of 40 people after 20 minutes?  
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+:::
+
+![https://dundeemath.github.io/Admissions/posts/PopulationDynamicsIntro.html.](MathAdmissionsQRCode.png){#fig-qrcode width=10%}
+
+
+
+
+
+## What if people enter the room at a constant rate but also leave the room at random?
+
+Taking the previous model as a starting point, we now assume that people can also leave the room at a rate proportional to the number of people in the room
+
+The model equation is now given by
+
+$$
+\frac{dN}{dt}=k - dN, \quad N(0)=0.
+$$ {#eq-constrhsandrem}
+
+
+::: {.callout-note}
+# Question
+
+It is possible to integrate @eq-constrhsandrem and show that the solution is
+$$
+N(t)=\frac{k}{d}(1-e^{-dt})
+$$  {#eq-constrhsandremsol}
+
+Can you do this? (hint: try using an *integrating factor*)?
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+:::
+
+
+::: {.callout-note}
+# Question
+
+Can you use the model solution (@eq-constrhsandremsol) to determine the amount of time taken for the number of people in the room to reach capacity, $N_C$.
+ Does a solution always exist?
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+:::
+
+::: {.callout-note}
+# Question
+
+Can you use the app or the solution (@eq-constrhsandremsol) to identify the entry rate needs to be such that the room reaches capacity of 40 people after 20 minutes given $d=0.1$? 
+
+|
+|
+|
+|
+|
+|
+|
+|
+:::
+
+# The SIR model
+
+The SIR model is used to study the spread of infectious disease.
+
+In the SIR model a population is split into three groups:
+
+- suspectible (S)
+- infectious (I)
+- recovered (R)
+
+Unlike in the previous example, the population dynamics of each group depend on the levels of the other populations.
+
+
+
+The governing equations are:
+$$ 
+\begin{aligned}
+\frac{dS}{dt}&=-rIS, \\
+\frac{dI}{dt}&=rIS-aI, \\
+\frac{dR}{dt}&=aI. 
+\end{aligned}
+$$ {#eq-sir}
+
+with initial conditions 
+
+$$ 
+\begin{aligned}
+S(t=0)&=S_0, \\
+I(t=0)&=I_0, \\
+R(t=0)&=R_0.
+\end{aligned}
+$$
+
+
+You can explore solution behaviour using this app in @fig-SIRMOdellink.
+
+
+
+
+![https://dundeemath.github.io/Admissions/posts/TheSIRModel.html](MAthsadmissionsSIRQRCode.png){#fig-SIRMOdellink width=10%}
+
+
+
+:::{.callout-note}
+
+At Dundee, the mathematical tools needed are developed in modules:
+
+* Maths 1A, 1B, 2A and 2B (Core maths modules)
+* Computer algebra and dynamical systems
+* Mathematical Biology I
+* Mathematical Biology II
+
+At Levels 2, 3 and 4 you will learn how to use computer programming to explore and communicate mathematical concepts.
+
+You can find out more about these modules [here](https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment).
+
+:::
+
+
+
+
+
