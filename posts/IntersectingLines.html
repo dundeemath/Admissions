@@ -147,7 +147,11 @@ window.Quarto = {
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Intersecting lines and linear algebra</h1>
-                      </div>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Geometry</div>
+                <div class="quarto-category">Algebra</div>
+              </div>
+                  </div>
   </div>
     
   
@@ -177,23 +181,6 @@ y=m_1x+c_1
 \tag{1}\]</span></span> and <span id="eq-line2"><span class="math display">\[
 y=m_2x+c_2,
 \tag{2}\]</span></span> where <span class="math inline">\(m_1\)</span>, <span class="math inline">\(m_2\)</span>, <span class="math inline">\(c_1\)</span> and <span class="math inline">\(c_2\)</span> are constants.</p>
-<p>To find the intersection of the lines we can rearrange <a href="#eq-line1" class="quarto-xref">Equation&nbsp;1</a> and <a href="#eq-line2" class="quarto-xref">Equation&nbsp;2</a> to obtain <span class="math display">\[
-\begin{aligned}
-m_1x-y&amp;=-c_1, \\
-m_2x-y&amp;=-c_2.
-\end{aligned}
-\]</span> The equations can be written in matrix-vector form as <span class="math display">\[
-A \mathbf{x}=\mathbf{b},
-\]</span> where <span class="math display">\[
-A=\begin{pmatrix} m_1 &amp; -1 \\ m_2 &amp; -1\end{pmatrix},
-\]</span> and <span class="math display">\[
-\mathbf{b}=\begin{pmatrix} -c_1 \\ -c_2\end{pmatrix},
-\]</span> with <span class="math display">\[
-\mathbf{x}=\begin{pmatrix} x \\ y\end{pmatrix}.
-\]</span></p>
-<p>The matrix determinant is defined to be <span class="math display">\[
-\det{A}=-m_1 +m_2.
-\]</span></p>
 <p>In <a href="#fig-linestwod" class="quarto-xref">Figure&nbsp;1</a> you can play with the slopes and intercepts of the lines. Can you spot a condition that must hold on the matrix determinant such that the straight lines do not intersect?</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -322,6 +309,24 @@ Figure&nbsp;1: A plot of two lines in 2D plane.
 </figcaption>
 </figure>
 </div>
+<p>To find the intersection of the lines we can rearrange <a href="#eq-line1" class="quarto-xref">Equation&nbsp;1</a> and <a href="#eq-line2" class="quarto-xref">Equation&nbsp;2</a> to obtain <span class="math display">\[
+\begin{aligned}
+m_1x-y&amp;=-c_1, \\
+m_2x-y&amp;=-c_2.
+\end{aligned}
+\]</span> The equations can be written in matrix-vector form as <span class="math display">\[
+A \mathbf{x}=\mathbf{b},
+\]</span> where <span class="math display">\[
+A=\begin{pmatrix} m_1 &amp; -1 \\ m_2 &amp; -1\end{pmatrix},
+\]</span> and <span class="math display">\[
+\mathbf{b}=\begin{pmatrix} -c_1 \\ -c_2\end{pmatrix},
+\]</span> with <span class="math display">\[
+\mathbf{x}=\begin{pmatrix} x \\ y\end{pmatrix}.
+\]</span></p>
+<p>The matrix determinant is defined to be <span class="math display">\[
+\det{A}=-m_1 +m_2.
+\]</span></p>
+<p>Hence when the slopes of the linear are equal, the matrix determinant is zero. In this case the lines are parallel. In this case there is either: - no intersection - an infinite family of interections.</p>
 </section>
 <section id="intersecting-lines-in-three-dimensional-space" class="level1">
 <h1>Intersecting lines in three dimensional space</h1>
@@ -332,7 +337,7 @@ Figure&nbsp;1: A plot of two lines in 2D plane.
 \mathbf{r}_2= \lambda_2 \mathbf{t}+ \mathbf{c}, \quad \lambda_2 \in \Re.
 \]</span></p>
 <p>In <a href="#fig-linesthreed" class="quarto-xref">Figure&nbsp;2</a> you can play with the direction vector, <span class="math inline">\(\mathbf{t}\)</span>, and the point <span class="math inline">\(\mathbf{c}\)</span> of the second line.</p>
-<p>In the app set <span class="math inline">\(c=[c_1,c_2,c_3]^T=[0,0,0]^T\)</span>. Can you show that</p>
+<p>In the app set <span class="math inline">\(c=[c_1,c_2,c_3]^T=[0,0,0]^T\)</span>. Can you demonstrate that</p>
 <ul>
 <li>when <span class="math inline">\(t=[t_1,t_2,t_3]^T=[1,-1,0]^T\)</span> that the lines intersect at the origin?</li>
 <li>when <span class="math inline">\(t=[t_1,t_2,t_3]^T=[1,1,1]^T\)</span> the minimum distance between the lines is reported as <em>nan</em> (not a number)?</li>

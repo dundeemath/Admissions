@@ -147,7 +147,11 @@ window.Quarto = {
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">Introduction to population dynamics</h1>
-                      </div>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Population dynamics</div>
+                <div class="quarto-category">Calculus</div>
+              </div>
+                  </div>
   </div>
     
   
@@ -172,8 +176,7 @@ window.Quarto = {
 
 <section id="population-dynamics-modelling" class="level1">
 <h1>Population dynamics modelling</h1>
-<p>The aim of this post is to demonstrate how we can use ideas from calculus to study dynamical systems.</p>
-<p>We can use calculus to study how populations change in time.</p>
+<p>We can use calculus to study how populations change in time. In the examples below we consider an illustative model of population dynamics in class room. The developed concepts can be used to study population dynamics of <a href="https://dundeemath.github.io/Admissions/posts/TheSIRModel.html">infectious disease transmission</a>.</p>
 </section>
 <section id="sec-background" class="level1">
 <h1>Background</h1>
@@ -185,7 +188,7 @@ window.Quarto = {
 <p>Upon integration</p>
 <p><span class="math display">\[
 y(x)=x+C
-\]</span> where <span class="math inline">\(C\)</span> is an integration.</p>
+\]</span> where <span class="math inline">\(C\)</span> is an integration constant.</p>
 <p>What if <span class="math display">\[
 \frac{dy}{dx}=x
 \]</span></p>
@@ -199,7 +202,7 @@ y(x)=x+C
 \frac{dN}{dt}=k, \quad N(0)=0.
 \]</span></p>
 <ul>
-<li><p>Can you integrate this ODE (Hint is mathematically equivalent to the ODE introduced in <a href="#sec-background" class="quarto-xref">Section&nbsp;2</a>)?</p></li>
+<li><p>Can you integrate this ODE (Hint it is mathematically equivalent to the ODE introduced in <a href="#sec-background" class="quarto-xref">Section&nbsp;2</a>)?</p></li>
 <li><p>Can you use the model to determine the amount of time taken for the number of people in the room to reach capacity, <span class="math inline">\(N_C\)</span>.</p></li>
 <li><p>The app in <a href="#fig-popmodel" class="quarto-xref">Figure&nbsp;1</a> allows you to explore the solution of the model. Can you identify what the entry rate needs to be such that the room reaches capacity of 40 people after 20 minutes?</p></li>
 </ul>
@@ -289,7 +292,7 @@ Figure&nbsp;1
 <section id="what-if-people-enter-the-room-at-a-constant-rate-but-also-leave-the-room-at-random" class="level2">
 <h2 class="anchored" data-anchor-id="what-if-people-enter-the-room-at-a-constant-rate-but-also-leave-the-room-at-random">What if people enter the room at a constant rate but also leave the room at random?</h2>
 <p>Taking the previous model as a starting point, we now assume that people leave the room at a rate proportional to the number of people in the room</p>
-<p>We could formulate a model of population dynamics as before, but not accounting for people entering and leaving the room. The model equation is now given by</p>
+<p>The model equation is now given by</p>
 <p><span class="math display">\[
 \frac{dN}{dt}=k - dN, \quad N(0)=0.
 \]</span></p>
