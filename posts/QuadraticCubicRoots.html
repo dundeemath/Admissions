@@ -280,7 +280,7 @@ def server(input, output, session):
         y_lim_m=15.0 #np.max([-100,np.min(y)])
 
         ax.set_ylim([y_lim_m,y_lim_p])
-
+        ax.invert_yaxis()
         ax.grid()
 
         text_x=0.25*(min_x+max_x)
