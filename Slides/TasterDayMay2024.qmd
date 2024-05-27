@@ -1,0 +1,179 @@
+---
+title: "Taster Day 2024"
+author: "Philip Murray"
+
+format:
+  revealjs:
+    #chalkboard: true
+    logo: ../UoD_logo_RGB.png
+
+    footer: "Mathematics, University of Dundee"
+---
+
+# The plan for today
+
+ - Why a Mathematics degree?
+ - Overview of degrees offered at the University of Dundee
+ - Exploring some apps 
+ - Developing a new app
+
+## Why Maths?
+
+
+
+## Maths careers
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](../Images/MathsCareers.png)
+:::
+
+::: {.column width="50%"}
+![](../Images/IFSCareerEarningsTable.png)
+:::
+::::
+
+## Recent gradautes
+
+Our recent graduates have gone on to work as:
+
+* accountants
+* trade analysts
+* transport planners
+* actuaries
+* engineers
+* teachers
+* software developers
+* data analysts
+* and many others
+
+
+
+## Mathematics degrees at Dundee
+
+* Single honours Mathematics degrees
+ - BSc Mathematics/MMath
+* Joint degrees (e.g.)
+    - BSc Mathematical Biology
+    - BSc Maths and Economics
+    - BSc Maths and Physics 
+    - BSc Maths and Accountancy 
+
+## What you will learn?
+
+ - Core mathematical skills (e.g. calculus, integration, algebra)
+ - Foundations of mathematics
+ - Application of mathematics to real world problems
+
+## How you will learn?
+
+* Two teaching semesters in the academic year
+* 3 or 4 modules in each semester
+* In each module (some combination of):
+    - lectures
+    - tutorials
+    - workshops
+    - computer classes
+
+## Final year project 
+
+- develop independent problem solving skills
+- work on an exciting mathematical topic
+- develop programming skills
+- develop presentation skills
+- Topics include: 
+
+    * The $25,000,000,000 eigenvector
+    * Conformal mappings in   the art of M.C. Escher
+    * The Mathematics of monopoly
+    * How Sat Navs work
+
+
+## Skills developed throughout your degree
+
+* You will become a *logical numerate problem solver*
+* Mathematical skills 
+
+* Pure mathematics
+* Applied mathematics
+* Presentation skills
+* Computer programming skills
+
+
+# Aim: develop an app to explore an interesting mathematical idea
+
+ * explore how programming can be used to explore mathematical concepts
+ * develop programming skills
+ * develop presentation skills
+ * team work
+
+
+## Design constraints
+
+We want to identify some interesting problem (s) that:
+
+* connect from high school syllabus to University level mathematics
+* have an element of visualisation
+* have some interesting mathematics 
+* are interactive
+* are accessible
+
+## Let's look at some working examples 
+
+<https://dundeemath.github.io/Admissions/>
+
+- Explore apps
+
+
+## Possible topics
+
+* Graphing functions and their derivatives
+* Recursion relations
+* Trigonometric identities
+* Differential equations
+* Statistical tests
+* Complex numbers
+* What would you like to work on?
+
+## What we need to do today
+
+* focus on some ideas for a new app
+* write some prototype code 
+* decide how to make it interactive
+* write some text to explain the ideas in the app
+* build the app
+
+##
+
+ ## Prototype code that plots a trigonometric function and its derivative
+
+ 
+```{python}
+#| echo: true
+#| output-location: slide
+#| code-fold: show
+import numpy as np
+import matplotlib.pyplot as plt
+
+dx=0.01
+x = np.arange(0, 20, dx)
+y = np.sin(x)
+
+dy_dx=np.cos(x)
+
+fig, ax = plt.subplots(1,2)
+ax[0].plot(x, y)
+ax[0].set_xlabel('x')
+ax[0].set_ylabel('y(x)')
+
+ax[1].plot(x, dy_dx)
+ax[1].set_xlabel('x')
+ax[1].set_ylabel('dy/dx')
+
+ax[0].grid(True)
+ax[1].grid(True)
+
+plt.tight_layout()
+plt.show()
+```

@@ -2,6 +2,8 @@
 title: "The SIR model"
 format: html 
 image: 'SIRAppImage.png'
+categories: [Infectious diseases, Population dynamics, Calculus]
+
 filters:
   - shinylive
 ---
@@ -23,18 +25,22 @@ Infectious diseases can be characterised using their basic reproduction number.
 
 # Mathematical modelling of infectious diseases
 
-We can use mathematics to study the dynamics of an infectious disease within a population. In the app below we  simulating a model of infectious disease (more details on the model below). 
-
-The model is known as the SIR model as the the variables in the model are:
+We can use mathematics to study the dynamics of an infectious disease within a population. In the SIR model a population is split into three compartments:
 
 * $S(t)$ - size of susceptible population at time $t$
 * $I(t)$ - size of infected population at time $t$
 * $R(t)$ - size of recovered/post-infected population at time $t$
 
+
 The SIR model has two parameters:
 
 * $r$ - infection rate
 * $a$ - recovery rate 
+
+In the app below we  simulating a model of infectious disease (more details on the model below). 
+
+
+
 
 From a public health perspective, one could propose that there is some level of infectiousness, $I_{max}$, which must be avoided. The challenge is to manage the disease such that $I(t)<I_{max}$ for all $t$. 
 
@@ -159,7 +165,10 @@ The sizes of the different populations are plotted against time, $t$. The model 
 
 The SIR model is formulated as a system of ordinary differential equations.
 
-The governing equations are:
+
+On [this page](https://dundeemath.github.io/Admissions/posts/PopulationDynamicsIntro.html) we consider a simpler case of a single population.
+
+The governing equations in the SIR model are:
 $$ 
 \begin{aligned}
 \frac{dS}{dt}&=-rIS, \\
@@ -177,6 +186,8 @@ I(t=0)&=I_0, \\
 R(t=0)&=R_0.
 \end{aligned}
 $$
+
+In the app in @fig-sirmodel @eq-sir are solved numerically for a given parameter set and the solution is plotted.
 
 :::{.callout-note}
 

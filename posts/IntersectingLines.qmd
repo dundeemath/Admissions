@@ -2,6 +2,8 @@
 title: Intersecting lines and linear algebra
 format: html 
 image: Lines2DDemo.png
+categories: [Geometry, Algebra]
+
 filters:
   - shinylive
 ---
@@ -18,37 +20,7 @@ y=m_2x+c_2,
 $${#eq-line2}
 where $m_1$, $m_2$, $c_1$ and $c_2$ are constants.
 
-To find the intersection of the lines we can rearrange @eq-line1 and @eq-line2 to obtain
-$$
-\begin{aligned}
-m_1x-y&=-c_1, \\
-m_2x-y&=-c_2.
-\end{aligned}
-$$
-The equations can be written in matrix-vector form as
-$$
-A \mathbf{x}=\mathbf{b},
-$$
-where
-$$
-A=\begin{pmatrix} m_1 & -1 \\ m_2 & -1\end{pmatrix},
-$$
-and
-$$
-\mathbf{b}=\begin{pmatrix} -c_1 \\ -c_2\end{pmatrix},
-$$
-with
-$$
-\mathbf{x}=\begin{pmatrix} x \\ y\end{pmatrix}.
-$$
-
-The matrix determinant is defined to be
-$$
-\det{A}=-m_1 +m_2.
-$$
-
 In @fig-linestwod you can play with the slopes and intercepts of the lines. Can you spot a condition that must hold on the matrix determinant such that the straight lines do not intersect?
-
 
 :::{.callout-tip}
 Please note that the app in @fig-linestwod is approximately 20 MB. If it does not display on your device:
@@ -59,7 +31,6 @@ Please note that the app in @fig-linestwod is approximately 20 MB. If it does no
 If it still does not load, here is a [screenshot](AppInterSectLinesSnapshot.png).
 
 :::
-
 
 ::: {#fig-linestwod}
 ```{shinylive-python}
@@ -168,10 +139,52 @@ app = App(app_ui, server)
 A plot of two lines in 2D plane. 
 :::
 
+To find the intersection of the lines we can rearrange @eq-line1 and @eq-line2 to obtain
+$$
+\begin{aligned}
+m_1x-y&=-c_1, \\
+m_2x-y&=-c_2.
+\end{aligned}
+$$
+The equations can be written in matrix-vector form as
+$$
+A \mathbf{x}=\mathbf{b},
+$$
+where
+$$
+A=\begin{pmatrix} m_1 & -1 \\ m_2 & -1\end{pmatrix},
+$$
+and
+$$
+\mathbf{b}=\begin{pmatrix} -c_1 \\ -c_2\end{pmatrix},
+$$
+with
+$$
+\mathbf{x}=\begin{pmatrix} x \\ y\end{pmatrix}.
+$$
+
+The matrix determinant is defined to be
+$$
+\det{A}=-m_1 +m_2.
+$$
+
+Hence when the slopes of the lines are equal, the matrix determinant is zero. In this case the lines are parallel and there is either:
+
+-  no intersection (the lines have distinct intercepts)
+- an infinite family of interections (the lines also have the same intercept).
+
+
+
+
+
+
+
 # Intersecting lines in three dimensional space
 
-Consider a line in 3D with direction vector [1,1,1] that goes through the origin.
-The equation for the line in parametric form is
+We will now explore the intersection of two lines in 3D space.
+
+Consider a line in 3D with direction vector [1,1,1] that passes through the origin.
+The equation for the line can be written in parametric form as
 $$
 \mathbf{r}_1= \lambda_1 [1,1,1]^T, \quad \lambda_1 \in \Re.
 $$
@@ -184,7 +197,7 @@ $$
 
 In @fig-linesthreed you can play with the direction vector, $\mathbf{t}$, and the point $\mathbf{c}$ of the second line. 
 
-In the app set $c=[c_1,c_2,c_3]^T=[0,0,0]^T$. Can you show that
+In the app set $c=[c_1,c_2,c_3]^T=[0,0,0]^T$. Can you demonstrate that
 
 *  when $t=[t_1,t_2,t_3]^T=[1,-1,0]^T$ that the lines intersect at the origin?
 *  when $t=[t_1,t_2,t_3]^T=[1,1,1]^T$ the minimum distance between the lines is reported as *nan* (not a number)?
@@ -209,8 +222,6 @@ $$
 Here $\mathbf{s}$ represents the direction vector for the first line.
 
 If a solution to @eq-shortestdist can be found then it is straightforward to calculate the shortest distance, $d$, between the straight lines.
-
-
 
 
 :::{.callout-tip}

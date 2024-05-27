@@ -1,15 +1,17 @@
 ---
 title: "Introduction to population dynamics"
 format: html 
+image: 'PopDynamicsDEmoImage.png'
+categories: [Population dynamics, Calculus]
 filters:
   - shinylive
 ---
 
 # Population dynamics modelling 
 
-The aim of this post is to demonstrate how we can use ideas from calculus to study dynamical systems. 
 
-We can use calculus to study how populations change in time.
+
+We can use calculus to study how populations change in time. In the examples below we consider an illustative model of population dynamics in class room. The developed concepts can be used to study population dynamics of [infectious disease transmission](https://dundeemath.github.io/Admissions/posts/TheSIRModel.html).
 
 # Background {#sec-background}
 
@@ -26,7 +28,7 @@ Upon integration
 $$
 y(x)=x+C
 $$
-where $C$ is an integration.
+where $C$ is an integration constant.
 
 
 What if
@@ -50,7 +52,7 @@ $$
 \frac{dN}{dt}=k, \quad N(0)=0.
 $$
 
-* Can you integrate this ODE (Hint is mathematically equivalent to the ODE introduced in @sec-background)?
+* Can you integrate this ODE (Hint it is mathematically equivalent to the ODE introduced in @sec-background)?
 
 * Can you use the model to determine the amount of time taken for the number of people in the room to reach capacity, $N_C$.
 
@@ -142,7 +144,7 @@ app = App(app_ui, server)
 
 Taking the previous model as a starting point, we now assume that people leave the room at a rate proportional to the number of people in the room
 
-We could formulate a model of population dynamics as before, but not accounting for people entering and leaving the room. The model equation is now given by
+ The model equation is now given by
 
 $$
 \frac{dN}{dt}=k - dN, \quad N(0)=0.
@@ -243,14 +245,12 @@ app = App(app_ui, server)
 
 :::{.callout-note}
 
-At Dundee, the mathematical tools needed are developed in modules:
+At Dundee, core concepts from calculus (e.g. differential equations) are studied in the modules  *Maths 1A* and *Maths 1B* and developed further in the modules  *Maths 2A* and *Maths 2B*.
 
-* Maths 1A, 1B, 2A and 2B (Core maths modules)
-* Computer algebra and dynamical systems
-* Mathematical Biology I
-* Mathematical Biology II
 
-At Levels 2, 3 and 4 you will learn how to use computer programming to explore and communicate mathematical concepts.
+At Level 2  in the modules *Computer algebra and dynamical systems* and *Introduction to Programming* you would be introduced to techniques that are used to compute numerical solutions to differential equations. 
+
+At Level 3 in the module  *Differential Equations*  you would extend your knowledge of differential equations to include concepts such as Fourier Series and Partial Differential Equations. In the modules *Mathematical Biology I* and *Mathematical Biology II* you would also learn how to formulate and study mathematical models of biological systems.
 
 You can find out more about these modules [here](https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment).
 

@@ -147,7 +147,12 @@ window.Quarto = {
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
       <h1 class="title">The SIR model</h1>
-                      </div>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Infectious diseases</div>
+                <div class="quarto-category">Population dynamics</div>
+                <div class="quarto-category">Calculus</div>
+              </div>
+                  </div>
   </div>
     
   
@@ -208,8 +213,7 @@ window.Quarto = {
 </section>
 <section id="mathematical-modelling-of-infectious-diseases" class="level1">
 <h1>Mathematical modelling of infectious diseases</h1>
-<p>We can use mathematics to study the dynamics of an infectious disease within a population. In the app below we simulating a model of infectious disease (more details on the model below).</p>
-<p>The model is known as the SIR model as the the variables in the model are:</p>
+<p>We can use mathematics to study the dynamics of an infectious disease within a population. In the SIR model a population is split into three compartments:</p>
 <ul>
 <li><span class="math inline">\(S(t)\)</span> - size of susceptible population at time <span class="math inline">\(t\)</span></li>
 <li><span class="math inline">\(I(t)\)</span> - size of infected population at time <span class="math inline">\(t\)</span></li>
@@ -220,6 +224,7 @@ window.Quarto = {
 <li><span class="math inline">\(r\)</span> - infection rate</li>
 <li><span class="math inline">\(a\)</span> - recovery rate</li>
 </ul>
+<p>In the app below we simulating a model of infectious disease (more details on the model below).</p>
 <p>From a public health perspective, one could propose that there is some level of infectiousness, <span class="math inline">\(I_{max}\)</span>, which must be avoided. The challenge is to manage the disease such that <span class="math inline">\(I(t)&lt;I_{max}\)</span> for all <span class="math inline">\(t\)</span>.</p>
 <p>In the app in <a href="#fig-sirmodel" class="quarto-xref">Figure&nbsp;1</a> you can investigate how the values of the parameters <span class="math inline">\(r\)</span> and <span class="math inline">\(a\)</span> affect the trajectory of the infectious disease.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -352,7 +357,8 @@ Figure&nbsp;1: The sizes of the different populations are plotted against time, 
 <section id="the-sir-model-equations" class="level1">
 <h1>The SIR model equations</h1>
 <p>The SIR model is formulated as a system of ordinary differential equations.</p>
-<p>The governing equations are: <span id="eq-sir"><span class="math display">\[
+<p>On <a href="https://dundeemath.github.io/Admissions/posts/PopulationDynamicsIntro.html">this page</a> we consider a simpler case of a single population.</p>
+<p>The governing equations in the SIR model are: <span id="eq-sir"><span class="math display">\[
 \begin{aligned}
 \frac{dS}{dt}&amp;=-rIS, \\
 \frac{dI}{dt}&amp;=rIS-aI, \\
@@ -367,6 +373,7 @@ I(t=0)&amp;=I_0, \\
 R(t=0)&amp;=R_0.
 \end{aligned}
 \]</span></p>
+<p>In the app in <a href="#fig-sirmodel" class="quarto-xref">Figure&nbsp;1</a> <a href="#eq-sir" class="quarto-xref">Equation&nbsp;1</a> are solved numerically for a given parameter set and the solution is plotted.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

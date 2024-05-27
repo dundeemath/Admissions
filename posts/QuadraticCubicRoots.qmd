@@ -2,6 +2,7 @@
 title: Roots of quadratic/cubic equations
 format: html 
 image: CubicAppImage.png
+categories: [Polynomials, Algebra]
 filters:
   - shinylive
 ---
@@ -10,12 +11,12 @@ filters:
 
 Consider the cubic equation
 $$
-ax^3+bx^2+cx+d=0, \ \ \quad a,b,c \in \Re.
+ax^3+bx^2+cx+d=0, \ \ \quad a,b,c, d \in \Re.
 $$ {#eq-cubic}
 
 A special case you may have seen before occurs when $a=0$. Hence
 $$
-bx^2+cx+d=0, \ \ \quad b,c \in \Re.
+bx^2+cx+d=0.
 $$
 
 In this case the roots of the quadratic are
@@ -109,7 +110,7 @@ def server(input, output, session):
         y_lim_m=15.0 #np.max([-100,np.min(y)])
 
         ax.set_ylim([y_lim_m,y_lim_p])
-
+        ax.invert_yaxis()
         ax.grid()
 
         text_x=0.25*(min_x+max_x)
@@ -136,11 +137,15 @@ Plot of a cubic function. The roots of the cubic are reported in the figure titl
   - how does the local maximum/minimum of the quadratic depend on the sign of the parameter $b$?
   - why are there complex roots when the condition $c^2-4bd<0$ is satisfied?
 
-*  consider $a>0$. 
+* consider the case where $a>0$. 
   - how many real roots are there?
-  - show there is always a trivial root in the case $d=0$.
-  - show that in the case $a=d=1$ with $b=c=0$ that the roots are 
-     1, $\frac{1+j\sqrt{3}}{2}$, $\frac{1-j\sqrt{3}}{2}$ where $j=\sqrt{-1}$. 
+  - demonstrate that there is always a trivial root ($x=0$) in the case $d=0$.
+  - demonstrate that in the case $a=d=1$ with $b=c=0$ the cubic takes the reduced form
+  $$
+      x^3=-1.
+  $$
+  Can you show that the roots are 
+     $-1$, $\frac{1+j\sqrt{3}}{2}$, $\frac{1-j\sqrt{3}}{2}$ where $j=\sqrt{-1}$. 
 
 
 
