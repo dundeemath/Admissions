@@ -331,8 +331,10 @@ def server(input, output, session):
         
         
         ax.plot(t, y)
+        ax.set_xlabel('$t$')
+        ax.set_ylabel('$y(t)$')
 
-        #plt.grid()
+        plt.grid()
         #plt.show()
     
 app = App(app_ui, server)</code></pre>
