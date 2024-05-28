@@ -2,7 +2,7 @@
 title: "Introduction to population dynamics"
 format: html 
 image: 'PopDynamicsDEmoImage.png'
-categories: [Population dynamics, Calculus]
+categories: [Population dynamics, Calculus, Differential Equations]
 filters:
   - shinylive
 ---

@@ -2,7 +2,7 @@
 title: "The SIR model"
 format: html 
 image: 'SIRAppImage.png'
-categories: [Infectious diseases, Population dynamics, Calculus]
+categories: [Infectious diseases, Population dynamics, Calculus, Differential Equations]
 
 filters:
   - shinylive
