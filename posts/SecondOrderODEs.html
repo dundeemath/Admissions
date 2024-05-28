@@ -193,13 +193,13 @@ y(x)=x+C,
 \frac{dy}{dx}=x
 \]</span></p>
 <p>Can you integrate this ODE?</p>
-<p>The above examples are first order ODEs because the highest order derivative is one. In a second order ODE the highest derivative is two. For example <span class="math display">\[
+<p>The above examples are first order ODEs because the highest order derivative is one. In a second order ODE the highest derivative is two. For example <span id="eq-hookeslaw"><span class="math display">\[
 \frac{d^2y}{dx^2}=-y
-\]</span></p>
+\tag{1}\]</span></span></p>
 <p>The solution to this ODE is</p>
 <p><span class="math display">\[
 y(x)=A\sin x
-+ B \cos x\]</span> where <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are integration constants.</p>
++ B \cos x\]</span> where <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are integration constants. Note that you can confirm this claim by twice differentiating the solution and subsituting in <a href="#eq-hookeslaw" class="quarto-xref">Equation&nbsp;1</a>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -231,12 +231,12 @@ m\frac{d^2\mathbf{r}}{dt^2}= -\eta \frac{d \mathbf{r}}{dt}-k\mathbf{r}.
 <p>Let’s consider a scalar second order ODE with constant coefficients. Let <span class="math inline">\(t\)</span> represent time and <span class="math inline">\(y=y(t)\)</span>. Suppose that</p>
 <p><span id="eq-secondorderode"><span class="math display">\[
 a\frac{d^2 y}{dt^2}+b\frac{dy}{dt}+cy=0,
-\tag{1}\]</span></span> where <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span> are constants.</p>
+\tag{2}\]</span></span> where <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> and <span class="math inline">\(c\)</span> are constants.</p>
 <p>Consider the initial conditions</p>
 <p><span id="eq-secondorderodeics"><span class="math display">\[
 y(t=0)=y_0 \quad \quad \frac{dy}{dt}\bigg|_{{t=0}}=d.
-\tag{2}\]</span></span></p>
-<p>The app in <a href="#fig-popmodel" class="quarto-xref">Figure&nbsp;1</a> allows you to explore the solution of the model (<a href="#eq-secondorderode" class="quarto-xref">Equation&nbsp;1</a> and <strong>?@eq-secondorderodeic</strong>).</p>
+\tag{3}\]</span></span></p>
+<p>The app in <a href="#fig-popmodel" class="quarto-xref">Figure&nbsp;1</a> allows you to explore the solution of the model (<a href="#eq-secondorderode" class="quarto-xref">Equation&nbsp;2</a> and <strong>?@eq-secondorderodeic</strong>).</p>
 <p>Can you identify the following three behaviours by adjusting model parameters:</p>
 <ul>
 <li>periodic oscillations</li>
@@ -244,7 +244,7 @@ y(t=0)=y_0 \quad \quad \frac{dy}{dt}\bigg|_{{t=0}}=d.
 <li>expoentially decaying but non-oscillatory solutions</li>
 </ul>
 <p>Can you * describe model behaviour as <span class="math inline">\(a\rightarrow 0\)</span>. * explore model behaviour as <span class="math inline">\(c\rightarrow 0\)</span>. * describe how the oscillation period depends on model parameters.</p>
-<p>Note that it is possible to solve <a href="#eq-secondorderode" class="quarto-xref">Equation&nbsp;1</a> and <a href="#eq-secondorderodeics" class="quarto-xref">Equation&nbsp;2</a> by seeking a solution of the form <span class="math display">\[
+<p>Note that it is possible to solve <a href="#eq-secondorderode" class="quarto-xref">Equation&nbsp;2</a> and <a href="#eq-secondorderodeics" class="quarto-xref">Equation&nbsp;3</a> by seeking a solution of the form <span class="math display">\[
 y=e^{\lambda t}.
 \]</span> This is left as an exercise.</p>
 <div id="fig-popmodel" class="quarto-figure quarto-figure-center quarto-float anchored">
