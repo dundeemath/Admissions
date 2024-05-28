@@ -1,7 +1,4 @@
-```{python}
-#| echo: true
-#| output-location: slide
-#| code-fold: show
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -25,4 +22,3 @@ ax[1].grid(True)
 
 plt.tight_layout()
 plt.show()
-```
