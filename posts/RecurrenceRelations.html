@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Maths-admissions</title>
+<title>Maths-admissions - Recurrence relations</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,27 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content="..">
+<script src="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/shinylive.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,35 +71,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-MQD60ZZ43S"></script>
 
 <script type="text/javascript">
@@ -137,17 +111,17 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Maths-admissions</span>
     </a>
   </div>
@@ -158,7 +132,7 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -171,13 +145,18 @@ window.Quarto = {
 <!-- content -->
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
-    <div class="quarto-title column-page-left">
-      <h1 class="title">Maths-admissions</h1>
-                      </div>
+    <div class="quarto-title column-body">
+      <h1 class="title">Recurrence relations</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Recurrence relations</div>
+                <div class="quarto-category">Discrete maths</div>
+                <div class="quarto-category">Chaos</div>
+              </div>
+                  </div>
   </div>
     
   
-  <div class="quarto-title-meta column-page-left">
+  <div class="quarto-title-meta">
 
       
     
@@ -185,283 +164,251 @@ window.Quarto = {
     </div>
     
   
-  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(8)</span></div><div class="category" data-category="Algebra">Algebra <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Calculus">Calculus <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Chaos">Chaos <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Differential Equations">Differential Equations <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Discrete maths">Discrete maths <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Geometry">Geometry <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Infectious diseases">Infectious diseases <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Polynomials">Polynomials <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Population dynamics">Population dynamics <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Recurrence relations">Recurrence relations <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Welcome">Welcome <span class="quarto-category-count">(1)</span></div></div></div>
+    
 <!-- main -->
-<main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
 
 
+<section id="recurrence-relations" class="level1">
+<h1>Recurrence relations</h1>
+<section id="a-linear-recurrence-relation" class="level2">
+<h2 class="anchored" data-anchor-id="a-linear-recurrence-relation">A linear recurrence relation</h2>
+<p>You might have previously encountered a recurrence relation of the form</p>
+<p><span id="eq-linrecurrence"><span class="math display">\[
+x_{n+1}=ax_n+b
+\tag{1}\]</span></span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are constants.</p>
+<p>Given numerical values for <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and an initial condition, <span class="math inline">\(x_0\)</span>, one can compute a sequence which is a solution to <a href="#eq-linrecurrence" class="quarto-xref">Equation&nbsp;1</a>. This type of task is laborious and well suited to a computer. In <a href="#fig-popmodel" class="quarto-xref">Figure&nbsp;1</a> you can explore computed solutions of <a href="#eq-linrecurrence" class="quarto-xref">Equation&nbsp;1</a>.</p>
+<ul>
+<li>set <span class="math inline">\(b=0\)</span> by varying the parameter <span class="math inline">\(a\)</span> identify solutions that:
+<ul>
+<li>tend to zero monotonically</li>
+<li>oscillate about 0</li>
+<li>blow up</li>
+</ul></li>
+<li>set b&gt;0
+<ul>
+<li>show that the solution converges to a non-zero value in the case where <span class="math inline">\(0&lt;a&lt;1\)</span>.</li>
+<li>show that the solution is oscillatory for <span class="math inline">\(-1&lt;a&lt;0\)</span>.</li>
+</ul></li>
+</ul>
+<div id="fig-popmodel" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-popmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-popmodel" class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 800
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+    ui.input_slider(id="a",label="a",min=-1.0,max=3,value=0.1,step=0.001),
+    ui.input_slider(id="b",label="b",min=0.0,max=15.0,value=10.0,step=0.01),             
+     
+    ui.input_slider(id="x0",label="x_0",min=0.0,max=20.0,value=5.0,step=1.0),
+    ui.input_slider(id="T",label="Number of iterations",min=0.0,max=60.0,value=20.0,step=1.0),
+              
+          
+            ),
+
+        ui.panel_main(ui.output_plot("plot"),),
+    ),
+)
+
+def server(input, output, session):
+    
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots()
+        #ax.set_ylim([-2, 2])
+        # Filter fata
+        
+        
+        a=float(input.a())
+        b=float(input.b())
+        x0=float(input.x0())
+        T=int(input.T())
+       
+        # Define rhs of LV ODEs
+        def rhs_pop_model(y,t,a,b):
+          
+
+          rhs=a*y+b
+
+          return rhs
+        def DiscreteSol(rhs_pop_model,y_0,t,a,b):
+            y=np.zeros_like(t,dtype=float)
+            y[0]=y_0
+            for i in t:
+                if i&gt;0:
+                    y[i]=rhs_pop_model(y[i-1],t[i],a,b)
+            return y
 
 
+        # Define discretised t domain
+        t = np.arange(0, T, 1)
+        # define initial conditions
+        init_cond=x0
+        
+        # Compute numerical solution of ODEs
+        sol1 = DiscreteSol(rhs_pop_model,init_cond,t,a,b)
+
+        # Plot results
+        y=sol1
+        
+        ax.plot(t,y)
+        ax.set_xlabel('$n$')
+        ax.set_ylabel('$x_n$')
+
+        plt.grid()
+        plt.show()
+    
+app = App(app_ui, server)</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-popmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="the-logisitic-map" class="level2">
+<h2 class="anchored" data-anchor-id="the-logisitic-map">The logisitic map</h2>
+<p>The recurrence relation explored in <a href="#fig-popmodel" class="quarto-xref">Figure&nbsp;1</a> is linear (the right-hand-side is a linear function of <span class="math inline">\(x_n\)</span>). When the model is generalised much richer dynamical behaviours can be observed. One famous example is the logistic map, where the governing equation can be written as <span id="eq-logisticmap"><span class="math display">\[
+x_{n+1}=rx_n(1-x_n).
+\tag{2}\]</span></span></p>
+<p>Note that the right-hand side is a quadratic function of <span class="math inline">\(x_n\)</span>.</p>
+<p>You can explore the solutions to <a href="#eq-logisticmap" class="quarto-xref">Equation&nbsp;2</a> using <a href="#fig-logisticmodel" class="quarto-xref">Figure&nbsp;2</a>.</p>
+<ul>
+<li>show that when <span class="math inline">\(0&lt;r&lt;1\)</span> the solution converges monotonically to 0.0.</li>
+<li>show that when <span class="math inline">\(0&lt;r&lt;2\)</span> the solution converges monotonically to a non-zero value.</li>
+<li>show that when <span class="math inline">\(2&lt;r&lt;3\)</span> the solution is oscillatory and converges to a non-zero value.</li>
+<li>show that when <span class="math inline">\(r=3.2\)</span> the solution is periodic and repeats every second step</li>
+<li>show that when <span class="math inline">\(r=3.47\)</span> the solution is periodic and repeats every fourth step</li>
+<li>show that when <span class="math inline">\(r=3.7\)</span> that the solution is neither periodic nor reaches a steady value.</li>
+</ul>
+<p>The logistic map provide one of the simplest formulation examples of a phenomenon known as chaos. A precise definition of chaos involves some technial concepts, chaotic systems are usually characterised by:</p>
+<ul>
+<li>having non-periodic, non-steady solution</li>
+<li>sensitivity to initial conditions</li>
+<li>apprearing to be unpredictable even through they are deterministic.</li>
+</ul>
+<div id="fig-logisticmodel" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-logisticmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-logisticmodel" class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 800
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+    ui.input_slider(id="r",label="r",min=0.0,max=5.0,value=0.1,step=0.01),             
+    ui.input_slider(id="x0",label="x_0",min=0.0,max=1.0,value=0.5,step=0.01),
+    ui.input_slider(id="T",label="Number of iterations",min=0.0,max=60.0,value=20.0,step=1.0),
+              
+          
+            ),
+
+        ui.panel_main(ui.output_plot("plot"),),
+    ),
+)
+
+def server(input, output, session):
+    
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots()
+        #ax.set_ylim([-2, 2])
+        # Filter fata
+        
+        
+        r=float(input.r())
+        x0=float(input.x0())
+        T=int(input.T())
+       
+        # Define rhs of logistic map 
+        def logistic_map(y,t,r):
+          rhs=r*y*(1-y)
+          return rhs
+        
+        def DiscreteSol(rhs_pop_model,y_0,t,r):
+            y=np.zeros_like(t,dtype=float)
+            y[0]=y_0
+            for i in t:
+                if i&gt;0:
+
+                    y[i]=rhs_pop_model(y[i-1],t[i],r)
+            return y
+
+        # Define discretised t domain
+        t = np.arange(0, T, 1)
+        # define initial conditions
+        init_cond=x0
+        
+        # Compute numerical solution of ODEs
+        sol1 = DiscreteSol(logistic_map,init_cond,t,r)
+
+        # Plot results
+        y=sol1
+        
+        ax.plot(t,y)
+        ax.set_xlabel('$n$')
+        ax.set_ylabel('$x_n$')
+
+        plt.grid()
+        plt.show()
+    
+app = App(app_ui, server)</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-logisticmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At Dundee, core concepts from calculus (e.g.&nbsp;differential equations) and algebra that are needed to study dynamical systems are introduced in the modules <em>Maths 1A</em> and <em>Maths 1B</em> and developed further in the modules <em>Maths 2A</em> and <em>Maths 2B</em>.</p>
+<p>At Level 2 in the module <em>Discrete Maths</em> you would be introduced to discrete dynamical systems (e.g.&nbsp;recurrence relations, Markov chains). In the modules <em>Introduction to Programming</em> and <em>Computer Algebra and Dynamical systems</em> you would be introduced to techniques that enable you to numerically analyse difference equations.</p>
+<p>At Level 3 in the module <em>Mathematical Biology</em> you would consider discrete dynamical systems model applied to Biological systems.</p>
+<p>At Level 4 we offer a number of honours projects that investigate chaotic systems (e.g.&nbsp;the Lorenz equations, the double pendulum)</p>
+<p>You can find out more about these modules <a href="https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment">here</a>.</p>
+</div>
+</div>
 
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Polynomials,Algebra" data-listing-file-modified-sort="1714573550096" data-listing-reading-time-sort="5" data-listing-word-count-sort="855">
-<div class="thumbnail">
-<p><a href="./posts/QuadraticCubicRoots.html" class="no-external"></a></p><a href="./posts/QuadraticCubicRoots.html" class="no-external">
-<p><img src="./posts/CubicAppImage.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/QuadraticCubicRoots.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/QuadraticCubicRoots.html" class="no-external">Roots of quadratic/cubic equations</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/QuadraticCubicRoots.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Polynomials'); return false;">
-Polynomials
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Algebra'); return false;">
-Algebra
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/QuadraticCubicRoots.html" class="no-external">Consider the cubic equation <span id="eq-cubic"><span class="math display">\[
-ax^3+bx^2+cx+d=0, \ \ \quad a,b,c, d \in \Re.
-\tag{1}\]</span></span></a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./posts/QuadraticCubicRoots.html" class="no-external"></a></p><a href="./posts/QuadraticCubicRoots.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-categories="Recurrence relations,Discrete maths,Chaos" data-listing-file-modified-sort="1716979851850" data-listing-reading-time-sort="8" data-listing-word-count-sort="1496">
-<div class="thumbnail">
-<p><a href="./posts/RecurrenceRelations.html" class="no-external"></a></p><a href="./posts/RecurrenceRelations.html" class="no-external">
-<p><img src="./posts/DampedOscillation.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/RecurrenceRelations.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/RecurrenceRelations.html" class="no-external">Recurrence relations</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/RecurrenceRelations.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Recurrence relations'); return false;">
-Recurrence relations
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Discrete maths'); return false;">
-Discrete maths
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Chaos'); return false;">
-Chaos
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/RecurrenceRelations.html" class="no-external">You might have previously encountered a recurrence relation of the form</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./posts/RecurrenceRelations.html" class="no-external"></a></p><a href="./posts/RecurrenceRelations.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-categories="Population dynamics,Calculus,Differential Equations" data-listing-file-modified-sort="1716933729314" data-listing-reading-time-sort="8" data-listing-word-count-sort="1422">
-<div class="thumbnail">
-<p><a href="./posts/PopulationDynamicsIntro.html" class="no-external"></a></p><a href="./posts/PopulationDynamicsIntro.html" class="no-external">
-<p><img src="./posts/PopDynamicsDEmoImage.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/PopulationDynamicsIntro.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/PopulationDynamicsIntro.html" class="no-external">Introduction to population dynamics</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/PopulationDynamicsIntro.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Population dynamics'); return false;">
-Population dynamics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Calculus'); return false;">
-Calculus
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Differential Equations'); return false;">
-Differential Equations
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/PopulationDynamicsIntro.html" class="no-external">We can use calculus to study how populations change in time. In the examples below we consider an illustative model of population dynamics in class room. The developed…</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./posts/PopulationDynamicsIntro.html" class="no-external"></a></p><a href="./posts/PopulationDynamicsIntro.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-categories="Infectious diseases,Population dynamics,Calculus,Differential Equations" data-listing-file-modified-sort="1716979900002" data-listing-reading-time-sort="6" data-listing-word-count-sort="1123">
-<div class="thumbnail">
-<p><a href="./posts/TheSIRModel.html" class="no-external"></a></p><a href="./posts/TheSIRModel.html" class="no-external">
-<p><img src="./posts/SIRAppImage.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/TheSIRModel.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/TheSIRModel.html" class="no-external">Modelling the spread of infectious disease</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/TheSIRModel.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Infectious diseases'); return false;">
-Infectious diseases
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Population dynamics'); return false;">
-Population dynamics
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Calculus'); return false;">
-Calculus
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Differential Equations'); return false;">
-Differential Equations
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/TheSIRModel.html" class="no-external">Infectious diseases can have severe health outcomes for individuals who contract them. They can also place an unmanageably large demand on the health service.</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./posts/TheSIRModel.html" class="no-external"></a></p><a href="./posts/TheSIRModel.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-categories="Differential Equations,Calculus" data-listing-file-modified-sort="1716933894160" data-listing-reading-time-sort="6" data-listing-word-count-sort="1062">
-<div class="thumbnail">
-<p><a href="./posts/SecondOrderODEs.html" class="no-external"></a></p><a href="./posts/SecondOrderODEs.html" class="no-external">
-<p><img src="./posts/DampedOscillation.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/SecondOrderODEs.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/SecondOrderODEs.html" class="no-external">Second order ODEs</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/SecondOrderODEs.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Differential Equations'); return false;">
-Differential Equations
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Calculus'); return false;">
-Calculus
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/SecondOrderODEs.html" class="no-external">We can use calculus to study how quantities change in time. In the examples below we consider a second order linear ordinary differential equation (ODE) with constant…</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./posts/SecondOrderODEs.html" class="no-external"></a></p><a href="./posts/SecondOrderODEs.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5" data-categories="Geometry,Algebra" data-listing-file-modified-sort="1714041071518" data-listing-reading-time-sort="12" data-listing-word-count-sort="2254">
-<div class="thumbnail">
-<p><a href="./posts/IntersectingLines.html" class="no-external"></a></p><a href="./posts/IntersectingLines.html" class="no-external">
-<p><img src="./posts/Lines2DDemo.png" class="thumbnail-image"></p>
-</a><p><a href="./posts/IntersectingLines.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/IntersectingLines.html" class="no-external">Intersecting lines and linear algebra</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/IntersectingLines.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Geometry'); return false;">
-Geometry
-</div>
-<div class="listing-category" onclick="window.quartoListingCategory('Algebra'); return false;">
-Algebra
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/IntersectingLines.html" class="no-external">Consider the equations of two straight lines given by <span id="eq-line1"><span class="math display">\[
-y=m_1x+c_1
-\tag{1}\]</span></span> and <span id="eq-line2"><span class="math display">\[
-y=m_2x+c_2,
-\tag{2}\]</span></span> where <span class="math inline">\(m_1\)</span>, <span class="math inline">\(m_2\)</span>, <span class="math inline">\(c_1\)</span> and <span class="math inline">\(c_2\)</span> are constants.</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./posts/IntersectingLines.html" class="no-external"></a></p><a href="./posts/IntersectingLines.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-listing-file-modified-sort="1711576589008" data-listing-reading-time-sort="1" data-listing-word-count-sort="197">
-<div class="thumbnail">
-<p><a href="./posts/GraduateEmployment.html" class="no-external"></a></p><a href="./posts/GraduateEmployment.html" class="no-external">
-<p class="card-img-top"><img src="posts/GraduateEmployment_files/figure-html/cell-2-output-1.png"  class="thumbnail-image card-img"/></p>
-</a><p><a href="./posts/GraduateEmployment.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/GraduateEmployment.html" class="no-external">Graduate employment</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/GraduateEmployment.html" class="no-external"></a>
-</div>
-<div class="listing-description">
-<a href="./posts/GraduateEmployment.html" class="no-external">A mathematics degree will enable you to become a <em>logical numerate problem solver</em>. Over the course of your degree you will develop</a>
-</div>
-</div>
-<div class="metadata">
-<p><a href="./posts/GraduateEmployment.html" class="no-external"></a></p><a href="./posts/GraduateEmployment.html" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7" data-categories="Welcome" data-listing-date-sort="1711238400000" data-listing-file-modified-sort="1711558498731" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="28">
-<div class="thumbnail">
-<p><a href="./posts/welcome/index.html" class="no-external"></a></p><a href="./posts/welcome/index.html" class="no-external">
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-</a><p><a href="./posts/welcome/index.html" class="no-external"></a></p>
-</div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./posts/welcome/index.html" class="no-external">Welcome</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./posts/welcome/index.html" class="no-external"></a>
-</div>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Welcome'); return false;">
-Welcome
-</div>
-</div>
-<div class="listing-description">
-<a href="./posts/welcome/index.html" class="no-external">Welcome to the Dundee Mathematics Admissions page.</a>
-</div>
-</div>
-<div class="metadata">
-<a href="./posts/welcome/index.html" class="no-external">
-<div class="listing-date">
-Mar 24, 2024
-</div>
-<div class="listing-author">
-Philip Murray
-</div>
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div></main> <!-- /main -->
+</section>
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
