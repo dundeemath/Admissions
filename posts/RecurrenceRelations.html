@@ -183,7 +183,8 @@ window.Quarto = {
 <p><span id="eq-linrecurrence"><span class="math display">\[
 x_{n+1}=ax_n+b
 \tag{1}\]</span></span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are constants.</p>
-<p>Given numerical values for <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and an initial condition, <span class="math inline">\(x_0\)</span>, one can compute a sequence which is a solution to <a href="#eq-linrecurrence" class="quarto-xref">Equation&nbsp;1</a>. This type of task is laborious and well suited to a computer. In <a href="#fig-popmodel" class="quarto-xref">Figure&nbsp;1</a> you can explore computed solutions of <a href="#eq-linrecurrence" class="quarto-xref">Equation&nbsp;1</a>.</p>
+<p>Given numerical values for <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and an initial condition, <span class="math inline">\(x_0\)</span>, a sequence can be computed that is a solution to <a href="#eq-linrecurrence" class="quarto-xref">Equation&nbsp;1</a>. This type of task is laborious and well suited to a computer (see <a href="#fig-popmodel" class="quarto-xref">Figure&nbsp;1</a>).</p>
+<p>Explore how the computed solution depend on model parameters as follows:</p>
 <ul>
 <li>set <span class="math inline">\(b=0\)</span> by varying the parameter <span class="math inline">\(a\)</span> identify solutions that:
 <ul>
@@ -289,7 +290,7 @@ Figure&nbsp;1
 <p>The recurrence relation explored in <a href="#fig-popmodel" class="quarto-xref">Figure&nbsp;1</a> is linear (the right-hand-side is a linear function of <span class="math inline">\(x_n\)</span>). When the model is generalised much richer dynamical behaviours can be observed. One famous example is the logistic map, where the governing equation can be written as <span id="eq-logisticmap"><span class="math display">\[
 x_{n+1}=rx_n(1-x_n).
 \tag{2}\]</span></span></p>
-<p>Note that the right-hand side is a quadratic function of <span class="math inline">\(x_n\)</span>.</p>
+<p>Note that the right-hand side is now a quadratic function of <span class="math inline">\(x_n\)</span>.</p>
 <p>You can explore the solutions to <a href="#eq-logisticmap" class="quarto-xref">Equation&nbsp;2</a> using <a href="#fig-logisticmodel" class="quarto-xref">Figure&nbsp;2</a>.</p>
 <ul>
 <li>show that when <span class="math inline">\(0&lt;r&lt;1\)</span> the solution converges monotonically to 0.0.</li>
@@ -299,7 +300,7 @@ x_{n+1}=rx_n(1-x_n).
 <li>show that when <span class="math inline">\(r=3.47\)</span> the solution is periodic and repeats every fourth step</li>
 <li>show that when <span class="math inline">\(r=3.7\)</span> that the solution is neither periodic nor reaches a steady value.</li>
 </ul>
-<p>The logistic map provide one of the simplest formulation examples of a phenomenon known as chaos. A precise definition of chaos involves some technial concepts, chaotic systems are usually characterised by:</p>
+<p>The logistic map provides one of the simplest mathematical formulations of a phenomenon known as chaos. Whilst a precise definition of chaos involves some technical concepts, chaotic systems are broadly characterised by:</p>
 <ul>
 <li>having non-periodic, non-steady solution</li>
 <li>sensitivity to initial conditions</li>
