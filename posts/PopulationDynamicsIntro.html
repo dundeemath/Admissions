@@ -175,12 +175,11 @@ window.Quarto = {
 
 
 
-<section id="population-dynamics-modelling" class="level1">
-<h1>Population dynamics modelling</h1>
-<p>We can use calculus to study how populations change in time. In the examples below we consider an illustative model of population dynamics in class room. The developed concepts can be used to study population dynamics of <a href="https://dundeemath.github.io/Admissions/posts/TheSIRModel.html">infectious disease transmission</a>.</p>
-</section>
-<section id="sec-background" class="level1">
-<h1>Background</h1>
+<section id="population-dynamics-modelling" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Population dynamics modelling</h1>
+<p>We can use calculus to study how populations change in time. In the examples below we consider an illustative model of population dynamics in a class room. The developed concepts can be used to study population dynamics of <a href="https://dundeemath.github.io/Admissions/posts/TheSIRModel.html">infectious disease transmission</a>.</p>
+<section id="sec-background" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="sec-background"><span class="header-section-number">1.1</span> Background</h2>
 <p>You might have previously encountered differentiation. Suppose that <span class="math inline">\(y\)</span> is some function of <span class="math inline">\(x\)</span>.</p>
 <p>Consider the differential equation</p>
 <p><span class="math display">\[
@@ -194,16 +193,20 @@ y(x)=x+C
 \frac{dy}{dx}=x
 \]</span></p>
 <p>Can you integrate this ordinary differential equation?</p>
-<section id="formulating-a-model-of-population-dynamics" class="level2">
-<h2 class="anchored" data-anchor-id="formulating-a-model-of-population-dynamics">Formulating a model of population dynamics</h2>
-<p>Let’s consider a model for the number of people in a room at a given time. Let <span class="math inline">\(t\)</span> represent time and <span class="math inline">\(N(t)\)</span> represent the number of people in the room at time <span class="math inline">\(t\)</span>.</p>
+</section>
+</section>
+<section id="formulating-model-of-population-dynamics" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Formulating model of population dynamics</h1>
+<section id="constant-entry-rate" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="constant-entry-rate"><span class="header-section-number">2.1</span> Constant entry rate</h2>
+<p>Let’s consider a model for the number of people in a classroom at a given time. Let <span class="math inline">\(t\)</span> represent time and <span class="math inline">\(N(t)\)</span> represent the number of people in the room at time <span class="math inline">\(t\)</span>.</p>
 <p>Suppose that there are initially no people in the room, but people enter at a constant rate, <span class="math inline">\(k\)</span>.</p>
 <p>We could formulate a model of population dynamics given by</p>
 <p><span class="math display">\[
 \frac{dN}{dt}=k, \quad N(0)=0.
 \]</span></p>
 <ul>
-<li><p>Can you integrate this ODE (Hint it is mathematically equivalent to the ODE introduced in <a href="#sec-background" class="quarto-xref">Section&nbsp;2</a>)?</p></li>
+<li><p>Can you integrate this ODE (hint: it is mathematically equivalent to the ODE introduced in <a href="#sec-background" class="quarto-xref">Section&nbsp;1.1</a>)?</p></li>
 <li><p>Can you use the model to determine the amount of time taken for the number of people in the room to reach capacity, <span class="math inline">\(N_C\)</span>.</p></li>
 <li><p>The app in <a href="#fig-popmodel" class="quarto-xref">Figure&nbsp;1</a> allows you to explore the solution of the model. Can you identify what the entry rate needs to be such that the room reaches capacity of 40 people after 20 minutes?</p></li>
 </ul>
@@ -290,8 +293,8 @@ Figure&nbsp;1
 </figure>
 </div>
 </section>
-<section id="what-if-people-enter-the-room-at-a-constant-rate-but-also-leave-the-room-at-random" class="level2">
-<h2 class="anchored" data-anchor-id="what-if-people-enter-the-room-at-a-constant-rate-but-also-leave-the-room-at-random">What if people enter the room at a constant rate but also leave the room at random?</h2>
+<section id="what-if-people-enter-the-room-at-a-constant-rate-but-also-leave-the-room-at-random" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="what-if-people-enter-the-room-at-a-constant-rate-but-also-leave-the-room-at-random"><span class="header-section-number">2.2</span> What if people enter the room at a constant rate but also leave the room at random?</h2>
 <p>Taking the previous model as a starting point, we now assume that people leave the room at a rate proportional to the number of people in the room</p>
 <p>The model equation is now given by</p>
 <p><span class="math display">\[
