@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Maths-admissions - The SIR model</title>
+<title>Maths-admissions - Modelling the spread of infectious disease</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -146,7 +146,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">The SIR model</h1>
+      <h1 class="title">Modelling the spread of infectious disease</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">Infectious diseases</div>
                 <div class="quarto-category">Population dynamics</div>
@@ -179,7 +179,7 @@ window.Quarto = {
 <section id="infectious-disease" class="level1">
 <h1>Infectious disease</h1>
 <p>Infectious diseases can have severe health outcomes for individuals who contract them. They can also place an unmanageably large demand on the health service.</p>
-<p>Infectious diseases can be characterised using their basic reproduction number.</p>
+<p>Infectious diseases can be characterised using their basic reproduction number, <span class="math inline">\(R_0\)</span>.</p>
 <table class="table">
 <caption>Infectious disease basic reproduction numbers <a href="https://en.wikipedia.org/wiki/Basic_reproduction_number">Source</a>.</caption>
 <thead>
@@ -225,7 +225,6 @@ window.Quarto = {
 <li><span class="math inline">\(r\)</span> - infection rate</li>
 <li><span class="math inline">\(a\)</span> - recovery rate</li>
 </ul>
-<p>In the app below we simulating a model of infectious disease (more details on the model below).</p>
 <p>From a public health perspective, one could propose that there is some level of infectiousness, <span class="math inline">\(I_{max}\)</span>, which must be avoided. The challenge is to manage the disease such that <span class="math inline">\(I(t)&lt;I_{max}\)</span> for all <span class="math inline">\(t\)</span>.</p>
 <p>In the app in <a href="#fig-sirmodel" class="quarto-xref">Figure&nbsp;1</a> you can investigate how the values of the parameters <span class="math inline">\(r\)</span> and <span class="math inline">\(a\)</span> affect the trajectory of the infectious disease.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -266,11 +265,11 @@ from scipy.integrate import odeint
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.panel_sidebar(
-    ui.input_slider(id="r",label="Infectivity",min=0.00001,max=0.001,value=0.001,step=0.00001),
-    ui.input_slider(id="S0",label="initial susceptible pop",min=1000.0,max=8000.0,value=4000.1,step=5.0),
-    ui.input_slider(id="a",label="Num days infectiousness",min=2.0,max=8.0,value=5.0,step=0.1),            
-    ui.input_slider(id="I0",label="Initial infectious population ",min=0.0,max=17.0,value=17.0,step=0.5),  
-    ui.input_slider(id="T",label="Simulation time",min=0.0,max=60.0,value=20.0,step=0.5),
+    ui.input_slider(id="r",label="r",min=0.00001,max=0.001,value=0.001,step=0.00001),
+    ui.input_slider(id="S0",label="Initial susceptible pop. (S(0))",min=1000.0,max=8000.0,value=4000.1,step=5.0),
+    ui.input_slider(id="a",label="a",min=0.01,max=0.2,value=0.05,step=0.001),            
+    ui.input_slider(id="I0",label="Initial infectious pop. (I(0)) ",min=0.0,max=17.0,value=17.0,step=0.5),  
+    ui.input_slider(id="T",label="Simulation time",min=0.0,max=70.0,value=40.0,step=0.5),
     ui.input_slider(id="max_inf",label="Max. infectiousness",min=0.0,max=10000.0,value=2500.0,step=100.5),             
           
             ),
@@ -290,7 +289,7 @@ def server(input, output, session):
         
         r=float(input.r())
         S_0=float(input.S0())
-        a=float(np.log(2)/(input.a()))
+        a=float(input.a())
         I_0=float(input.I0())
         T=float(input.T())
         max_inf=float(input.max_inf())
@@ -350,8 +349,8 @@ Figure&nbsp;1: The sizes of the different populations are plotted against time, 
 <section id="exercises-with-the-app" class="level1">
 <h1>Exercises with the app</h1>
 <ul>
-<li>can you determine what value the infectivity parameter must go below in order that <span class="math inline">\(I(t)&lt;I_{max}\)</span>?</li>
-<li>if covid omicron has an <span class="math inline">\(R_0=9.5\)</span> and an infectious period of 6 days, can you estimate the value of the infectivity parameter for a susceptible population of 5000?</li>
+<li>can you determine what value the infectivity parameter, <span class="math inline">\(r\)</span>, must go below in order that <span class="math inline">\(I(t)&lt;I_{max}\)</span>?</li>
+<li>suppose that covid omicron in a susceptible population of <span class="math inline">\(S_0=5000\)</span> has a recovery rate <span class="math inline">\(a=0.05\)</span>. Can you estimate the value of the infectivity parameter, <span class="math inline">\(r\)</span>, such that <span class="math inline">\(R_0=9.5\)</span>?</li>
 <li>which parameters in the app best represent the effect of vaccination of a section of the population?</li>
 </ul>
 </section>

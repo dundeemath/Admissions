@@ -1,0 +1,216 @@
+---
+title: Trigonometric equations
+format: html 
+image: Lines2DDemo.png
+categories: [Geometry, Algebra]
+
+filters:
+  - shinylive
+---
+
+# Trigonometric equations
+
+You may have encountered trigonometric expression of the form
+$$
+a\sin(x)+b\cos(x)
+$$ {#eq-line1}
+
+and
+shown that they can be expressed in the form
+$$
+c\sin(x+d).
+$$ {#eq-sinshift}
+
+In @cossinplot, 
+- the individual terms in @eq-line1 are plotted using dashed lines for given values of parameters $a$ and $b$.  
+- the sum is plotted using a dot-dashed line.
+- @eq-sinshift is plotted for given values of $c$ and $d$.
+
+Can you identify values of the parameters $c$ and $d$ such that
+$$
+c\sin(x+d)=a\sin(x)+b\cos(x)
+$$
+Are these values unique (i.e. is there more than one solution?)
+
+
+
+
+::: {#fig-cossinplot}
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 500
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+    ui.input_slider(id="a",label="a",min=-5,max=5,value=1.0,step=0.2),
+    ui.input_slider(id="b",label="b",min=-5.0,max=5.0,value=1.0,step=0.2),
+    ui.input_slider(id="c",label="c",min=-5.0,max=10.0,value=5.0,step=0.02),            
+    ui.input_slider(id="d",label="d",min=-5.0,max=10.0,value=5.0,step=0.02),            
+    ),
+    ui.panel_main(ui.output_plot("plot"),),
+    ),
+)
+
+def server(input, output, session):
+    
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots()
+                
+        a =float(input.a())
+        b =float(input.b())
+        c =float((input.c()))
+        d =float((input.d()))
+
+        # Define discretised t domain
+        min_x=-10
+        max_x=10
+        x = np.linspace(min_x, max_x, 1000)
+        y_1 = a*np.sin(x)
+        y_2 = b*np.cos(x)
+        y_3=c*np.sin(x+d)
+
+        z=y_1+y_2
+        ax.plot(x, y_1,'--', x,y_2,'--',linewidth=1)
+        ax.plot(x,z,'-.',x,y_3,linewidth=6)
+        
+
+        min_y=-(np.abs(a)+np.abs(b)+np.abs(c))
+        max_y=-min_y
+        ax.set_ylim([min_y,max_y])
+        ax.set_xlim([min_x,max_x])
+        ax.grid(True)
+        ax.set_xlabel('$x$')
+        ax.set_ylabel('$y$')
+    
+app = App(app_ui, server)
+```
+Sum of cosine and sine functions.
+:::
+
+## Fourier series
+
+
+Did you know that many functions defined on a domain [0,$L$] can be approximated by an infinite sum of sine functions of different frequencies, i.e.
+$$
+f(x)\sim A_1\sin(k_1x)+A_2\sin(k_2x)+A_3\sin(k_3x) + A_4
+\sin(k_4x) + ..
+$$
+
+For a given function $f(x)$  the coefficients $A_0$, $A_1$ etc. can be chosen so that the sum provides an arbitrarily good approximation to the function.
+
+* Choose the linear function f(x)=x. Is the approximation *good* for $N=5$? What happens to the approximation as you increase $N$? Notice that the approximation does not converge to the *correct* value on the boundary $x=L$. This is known as the *Gibbs phenomenon*. It is not an error but requires a more detailed study of Fourier series to understand!
+* Consider the sawtooth function. Compare the accuracy of the series aproximation at the boundary $x=L$ between the functions $f(x)=x$ and the sawtooth function. Note that the approximation now appears to be converging to the value of $f$ on the boundary $x=L$.
+
+
+
+
+
+::: {#fig-fourierseriesplot}
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 500
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+import matplotlib.pyplot as plt
+title_str=['x','sawtooth','x^2','x^2-2x+1','exp(x)','tan(x)',]
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+            ui.input_select(id="fun",label="Choose f(x)",choices=title_str,selected=["x"]),
+    ui.input_slider(id="L",label="L",min=1.0,max=20.0,value=10.0,step=1.0), 
+    ui.input_slider(id="N",label="N",min=2,max=500,value=10,step=1),          
+    ),
+    ui.panel_main(ui.output_plot("plot"),),
+    ),
+)
+
+def server(input, output, session):
+    
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots()
+                
+        fun =(input.fun())
+        N =int(input.N())
+        L =float(input.L())
+
+        # Define discretised t domain
+   
+        x = np.linspace(0.0, L, 10000)
+        if fun == 'x':
+            f=x
+        elif fun == 'x^2':
+            f=x**2
+        elif fun=='x^2-2x+1':
+            f=x**2-2*x+1
+        elif fun=='exp(x)':
+            f=np.exp(x)
+        elif fun=='tan(x)':
+            f=np.tan(x)
+        elif fun=='sawtooth':
+            f=np.mod(x*5,L)
+
+        sum=0
+        for i in range(N):
+            k_i=i*np.pi/L
+
+            basis_fun=np.sin(k_i*x)
+            A_i= 2.0/L*np.trapz(f*basis_fun,x)
+            term_i=A_i*np.sin(k_i*x)
+            sum+=term_i 
+
+        y_2 = sum
+
+        ax.plot(x, f,'--', x,y_2,'--')
+        
+
+        #min_y=-(np.abs(a)+np.abs(b)+np.abs(c))
+        #max_y=-min_y
+
+        min_y=np.max([np.min(f),-200.0])
+        max_y=np.min([np.max(f),200.0])
+
+        ax.set_ylim([min_y,max_y])
+        #ax.set_xlim([min_x,max_x])
+        ax.grid(True)
+        ax.legend(['f(x)','Approximation'])
+        ax.set_xlabel('$x$')
+        ax.set_ylabel('$y$')
+    
+app = App(app_ui, server)
+```
+Approximating  a function as a sum of sinusoids.
+:::
+
+
+:::{.callout-note}
+
+At Dundee, the parametric equations of lines, spheres and planes are studied in the module  Maths 1B.
+
+Concepts from geometry and linear algebra are generalised in the modules *Maths 2A* and *Maths 2B*.
+
+At Level 3 in the module *Differential Geometry* geometrical concepts and tools that are essential for understanding classical and modern physics and engineering are further developed.
+
+At Levels 2, 3 and 4 you will learn how to use computer programming to explore and communicate mathematical concepts.
+
+You can find out more about these modules [here](https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment).
+
+:::
+
+
+
+
+

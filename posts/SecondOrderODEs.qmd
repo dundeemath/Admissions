@@ -59,7 +59,7 @@ Second order ODEs arise in many different situations in applied mathematics. One
 $$
 \mathbf{F}=m\mathbf{a},
 $$
-where  $\mathbf{a}$  represents the acceleration of a particle, $\mathbf{F}$ the resultant force acting on it and $m$ the conatant particle mass.
+where  $\mathbf{a}$  represents the acceleration of a particle, $\mathbf{F}$ the resultant force acting on it and $m$ the constant particle mass.
 
 
 The acceleration can be written as the second order derivative of the particle position  with respect to time, i.e.
@@ -102,7 +102,7 @@ y(t=0)=y_0 \quad \quad \frac{dy}{dt}\bigg|_{{t=0}}=d.
 $$ {#eq-secondorderodeics}
 
 
-The app in @fig-popmodel allows you to explore the solution of the model (@eq-secondorderode and @eq-secondorderodeic). 
+The app in @fig-popmodel allows you to explore the solution of the model (@eq-secondorderode and @eq-secondorderodeics). 
 
 Can you identify the following three behaviours by adjusting model parameters:
 

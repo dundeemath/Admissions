@@ -1,6 +1,7 @@
 ---
 title: "Introduction to population dynamics"
 format: html 
+number-sections: true
 image: 'PopDynamicsDEmoImage.png'
 categories: [Population dynamics, Calculus, Differential Equations]
 filters:
@@ -11,9 +12,9 @@ filters:
 
 
 
-We can use calculus to study how populations change in time. In the examples below we consider an illustative model of population dynamics in class room. The developed concepts can be used to study population dynamics of [infectious disease transmission](https://dundeemath.github.io/Admissions/posts/TheSIRModel.html).
+We can use calculus to study how populations change in time. In the examples below we consider an illustative model of population dynamics in a class room. The developed concepts can be used to study population dynamics of [infectious disease transmission](https://dundeemath.github.io/Admissions/posts/TheSIRModel.html).
 
-# Background {#sec-background}
+## Background {#sec-background}
 
 You might have previously encountered differentiation. Suppose that $y$ is some function of $x$. 
 
@@ -40,9 +41,11 @@ Can you integrate this ordinary differential equation?
 
 
 
-## Formulating a model of population dynamics
+# Formulating model of population dynamics
 
-Let's consider a model for the number of people in a room at a given time. Let $t$ represent time and $N(t)$ represent the number of people in the room at time $t$.
+
+## Constant entry rate
+Let's consider a model for the number of people in a classroom at a given time. Let $t$ represent time and $N(t)$ represent the number of people in the room at time $t$.
 
 Suppose that there are initially no people in the room, but people enter at a constant rate, $k$.
 
@@ -52,7 +55,7 @@ $$
 \frac{dN}{dt}=k, \quad N(0)=0.
 $$
 
-* Can you integrate this ODE (Hint it is mathematically equivalent to the ODE introduced in @sec-background)?
+* Can you integrate this ODE (hint: it is mathematically equivalent to the ODE introduced in @sec-background)?
 
 * Can you use the model to determine the amount of time taken for the number of people in the room to reach capacity, $N_C$.
 
@@ -65,7 +68,7 @@ $$
 ```{shinylive-python}
 #| standalone: true
 #| components: [viewer]
-#| viewerHeight: 800
+#| viewerHeight: 500
 
 from shiny import App, Inputs, Outputs, Session, render, ui
 from shiny import reactive
@@ -161,7 +164,7 @@ The app in @fig-popmodel2 allows you to explore the solution of the model. Can y
 ```{shinylive-python}
 #| standalone: true
 #| components: [viewer]
-#| viewerHeight: 800
+#| viewerHeight: 600
 
 from shiny import App, Inputs, Outputs, Session, render, ui
 from shiny import reactive

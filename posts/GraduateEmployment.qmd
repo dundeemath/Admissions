@@ -13,8 +13,11 @@ A mathematics degree will enable you to become a *logical numerate problem solve
 
 ## Career earnings 
 
+Mathematics degrees are associated with higher career earnings compared with many other disciplines. In the table below median salaries are compared across different discplines. In this dataset mathematical sciences degrees have the fourth highest median salary.
+
 ```{python}
 #| echo: false
+#| label: tab-medsalary
 #| fig-cap: "Data provided by HESA (2020/2021)"
 
 import pandas as pd
@@ -45,9 +48,9 @@ subjectdict= {"Medicine and dentistry": 35000,
 }
 #df=pd.DataFrame(list(subjectdict.items()))
 #df=pd.DataFrame(subjectdict,index=(subjectdict.items()))
-df=pd.DataFrame.from_dict(subjectdict,orient='index')
-df.rename(index=lambda x: x[:15], inplace=True) #this will truncate the column name. Then print the dataframe
-
+df=pd.DataFrame.from_dict(subjectdict,orient='index',columns=['Salary'])
+df.rename(index=lambda x: x[:25], inplace=True) #this will truncate the column name. Then print the dataframe
+df=df.sort_values(by='Salary')
 plot_table = df.plot.barh()
 plot_table.set_xlabel('Median salary of new graduates (£)')
 plt.show()

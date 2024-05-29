@@ -1,28 +1,26 @@
 ---
-title: "Recurrence relations"
+title: "Recurrence relations and chaos"
 format: html 
-image: 'DampedOscillation.png'
-categories: [Difference Equations, Discrete maths]
+image: 'logisticmapsolscreenshot.png'
+categories: [Recurrence relations, Discrete maths, Chaos]
 filters:
   - shinylive
 ---
 
 # Recurrence relations
 
-
-
-
 ## A linear recurrence relation
 
 You might have previously encountered a recurrence relation of the form
-
 
 $$
 x_{n+1}=ax_n+b
 $$ {#eq-linrecurrence}
 where $a$ and $b$ are constants.
 
-Given numerical values for $a$ and $b$ and an initial condition, $x_0$, one can compute a sequence which is a solution to @eq-linrecurrence. This type of task is laborious and well suited to a computer. In @fig-popmodel you can explore computed solutions of @eq-linrecurrence.
+Given numerical values for $a$ and $b$ and an initial condition, $x_0$, a sequence can be computed that is a solution to @eq-linrecurrence. This type of task is laborious and well suited to a computer (see @fig-popmodel).
+
+Explore how the computed solution depend on model parameters as follows:
 
 * set $b=0$ 
     by varying the parameter $a$ identify solutions that:
@@ -43,7 +41,7 @@ Given numerical values for $a$ and $b$ and an initial condition, $x_0$, one can 
 ```{shinylive-python}
 #| standalone: true
 #| components: [viewer]
-#| viewerHeight: 800
+#| viewerHeight: 500
 
 from shiny import App, Inputs, Outputs, Session, render, ui
 from shiny import reactive
@@ -129,7 +127,7 @@ $$
 x_{n+1}=rx_n(1-x_n).
 $$ {#eq-logisticmap}
 
-Note that the right-hand side is a quadratic function of $x_n$. 
+Note that the right-hand side is now a quadratic function of $x_n$. 
 
 You can explore the solutions to  @eq-logisticmap using @fig-logisticmodel.
 
@@ -141,13 +139,11 @@ You can explore the solutions to  @eq-logisticmap using @fig-logisticmodel.
 * show that when $r=3.7$ that the solution is neither periodic nor reaches a steady value.
 
 
-The logistic map provide one of the simplest formulation examples of a phenomenon known as chaos. A precise definition of chaos involves some technial concepts, chaotic systems are usually characterised by:
+The logistic map provides one of the simplest mathematical formulations of a phenomenon known as chaos. Whilst a precise definition of chaos involves some technical concepts, chaotic systems are broadly characterised by:
 
 * having non-periodic, non-steady solution
 * sensitivity to initial conditions
 * apprearing to be unpredictable even through they are deterministic.
-
-
 
 
 ::: {#fig-logisticmodel}
@@ -155,7 +151,7 @@ The logistic map provide one of the simplest formulation examples of a phenomeno
 ```{shinylive-python}
 #| standalone: true
 #| components: [viewer]
-#| viewerHeight: 800
+#| viewerHeight: 500
 
 from shiny import App, Inputs, Outputs, Session, render, ui
 from shiny import reactive
@@ -240,7 +236,7 @@ At Level 2  in the module *Discrete Maths*  you would be introduced to discrete 
 
 At Level 3 in the module  *Mathematical Biology*  you would consider discrete dynamical systems model applied to Biological systems.
 
-At Level 4 we offer a number  of honours projects that investigate chaotic systems (e.g. the Lorenz equations, the double pendulum)
+At Level 4 we offer a number of honours projects that investigate chaotic systems (e.g. the Lorenz equations, the double pendulum)
 
 You can find out more about these modules [here](https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment).
 
