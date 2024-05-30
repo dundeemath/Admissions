@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Maths-admissions - Recurrence relations and chaos</title>
+<title>Maths-admissions - Trigonometric equations and Fourier series</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -146,11 +146,11 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Recurrence relations and chaos</h1>
+      <h1 class="title">Trigonometric equations and Fourier series</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">Recurrence relations</div>
-                <div class="quarto-category">Discrete maths</div>
-                <div class="quarto-category">Chaos</div>
+                <div class="quarto-category">Trigonometry</div>
+                <div class="quarto-category">Geometry</div>
+                <div class="quarto-category">Fourier</div>
               </div>
                   </div>
   </div>
@@ -175,33 +175,26 @@ window.Quarto = {
 
 
 
-<section id="recurrence-relations" class="level1">
-<h1>Recurrence relations</h1>
-<section id="a-linear-recurrence-relation" class="level2">
-<h2 class="anchored" data-anchor-id="a-linear-recurrence-relation">A linear recurrence relation</h2>
-<p>You might have previously encountered a recurrence relation of the form</p>
-<p><span id="eq-linrecurrence"><span class="math display">\[
-x_{n+1}=ax_n+b
-\tag{1}\]</span></span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are constants.</p>
-<p>Given numerical values for <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and an initial condition, <span class="math inline">\(x_0\)</span>, a sequence can be computed that is a solution to <a href="#eq-linrecurrence" class="quarto-xref">Equation&nbsp;1</a>. This type of task is laborious and well suited to a computer (see <a href="#fig-popmodel" class="quarto-xref">Figure&nbsp;1</a>).</p>
-<p>Explore how the computed solution depend on model parameters as follows:</p>
-<ul>
-<li>set <span class="math inline">\(b=0\)</span> by varying the parameter <span class="math inline">\(a\)</span> identify solutions that:
-<ul>
-<li>tend to zero monotonically</li>
-<li>oscillate about 0</li>
-<li>blow up</li>
-</ul></li>
-<li>set b&gt;0
-<ul>
-<li>show that the solution converges to a non-zero value in the case where <span class="math inline">\(0&lt;a&lt;1\)</span>.</li>
-<li>show that the solution is oscillatory for <span class="math inline">\(-1&lt;a&lt;0\)</span>.</li>
-</ul></li>
-</ul>
-<div id="fig-popmodel" class="quarto-figure quarto-figure-center quarto-float anchored">
+<section id="trigonometric-functions" class="level1">
+<h1>Trigonometric functions</h1>
+<p>Trigonometric functions appear throughout mathematics (e.g.&nbsp;geometry, calculus, differential equations, signal analysis). Here we explore some properties of trigonometric functions with which you might be familiar. Then we take a leap into demonstrating how arbitrary functions can be approximated using sums of trigonometric functions.</p>
+<section id="wave-function-forms" class="level2">
+<h2 class="anchored" data-anchor-id="wave-function-forms">Wave function forms</h2>
+<p>You may have encountered trigonometric expressions of the form <span id="eq-line1"><span class="math display">\[
+a\sin(x)+b\cos(x),
+\tag{1}\]</span></span></p>
+<p>and shown that they can be expressed in the <em>wave-function</em> form <span id="eq-sinshift"><span class="math display">\[
+c\sin(x+d).
+\tag{2}\]</span></span></p>
+<p>This idea is explored in <a href="#fig-cossinplot" class="quarto-xref">Figure&nbsp;1</a>: - the individual terms in <a href="#eq-line1" class="quarto-xref">Equation&nbsp;1</a> are plotted using dashed lines for given values of parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.<br>
+- the sum on the right-hand side of <a href="#eq-line1" class="quarto-xref">Equation&nbsp;1</a> is plotted using a dot-dashed line. - <a href="#eq-sinshift" class="quarto-xref">Equation&nbsp;2</a> is plotted for given values of <span class="math inline">\(c\)</span> and <span class="math inline">\(d\)</span>.</p>
+<p>Can you identify values of the parameters <span class="math inline">\(c\)</span> and <span class="math inline">\(d\)</span> such that <span class="math display">\[
+c\sin(x+d)=a\sin(x)+b\cos(x)
+\]</span> Are these values unique (i.e.&nbsp;is there more than one solution?)</p>
+<div id="fig-cossinplot" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-popmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<pre id="fig-popmodel" class="shinylive-python" data-engine="python"><code>#| standalone: true
+<div aria-describedby="fig-cossinplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-cossinplot" class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| components: [viewer]
 #| viewerHeight: 500
 
@@ -209,23 +202,17 @@ from shiny import App, Inputs, Outputs, Session, render, ui
 from shiny import reactive
 
 import numpy as np
-from pathlib import Path
 import matplotlib.pyplot as plt
-from scipy.integrate import odeint
 
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.panel_sidebar(
-    ui.input_slider(id="a",label="a",min=-1.0,max=3,value=0.1,step=0.001),
-    ui.input_slider(id="b",label="b",min=0.0,max=15.0,value=10.0,step=0.01),             
-     
-    ui.input_slider(id="x0",label="x_0",min=0.0,max=20.0,value=5.0,step=1.0),
-    ui.input_slider(id="T",label="Number of iterations",min=0.0,max=60.0,value=20.0,step=1.0),
-              
-          
-            ),
-
-        ui.panel_main(ui.output_plot("plot"),),
+    ui.input_slider(id="a",label="a",min=-5,max=5,value=1.0,step=0.2),
+    ui.input_slider(id="b",label="b",min=-5.0,max=5.0,value=1.0,step=0.2),
+    ui.input_slider(id="c",label="c",min=-5.0,max=10.0,value=5.0,step=0.02),            
+    ui.input_slider(id="d",label="d",min=-5.0,max=10.0,value=5.0,step=0.02),            
+    ),
+    ui.panel_main(ui.output_plot("plot"),),
     ),
 )
 
@@ -234,82 +221,53 @@ def server(input, output, session):
     @render.plot
     def plot():
         fig, ax = plt.subplots()
-        #ax.set_ylim([-2, 2])
-        # Filter fata
-        
-        
-        a=float(input.a())
-        b=float(input.b())
-        x0=float(input.x0())
-        T=int(input.T())
-       
-        # Define rhs of LV ODEs
-        def rhs_pop_model(y,t,a,b):
-          
-
-          rhs=a*y+b
-
-          return rhs
-        def DiscreteSol(rhs_pop_model,y_0,t,a,b):
-            y=np.zeros_like(t,dtype=float)
-            y[0]=y_0
-            for i in t:
-                if i&gt;0:
-                    y[i]=rhs_pop_model(y[i-1],t[i],a,b)
-            return y
-
+                
+        a =float(input.a())
+        b =float(input.b())
+        c =float((input.c()))
+        d =float((input.d()))
 
         # Define discretised t domain
-        t = np.arange(0, T, 1)
-        # define initial conditions
-        init_cond=x0
-        
-        # Compute numerical solution of ODEs
-        sol1 = DiscreteSol(rhs_pop_model,init_cond,t,a,b)
+        min_x=-10
+        max_x=10
+        x = np.linspace(min_x, max_x, 1000)
+        y_1 = a*np.sin(x)
+        y_2 = b*np.cos(x)
+        y_3=c*np.sin(x+d)
 
-        # Plot results
-        y=sol1
+        z=y_1+y_2
+        ax.plot(x, y_1,'--', x,y_2,'--',linewidth=1)
+        ax.plot(x,z,'-.',x,y_3,linewidth=6)
         
-        ax.plot(t,y)
-        ax.set_xlabel('$n$')
-        ax.set_ylabel('$x_n$')
 
-        plt.grid()
-        plt.show()
+        min_y=-(np.abs(a)+np.abs(b)+np.abs(c))
+        max_y=-min_y
+        ax.set_ylim([min_y,max_y])
+        ax.set_xlim([min_x,max_x])
+        ax.grid(True)
+        ax.set_xlabel('$x$')
+        ax.set_ylabel('$y$')
     
 app = App(app_ui, server)</code></pre>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-popmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cossinplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Sum of cosine and sine functions.
 </figcaption>
 </figure>
 </div>
 </section>
-<section id="the-logisitic-map" class="level2">
-<h2 class="anchored" data-anchor-id="the-logisitic-map">The logisitic map</h2>
-<p>The recurrence relation explored in <a href="#fig-popmodel" class="quarto-xref">Figure&nbsp;1</a> is linear (the right-hand-side is a linear function of <span class="math inline">\(x_n\)</span>). When the model is generalised much richer dynamical behaviours can be observed. One famous example is the logistic map, where the governing equation can be written as <span id="eq-logisticmap"><span class="math display">\[
-x_{n+1}=rx_n(1-x_n).
-\tag{2}\]</span></span></p>
-<p>Note that the right-hand side is now a quadratic function of <span class="math inline">\(x_n\)</span>.</p>
-<p>You can explore the solutions to <a href="#eq-logisticmap" class="quarto-xref">Equation&nbsp;2</a> using <a href="#fig-logisticmodel" class="quarto-xref">Figure&nbsp;2</a>.</p>
-<ul>
-<li>show that when <span class="math inline">\(0&lt;r&lt;1\)</span> the solution converges monotonically to 0.0.</li>
-<li>show that when <span class="math inline">\(0&lt;r&lt;2\)</span> the solution converges monotonically to a non-zero value.</li>
-<li>show that when <span class="math inline">\(2&lt;r&lt;3\)</span> the solution is oscillatory and converges to a non-zero value.</li>
-<li>show that when <span class="math inline">\(r=3.2\)</span> the solution is periodic and repeats every second step</li>
-<li>show that when <span class="math inline">\(r=3.47\)</span> the solution is periodic and repeats every fourth step</li>
-<li>show that when <span class="math inline">\(r=3.7\)</span> that the solution is neither periodic nor reaches a steady value.</li>
-</ul>
-<p>The logistic map provides one of the simplest mathematical formulations of a phenomenon known as chaos. Whilst a precise definition of chaos involves some technical concepts, chaotic systems are broadly characterised by:</p>
-<ul>
-<li>having non-periodic, non-steady solution</li>
-<li>sensitivity to initial conditions</li>
-<li>apprearing to be unpredictable even through they are deterministic.</li>
-</ul>
-<div id="fig-logisticmodel" class="quarto-figure quarto-figure-center quarto-float anchored">
+<section id="compound-angle-identities" class="level2">
+<h2 class="anchored" data-anchor-id="compound-angle-identities">Compound angle identities</h2>
+<p>You may have come across compound angle formulae <span class="math display">\[
+\sin(a+b)=\sin(a)\cos(b)+\sin(b)\cos(a)
+\]</span> and <span class="math display">\[
+\cos(a+b)=\cos(a)\cos(b)-\sin(a)\sin(b).
+\]</span></p>
+<p>In <a href="#fig-compoundangle" class="quarto-xref">Figure&nbsp;2</a> you can use the unit circle to visualise why the above identities hold.</p>
+<div id="fig-compoundangle" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-logisticmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<pre id="fig-logisticmodel" class="shinylive-python" data-engine="python"><code>#| standalone: true
+<div aria-describedby="fig-compoundangle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-compoundangle" class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| components: [viewer]
 #| viewerHeight: 500
 
@@ -317,21 +275,149 @@ from shiny import App, Inputs, Outputs, Session, render, ui
 from shiny import reactive
 
 import numpy as np
-from pathlib import Path
 import matplotlib.pyplot as plt
-from scipy.integrate import odeint
-
+title_str=['All','Sine','Cosine']
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.panel_sidebar(
-    ui.input_slider(id="r",label="r",min=0.0,max=5.0,value=0.1,step=0.01),             
-    ui.input_slider(id="x0",label="x_0",min=0.0,max=1.0,value=0.5,step=0.01),
-    ui.input_slider(id="T",label="Number of iterations",min=0.0,max=60.0,value=20.0,step=1.0),
-              
-          
-            ),
+    ui.input_slider(id="a",label="Angle b",min=0,max=1.0,value=0.5,step=0.02),
+    ui.input_slider(id="b",label="Angle a",min=0.0,max=1.0,value=0.56,step=0.02),
+    ui.input_select(id="c",label="Choose compound angle",choices=title_str,selected=title_str[0]),           
+    ),
+    ui.panel_main(ui.output_plot("plot"),),
+    ),
+)
 
-        ui.panel_main(ui.output_plot("plot"),),
+def server(input, output, session):
+    
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots(figsize=[20,10])
+                
+        a =float(input.a())
+        b =float(input.b())
+        c =(input.c())
+
+        cos_a=np.cos(a)
+        cos_b=np.cos(b)
+        sin_a=np.sin(a)
+        sin_b=np.sin(b)
+
+        cos_apb=np.cos(a+b)
+        sin_apb=np.sin(a+b)
+
+
+        point1=[0.0,0.0]
+        point2=[cos_a*cos_b,cos_a*sin_b]
+        point3=[cos_apb,sin_apb]
+
+        triangle=np.array([point1,point2,point3,point1],dtype=float)
+
+
+        min_point_6=np.min([0.0,cos_apb])
+
+        point4=[min_point_6,0.0]
+        point5=[cos_a*cos_b,0.0]
+        point6=[cos_a*cos_b,sin_apb]
+        point7=[min_point_6,sin_apb]
+
+        rectangle=np.array([point4,point5,point6,point7,point4],dtype=float)
+
+
+        # Define discretised t domain
+     
+        ax.plot(triangle[:,0],triangle[:,1],linewidth=1)
+        ax.plot(rectangle[:,0],rectangle[:,1],linewidth=2)
+
+        ax.text(0.2*np.cos(a/2.0),0.2*np.sin(a/2.0),'a',)
+        ax.text(0.2*np.cos(a+b/2.0),0.2*np.sin(a+b/2.0),'b')
+        ax.text((point2[0]+point3[0])/2.0,(point2[1]+point3[1])/2.0+0.05,'$\sin(b)$')
+        ax.text(point2[0]/2.0,point2[1]/2.0+0.05,'$\cos(b)$',rotation=np.arctan2(point2[1],point2[0])/(2.0*np.pi)*360.0)
+        ax.text(cos_apb/2.0,sin_apb/2.0+0.05,'1')
+        
+        c1='b'
+        c2='r'
+        color_map=[c1,c1,c1,c1,c1,c1]
+
+        if c=='Sine':
+            color_map=['r','k','m',c1,c1,c1]
+            ax.plot([point4[0],point7[0]],[point4[1],point7[1]],'r',linewidth=6)
+            ax.plot([point5[0],point2[0]],[point5[1],point2[1]],'m',linewidth=6)
+            ax.plot([point6[0],point2[0]],[point6[1],point2[1]],'k',linewidth=6)
+        elif c=='Cosine':
+            color_map=[c1,c1,c1,'m','r','k']
+            ax.plot([point4[0],point5[0]],[point4[1],point5[1]],'r',linewidth=6)
+            ax.plot([point7[0],point3[0]],[point7[1],point3[1]],'m',linewidth=6)
+            ax.plot([point6[0],point3[0]],[point6[1],point3[1]],'k',linewidth=6)
+
+
+
+        
+       
+        ax.text(min_point_6-0.1,sin_apb/2.0-0.2,'$\sin(a+b)$',color=color_map[0],rotation='vertical')
+        ax.text(point2[0]+0.05,(point2[1]+point3[1])/2.0,'$\cos(a)\sin(b)$',color=color_map[1])
+        ax.text(point2[0]+0.05,point2[1]/2.0,'$\sin(a)\cos(b)$',color=color_map[2])
+        ax.text(cos_apb/2.0-0.2,sin_apb+0.05,'$\cos(a+b)$',color=color_map[3])
+        ax.text(cos_a*cos_b*0.25,-0.2+0.05,'$\cos(a)\cos(b)$',color=color_map[4])
+        ax.text((point2[0]+point3[0])/2.0,sin_apb+0.1,'$\sin(a)\sin(b)$',color=color_map[5])
+
+        circle1=plt.Circle(( 0.0 , 0.0 ), 1.0,alpha=0.05 )
+        ax.add_patch(circle1)
+
+
+        
+        
+        
+        ax.grid(True)
+        ax.set_xlabel('$x$')
+        ax.set_ylabel('$y$')
+        ax.set_xlim([-1.0,1.0])
+        ax.set_ylim([0.0,1.0])
+        plt.xticks([-1.0,0.0,1.0])
+        ax.set_aspect('equal')
+
+app = App(app_ui, server)</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-compoundangle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Compound angle formulae.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="fourier-series" class="level2">
+<h2 class="anchored" data-anchor-id="fourier-series">Fourier series</h2>
+<p>Did you know that many functions, <span class="math inline">\(f(x)\)</span>, defined on a domain <span class="math inline">\(x\in[0,L]\)</span> can be approximated by an infinite sum of sine functions of different frequencies, i.e. <span class="math display">\[
+f(x)\sim A_1\sin(k_1x)+A_2\sin(k_2x)+A_3\sin(k_3x) + A_4
+\sin(k_4x) + ...
+\]</span></p>
+<p>For a given function <span class="math inline">\(f(x)\)</span>, the coefficients <span class="math inline">\(A_0\)</span>, <span class="math inline">\(A_1\)</span> etc. can be chosen so that the sum provides an arbitrarily good approximation to the function.</p>
+<p>In <a href="#fig-fourierseriesplot" class="quarto-xref">Figure&nbsp;3</a> you can explore approximation to a number of functions that you may have previously encountered.</p>
+<ul>
+<li>Choose the linear function f(x)=x. Is the approximation <em>good</em> for <span class="math inline">\(N=5\)</span>? What happens to the approximation as you increase <span class="math inline">\(N\)</span>? Notice that the approximation does not converge to the <em>correct</em> value on the boundary <span class="math inline">\(x=L\)</span>. This is known as the <em>Gibbs phenomenon</em>. It is not an error but requires a more detailed study of Fourier series to understand!</li>
+<li>Consider the sawtooth function. Compare the accuracy of the series aproximation at the boundary <span class="math inline">\(x=L\)</span> between the functions <span class="math inline">\(f(x)=x\)</span> and the sawtooth function. Note that the approximation now appears to be converging to the value of <span class="math inline">\(f\)</span> on the boundary <span class="math inline">\(x=L\)</span>.</li>
+<li>Consider the exponential function. Note that many more terms are needed in the expansion to obtain a reasonable level of accuracy.</li>
+</ul>
+<div id="fig-fourierseriesplot" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fourierseriesplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-fourierseriesplot" class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 500
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+import matplotlib.pyplot as plt
+title_str=['x','sawtooth','x^2','x^2-2x+1','exp(x)','tan(x)',]
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+            ui.input_select(id="fun",label="Choose f(x)",choices=title_str,selected=["x"]),
+    ui.input_slider(id="L",label="L (domain length)",min=1.0,max=20.0,value=10.0,step=1.0), 
+    ui.input_slider(id="N",label="N (num. terms in series)",min=1,max=500,value=10,step=1),          
+    ),
+    ui.panel_main(ui.output_plot("plot"),),
     ),
 )
 
@@ -340,50 +426,58 @@ def server(input, output, session):
     @render.plot
     def plot():
         fig, ax = plt.subplots()
-        #ax.set_ylim([-2, 2])
-        # Filter fata
-        
-        
-        r=float(input.r())
-        x0=float(input.x0())
-        T=int(input.T())
-       
-        # Define rhs of logistic map 
-        def logistic_map(y,t,r):
-          rhs=r*y*(1-y)
-          return rhs
-        
-        def DiscreteSol(rhs_pop_model,y_0,t,r):
-            y=np.zeros_like(t,dtype=float)
-            y[0]=y_0
-            for i in t:
-                if i&gt;0:
-
-                    y[i]=rhs_pop_model(y[i-1],t[i],r)
-            return y
+                
+        fun =(input.fun())
+        N =int(input.N())
+        L =float(input.L())
 
         # Define discretised t domain
-        t = np.arange(0, T, 1)
-        # define initial conditions
-        init_cond=x0
-        
-        # Compute numerical solution of ODEs
-        sol1 = DiscreteSol(logistic_map,init_cond,t,r)
+   
+        x = np.linspace(0.0, L, 10000)
+        if fun == 'x':
+            f=x
+        elif fun == 'x^2':
+            f=x**2
+        elif fun=='x^2-2x+1':
+            f=x**2-2*x+1
+        elif fun=='exp(x)':
+            f=np.exp(x)
+        elif fun=='tan(x)':
+            f=np.tan(x)
+        elif fun=='sawtooth':
+            f=np.mod(x*5,L)
 
-        # Plot results
-        y=sol1
-        
-        ax.plot(t,y)
-        ax.set_xlabel('$n$')
-        ax.set_ylabel('$x_n$')
+        sum=0
+        for i in range(N+1):
+            k_i=i*np.pi/L
 
-        plt.grid()
-        plt.show()
+            basis_fun=np.sin(k_i*x)
+            A_i= 2.0/L*np.trapz(f*basis_fun,x)
+            term_i=A_i*np.sin(k_i*x)
+            sum+=term_i 
+
+        y_2 = sum
+
+        ax.plot(x, f,'--', x,y_2,'--')
+        
+
+        #min_y=-(np.abs(a)+np.abs(b)+np.abs(c))
+        #max_y=-min_y
+
+        min_y=np.max([np.min(f),-200.0])
+        max_y=np.min([np.max(f),200.0])
+
+        ax.set_ylim([min_y,max_y])
+        #ax.set_xlim([min_x,max_x])
+        ax.grid(True)
+        ax.legend(['f(x)','Approximation'])
+        ax.set_xlabel('$x$')
+        ax.set_ylabel('$y$')
     
 app = App(app_ui, server)</code></pre>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-logisticmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fourierseriesplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Approximating a function as a sum of sinusoids.
 </figcaption>
 </figure>
 </div>
@@ -397,10 +491,8 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>At Dundee, core concepts from calculus (e.g.&nbsp;differential equations) and algebra that are needed to study dynamical systems are introduced in the modules <em>Maths 1A</em> and <em>Maths 1B</em> and developed further in the modules <em>Maths 2A</em> and <em>Maths 2B</em>.</p>
-<p>At Level 2 in the module <em>Discrete Maths</em> you would be introduced to discrete dynamical systems (e.g.&nbsp;recurrence relations, Markov chains). In the modules <em>Introduction to Programming</em> and <em>Computer Algebra and Dynamical systems</em> you would be introduced to techniques that enable you to numerically analyse difference equations.</p>
-<p>At Level 3 in the module <em>Mathematical Biology</em> you would consider discrete dynamical systems model applied to Biological systems.</p>
-<p>At Level 4 we offer a number of honours projects that investigate chaotic systems (e.g.&nbsp;the Lorenz equations, the double pendulum)</p>
+<p>At Dundee, concepts from trigonometry are studies in core module <em>Maths 1A</em> and <em>Maths 1B</em>.</p>
+<p>At Level 3 in the module <em>Differential Equations</em> Fourier series are introduced and used to study the solution of partial differential equations.</p>
 <p>You can find out more about these modules <a href="https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment">here</a>.</p>
 </div>
 </div>
