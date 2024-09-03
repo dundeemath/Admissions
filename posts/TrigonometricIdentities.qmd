@@ -1,29 +1,33 @@
 ---
-title: Trigonometric equations
+title: Trigonometric equations and Fourier series
 format: html 
-image: Lines2DDemo.png
-categories: [Geometry, Algebra]
+image: sawtoothfourier.png
+categories: [Trigonometry, Geometry, Fourier]
 
 filters:
   - shinylive
 ---
 
-# Trigonometric equations
+# Trigonometric functions
+ 
+Trigonometric functions appear throughout mathematics (e.g. geometry, calculus, differential equations, signal analysis). Here we explore some properties of trigonometric functions with which you might be familiar. Then we take a leap into demonstrating how arbitrary functions can be approximated using sums of trigonometric functions.
 
-You may have encountered trigonometric expression of the form
+
+## Wave function forms 
+
+You may have encountered trigonometric expressions of the form
 $$
-a\sin(x)+b\cos(x)
+a\sin(x)+b\cos(x),
 $$ {#eq-line1}
 
-and
-shown that they can be expressed in the form
+and shown that they can be expressed in the *wave-function* form
 $$
 c\sin(x+d).
 $$ {#eq-sinshift}
 
-In @cossinplot, 
+This idea is explored in @fig-cossinplot:
 - the individual terms in @eq-line1 are plotted using dashed lines for given values of parameters $a$ and $b$.  
-- the sum is plotted using a dot-dashed line.
+- the sum  on the right-hand side of @eq-line1 is plotted using a dot-dashed line.
 - @eq-sinshift is plotted for given values of $c$ and $d$.
 
 Can you identify values of the parameters $c$ and $d$ such that
@@ -96,19 +100,152 @@ app = App(app_ui, server)
 Sum of cosine and sine functions.
 :::
 
+## Compound angle identities
+
+You may have come across compound angle formulae
+$$
+\sin(a+b)=\sin(a)\cos(b)+\sin(b)\cos(a)
+$$
+and
+$$
+\cos(a+b)=\cos(a)\cos(b)-\sin(a)\sin(b).
+$$
+
+In @fig-compoundangle you can use the unit circle to visualise why the above identities hold.
+
+::: {#fig-compoundangle}
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 500
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+import matplotlib.pyplot as plt
+title_str=['All','Sine','Cosine']
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+    ui.input_slider(id="a",label="Angle b",min=0,max=1.0,value=0.5,step=0.02),
+    ui.input_slider(id="b",label="Angle a",min=0.0,max=1.0,value=0.56,step=0.02),
+    ui.input_select(id="c",label="Choose compound angle",choices=title_str,selected=title_str[0]),           
+    ),
+    ui.panel_main(ui.output_plot("plot"),),
+    ),
+)
+
+def server(input, output, session):
+    
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots(figsize=[20,10])
+                
+        a =float(input.a())
+        b =float(input.b())
+        c =(input.c())
+
+        cos_a=np.cos(a)
+        cos_b=np.cos(b)
+        sin_a=np.sin(a)
+        sin_b=np.sin(b)
+
+        cos_apb=np.cos(a+b)
+        sin_apb=np.sin(a+b)
+
+
+        point1=[0.0,0.0]
+        point2=[cos_a*cos_b,cos_a*sin_b]
+        point3=[cos_apb,sin_apb]
+
+        triangle=np.array([point1,point2,point3,point1],dtype=float)
+
+
+        min_point_6=np.min([0.0,cos_apb])
+
+        point4=[min_point_6,0.0]
+        point5=[cos_a*cos_b,0.0]
+        point6=[cos_a*cos_b,sin_apb]
+        point7=[min_point_6,sin_apb]
+
+        rectangle=np.array([point4,point5,point6,point7,point4],dtype=float)
+
+
+        # Define discretised t domain
+     
+        ax.plot(triangle[:,0],triangle[:,1],linewidth=1)
+        ax.plot(rectangle[:,0],rectangle[:,1],linewidth=2)
+
+        ax.text(0.2*np.cos(a/2.0),0.2*np.sin(a/2.0),'a',)
+        ax.text(0.2*np.cos(a+b/2.0),0.2*np.sin(a+b/2.0),'b')
+        ax.text((point2[0]+point3[0])/2.0,(point2[1]+point3[1])/2.0+0.05,'$\sin(b)$')
+        ax.text(point2[0]/2.0,point2[1]/2.0+0.05,'$\cos(b)$',rotation=np.arctan2(point2[1],point2[0])/(2.0*np.pi)*360.0)
+        ax.text(cos_apb/2.0,sin_apb/2.0+0.05,'1')
+        
+        c1='b'
+        c2='r'
+        color_map=[c1,c1,c1,c1,c1,c1]
+
+        if c=='Sine':
+            color_map=['r','k','m',c1,c1,c1]
+            ax.plot([point4[0],point7[0]],[point4[1],point7[1]],'r',linewidth=6)
+            ax.plot([point5[0],point2[0]],[point5[1],point2[1]],'m',linewidth=6)
+            ax.plot([point6[0],point2[0]],[point6[1],point2[1]],'k',linewidth=6)
+        elif c=='Cosine':
+            color_map=[c1,c1,c1,'m','r','k']
+            ax.plot([point4[0],point5[0]],[point4[1],point5[1]],'r',linewidth=6)
+            ax.plot([point7[0],point3[0]],[point7[1],point3[1]],'m',linewidth=6)
+            ax.plot([point6[0],point3[0]],[point6[1],point3[1]],'k',linewidth=6)
+
+
+
+        
+       
+        ax.text(min_point_6-0.1,sin_apb/2.0-0.2,'$\sin(a+b)$',color=color_map[0],rotation='vertical')
+        ax.text(point2[0]+0.05,(point2[1]+point3[1])/2.0,'$\cos(a)\sin(b)$',color=color_map[1])
+        ax.text(point2[0]+0.05,point2[1]/2.0,'$\sin(a)\cos(b)$',color=color_map[2])
+        ax.text(cos_apb/2.0-0.2,sin_apb+0.05,'$\cos(a+b)$',color=color_map[3])
+        ax.text(cos_a*cos_b*0.25,-0.2+0.05,'$\cos(a)\cos(b)$',color=color_map[4])
+        ax.text((point2[0]+point3[0])/2.0,sin_apb+0.1,'$\sin(a)\sin(b)$',color=color_map[5])
+
+        circle1=plt.Circle(( 0.0 , 0.0 ), 1.0,alpha=0.05 )
+        ax.add_patch(circle1)
+
+
+        
+        
+        
+        ax.grid(True)
+        ax.set_xlabel('$x$')
+        ax.set_ylabel('$y$')
+        ax.set_xlim([-1.0,1.0])
+        ax.set_ylim([0.0,1.0])
+        plt.xticks([-1.0,0.0,1.0])
+        ax.set_aspect('equal')
+
+app = App(app_ui, server)
+```
+Compound angle formulae.
+:::
+
+
 ## Fourier series
 
 
-Did you know that many functions defined on a domain [0,$L$] can be approximated by an infinite sum of sine functions of different frequencies, i.e.
+Did you know that many functions, $f(x)$, defined on a domain $x\in[0,L]$ can be approximated by an infinite sum of sine functions of different frequencies, i.e.
 $$
 f(x)\sim A_1\sin(k_1x)+A_2\sin(k_2x)+A_3\sin(k_3x) + A_4
-\sin(k_4x) + ..
+\sin(k_4x) + ...
 $$
 
-For a given function $f(x)$  the coefficients $A_0$, $A_1$ etc. can be chosen so that the sum provides an arbitrarily good approximation to the function.
+For a given function $f(x)$,  the coefficients $A_0$, $A_1$ etc. can be chosen so that the sum provides an arbitrarily good approximation to the function.
+
+In @fig-fourierseriesplot you can explore approximation to a number of functions that you may have previously encountered.
 
 * Choose the linear function f(x)=x. Is the approximation *good* for $N=5$? What happens to the approximation as you increase $N$? Notice that the approximation does not converge to the *correct* value on the boundary $x=L$. This is known as the *Gibbs phenomenon*. It is not an error but requires a more detailed study of Fourier series to understand!
 * Consider the sawtooth function. Compare the accuracy of the series aproximation at the boundary $x=L$ between the functions $f(x)=x$ and the sawtooth function. Note that the approximation now appears to be converging to the value of $f$ on the boundary $x=L$.
+* Consider the exponential function. Note that many more terms are needed in the expansion to obtain a reasonable level of accuracy.
 
 
 
@@ -130,8 +267,8 @@ app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.panel_sidebar(
             ui.input_select(id="fun",label="Choose f(x)",choices=title_str,selected=["x"]),
-    ui.input_slider(id="L",label="L",min=1.0,max=20.0,value=10.0,step=1.0), 
-    ui.input_slider(id="N",label="N",min=2,max=500,value=10,step=1),          
+    ui.input_slider(id="L",label="L (domain length)",min=1.0,max=20.0,value=10.0,step=1.0), 
+    ui.input_slider(id="N",label="N (num. terms in series)",min=1,max=500,value=10,step=1),          
     ),
     ui.panel_main(ui.output_plot("plot"),),
     ),
@@ -164,7 +301,7 @@ def server(input, output, session):
             f=np.mod(x*5,L)
 
         sum=0
-        for i in range(N):
+        for i in range(N+1):
             k_i=i*np.pi/L
 
             basis_fun=np.sin(k_i*x)
@@ -192,19 +329,17 @@ def server(input, output, session):
     
 app = App(app_ui, server)
 ```
-Approximating  a function as a sum of sinusoids.
+Approximating a function as a sum of sinusoids.
 :::
 
 
 :::{.callout-note}
 
-At Dundee, the parametric equations of lines, spheres and planes are studied in the module  Maths 1B.
+At Dundee, concepts from trigonometry are studies in core module  *Maths 1A* and *Maths 1B*.
 
-Concepts from geometry and linear algebra are generalised in the modules *Maths 2A* and *Maths 2B*.
+At Level 3 in the module *Differential Equations* Fourier series are introduced and used to study the solution of partial differential equations.
 
-At Level 3 in the module *Differential Geometry* geometrical concepts and tools that are essential for understanding classical and modern physics and engineering are further developed.
 
-At Levels 2, 3 and 4 you will learn how to use computer programming to explore and communicate mathematical concepts.
 
 You can find out more about these modules [here](https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment).
 

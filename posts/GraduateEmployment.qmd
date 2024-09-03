@@ -58,6 +58,7 @@ plt.show()
 
 ## Where our graduates get employed?
 
+
 * Data analyst
 * Actuary
 * Accountant
