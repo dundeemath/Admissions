@@ -12,16 +12,22 @@ In D'Arcy Thompson's book 'On Growth and Form' he considers how the shapes of re
 
 In @fig-dtimages you can see two different species of fish. 
 
+
+## Explore mappings via an app
+
 In the app in @fig-dtApp you can explore mappings similar to those considered by D'Arcy Thompson. The default image initially used is a stock image used in image processing.
 
 ::: {.callout-note}
 # Interactivity in the App:
 - Each map depends on the value of a single parameter. 
 - A number of different maps are considered.
-- You can upload images from your computer.
+- You can upload images from your device using the upload button.
+- You can download transformed images by right-clicking and saving.
 :::
 
 If you save the images in @fig-dtimages to your computer (right click and 'Save Image to Download') you can upload them  to the App and explore the effect of the different transformations.
+
+You can also upload your own images (in .png or .jpg format).
 
 
 ::: {#fig-dtimages layout-ncol=2} 
@@ -166,7 +172,7 @@ app_ui = ui.page_fluid(
     
     ui.input_select(id="trans",label="Transform",choices=['Identity','Y stretch','Pinch','Fish eye','Shear','Y squish','Radial'],selected=['Pinch']),
     ui.input_file(id='input_file',label='Input file',width='1%',button_label='Upload',accept=['.png,.jpg','jpeg'])                 
-    ,width=2,),
+    ,width=3,),
     ui.panel_main(ui.output_plot("plot")),
     ),
 )
@@ -209,6 +215,7 @@ def server(input: Inputs, output: Outputs, session: Session):
 
             rescale_factor= target_num_voxels/im_num_voxels
             image=rescale(image,rescale_factor,channel_axis=2,anti_aliasing=True)
+            
 
         fig,ax=plt.subplots(1,2,sharey=True,sharex=True)
 
@@ -271,7 +278,9 @@ app = App(app_ui, server)
 
 ## Composite maps
 
-We can build more composite maps by using the output image from one transform as the input image for another. In @fig-dtCompositeApp you can explore the effect of combining two transforms successively.
+We can build  composite maps by using the output image from one transform as the input image for another. In @fig-dtCompositeApp you can explore the effect of combining two transforms successively. This allows for the construction of many *interesting* final images.
+
+
 
 
 
@@ -402,7 +411,7 @@ app_ui = ui.page_fluid(
     ui.input_select(id="trans1",label="Transform 1",choices=['Identity','Y stretch','Pinch','Fish eye','Shear','Y squish','Radial'],selected=['Pinch']),
     ui.input_select(id="trans2",label="Transform 2",choices=['Identity','Y stretch','Pinch','Fish eye','Shear','Y squish','Radial'],selected=['Pinch']),
     ui.input_file(id='input_file',label='Input file',width='1%',button_label='Upload',accept=['.png,.jpg','jpeg'])                 
-    ,width=2,),
+    ,width=3,),
     ui.panel_main(ui.output_plot("plot")),
     ),
 )
@@ -514,12 +523,30 @@ app = App(app_ui, server)
 :::
 
 
-
-
-
-
-
 :::{.callout-note}
+Suppose we have an image, $I$, and two mappings, $f$ and $g$.
+
+We represent transformation of the image via the first transform as  
+$$
+I'=f \circ I.
+$$
+
+Applying the second transform yields
+$$
+I''=g\circ (f \circ I).
+$$
+
+
+
+We might then ask:
+
+- is the final image affected by the order in which you perform the transformations (i.e. is $f\circ g = g\circ f$)?
+- does an inverse mapping exist such that any transformation can be reversed via a further transformation? i.e. for a given $f$ can we find a $g$ such that
+$$
+I''=g\circ (f \circ I)=I.
+$$
+
+By understanding whether such properties hold,  we can classify different families of mappings and better understand why particular mappings behave the way that they do.
 
 At Dundee, concepts from geometry are studied in core modules  *Maths 1A* and *Maths 1B*.
 

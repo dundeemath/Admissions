@@ -3,13 +3,176 @@ title: D'Arcy Thompson and 2D mappings Worksheet
 format: html 
 ---
 
-# Translation
 
-# Rotation
+We can represent a point, $P$, in the plane using a vector with components representing its $x$ and $y$ coordinates, i.e.
+$$
+\mathbf{v}_P=[x_P,y_P]
+$$
+represent a point with coordinates $x_P$ and $y_P$.
 
-# Shear
 
-# Scalings
+A transformation is performed by defining a new point, $P'$, with new cooridnates that are some functions of the old coordinates, i.e.
+$$
+\mathbf{v}_{P'}=[x_{P'},y_{P'}]=[f(x_{P},y_{P}),g(x_{P},y_{P})].
+$$
+where $f(.,.)$ and $g(.,.)$ are functions that will represent a particular transformation.
+
+## Linear transformation
+
+### Translation
+
+
+Suppose that $f$ and $g$ are defined such that
+$$
+f(x,y)=x+t_x
+$$
+and
+$$
+g(x,y)=y+t_y
+$$
+
+where $t_x$ and $t_y$ are constants.
+
+1. Compute the transformation of the point $P(1,2)$ in the case $(t_x,t_y)=(3,0)$.
+2. Identify the inverse of the transformation in 1.
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+
+fig,ax=plt.subplots()
+ax.plot()
+ax.set_xlim([-5,5])
+ax.set_xticks(np.arange(-5,5))
+ax.set_yticks(np.arange(-5,5))
+ax.plot([-1,0,1],[2,1,0],'r*')
+ax.set_ylim([-5,5])
+ax.grid(True)
+
+plt.show()
+
+```
+
+### Scalings
+
+Consider a scaling transformation defined such that
+$$
+f(x,y)=a*x
+$$
+and
+$$
+g(x,y)=b*y
+$$
+where $b$ is a constant.
+
+1. Compute the transformation of the point $P(2,1)$ in the case $b=2$.
+
+2. Identify the inverse of the transformation in 1. Are there values of $b$ for which an inverse does not exist?
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+fig,ax=plt.subplots()
+ax.plot()
+ax.set_xlim([-5,5])
+ax.set_xticks(np.arange(-5,5))
+ax.set_yticks(np.arange(-5,5))
+ax.plot([2,-2,0,0],[0,0,2,-2],'r*')
+ax.set_ylim([-5,5])
+ax.grid(True)
+
+plt.show()
+
+```
+
+
+### Rotation
+
+Now consider a transformation
+$$
+f(x,y)=\cos\theta x -\sin\theta y
+$$
+and
+$$
+g(x,y)=\sin\theta x +\cos\theta y
+$$
+
+where $\theta$ is a constant value.
+
+1. Compute the transformation of the point $P(2,0)$ in the case $\theta=90\deg (\frac{\pi}{2} rad)$.
+
+2. Identify the inverse of the transformation in 1. 
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+fig,ax=plt.subplots()
+ax.plot()
+ax.set_xlim([-5,5])
+ax.set_xticks(np.arange(-5,5))
+ax.set_yticks(np.arange(-5,5))
+ax.plot([1,2,3,4],[0,0,0,0],'r*')
+ax.set_ylim([-5,5])
+ax.grid(True)
+
+plt.show()
+
+```
+
+
+### Shear
+
+$$
+f(x,y)=x+ay
+$$
+and
+$$
+g(x,y)= y
+$$
+where $a$ is a positive constant.
+
+1. Compute the transformation of the point $P(0,2)$ in the case $a=2$.
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+fig,ax=plt.subplots()
+ax.plot()
+ax.set_xlim([-5,5])
+ax.set_xticks(np.arange(-5,5))
+ax.set_yticks(np.arange(-5,5))
+ax.plot([0,0,0,0],[0,1,2,3],'r*')
+ax.set_ylim([-5,5])
+ax.grid(True)
+
+plt.show()
+
+```
+
+### A general representation
+
+If you have been introduced to vectors and matrices then you may spot that the above transformations can be  represented as a matrix multiplication of a vector.
+
+Consider the matrix
+$$
+A=
+\begin{pmatrix}
+a_{11} & a_{12} \\ a_{21} & a_{22}
+\end{pmatrix}.
+$$
+
+Define 
+$$
+\mathbf{v}_{P'}=A\mathbf{v}_P
+$$
+
+Can you identify values of the parameters $a_{11}$, $a_{12}$ etc. that descibe the rotation, shear and scaling transformations?
+
+
 
 
 
