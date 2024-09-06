@@ -81,6 +81,35 @@ gtag('js', new Date());
 gtag('config', 'G-MQD60ZZ43S', { 'anonymize_ip': true});
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -148,6 +177,8 @@ gtag('config', 'G-MQD60ZZ43S', { 'anonymize_ip': true});
 
 <p>In D’Arcy Thompson’s book ‘On Growth and Form’ he considers how the shapes of related species can be understood using mathematical maps.The underlying idea is that the observed morphological form of an organism (i.e.&nbsp;what you see) is a function of the history of the growth rates of different parts of the organism during development. Although related species can quite different, their shape and size can be sometimes related by quite simple mathematical rules.</p>
 <p>In <a href="#fig-dtimages" class="quarto-xref">Figure&nbsp;1</a> you can see two different species of fish.</p>
+<section id="explore-mappings-via-an-app" class="level2">
+<h2 class="anchored" data-anchor-id="explore-mappings-via-an-app">Explore mappings via an app</h2>
 <p>In the app in <a href="#fig-dtApp" class="quarto-xref">Figure&nbsp;2</a> you can explore mappings similar to those considered by D’Arcy Thompson. The default image initially used is a stock image used in image processing.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -162,7 +193,8 @@ Interactivity in the App:
 <ul>
 <li>Each map depends on the value of a single parameter.</li>
 <li>A number of different maps are considered.</li>
-<li>You can upload images from your computer.</li>
+<li>You can upload images from your device using the upload button.</li>
+<li>You can download transformed images by right-clicking and saving.</li>
 </ul>
 </div>
 </div>
@@ -374,6 +406,7 @@ def server(input: Inputs, output: Outputs, session: Session):
 
             rescale_factor= target_num_voxels/im_num_voxels
             image=rescale(image,rescale_factor,channel_axis=2,anti_aliasing=True)
+            
 
         fig,ax=plt.subplots(1,2,sharey=True,sharex=True)
 
@@ -436,9 +469,10 @@ Figure&nbsp;2
 </figcaption>
 </figure>
 </div>
+</section>
 <section id="composite-maps" class="level2">
 <h2 class="anchored" data-anchor-id="composite-maps">Composite maps</h2>
-<p>We can build more composite maps by using the output image from one transform as the input image for another. In <a href="#fig-dtCompositeApp" class="quarto-xref">Figure&nbsp;3</a> you can explore the effect of combining two transforms successively.</p>
+<p>We can build composite maps by using the output image from one transform as the input image for another. In <a href="#fig-dtCompositeApp" class="quarto-xref">Figure&nbsp;3</a> you can explore the effect of combining two transforms successively. This allows for the construction of many <em>interesting</em> final images.</p>
 <div id="fig-dtCompositeApp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dtCompositeApp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -691,6 +725,22 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>Suppose we have an image, <span class="math inline">\(I\)</span>, and two mappings, <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span>.</p>
+<p>We represent transformation of the image via the first transform as<br>
+<span class="math display">\[
+I'=f \circ I.
+\]</span></p>
+<p>Applying the second transform yields <span class="math display">\[
+I''=g\circ (f \circ I).
+\]</span></p>
+<p>We might then ask:</p>
+<ul>
+<li>is the final image affected by the order in which you perform the transformations (i.e.&nbsp;is <span class="math inline">\(f\circ g = g\circ f\)</span>)?</li>
+<li>does an inverse mapping exist such that any transformation can be reversed via a further transformation? i.e.&nbsp;for a given <span class="math inline">\(f\)</span> can we find a <span class="math inline">\(g\)</span> such that <span class="math display">\[
+I''=g\circ (f \circ I)=I.
+\]</span></li>
+</ul>
+<p>By understanding whether such properties hold, we can classify different families of mappings and better understand why particular mappings behave the way that they do.</p>
 <p>At Dundee, concepts from geometry are studied in core modules <em>Maths 1A</em> and <em>Maths 1B</em>.</p>
 <p>At Level 3 in the module <em>Differential Geometry</em> students study generalisations of 2D mappings to arbitrarily curved spaces.</p>
 <p>You can find out more about these modules <a href="https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment">here</a>.</p>
