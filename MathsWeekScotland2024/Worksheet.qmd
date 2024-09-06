@@ -1,7 +1,12 @@
 ---
 title: D'Arcy Thompson and 2D mappings Worksheet 
-format: html 
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
 ---
+
 
 
 We can represent a point, $P$, in the plane using a vector with components representing its $x$ and $y$ coordinates, i.e.
