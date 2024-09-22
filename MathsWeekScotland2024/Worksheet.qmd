@@ -5,6 +5,10 @@ format:
     theme: cosmo
   pdf:
     documentclass: scrreprt
+
+execute:
+    echo: false
+
 ---
 
 
@@ -48,12 +52,13 @@ import numpy as np
 
 fig,ax=plt.subplots()
 ax.plot()
-ax.set_xlim([-5,5])
 ax.set_xticks(np.arange(-5,5))
 ax.set_yticks(np.arange(-5,5))
 ax.plot([-1,0,1],[2,1,0],'r*')
-ax.set_ylim([-5,5])
 ax.grid(True)
+ax.axis('equal')
+ax.set_xlim([-5,5])
+ax.set_ylim([-5,5])
 
 plt.show()
 
@@ -80,13 +85,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 fig,ax=plt.subplots()
-ax.plot()
-ax.set_xlim([-5,5])
+#ax.plot()
 ax.set_xticks(np.arange(-5,5))
 ax.set_yticks(np.arange(-5,5))
 ax.plot([2,-2,0,0],[0,0,2,-2],'r*')
-ax.set_ylim([-5,5])
 ax.grid(True)
+ax.axis('equal')
+ax.set_xlim([-5,5])
+ax.set_ylim([-5,5])
 
 plt.show()
 
@@ -116,13 +122,13 @@ import numpy as np
 
 fig,ax=plt.subplots()
 ax.plot()
-ax.set_xlim([-5,5])
 ax.set_xticks(np.arange(-5,5))
 ax.set_yticks(np.arange(-5,5))
 ax.plot([1,2,3,4],[0,0,0,0],'r*')
-ax.set_ylim([-5,5])
 ax.grid(True)
-
+plt.axis('equal')
+ax.set_xlim([-5,5])
+ax.set_ylim([-5,5])
 plt.show()
 
 ```
@@ -147,13 +153,13 @@ import numpy as np
 
 fig,ax=plt.subplots()
 ax.plot()
-ax.set_xlim([-5,5])
 ax.set_xticks(np.arange(-5,5))
 ax.set_yticks(np.arange(-5,5))
 ax.plot([0,0,0,0],[0,1,2,3],'r*')
-ax.set_ylim([-5,5])
 ax.grid(True)
-
+plt.axis('equal')
+ax.set_xlim([-5,5])
+ax.set_ylim([-5,5])
 plt.show()
 
 ```

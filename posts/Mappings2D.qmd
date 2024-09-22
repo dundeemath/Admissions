@@ -41,7 +41,7 @@ You can also upload your own images (in .png or .jpg format).
 ```{shinylive-python}
 #| standalone: true
 #| components: [viewer]
-#| viewerHeight: 500
+#| viewerHeight: 600
 
 from shiny import App, Inputs, Outputs, Session, render, ui
 from shiny import reactive
@@ -87,7 +87,7 @@ def ChooseTransform(transform,im_shape,a,num_disc_points,old_centre):
         dst_rows = k_x*(dst_rows-rows/2.0)+rows/2.0
         #dst_cols = src[:, 0]
     elif transform=='Fish eye': #'yscaleDarcy299Fig149':
-        dst_rows = (dst_rows-rows/2.0)*(2.5-a*((dst_cols-cols/2.0)/(cols/2.0))**2.0)+rows/2.0
+        dst_rows = ((dst_rows-rows/2.0)*(3.0-a*((dst_cols-cols/2.0)/(cols/2.0))**2.0))+rows/2.0
         #dst_cols = (dst_cols-cols/2.0)*(dst_rows-rows/2.0)**2.0+cols/2.0
 
         #dst_cols = src[:, 0]  
@@ -246,7 +246,7 @@ def server(input: Inputs, output: Outputs, session: Session):
         tform_shift = AffineTransform(translation=translation)
 
         # Apply the warp with translation to ensure positive coordinates
-        output_shape = (int(rows + 2*translation[1]), int(cols + 2*translation[0]))
+        output_shape = (int(rows + translation[1]), int(cols + translation[0]))
         new_image_trans = warp(image, tform_shift.inverse , output_shape=output_shape)
         
         # Define transform on new image
@@ -288,7 +288,7 @@ We can build  composite maps by using the output image from one transform as the
 ```{shinylive-python}
 #| standalone: true
 #| components: [viewer]
-#| viewerHeight: 500
+#| viewerHeight: 600
 
 from shiny import App, Inputs, Outputs, Session, render, ui
 from shiny import reactive

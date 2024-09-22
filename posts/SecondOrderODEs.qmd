@@ -86,8 +86,6 @@ Upon solving this equation we can describe the particle's position.
 
 
 
-## Formulating a model of population dynamics
-
 Let's consider a scalar second order ODE  with constant coefficients. Let $t$ represent time and $y=y(t)$. Suppose that
 
 $$
@@ -108,11 +106,12 @@ Can you identify the following three behaviours by adjusting model parameters:
 
 * periodic oscillations
 * damped oscillations
-* expoentially decaying but non-oscillatory solutions
+* exponentially decaying but non-oscillatory solutions
 
 
 
 Can you 
+
   * describe model behaviour as $a\rightarrow 0$. 
   * explore model behaviour as $c\rightarrow 0$. 
   * describe how the oscillation period depends on model parameters.
