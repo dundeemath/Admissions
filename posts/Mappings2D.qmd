@@ -131,10 +131,6 @@ def ChooseTransform(transform,im_shape,a,num_disc_points,old_centre):
         dst_rows=radius*np.sin(theta)+centre[0]
         dst_cols=radius*np.cos(theta)+centre[1]
 
-        #dst_rows=dst_rows/np.max(dst_rows)*dst_rows_max
-        #dst_cols=dst_cols/np.max(dst_cols)*dst_cols_max
-
-
 
     elif transform=='sine':
         dst_rows = src[:, 1] - np.sin(np.linspace(0, 3 * np.pi, src.shape[0])) * 50
@@ -148,8 +144,6 @@ def ChooseTransform(transform,im_shape,a,num_disc_points,old_centre):
 
 
     # Calculate the corners of the rotated image
-
-
     tform = PiecewiseAffineTransform()
     tform.estimate(src, dst)
 
@@ -157,10 +151,6 @@ def ChooseTransform(transform,im_shape,a,num_disc_points,old_centre):
 
 
 
-
-appdir = Path(__file__).parent
-
- 
 
 
 appdir = Path(__file__).parent
@@ -179,8 +169,6 @@ app_ui = ui.page_fluid(
 
 def server(input: Inputs, output: Outputs, session: Session):
     
-
-
     @reactive.calc
     def load_image():
         im_index=1#input.d()
@@ -216,20 +204,20 @@ def server(input: Inputs, output: Outputs, session: Session):
             rescale_factor= target_num_voxels/im_num_voxels
             image=rescale(image,rescale_factor,channel_axis=2,anti_aliasing=True)
             
+        old_centre=np.array((image.shape[0]/2.0,image.shape[1]/2.0))
 
         fig,ax=plt.subplots(1,2,sharey=True,sharex=True)
 
         # Input parameters
         a =float(input.a())
-        trans =input.trans()
-
-        old_centre=np.array((image.shape[0]/2.0,image.shape[1]/2.0))
-       
+        trans=input.trans()
+        new_image=image
         transform=trans
-        tform,dst,src,rows, cols,dst_cols,dst_rows= ChooseTransform(transform,image.shape,a,4,old_centre) 
+        a_i=a
+        tform,dst,src,rows, cols,dst_cols,dst_rows= ChooseTransform(transform,new_image.shape,a_i,4,old_centre) 
 
         # Find corners
-        corners = np.array([[0, 0], [0, image.shape[0]], [image.shape[1], 0], [image.shape[1], image.shape[0]]])
+        corners = np.array([[0, 0], [0, new_image.shape[0]], [new_image.shape[1], 0], [new_image.shape[1], new_image.shape[0]]])
         tformed_corners = tform(corners)
 
 
@@ -246,13 +234,13 @@ def server(input: Inputs, output: Outputs, session: Session):
         tform_shift = AffineTransform(translation=translation)
 
         # Apply the warp with translation to ensure positive coordinates
-        output_shape = (int(rows + translation[1]), int(cols + translation[0]))
-        new_image_trans = warp(image, tform_shift.inverse , output_shape=output_shape)
-        
+        output_shape = (int(rows + 2*translation[1]), int(cols + 2*translation[0]))
+        new_image_trans = warp(new_image, tform_shift.inverse , output_shape=output_shape)
+    
         # Define transform on new image
         # Define the forward transform and transform the image
-        tform,dst,src,rows, cols,dst_cols,dst_rows= ChooseTransform(transform,new_image_trans.shape,a,30,old_centre)
-       
+        tform,dst,src,rows, cols,dst_cols,dst_rows= ChooseTransform(transform,new_image_trans.shape,a_i,30,old_centre)
+    
         new_image = warp(new_image_trans,tform.inverse)
 
         # Plot image + transform
