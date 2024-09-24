@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -226,8 +226,6 @@ m\frac{d^2\mathbf{r}}{dt^2}= -\eta \frac{d \mathbf{r}}{dt}-k\mathbf{r}.
 <p>Upon solving this equation we can describe the particle’s position.</p>
 </div>
 </div>
-<section id="formulating-a-model-of-population-dynamics" class="level2">
-<h2 class="anchored" data-anchor-id="formulating-a-model-of-population-dynamics">Formulating a model of population dynamics</h2>
 <p>Let’s consider a scalar second order ODE with constant coefficients. Let <span class="math inline">\(t\)</span> represent time and <span class="math inline">\(y=y(t)\)</span>. Suppose that</p>
 <p><span id="eq-secondorderode"><span class="math display">\[
 a\frac{d^2 y}{dt^2}+b\frac{dy}{dt}+cy=0,
@@ -241,9 +239,14 @@ y(t=0)=y_0 \quad \quad \frac{dy}{dt}\bigg|_{{t=0}}=d.
 <ul>
 <li>periodic oscillations</li>
 <li>damped oscillations</li>
-<li>expoentially decaying but non-oscillatory solutions</li>
+<li>exponentially decaying but non-oscillatory solutions</li>
 </ul>
-<p>Can you * describe model behaviour as <span class="math inline">\(a\rightarrow 0\)</span>. * explore model behaviour as <span class="math inline">\(c\rightarrow 0\)</span>. * describe how the oscillation period depends on model parameters.</p>
+<p>Can you</p>
+<ul>
+<li>describe model behaviour as <span class="math inline">\(a\rightarrow 0\)</span>.</li>
+<li>explore model behaviour as <span class="math inline">\(c\rightarrow 0\)</span>.</li>
+<li>describe how the oscillation period depends on model parameters.</li>
+</ul>
 <p>Note that it is possible to solve <a href="#eq-secondorderode" class="quarto-xref">Equation&nbsp;2</a> and <a href="#eq-secondorderodeics" class="quarto-xref">Equation&nbsp;3</a> by seeking a solution of the form <span class="math display">\[
 y=e^{\lambda t}.
 \]</span> This is left as an exercise.</p>
@@ -362,7 +365,6 @@ Note
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

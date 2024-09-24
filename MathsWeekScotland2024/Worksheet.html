@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,11 +76,40 @@ gtag('js', new Date());
 gtag('config', 'G-MQD60ZZ43S', { 'anonymize_ip': true});
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -112,7 +141,9 @@ gtag('config', 'G-MQD60ZZ43S', { 'anonymize_ip': true});
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Worksheet.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -135,19 +166,115 @@ gtag('config', 'G-MQD60ZZ43S', { 'anonymize_ip': true});
 </header>
 
 
-<section id="translation" class="level1">
-<h1>Translation</h1>
+<p>We can represent a point, <span class="math inline">\(P\)</span>, in the plane using a vector with components representing its <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> coordinates, i.e. <span class="math display">\[
+\mathbf{v}_P=[x_P,y_P]
+\]</span> represent a point with coordinates <span class="math inline">\(x_P\)</span> and <span class="math inline">\(y_P\)</span>.</p>
+<p>A transformation is performed by defining a new point, <span class="math inline">\(P'\)</span>, with new cooridnates that are some functions of the old coordinates, i.e. <span class="math display">\[
+\mathbf{v}_{P'}=[x_{P'},y_{P'}]=[f(x_{P},y_{P}),g(x_{P},y_{P})].
+\]</span> where <span class="math inline">\(f(.,.)\)</span> and <span class="math inline">\(g(.,.)\)</span> are functions that will represent a particular transformation.</p>
+<section id="linear-transformation" class="level2">
+<h2 class="anchored" data-anchor-id="linear-transformation">Linear transformation</h2>
+<section id="translation" class="level3">
+<h3 class="anchored" data-anchor-id="translation">Translation</h3>
+<p>Suppose that <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are defined such that <span class="math display">\[
+f(x,y)=x+t_x
+\]</span> and <span class="math display">\[
+g(x,y)=y+t_y
+\]</span></p>
+<p>where <span class="math inline">\(t_x\)</span> and <span class="math inline">\(t_y\)</span> are constants.</p>
+<ol type="1">
+<li>Compute the transformation of the point <span class="math inline">\(P(1,2)\)</span> in the case <span class="math inline">\((t_x,t_y)=(3,0)\)</span>.</li>
+<li>Identify the inverse of the transformation in 1.</li>
+</ol>
+<div id="5dc81f4a" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Worksheet_files/figure-html/cell-2-output-1.png" width="569" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="rotation" class="level1">
-<h1>Rotation</h1>
+<section id="scalings" class="level3">
+<h3 class="anchored" data-anchor-id="scalings">Scalings</h3>
+<p>Consider a scaling transformation defined such that <span class="math display">\[
+f(x,y)=a*x
+\]</span> and <span class="math display">\[
+g(x,y)=b*y
+\]</span> where <span class="math inline">\(b\)</span> is a constant.</p>
+<ol type="1">
+<li><p>Compute the transformation of the point <span class="math inline">\(P(2,1)\)</span> in the case <span class="math inline">\(b=2\)</span>.</p></li>
+<li><p>Identify the inverse of the transformation in 1. Are there values of <span class="math inline">\(b\)</span> for which an inverse does not exist?</p></li>
+</ol>
+<div id="a469bb2c" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Worksheet_files/figure-html/cell-3-output-1.png" width="569" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="shear" class="level1">
-<h1>Shear</h1>
+<section id="rotation" class="level3">
+<h3 class="anchored" data-anchor-id="rotation">Rotation</h3>
+<p>Now consider a transformation <span class="math display">\[
+f(x,y)=\cos\theta x -\sin\theta y
+\]</span> and <span class="math display">\[
+g(x,y)=\sin\theta x +\cos\theta y
+\]</span></p>
+<p>where <span class="math inline">\(\theta\)</span> is a constant value.</p>
+<ol type="1">
+<li><p>Compute the transformation of the point <span class="math inline">\(P(2,0)\)</span> in the case <span class="math inline">\(\theta=90\deg (\frac{\pi}{2} rad)\)</span>.</p></li>
+<li><p>Identify the inverse of the transformation in 1.</p></li>
+</ol>
+<div id="9303606f" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Worksheet_files/figure-html/cell-4-output-1.png" width="569" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="scalings" class="level1">
-<h1>Scalings</h1>
+<section id="shear" class="level3">
+<h3 class="anchored" data-anchor-id="shear">Shear</h3>
+<p><span class="math display">\[
+f(x,y)=x+ay
+\]</span> and <span class="math display">\[
+g(x,y)= y
+\]</span> where <span class="math inline">\(a\)</span> is a positive constant.</p>
+<ol type="1">
+<li>Compute the transformation of the point <span class="math inline">\(P(0,2)\)</span> in the case <span class="math inline">\(a=2\)</span>.</li>
+</ol>
+<div id="a9cf9c67" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Worksheet_files/figure-html/cell-5-output-1.png" width="569" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="a-general-representation" class="level3">
+<h3 class="anchored" data-anchor-id="a-general-representation">A general representation</h3>
+<p>If you have been introduced to vectors and matrices then you may spot that the above transformations can be represented as a matrix multiplication of a vector.</p>
+<p>Consider the matrix <span class="math display">\[
+A=
+\begin{pmatrix}
+a_{11} &amp; a_{12} \\ a_{21} &amp; a_{22}
+\end{pmatrix}.
+\]</span></p>
+<p>Define <span class="math display">\[
+\mathbf{v}_{P'}=A\mathbf{v}_P
+\]</span></p>
+<p>Can you identify values of the parameters <span class="math inline">\(a_{11}\)</span>, <span class="math inline">\(a_{12}\)</span> etc. that descibe the rotation, shear and scaling transformations?</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
