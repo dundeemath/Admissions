@@ -1,5 +1,6 @@
 ---
-title: "Maths-admissions"
+title: "Welcome"
+
 listing:
   contents: posts
   sort: "date desc"
@@ -9,7 +10,20 @@ listing:
   filter-ui: false
 page-layout: full
 title-block-banner: true
+
 ---
 
 
+Welcome to the Dundee mathematics pages. Are you enjoying mathematics at school and considering studying mathematics at University?
+
+A mathematics degree enables you to become a *logical numerate problem solver*. Picking up from the mathematics that you have learned at school, you would:
+
+* develop knowledge of core  principles of mathematics
+* learn about exciting new areas of mathematics
+* learn how to apply mathematics in real-world contexts
+
+
+Mathematics graduates have excellent career prospects. They tend to work across the economy (e.g. in finance, defence, computing, engineering, education, data science etc.). 
+
+The posts below have been developed in parallel with events that have been run by Dundee mathematics staff. The main aim is explore mathematical threads that you may have come across during school.
 

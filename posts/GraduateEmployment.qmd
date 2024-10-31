@@ -13,7 +13,7 @@ A mathematics degree will enable you to become a *logical numerate problem solve
 
 ## Career earnings 
 
-Mathematics degrees are associated with higher career earnings compared with many other disciplines. In the table below median salaries are compared across different discplines. In this dataset mathematical sciences degrees have the fourth highest median salary.
+Mathematics degrees are associated with higher career earnings compared with many other disciplines. In the table below median salaries are compared across different disciplines. In this dataset mathematical sciences degrees have the fourth highest median salary.
 
 ```{python}
 #| echo: false
@@ -58,7 +58,6 @@ plt.show()
 
 ## Where our graduates get employed?
 
-
 * Data analyst
 * Actuary
 * Accountant
@@ -76,3 +75,6 @@ plt.show()
 * Software engineer
 * Credit risk analyst
 * Hedge fund analyst
+
+
+You can find lots of interesting information about mathematics careers [here](https://ima.org.uk/support/careers/).

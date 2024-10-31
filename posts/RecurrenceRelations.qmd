@@ -143,7 +143,7 @@ The logistic map provides one of the simplest mathematical formulations of a phe
 
 * having non-periodic, non-steady solution
 * sensitivity to initial conditions
-* apprearing to be unpredictable even through they are deterministic.
+* appearing to be unpredictable even through they are deterministic.
 
 
 ::: {#fig-logisticmodel}

@@ -1,12 +1,14 @@
 project:
   type: website
 
+
 website:
-  title: "Maths-admissions"
+  title: "University of Dundee Mathematics"
   google-analytics: "G-MQD60ZZ43S"
   navbar:
-    right:
-      - about.qmd
+    logo: "UoD_logo_RGB.png"
+
+
 
 format:
   html:
