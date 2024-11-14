@@ -173,9 +173,9 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="a-linear-recurrence-relation">A linear recurrence relation</h2>
 <p>You might have previously encountered a recurrence relation of the form</p>
 <p><span id="eq-linrecurrence"><span class="math display">\[
-x_{n+1}=ax_n+b
+u_{n+1}=au_n+b
 \tag{1}\]</span></span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are constants.</p>
-<p>Given numerical values for <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and an initial condition, <span class="math inline">\(x_0\)</span>, a sequence can be computed that is a solution to <a href="#eq-linrecurrence" class="quarto-xref">Equation&nbsp;1</a>. This type of task is laborious and well suited to a computer (see <a href="#fig-popmodel" class="quarto-xref">Figure&nbsp;1</a>).</p>
+<p>Given numerical values for <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and an initial condition, <span class="math inline">\(u_0\)</span>, a sequence can be computed that is a solution to <a href="#eq-linrecurrence" class="quarto-xref">Equation&nbsp;1</a>. This type of task is laborious and well suited to a computer (see <a href="#fig-popmodel" class="quarto-xref">Figure&nbsp;1</a>).</p>
 <p>Explore how the computed solution depend on model parameters as follows:</p>
 <ul>
 <li>set <span class="math inline">\(b=0\)</span> by varying the parameter <span class="math inline">\(a\)</span> identify solutions that:
@@ -211,7 +211,7 @@ app_ui = ui.page_fluid(
     ui.input_slider(id="a",label="a",min=-1.0,max=3,value=0.1,step=0.001),
     ui.input_slider(id="b",label="b",min=0.0,max=15.0,value=10.0,step=0.01),             
      
-    ui.input_slider(id="x0",label="x_0",min=0.0,max=20.0,value=5.0,step=1.0),
+    ui.input_slider(id="u0",label="u_0",min=0.0,max=20.0,value=5.0,step=1.0),
     ui.input_slider(id="T",label="Number of iterations",min=0.0,max=60.0,value=20.0,step=1.0),
               
           
@@ -232,7 +232,7 @@ def server(input, output, session):
         
         a=float(input.a())
         b=float(input.b())
-        x0=float(input.x0())
+        u0=float(input.u0())
         T=int(input.T())
        
         # Define rhs of LV ODEs
@@ -254,7 +254,7 @@ def server(input, output, session):
         # Define discretised t domain
         t = np.arange(0, T, 1)
         # define initial conditions
-        init_cond=x0
+        init_cond=u0
         
         # Compute numerical solution of ODEs
         sol1 = DiscreteSol(rhs_pop_model,init_cond,t,a,b)
@@ -264,7 +264,7 @@ def server(input, output, session):
         
         ax.plot(t,y)
         ax.set_xlabel('$n$')
-        ax.set_ylabel('$x_n$')
+        ax.set_ylabel('$u_n$')
 
         plt.grid()
         plt.show()
@@ -279,10 +279,10 @@ Figure&nbsp;1
 </section>
 <section id="the-logistic-map" class="level2">
 <h2 class="anchored" data-anchor-id="the-logistic-map">The logistic map</h2>
-<p>The recurrence relation explored in <a href="#fig-popmodel" class="quarto-xref">Figure&nbsp;1</a> is linear (the right-hand-side is a linear function of <span class="math inline">\(x_n\)</span>). When the model is generalised much richer dynamical behaviours can be observed. One famous example is the logistic map, where the governing equation can be written as <span id="eq-logisticmap"><span class="math display">\[
-x_{n+1}=rx_n(1-x_n).
+<p>The recurrence relation explored in <a href="#fig-popmodel" class="quarto-xref">Figure&nbsp;1</a> is linear (the right-hand-side is a linear function of <span class="math inline">\(u_n\)</span>). When the model is generalised much richer dynamical behaviours can be observed. One famous example is the logistic map, where the governing equation can be written as <span id="eq-logisticmap"><span class="math display">\[
+u_{n+1}=ru_n(1-u_n).
 \tag{2}\]</span></span></p>
-<p>Note that the right-hand side is now a quadratic function of <span class="math inline">\(x_n\)</span>.</p>
+<p>Note that the right-hand side is now a quadratic function of <span class="math inline">\(u_n\)</span>.</p>
 <p>You can explore the solutions to <a href="#eq-logisticmap" class="quarto-xref">Equation&nbsp;2</a> using <a href="#fig-logisticmodel" class="quarto-xref">Figure&nbsp;2</a>.</p>
 <ul>
 <li>show that when <span class="math inline">\(0&lt;r&lt;1\)</span> the solution converges monotonically to 0.0.</li>
@@ -297,6 +297,7 @@ x_{n+1}=rx_n(1-x_n).
 <li>having non-periodic, non-steady solution</li>
 <li>sensitivity to initial conditions</li>
 <li>appearing to be unpredictable even through they are deterministic.</li>
+<li>self similarity</li>
 </ul>
 <div id="fig-logisticmodel" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -317,10 +318,10 @@ app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.panel_sidebar(
     ui.input_slider(id="r",label="r",min=0.0,max=5.0,value=0.1,step=0.001),             
-    ui.input_slider(id="x0",label="x_0",min=0.0,max=1.0,value=0.5,step=0.01),
+    ui.input_slider(id="u0",label="u_0",min=0.0,max=1.0,value=0.5,step=0.01),
     ui.input_slider(id="T",label="Number of iterations",min=0.0,max=60.0,value=20.0,step=1.0),
     ui.input_slider(id="r_range",label="r zoomed",min=0.0,max=4.0,value=[0.0,4.0],step=0.001),
-    ui.input_slider(id="x_range",label="x zoomed",min=0.0,max=1.0,value=[0.0,1.0],step=0.01),
+    ui.input_slider(id="u_range",label="u zoomed",min=0.0,max=1.0,value=[0.0,1.0],step=0.01),
               
           
             ),
@@ -339,12 +340,12 @@ def server(input, output, session):
         
         
         r=float(input.r())
-        x0=float(input.x0())
+        u0=float(input.u0())
         T=int(input.T())
         r_min=float(input.r_range()[0])
         r_max=float(input.r_range()[1])
-        x_min=float(input.x_range()[0])
-        x_max=float(input.x_range()[1])
+        u_min=float(input.u_range()[0])
+        u_max=float(input.u_range()[1])
 
 
         # Define rhs of logistic map 
@@ -364,7 +365,7 @@ def server(input, output, session):
         # Define discretised t domain
         t = np.arange(0, T, 1)
         # define initial conditions
-        init_cond=x0
+        init_cond=u0
         
         # Compute numerical solution of ODEs
         sol1 = DiscreteSol(logistic_map,init_cond,t,r)
@@ -374,7 +375,7 @@ def server(input, output, session):
         
         ax[0].plot(t,y)
         ax[0].set_xlabel('$n$')
-        ax[0].set_ylabel('$x_n$')
+        ax[0].set_ylabel('$u_n$')
 
         plt.grid()
 
@@ -382,7 +383,7 @@ def server(input, output, session):
         n_iterations = 1000  # total iterations for each value of r
         n_last = 100         # number of iterations to plot (for steady state)
         r_values = np.linspace(0.0, 4.0, 10000)  # range of r values
-        x0 = 0.5  # initial population (seed)
+        u0 = 0.5  # initial population (seed)
 
         delta=0.25
         #r_min=r-delta
@@ -391,8 +392,8 @@ def server(input, output, session):
         r_values2 = np.linspace(r_min, r_max, 10000)  # range of r values
 
         # Initialize plot
-        x = np.full_like(r_values, x0)
-        x2 = np.full_like(r_values2, x0)
+        x = np.full_like(r_values, u0)
+        x2 = np.full_like(r_values2, u0)
 
         # Iterate and plot bifurcation diagram
          
@@ -409,12 +410,12 @@ def server(input, output, session):
             # Labels and display
             ax[1].set_title("Bifurcation Diagram")
             ax[1].set_xlabel("$r$")
-            ax[1].set_ylabel("$x^*$")
+            ax[1].set_ylabel("$u^*$")
             ax[2].set_title("Bifurcation Diagram (zoomed in) ")
             ax[2].set_xlabel("$r$")
-            ax[2].set_ylabel("$x^*$")
+            ax[2].set_ylabel("$u^*$")
             ax[2].set_xlim([r_min,r_max])
-            ax[2].set_ylim([x_min,x_max])
+            ax[2].set_ylim([u_min,u_max])
 
 
 
