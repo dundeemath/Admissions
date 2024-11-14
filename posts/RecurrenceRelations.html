@@ -316,9 +316,11 @@ from scipy.integrate import odeint
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.panel_sidebar(
-    ui.input_slider(id="r",label="r",min=0.0,max=5.0,value=0.1,step=0.01),             
+    ui.input_slider(id="r",label="r",min=0.0,max=5.0,value=0.1,step=0.001),             
     ui.input_slider(id="x0",label="x_0",min=0.0,max=1.0,value=0.5,step=0.01),
     ui.input_slider(id="T",label="Number of iterations",min=0.0,max=60.0,value=20.0,step=1.0),
+    ui.input_slider(id="r_range",label="r zoomed",min=0.0,max=4.0,value=[0.0,4.0],step=0.001),
+    ui.input_slider(id="x_range",label="x zoomed",min=0.0,max=1.0,value=[0.0,1.0],step=0.01),
               
           
             ),
@@ -331,7 +333,7 @@ def server(input, output, session):
     
     @render.plot
     def plot():
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(3,1)
         #ax.set_ylim([-2, 2])
         # Filter fata
         
@@ -339,7 +341,12 @@ def server(input, output, session):
         r=float(input.r())
         x0=float(input.x0())
         T=int(input.T())
-       
+        r_min=float(input.r_range()[0])
+        r_max=float(input.r_range()[1])
+        x_min=float(input.x_range()[0])
+        x_max=float(input.x_range()[1])
+
+
         # Define rhs of logistic map 
         def logistic_map(y,t,r):
           rhs=r*y*(1-y)
@@ -365,11 +372,52 @@ def server(input, output, session):
         # Plot results
         y=sol1
         
-        ax.plot(t,y)
-        ax.set_xlabel('$n$')
-        ax.set_ylabel('$x_n$')
+        ax[0].plot(t,y)
+        ax[0].set_xlabel('$n$')
+        ax[0].set_ylabel('$x_n$')
 
         plt.grid()
+
+        # Parameters
+        n_iterations = 1000  # total iterations for each value of r
+        n_last = 100         # number of iterations to plot (for steady state)
+        r_values = np.linspace(0.0, 4.0, 10000)  # range of r values
+        x0 = 0.5  # initial population (seed)
+
+        delta=0.25
+        #r_min=r-delta
+        #r_max=r+delta
+
+        r_values2 = np.linspace(r_min, r_max, 10000)  # range of r values
+
+        # Initialize plot
+        x = np.full_like(r_values, x0)
+        x2 = np.full_like(r_values2, x0)
+
+        # Iterate and plot bifurcation diagram
+         
+        for _ in range(n_iterations):
+            x = r_values * x * (1 - x)  # logistic map function
+            x2 = r_values2 * x2 * (1 - x2)  # logistic map function
+
+            if _ &gt;= (n_iterations - n_last):  # plot only steady state
+                ax[1].plot(r_values, x, ',k', alpha=0.25)
+                ax[1].plot([r,r],[0,1],'r--')
+                ax[2].plot(r_values2, x2, ',k', alpha=0.25)
+                ax[2].plot([r,r],[0,1],'r--')
+
+            # Labels and display
+            ax[1].set_title("Bifurcation Diagram")
+            ax[1].set_xlabel("$r$")
+            ax[1].set_ylabel("$x^*$")
+            ax[2].set_title("Bifurcation Diagram (zoomed in) ")
+            ax[2].set_xlabel("$r$")
+            ax[2].set_ylabel("$x^*$")
+            ax[2].set_xlim([r_min,r_max])
+            ax[2].set_ylim([x_min,x_max])
+
+
+
         plt.show()
     
 app = App(app_ui, server)</code></pre>
