@@ -176,6 +176,28 @@ window.Quarto = {
 u_{n+1}=au_n+b
 \tag{1}\]</span></span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are constants.</p>
 <p>Given numerical values for <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> and an initial condition, <span class="math inline">\(u_0\)</span>, a sequence can be computed that is a solution to <a href="#eq-linrecurrence" class="quarto-xref">Equation&nbsp;1</a>. This type of task is laborious and well suited to a computer (see <a href="#fig-popmodel" class="quarto-xref">Figure&nbsp;1</a>).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A typical Higher-like question
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The population of the Lesser Striped Unicorn is observed to be declining by 5% per year. To increase the population, 1000 of the species will be released at the end of May each year.</p>
+<p>Let <span class="math inline">\(u_n\)</span> represent the population of Lesser Striped Unicorns at the beginning of June, <span class="math inline">\(n\)</span> years after the first annual reintroduction into the population.</p>
+<p>Suppose that <span class="math inline">\(u_n\)</span> and <span class="math inline">\(u_{n+1}\)</span> satisfy the recurrence relation <span class="math display">\[
+u_n=au_n+b,
+\]</span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are constants.</p>
+<ol type="a">
+<li>State the values of <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>.</li>
+<li>Explain whether or not the population of Lesser Striped Unicorns will stabilise in the long term.</li>
+<li>The population of Lesser Striped Unicorns at the beginning of the reintroduction programme was estimated at 5000. Explain whether or not the population will ever exceed 10000.</li>
+</ol>
+</div>
+</div>
 <p>Explore how the computed solution depend on model parameters as follows:</p>
 <ul>
 <li>set <span class="math inline">\(b=0\)</span> by varying the parameter <span class="math inline">\(a\)</span> identify solutions that:
