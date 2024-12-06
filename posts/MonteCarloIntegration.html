@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>D’Arcy Thompson and 2D mappings Worksheet – University of Dundee Mathematics</title>
+<title>Monte Carlo Integration – University of Dundee Mathematics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -39,6 +39,11 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content="..">
+<script src="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/shinylive.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -109,10 +114,10 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -130,143 +135,362 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Monte Carlo Integration</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">integration</div>
+                <div class="quarto-category">geometry</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Worksheet.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">D’Arcy Thompson and 2D mappings Worksheet</h1>
-</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
 
 
-</header>
-
-
-<p>We can represent a point, <span class="math inline">\(P\)</span>, in the plane using a vector with components representing its <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> coordinates, i.e. <span class="math display">\[
-\mathbf{v}_P=[x_P,y_P]
-\]</span> represent a point with coordinates <span class="math inline">\(x_P\)</span> and <span class="math inline">\(y_P\)</span>.</p>
-<p>A transformation is performed by defining a new point, <span class="math inline">\(P'\)</span>, with new cooridnates that are some functions of the old coordinates, i.e. <span class="math display">\[
-\mathbf{v}_{P'}=[x_{P'},y_{P'}]=[f(x_{P},y_{P}),g(x_{P},y_{P})].
-\]</span> where <span class="math inline">\(f(.,.)\)</span> and <span class="math inline">\(g(.,.)\)</span> are functions that will represent a particular transformation.</p>
-<section id="linear-transformation" class="level2">
-<h2 class="anchored" data-anchor-id="linear-transformation">Linear transformation</h2>
-<section id="translation" class="level3">
-<h3 class="anchored" data-anchor-id="translation">Translation</h3>
-<p>Suppose that <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are defined such that <span class="math display">\[
-f(x,y)=x+t_x
-\]</span> and <span class="math display">\[
-g(x,y)=y+t_y
-\]</span></p>
-<p>where <span class="math inline">\(t_x\)</span> and <span class="math inline">\(t_y\)</span> are constants.</p>
-<ol type="1">
-<li>Compute the transformation of the point <span class="math inline">\(P(1,2)\)</span> in the case <span class="math inline">\((t_x,t_y)=(3,0)\)</span>.</li>
-<li>Identify the inverse of the transformation in 1.</li>
-</ol>
-<div id="73661260" class="cell" data-execution_count="1">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Worksheet_files/figure-html/cell-2-output-1.png" width="569" height="411" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="scalings" class="level3">
-<h3 class="anchored" data-anchor-id="scalings">Scalings</h3>
-<p>Consider a scaling transformation defined such that <span class="math display">\[
-f(x,y)=a*x
-\]</span> and <span class="math display">\[
-g(x,y)=b*y
-\]</span> where <span class="math inline">\(b\)</span> is a constant.</p>
-<ol type="1">
-<li><p>Compute the transformation of the point <span class="math inline">\(P(2,1)\)</span> in the case <span class="math inline">\(b=2\)</span>.</p></li>
-<li><p>Identify the inverse of the transformation in 1. Are there values of <span class="math inline">\(b\)</span> for which an inverse does not exist?</p></li>
-</ol>
-<div id="b73c0445" class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Worksheet_files/figure-html/cell-3-output-1.png" width="569" height="411" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="rotation" class="level3">
-<h3 class="anchored" data-anchor-id="rotation">Rotation</h3>
-<p>Now consider a transformation <span class="math display">\[
-f(x,y)=\cos\theta x -\sin\theta y
-\]</span> and <span class="math display">\[
-g(x,y)=\sin\theta x +\cos\theta y
-\]</span></p>
-<p>where <span class="math inline">\(\theta\)</span> is a constant value.</p>
-<ol type="1">
-<li><p>Compute the transformation of the point <span class="math inline">\(P(2,0)\)</span> in the case <span class="math inline">\(\theta=90\deg (\frac{\pi}{2} rad)\)</span>.</p></li>
-<li><p>Identify the inverse of the transformation in 1.</p></li>
-</ol>
-<div id="1c702724" class="cell" data-execution_count="3">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Worksheet_files/figure-html/cell-4-output-1.png" width="569" height="411" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="shear" class="level3">
-<h3 class="anchored" data-anchor-id="shear">Shear</h3>
+<section id="monte-carlo-integration" class="level2">
+<h2 class="anchored" data-anchor-id="monte-carlo-integration">Monte Carlo integration</h2>
+<p>You may have previously come across definite integrals of the form</p>
 <p><span class="math display">\[
-f(x,y)=x+ay
-\]</span> and <span class="math display">\[
-g(x,y)= y
-\]</span> where <span class="math inline">\(a\)</span> is a positive constant.</p>
-<ol type="1">
-<li>Compute the transformation of the point <span class="math inline">\(P(0,2)\)</span> in the case <span class="math inline">\(a=2\)</span>.</li>
-</ol>
-<div id="a43e721a" class="cell" data-execution_count="4">
+I=\int_a^b f(x)\mathrm{d}x.
+\]</span></p>
+<p>A specific example is <span class="math display">\[
+\int_0^1 x^2 \mathrm{d}x.
+\]</span></p>
+<p>If you have not yet come across definite integrals that is fine. For the purposes of this page, the value of the integral is simply the area underneath the curve (see blue shaded region in <a href="#fig-intdemo" class="quarto-xref">Figure&nbsp;1</a>).</p>
+<div id="fig-intdemo" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-intdemo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="7fcb6d1a" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Worksheet_files/figure-html/cell-5-output-1.png" width="569" height="411" class="figure-img"></p>
+<p><img src="MonteCarloIntegration_files/figure-html/cell-2-output-1.png" width="438" height="429" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-<section id="a-general-representation" class="level3">
-<h3 class="anchored" data-anchor-id="a-general-representation">A general representation</h3>
-<p>If you have been introduced to vectors and matrices then you may spot that the above transformations can be represented as a matrix multiplication of a vector.</p>
-<p>Consider the matrix <span class="math display">\[
-A=
-\begin{pmatrix}
-a_{11} &amp; a_{12} \\ a_{21} &amp; a_{22}
-\end{pmatrix}.
-\]</span></p>
-<p>Define <span class="math display">\[
-\mathbf{v}_{P'}=A\mathbf{v}_P
-\]</span></p>
-<p>Can you identify values of the parameters <span class="math inline">\(a_{11}\)</span>, <span class="math inline">\(a_{12}\)</span> etc. that descibe the rotation, shear and scaling transformations?</p>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-intdemo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+<p>To compute the integral we can use a similar method to that used for estimating <span class="math inline">\(\pi\)</span>:</p>
+<ul>
+<li>circumscribe the region to be integrated within a domain of known area (e.g.&nbsp;see rectangle in <a href="#fig-apppisquare" class="quarto-xref">Figure&nbsp;2</a>)</li>
+<li>uniformly sample points within the rectangle</li>
+<li>count the fraction of points that lie in the shaded region</li>
+<li>the value of the integral can be approximated by <span class="math display">\[
+\hat{I} \sim \textrm{Area of Rectangle} * \textrm{Fraction of sampled points in target region}
+\]</span></li>
+</ul>
+<div id="fig-apppisquare" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-apppisquare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div id="91f40456" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="MonteCarloIntegration_files/figure-html/cell-3-output-1.png" width="438" height="429" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-apppisquare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
+</figcaption>
+</figure>
+</div>
+<p>In <a href="#fig-integapp" class="quarto-xref">Figure&nbsp;3</a> you can use a Monte Carlo method to approximate many common integrals. <a href="#tbl-integrands" class="quarto-xref">Table&nbsp;1</a> provides the syntax needed for available functions.</p>
+<div id="tbl-integrands" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-integrands-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Syntax for inputting elementary functions into the integrator in <a href="#fig-integapp" class="quarto-xref">Figure&nbsp;3</a>.
+</figcaption>
+<div aria-describedby="tbl-integrands-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Integrand</th>
+<th style="text-align: left;">Input text</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\sqrt{x}\)</span></td>
+<td style="text-align: left;">sqrt(x)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\sin{x}\)</span></td>
+<td style="text-align: left;">sin(x)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\cos{x}\)</span></td>
+<td style="text-align: left;">cos(x)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\ln{x}\)</span></td>
+<td style="text-align: left;">log(x)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(x^2\)</span></td>
+<td style="text-align: left;">x^2</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(e^x\)</span></td>
+<td style="text-align: left;">exp(x)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\pi\)</span></td>
+<td style="text-align: left;">pi</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>In <a href="#tbl-integrands2" class="quarto-xref">Table&nbsp;2</a> some examples are provided that demonstrate syntax for more complicated functions.</p>
+<p>In the top plot the distribution of sampled points is plotted for a given realisation with the parameter values as you have chosen. In the bottom plot the estimate of the integral is averaged over 100 realisations and plotted against the number of sampled points, <span class="math inline">\(N\)</span>.</p>
+<div id="tbl-integrands2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-integrands2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Examples of syntax for inputting more complex functions into the integrator in <a href="#fig-integapp" class="quarto-xref">Figure&nbsp;3</a>.
+</figcaption>
+<div aria-describedby="tbl-integrands2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Integrand</th>
+<th style="text-align: left;">Input text</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(x^2+2x+1\)</span></td>
+<td style="text-align: left;">x^2+2*x+1</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(e^{-\sin^2{x}}\)</span></td>
+<td style="text-align: left;">exp(-sin(x)*sin(x))</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="fig-integapp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-integapp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-integapp" class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 500
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+import sympy as sp
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+    ui.input_slider(id="N",label="N",min=10,max=3000,value=10,step=1),
+    ui.input_slider(id="a",label="a",min=0.0,max=3.0,value=0.0,step=0.01),
+    ui.input_slider(id="b",label="b",min=1.0,max=10.0,value=1.0,step=0.01), 
+    ui.input_text(id='text',label="Integrand as function of x",value="sin(x)")            
+     
+            ),
+
+        ui.panel_main(ui.output_plot("plot"),),
+    ),
+)
+
+def server(input, output, session):
+    
+
+    def function_f(x,text):
+
+        #f=np.sin(4*x)
+        f=np.sin(10*x)
+
+        f=parse_to_numpy_function(text,x)
 
 
-</section>
+        return f
+
+    def parse_to_numpy_function(expression,x):
+        # Replace common mathematical operators with NumPy equivalents
+        expression = expression.replace("^", "**")  # Replace '^' with '**'
+        expression = expression.replace("sin", "np.sin")
+        expression = expression.replace("cos", "np.cos")
+        expression = expression.replace("tan", "np.tan")
+        expression = expression.replace("log", "np.log")
+        expression = expression.replace("sqrt", "np.sqrt")
+        expression = expression.replace("exp", "np.exp")
+        expression = expression.replace("pi", "np.pi")
+
+        # Create a lambda function for safe evaluation
+        #def numpy_function(x):
+        return eval(expression)
+    
+        #return expression
+
+
+    def estimate_int(a,b,N,text): 
+        x = np.random.uniform(a,b,N)
+
+        f=function_f(x,text)
+        
+        max_f=np.max(f)
+        min_f=np.min(f)
+
+        y = np.random.uniform(min_f,max_f,N)
+
+        
+        num_points_inside_circle=len(y[(y&gt;0)&amp;(y&lt;=f)])-len(y[(y&lt;0)&amp;(y&gt;=f)])
+
+        int_est=(b-a)*(max_f-min_f)*num_points_inside_circle/N
+
+        return x,y,int_est
+
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots(2,1)
+        #ax.set_ylim([-2, 2])
+        # Filter fata
+        
+        
+        N=int(input.N())
+        a=float(input.a())
+        b=float(input.b())
+        text=input.text()
+
+        
+        
+        
+    
+        x,y,int_est=estimate_int(a,b,N,text)
+        
+        ax[0].plot(x[(y&gt;0)&amp;(y&lt;function_f(x,text))],y[(y&gt;0)&amp;(y&lt;function_f(x,text))],'b.')
+        ax[0].plot(x[(y&lt;0)&amp;(y&gt;function_f(x,text))],y[(y&lt;0)&amp;(y&gt;function_f(x,text))],'m.')
+        ax[0].plot(x[(y&gt;0)&amp;(y&gt;function_f(x,text))],y[(y&gt;0)&amp;(y&gt;function_f(x,text))],'k.')
+        ax[0].plot(x[(y&lt;0)&amp;(y&lt;function_f(x,text))],y[(y&lt;0)&amp;(y&lt;function_f(x,text))],'k.')
+        #ax[0].plot(x[(y&gt;0)&amp;(y&gt;function_f(x))],y[(y&gt;0)&amp;(y&gt;function_f(x))],'k.')
+
+        ax[0].set_xlabel('$x$')
+        ax[0].set_ylabel('$y$')
+
+        x_plot=np.linspace(a,b,1000,dtype=float)
+        y_plot=function_f(x_plot,text)
+        ax[0].plot(x_plot,y_plot,'r')
+        ax[0].set_title('$\hat{I}$='+str(int_est))
+
+        
+        N_vec=np.linspace(10,3000,80,dtype=int)
+        int_est_vec=np.zeros_like(N_vec,dtype=float)
+        n_samples=200
+        for i in range(len(N_vec)):
+            int_est_i=np.zeros((n_samples,1),dtype=float)
+            for j in range(n_samples):
+                x,y,int_est=estimate_int(a,b,N_vec[i],text)
+                int_est_i[j]=int_est
+            int_est_vec[i]=np.median(int_est_i)
+
+        ax[1].plot(N_vec,int_est_vec,'.')
+        ax[1].set_xlabel('$N$')
+        ax[1].set_ylabel('$\hat{I}$')
+
+        fig.tight_layout()
+
+        plt.grid()
+        plt.show()
+    
+app = App(app_ui, server)</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-integapp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3
+</figcaption>
+</figure>
+</div>
+<p>Exercises:</p>
+<ul>
+<li><p>Show that <span class="math display">\[
+\int_0^{1}x^2 \mathrm{d}x =\frac{1}{3}.
+  \]</span></p></li>
+<li><p>Estimate the integral <span class="math display">\[
+f(x)=\frac{\sin(x)\sin(x)\sin(x)}{1+x^2}
+\]</span></p></li>
+<li><p>Demonstrate that <span class="math display">\[
+\int_0^{\infty}e^{-x^2}\mathrm{d}x =\frac{\sqrt{\pi}}{2}
+  \]</span> Note that this calculation provides an alternative method to estimate <span class="math inline">\(\pi\)</span>!</p></li>
+<li><p>Estimate the integral <span class="math display">\[
+   \int_0^{1}\frac{x^2}{1+x^2}\mathrm{d}x.
+  \]</span></p></li>
+<li><p>Demonstrate that <span class="math display">\[
+   \int_0^{\pi}\sin(x) \mathrm{d}x\sim 2
+  \]</span></p></li>
+<li><p>Demonstrate that <span class="math display">\[
+   \int_0^{2\pi}\sin(x) \mathrm{d}x\sim 0
+  \]</span> Can you spot how the symmetry results in cancellation of the positive (blue) and negative (magenta) contributions?</p></li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>The algorithm implemented in <a href="#fig-integapp" class="quarto-xref">Figure&nbsp;3</a> above will always provide a numerical estimate. However, some functions are not integrable. In this case the numerical estimate provided by the app will be completely incorrect. We must understand the limitations of algorithms before trusting their output!</li>
+<li>There exist functions that are integrable but cannot be estimated using the above technique. We cannot rely solely on algorithms.</li>
+<li>How do we know how accurate the integral estimate is?</li>
+<li>There exist much more computationally efficient methods for estimating integrals to a given accuracy.</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At Dundee, core concepts from integration are introduced in the modules <em>Maths 1A</em> and <em>Maths 1B</em> and developed further in the modules <em>Maths 2A</em> and <em>Maths 2B</em>.</p>
+<p>In the modules <em>Introduction to Programming</em> and <em>Computer Algebra and Dynamical systems</em> you would be introduced to techniques that enable you to perform numerical integration.</p>
+<p>You can find out more about these modules <a href="https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment">here</a>.</p>
+</div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->

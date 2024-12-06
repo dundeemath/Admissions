@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/MonteCarloIntegration.html",
       "/posts/QuadraticCubicRoots.html",
       "/posts/TrigonometricIdentities.html",
       "/posts/RecurrenceRelations.html",
