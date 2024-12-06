@@ -49,7 +49,7 @@ The solution to this ODE is
 $$
 y(x)=A\sin x
  + B \cos x$$
-where $A$ and $B$ are integration constants. Note that you can confirm this claim by twice differentiating the solution and subsituting in @eq-hookeslaw.
+where $A$ and $B$ are integration constants. Note that you can confirm this claim by twice differentiating the solution and substituting in @eq-hookeslaw.
 
 
 ::: {.callout-note}

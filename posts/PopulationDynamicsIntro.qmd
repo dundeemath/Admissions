@@ -12,7 +12,7 @@ filters:
 
 
 
-We can use calculus to study how populations change in time. In the examples below we consider an illustative model of population dynamics in a class room. The developed concepts can be used to study population dynamics of [infectious disease transmission](https://dundeemath.github.io/Admissions/posts/TheSIRModel.html).
+We can use calculus to study how populations change in time. In the examples below we consider an illustrative model of population dynamics in a class room. The developed concepts can be used to study population dynamics of [infectious disease transmission](https://dundeemath.github.io/Admissions/posts/TheSIRModel.html).
 
 ## Background {#sec-background}
 

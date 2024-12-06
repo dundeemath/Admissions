@@ -1,0 +1,12 @@
+{
+  "hash": "fee147b73e204ca5677bc76eb27a5004",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Estimating pi\"\nformat: html \nimage: 'logisticmapsolscreenshot.png'\ncategories: [integration, geometry]\nfilters:\n  - shinylive\n---\n\n\n\n\n\n# Estimating $\\pi$\n\n## A circle\n\nConsider a circle of radius $R$ centred at the origin.\n\n:::: {layout=\"[ 80, 80 ]\"}\n\n::: {#10d654aa .cell execution_count=1}\n\n::: {.cell-output .cell-output-display}\n![](TEsting_files/figure-html/cell-2-output-1.png){width=609 height=429}\n:::\n:::\n\n\n::::\n\n\nThe equation of the circle is given by\n$$\nx^2+y^2=R^2.\n$$ {#eq-circle}\n\nThe area of the circle is given by the familiar formula\n\n$$\n\\pi R^2.\n$$\n\nThe smallest square within which the circle can be inscribed will have side length $2R$.\n\n:::: {layout=\"[ 80, 80 ]\"}\n\n::: {#4d006be6 .cell execution_count=2}\n\n::: {.cell-output .cell-output-display}\n![](TEsting_files/figure-html/cell-3-output-1.png){width=609 height=429}\n:::\n:::\n\n\n::::\n\nHence the ratio of the area of the circle to that of the square is\n\n",
+    "supporting": [
+      "TEsting_files/figure-html"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
