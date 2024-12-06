@@ -174,7 +174,7 @@ window.Quarto = {
 <div id="fig-hmm" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hmm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="60a9b9b0" class="cell" data-fig-width="1" data-execution_count="1">
+<div id="b89a5a66" class="cell" data-fig-width="1" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -200,7 +200,7 @@ x^2+y^2=R^2.
 <div id="fig-squarecircle" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-squarecircle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="57ebbe95" class="cell" data-execution_count="2">
+<div id="9394d904" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -276,7 +276,7 @@ def server(input, output, session):
         radius=((x-L/2)**2+(y-L/2)**2)**(0.5)
         num_points_inside_circle=len(radius[radius&lt;=R])
 
-        pi_est=(4.0*num_points_inside_circle/N)
+        pi_est=(L/R)**2*(num_points_inside_circle/N)
 
         return x,y,pi_est
 
