@@ -256,6 +256,7 @@ def server(input, output, session):
         drug_conc_default=[]
         drug_conc=[]
         t_sort=[]
+        Cmax=0.0
         for i in range(num_days):
             drug_conc_default=drug_conc_default+drug_conc_default_day
             drug_conc=drug_conc+drug_conc_day
@@ -287,10 +288,12 @@ def server(input, output, session):
             N_0=N_0+drug_conc[i]
             ax[0].plot(t, N,'b')
             AUC=AUC+simpson(N, x=t)
+            Cmax=np.max([Cmax,np.max(N)])
 
         
         N_0=0.0
         AUC_t=0.0
+        cmax_t=0.0
         for i in range(len(t_sort)-1):
         # Define discretised t domain
             t = np.linspace(t_sort[i], t_sort[i+1], 1000)
@@ -310,12 +313,14 @@ def server(input, output, session):
         
             ax[1].plot(t, N,'r')
             AUC_t=AUC_t+simpson(N, x=t)
+            cmax_t=np.max([cmax_t,np.max(N)])
+
 
         ax[1].set_xlabel('$t$ (h)')
         ax[0].set_xlabel('$t$ (h)')
 
-        ax[0].set_title('AUC = ' + str(int(AUC)))
-        ax[1].set_title('AUC = ' + str(int(AUC_t)))
+        ax[0].set_title('AUC = ' + str(int(AUC)) +', Cmax = ' + str(int(Cmax)))
+        ax[1].set_title('AUC = ' + str(int(AUC_t)) + ', Cmax = ' + str(int(cmax_t)))
 
         #ax.set_ylim([0,max_inf*1.4])
 
