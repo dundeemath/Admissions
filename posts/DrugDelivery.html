@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>D’Arcy Thompson and 2D mappings Worksheet – University of Dundee Mathematics</title>
+<title>Modelling drug delivery – University of Dundee Mathematics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -39,6 +39,11 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content="..">
+<script src="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/shinylive.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -109,10 +114,10 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -130,140 +135,216 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Modelling drug delivery</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Calculus</div>
+                <div class="quarto-category">Differential Equations</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Worksheet.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
+    
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">D’Arcy Thompson and 2D mappings Worksheet</h1>
-</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
 
+
+<section id="pharmaco-dynamical-modelling" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Pharmaco dynamical modelling</h1>
+<p>We can use calculus to study how to optimise drug delivery.</p>
+<p>Suppose you are working as part of a team who are designing clinical trials for a drug. It is planned that patients will orally ingest the drug at a number of times every day. The delivery protocol needs to be optimised so that the drug concentration is as smooth as possible whilst maintaining the total dose constant.</p>
+<section id="model-development" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="model-development"><span class="header-section-number">1.1</span> Model development</h2>
+<p>Let <span class="math inline">\(t\)</span> represent time and <span class="math inline">\(C(t)\)</span> represent the drug concentration in the blood stream.</p>
+<p>Suppose that the drug has a half-life of 6 hours and that at some set of times, <span class="math inline">\(t_i\)</span>, a concentration of drug <span class="math inline">\(c_i\)</span> is delivered to the patient.</p>
+<p>Consider the model <span class="math display">\[
+\frac{dC}{dt}=-kC+\sum_i c_i \delta(t_i), \quad N(0)=0.
+\]</span></p>
+<p>The first term describes the linear degradation of the drug. The second term represent instantaneous delivery of drug at a prescribed set of times.</p>
+<p>In <a href="#fig-popmodel" class="quarto-xref">Figure&nbsp;1</a> you can explore the effect of different treatment protocols.</p>
+<div id="fig-popmodel" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-popmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-popmodel" class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 500
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+from scipy.integrate import simpson
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+    ui.input_slider(id="k",label="Drug half life (h)",min=1,max=8,value=6,step=1),
+    ui.input_slider(id="t1",label="First time (h)",min=0.0,max=10.0,value=7.0,step=1.0),
+    ui.input_slider(id="t2",label="Second time (h)",min=10.0,max=17.0,value=12.0,step=1.0),
+    ui.input_slider(id="t3",label="Third time (h)",min=17.0,max=22.0,value=18.0,step=1.0),
+    ui.input_slider(id="c1",label="First conc.",min=0.0,max=12.0,value=4.0,step=1.0),
+    ui.input_slider(id="c2",label="Second conc.",min=0.0,max=12.0,value=4.0,step=1.0),
+    ui.input_slider(id="c3",label="Third conc.",min=0.0,max=12.0,value=4.0,step=1.0),
     
-  
+                 
+          
+            ),
+
+        ui.panel_main(ui.output_plot("plot"),),
+    ),
+)
+
+def server(input, output, session):
     
-  </div>
-  
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots(2,1)
+        #ax.set_ylim([-2, 2])
+        # Filter fata
+        
+        
+        drug_half_life=float(input.k())
+        t1=float(input.t1())
+        t2=float(input.t2())
+        t3=float(input.t3())
+        c1=float(input.c1())
+        c2=float(input.c2())
+        c3=float(input.c3())
+
+        k=np.log(2)/drug_half_life
+
+        
+        # Define rhs of LV ODEs
+        def rhs_pop_model(x,t,k,r):
+          rhs=np.zeros_like(x,dtype=float)
+          N=x[0]
+          dN_dt=-k*N
+          rhs[0]=dN_dt
+          return rhs
+
+        c1_default=12
+        c2_default=0.0
+        c3_default=0.0
+
+        T_final=96
+        num_days=int(T_final/24)
+
+        drug_conc_default_day=[c1_default,c2_default,c3_default,0]
+        drug_conc_day=[c1,c2,c3,0]
+        t_sort_day=[0.0,t1,t2,t3]
+
+        drug_conc_default=[]
+        drug_conc=[]
+        t_sort=[]
+        for i in range(num_days):
+            drug_conc_default=drug_conc_default+drug_conc_default_day
+            drug_conc=drug_conc+drug_conc_day
+
+            t_sort_day_i = [x + i*24.0 for x in t_sort_day]
 
 
-</header>
+            t_sort=t_sort+t_sort_day_i
+        
+        t_sort.append(T_final)        #t_sort=[0.0,t1,t2,t3,24.0,t1+24.0,t2+24.0,t3+24,48.0]
+        N_0=0.0
+        AUC=0.0
 
+        for i in range(len(t_sort)-1):
+        # Define discretised t domain
+            t = np.linspace(t_sort[i], t_sort[i+1], 1000)
+            print(t)
 
-<p>We can represent a point, <span class="math inline">\(P\)</span>, in the plane using a vector with components representing its <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> coordinates, i.e. <span class="math display">\[
-\mathbf{v}_P=[x_P,y_P]
-\]</span> represent a point with coordinates <span class="math inline">\(x_P\)</span> and <span class="math inline">\(y_P\)</span>.</p>
-<p>A transformation is performed by defining a new point, <span class="math inline">\(P'\)</span>, with new cooridnates that are some functions of the old coordinates, i.e. <span class="math display">\[
-\mathbf{v}_{P'}=[x_{P'},y_{P'}]=[f(x_{P},y_{P}),g(x_{P},y_{P})].
-\]</span> where <span class="math inline">\(f(.,.)\)</span> and <span class="math inline">\(g(.,.)\)</span> are functions that will represent a particular transformation.</p>
-<section id="linear-transformation" class="level2">
-<h2 class="anchored" data-anchor-id="linear-transformation">Linear transformation</h2>
-<section id="translation" class="level3">
-<h3 class="anchored" data-anchor-id="translation">Translation</h3>
-<p>Suppose that <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are defined such that <span class="math display">\[
-f(x,y)=x+t_x
-\]</span> and <span class="math display">\[
-g(x,y)=y+t_y
-\]</span></p>
-<p>where <span class="math inline">\(t_x\)</span> and <span class="math inline">\(t_y\)</span> are constants.</p>
-<ol type="1">
-<li>Compute the transformation of the point <span class="math inline">\(P(1,2)\)</span> in the case <span class="math inline">\((t_x,t_y)=(3,0)\)</span>.</li>
-<li>Identify the inverse of the transformation in 1.</li>
-</ol>
-<div id="e1245d9f" class="cell" data-execution_count="1">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Worksheet_files/figure-html/cell-2-output-1.png" width="569" height="411" class="figure-img"></p>
+            # define initial conditions
+            init_cond=[N_0]
+        
+            # Compute numerical solution of ODEs
+            sol1 = odeint(rhs_pop_model, init_cond,t,args=(k,1))
+
+            # Plot results
+            N=sol1[:,0]
+
+            N_0=N[-1]
+            N_0=N_0+drug_conc[i]
+            ax[0].plot(t, N,'b')
+            AUC=AUC+simpson(N, x=t)
+
+        
+        N_0=0.0
+        AUC_t=0.0
+        for i in range(len(t_sort)-1):
+        # Define discretised t domain
+            t = np.linspace(t_sort[i], t_sort[i+1], 1000)
+
+            # define initial conditions
+            init_cond=[N_0]
+        
+            # Compute numerical solution of ODEs
+            sol1 = odeint(rhs_pop_model, init_cond,t,args=(k,1))
+
+            # Plot results
+            N=sol1[:,0]
+
+            N_0=N[-1]
+            N_0=N_0+drug_conc_default[i]
+        
+        
+            ax[1].plot(t, N,'r')
+            AUC_t=AUC_t+simpson(N, x=t)
+
+        ax[1].set_xlabel('$t$ (h)')
+        ax[0].set_xlabel('$t$ (h)')
+
+        ax[0].set_title('AUC = ' + str(int(AUC)))
+        ax[1].set_title('AUC = ' + str(int(AUC_t)))
+
+        #ax.set_ylim([0,max_inf*1.4])
+
+        plt.grid()
+        plt.show()
+    
+app = App(app_ui, server)</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-popmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
 </figure>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
 </div>
 </div>
-</section>
-<section id="scalings" class="level3">
-<h3 class="anchored" data-anchor-id="scalings">Scalings</h3>
-<p>Consider a scaling transformation defined such that <span class="math display">\[
-f(x,y)=a*x
-\]</span> and <span class="math display">\[
-g(x,y)=b*y
-\]</span> where <span class="math inline">\(b\)</span> is a constant.</p>
-<ol type="1">
-<li><p>Compute the transformation of the point <span class="math inline">\(P(2,1)\)</span> in the case <span class="math inline">\(b=2\)</span>.</p></li>
-<li><p>Identify the inverse of the transformation in 1. Are there values of <span class="math inline">\(b\)</span> for which an inverse does not exist?</p></li>
-</ol>
-<div id="931c80f7" class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Worksheet_files/figure-html/cell-3-output-1.png" width="569" height="411" class="figure-img"></p>
-</figure>
+<div class="callout-body-container callout-body">
+<p>At Dundee, core concepts from calculus (e.g.&nbsp;differential equations) are studied in the modules <em>Maths 1A</em> and <em>Maths 1B</em> and developed further in the modules <em>Maths 2A</em> and <em>Maths 2B</em>.</p>
+<p>At Level 2 in the modules <em>Computer algebra and dynamical systems</em> and <em>Introduction to Programming</em> you would be introduced to techniques that are used to compute numerical solutions to differential equations.</p>
+<p>At Level 3 in the module <em>Mathematical Biology</em> you would learn how to formulate and study mathematical models of biological systems.</p>
+<p>You can find out more about these modules <a href="https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment">here</a>.</p>
 </div>
 </div>
-</div>
-</section>
-<section id="rotation" class="level3">
-<h3 class="anchored" data-anchor-id="rotation">Rotation</h3>
-<p>Now consider a transformation <span class="math display">\[
-f(x,y)=\cos\theta x -\sin\theta y
-\]</span> and <span class="math display">\[
-g(x,y)=\sin\theta x +\cos\theta y
-\]</span></p>
-<p>where <span class="math inline">\(\theta\)</span> is a constant value.</p>
-<ol type="1">
-<li><p>Compute the transformation of the point <span class="math inline">\(P(2,0)\)</span> in the case <span class="math inline">\(\theta=90\deg (\frac{\pi}{2} rad)\)</span>.</p></li>
-<li><p>Identify the inverse of the transformation in 1.</p></li>
-</ol>
-<div id="7edead04" class="cell" data-execution_count="3">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Worksheet_files/figure-html/cell-4-output-1.png" width="569" height="411" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="shear" class="level3">
-<h3 class="anchored" data-anchor-id="shear">Shear</h3>
-<p><span class="math display">\[
-f(x,y)=x+ay
-\]</span> and <span class="math display">\[
-g(x,y)= y
-\]</span> where <span class="math inline">\(a\)</span> is a positive constant.</p>
-<ol type="1">
-<li>Compute the transformation of the point <span class="math inline">\(P(0,2)\)</span> in the case <span class="math inline">\(a=2\)</span>.</li>
-</ol>
-<div id="b9670182" class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Worksheet_files/figure-html/cell-5-output-1.png" width="569" height="411" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="a-general-representation" class="level3">
-<h3 class="anchored" data-anchor-id="a-general-representation">A general representation</h3>
-<p>If you have been introduced to vectors and matrices then you may spot that the above transformations can be represented as a matrix multiplication of a vector.</p>
-<p>Consider the matrix <span class="math display">\[
-A=
-\begin{pmatrix}
-a_{11} &amp; a_{12} \\ a_{21} &amp; a_{22}
-\end{pmatrix}.
-\]</span></p>
-<p>Define <span class="math display">\[
-\mathbf{v}_{P'}=A\mathbf{v}_P
-\]</span></p>
-<p>Can you identify values of the parameters <span class="math inline">\(a_{11}\)</span>, <span class="math inline">\(a_{12}\)</span> etc. that descibe the rotation, shear and scaling transformations?</p>
 
 
 </section>
