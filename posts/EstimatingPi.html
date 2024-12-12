@@ -174,7 +174,7 @@ window.Quarto = {
 <div id="fig-hmm" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hmm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="b89a5a66" class="cell" data-fig-width="1" data-execution_count="1">
+<div id="a847ccfb" class="cell" data-fig-width="1" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -200,7 +200,7 @@ x^2+y^2=R^2.
 <div id="fig-squarecircle" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-squarecircle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="9394d904" class="cell" data-execution_count="2">
+<div id="84b43aa9" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -254,9 +254,10 @@ from scipy.integrate import odeint
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.panel_sidebar(
-    ui.input_slider(id="N",label="N",min=10,max=3000,value=10,step=1),
-    ui.input_slider(id="R",label="R",min=2.0,max=15.0,value=10.0,step=1),
-    ui.input_slider(id="L",label="L",min=15.0,max=30.0,value=20.0,step=1),             
+    ui.input_slider(id="N",label="Num points per experiment",min=10,max=3000,value=10,step=1),
+    ui.input_slider(id="R",label="Radius",min=2.0,max=15.0,value=10.0,step=1),
+    ui.input_slider(id="L",label="Square side length",min=15.0,max=30.0,value=20.0,step=1),  
+    ui.input_slider(id="N_Exp",label="Num experiments",min=1,max=300,value=1,step=1),           
      
               
           
@@ -290,6 +291,7 @@ def server(input, output, session):
         N=int(input.N())
         R=float(input.R())
         L=float(input.L())
+        n_samples=int(input.N_Exp())
         
     
         x,y,pi_est=estimate_pi(N,R,L)
@@ -309,7 +311,6 @@ def server(input, output, session):
         
         N_vec=np.linspace(10,3000,80,dtype=int)
         pi_est_vec=np.zeros_like(N_vec,dtype=float)
-        n_samples=100
         for i in range(len(N_vec)):
             pi_est_i=np.zeros((n_samples,1),dtype=float)
             for j in range(n_samples):
