@@ -1,0 +1,18 @@
+{
+  "listing": "/index.html",
+  "items": [
+    "/posts/DrugDelivery.html",
+    "/posts/MonteCarloIntegration.html",
+    "/posts/QuadraticCubicRoots.html",
+    "/posts/TrigonometricIdentities.html",
+    "/posts/RecurrenceRelations.html",
+    "/posts/Mappings2D.html",
+    "/posts/EstimatingPi.html",
+    "/posts/PopulationDynamicsIntro.html",
+    "/posts/AffineTransformation.html",
+    "/posts/TheSIRModel.html",
+    "/posts/SecondOrderODEs.html",
+    "/posts/IntersectingLines.html",
+    "/posts/GraduateEmployment.html"
+  ]
+}

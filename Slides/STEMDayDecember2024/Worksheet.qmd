@@ -1,0 +1,196 @@
+---
+title: "STEM Day December 2024"
+format: 
+    html:
+        number-sections: true
+    pdf:
+        documentclass: article
+        number-sections: true
+        header-includes:
+            - \usepackage{fancyhdr} % For custom headers
+            - \usepackage{graphicx} % For including images
+            - \pagestyle{fancy}
+            - \fancyhf{} % Clear default headers and footers
+            - \fancyhead[L]{\includegraphics[width=2cm]{UoD_logo_RGB.png}} 
+            - \fancyhead[R]{\thepage} 
+            - \renewcommand{\headrulewidth}{0.4pt} 
+            - \fancypagestyle{titlepage}{
+                \fancyhf{}
+                \fancyhead[L]{\includegraphics[width=3cm]{UoD_logo_RGB.png}}
+                \fancyhead[R]{\thepage}
+                }
+         
+
+
+
+---
+
+
+
+\thispagestyle{titlepage}
+
+This worksheet is accompanied by web apps that can be found here (https://dundeemath.github.io/Admissions/).
+
+
+## Estimating $\pi$
+
+Consider @fig-circ.
+The ratio of the area of the circle to that of the circumscribed square is
+
+$$
+\frac{\textrm{Area circle}}{\textrm{Area square}}=\frac{\pi}{4}.
+$$
+
+Suppose we uniformly sample points from within the square. The probability of a point landing in the circle is proportional to the relative area of the circle, i.e.
+$$
+\frac{\pi}{4}.
+$$
+
+Hence we can estimate $\pi$ by counting the number of uniformly sampled points that fall within the circle.
+
+To sample the points:
+
+1. Hold a small number of rice grains above the circle in @fig-circ and drop onto the page. Vary dropping height to ensure the rice grains land approximately uniformly in the square. 
+2. 
+    (i) Drop rice grains on to the square.
+    (ii) Count the total number of rice grains that fall inside the square, $N_S$, and the circle, $N_C$.
+    (iii) Input the data into @tbl-circ and compute the quantity
+    $$
+    \hat{\pi}=4\frac{N_C}{N_S}.
+    $$
+    (iv)  Repeat Steps (i)-(iii).
+5. Compute the mean of the samples.
+6. Explore computationally using the 'Estimating $\pi$' app.
+
+
+\newpage
+
+```{python}
+#| echo: false
+#| fig-width: 3
+#| label: fig-circ
+#| fig-pos: h
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+R=1.0
+theta=np.linspace(0,2*np.pi,1000)
+fig,ax=plt.subplots()
+ax.plot(R*np.cos(theta),R*np.sin(theta),'r')
+ax.set_xlabel('$x$')
+ax.set_ylabel('$y$')
+ax.set_aspect('equal')
+ax.axis('square')
+
+ax.set_xlim([-1.0,1.0])
+ax.set_ylim([-1.0,1.0])
+
+plt.show()
+```
+
+
+
+| Iteration| $N_S$ | $N_C$ | $\hat{\pi}=4N_C/N_S$ |
+| ---|---------|-----|------|
+| 1 |       |    |     |  
+| 2 |       |    |     |  
+|3  |       |    |     |  
+|4 |       |    |     |  
+|5 |       |    |     |  
+|6 |       |    |     |  
+| ---|---------|-----|------|
+| Mean | N/A | N/A  | |
+
+: A table to record counts. {#tbl-circ .striped .hover }
+
+
+\newpage 
+
+## Estimating an integral
+
+Consider @fig-int.
+Here we have plotted the function 
+$$
+y=x^2, \quad x \in [0,1].
+$$
+
+The shaded 'area under the curve' can be represented by the integral
+$$
+I=\int_0^1 x^2 \textrm{d}x.
+$$
+
+To estimate the integral we  again uniformly sample points from within the circumscribed square.  By counting how many points fall inside the shaded region we can estimate the integral to be
+$$
+\hat{I}=\textrm{Area square} \times \textrm{Frac points in shaded region} = 1\times \frac{N_R}{N_S}
+$$
+
+1. Hold a small number of rice grains above the square in @fig-int drop onto the page.
+2. Count the total number of rice grains that fall inside the square, $N_S$, and the shaded region, $N_R$.
+3. Input data into @tbl-int and compute the quantity
+$$
+\frac{N_R}{N_S}.
+$$
+4. Repeat Steps 1-3.
+5. Compute the mean of the samples.
+6. Explore computationally using the 'Monte Carlo integration' app.
+
+
+\newpage 
+
+```{python}
+#| echo: false
+#| fig-width: 2
+#| label: fig-int
+#| fig-pos: h
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+R=1.0
+x=np.linspace(0,1,1000)
+fig,ax=plt.subplots()
+ax.plot(x,x**2,'r')
+ax.set_xlabel('$x$')
+ax.set_ylabel('$y$')
+ax.set_aspect('equal')
+ax.axis('square')
+
+ax.set_xlim([0.0,1.0])
+ax.set_ylim([0.0,1.0])
+
+x_fill=np.zeros((len(x)+2,2),dtype=float)
+x_fill[0:len(x),0]=x
+x_fill[0:len(x),1]=x**2
+x_fill[len(x),0]=1
+x_fill[len(x),1]=0
+x_fill[len(x)+1,0]=0
+x_fill[len(x)+1,1]=0
+ax.fill(x_fill[:,0],x_fill[:,1])
+
+
+plt.show()
+```
+
+
+
+| Iteration| $N_S$ | $N_R$ | $\hat{I}=N_R/N_S$ |
+| ---|---------|-----|------|
+| 1 |       |    |     |  
+| 2 |       |    |     |  
+|3  |       |    |     |  
+|4 |       |    |     |  
+|5 |       |    |     |  
+|6 |       |    |     |  
+| ---|---------|-----|------|
+| Mean | N/A | N/A  | |
+
+: A table to record counts. {#tbl-int .striped .hover }
+
+
+
+
+
+
+
