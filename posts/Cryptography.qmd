@@ -1,7 +1,7 @@
 ---
 title: "Cryptography"
 format: html 
-image: 'MontCarloIntegrator.png'
+image: 'EncryptionImage.png'
 categories: [integration, geometry]
 filters:
   - shinylive
@@ -113,10 +113,9 @@ app = App(app_ui, server)
 :::
 
 
-
-Hash functions are algorithms that take an input and produce a fixed-size string of characters, which is unique to the input data. In @fig-encrypt you can encrypt a message using a hash-function. The *shared secret* is a number that is required to encrypt the message.
-
-Explore how you can encrypt your own message using @fig-encrypt and decrypt using @fig-decrypt.
+The encryption in @fig-decrypt is happening via 
+algorithms (hash functions) that take an input and produce a fixed-size string of characters, which is unique to the input data. In @fig-encrypt you can encrypt a message using a hash-function. The *shared secret* is the number that is required to encrypt the message.
+You can decrypt your own message using @fig-decrypt.
 
 ::: {#fig-encrypt}
 
@@ -215,7 +214,7 @@ The problem with the above encryption is that  two parties must somehow safely s
 
 The Diffie-Hellman algorithm is used for two parties (Alice and Bob) to *safely* share a secret.
 
-Some publicly shared information is firstly agreed between the two parties: a prime number, $p$, and a generator $g<p$. We need to use Number Theory and Group Theory to identify *safe* values for $g$ and $p$.
+Some publicly shared information is firstly agreed between the two parties: a prime number, $p$, and a generator $g<p$. We need to use Number Theory and Group Theory to identify *safe* values for $g$ and $p$. But not today!
 
 Alice and Bob then both generate their own private keys: $x$ and $y$. These numbers are not publicly shared.
 
@@ -368,9 +367,9 @@ $$
 g^x \pmod p = X,
 $$
 
-where $x$ is Alice's private key. This is known as the discrete logarithm problem . In @fig-discretlog you can explore how an observer could identify Alice's private key, $x$ (where the marker sits on the horizontal line).
+where $x$ is Alice's private key. This is known as the discrete logarithm problem . In @fig-discretlog you can explore how an observer could identify Alice's private key, $x$ (where the marker sits on the horizontal line). The key point from the figure is that it is difficult to guess what the value of the variable on the $x$ axis will give rise to a *desired* value on the $y$ axis.
 
-It can be shown that when $p$ and $g$ are chosen appropriately that there are not efficient methods to solve this problem. Hence the Diffie-Hellman is secure given appropriate choices for $p$ and $g$.
+It can be proven (mathematically) that when $p$ and $g$ are chosen appropriately that there are not efficient methods to solve this problem. Hence the Diffie-Hellman is secure given appropriate choices for $p$ and $g$.
 
 
 ::: {#fig-discretlog fig-align="center"}
@@ -565,6 +564,8 @@ app = App(app_ui, server)
 
 
 ## Decrypting a message
+
+Let's consider another description task, now using the full Diffie-Helmann.
 
 Suppose that we want to decrypt the message
 
