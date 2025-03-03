@@ -40,9 +40,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <meta name="shinylive:serviceworker_dir" content="..">
-<script src="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/shinylive.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/shinylive.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -198,7 +198,7 @@ from scipy.integrate import simpson
 
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
-        ui.panel_sidebar(
+        ui.sidebar(
     ui.input_slider(id="k",label="Drug half life (h)",min=1,max=8,value=6,step=1),
     ui.input_slider(id="t1",label="First time (h)",min=0.0,max=10.0,value=7.0,step=1.0),
     ui.input_slider(id="t2",label="Second time (h)",min=10.0,max=17.0,value=12.0,step=1.0),
@@ -211,7 +211,7 @@ app_ui = ui.page_fluid(
           
             ),
 
-        ui.panel_main(ui.output_plot("plot"),),
+        ui.output_plot("plot"),
     ),
 )
 

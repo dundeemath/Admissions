@@ -40,9 +40,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <meta name="shinylive:serviceworker_dir" content="..">
-<script src="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/shinylive.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/shinylive.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -198,13 +198,13 @@ import matplotlib.pyplot as plt
 
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
-        ui.panel_sidebar(
+        ui.sidebar(
     ui.input_slider(id="a",label="a",min=-5,max=5,value=1.0,step=0.2),
     ui.input_slider(id="b",label="b",min=-5.0,max=5.0,value=1.0,step=0.2),
     ui.input_slider(id="c",label="c",min=-5.0,max=10.0,value=5.0,step=0.02),            
     ui.input_slider(id="d",label="d",min=-5.0,max=10.0,value=5.0,step=0.02),            
     ),
-    ui.panel_main(ui.output_plot("plot"),),
+    ui.output_plot("plot"),
     ),
 )
 
@@ -271,12 +271,12 @@ import matplotlib.pyplot as plt
 title_str=['All','Sine','Cosine']
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
-        ui.panel_sidebar(
+        ui.sidebar(
     ui.input_slider(id="a",label="Angle b",min=0,max=1.0,value=0.5,step=0.02),
     ui.input_slider(id="b",label="Angle a",min=0.0,max=1.0,value=0.56,step=0.02),
     ui.input_select(id="c",label="Choose compound angle",choices=title_str,selected=title_str[0]),           
     ),
-    ui.panel_main(ui.output_plot("plot"),),
+    ui.output_plot("plot"),
     ),
 )
 
@@ -404,12 +404,12 @@ import matplotlib.pyplot as plt
 title_str=['x','sawtooth','x^2','x^2-2x+1','exp(x)','tan(x)',]
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
-        ui.panel_sidebar(
+        ui.sidebar(
             ui.input_select(id="fun",label="Choose f(x)",choices=title_str,selected=["x"]),
     ui.input_slider(id="L",label="L (domain length)",min=1.0,max=20.0,value=10.0,step=1.0), 
     ui.input_slider(id="N",label="N (num. terms in series)",min=1,max=500,value=10,step=1),          
     ),
-    ui.panel_main(ui.output_plot("plot"),),
+    ui.output_plot("plot"),
     ),
 )
 

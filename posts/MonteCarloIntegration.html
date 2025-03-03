@@ -40,9 +40,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <meta name="shinylive:serviceworker_dir" content="..">
-<script src="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/shinylive.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/shinylive.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -179,7 +179,7 @@ I=\int_a^b f(x)\mathrm{d}x.
 <div id="fig-intdemo" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-intdemo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="3e7ab747" class="cell" data-execution_count="1">
+<div id="6a5f6797" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -206,7 +206,7 @@ Figure&nbsp;1
 <div id="fig-apppisquare" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-apppisquare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="5bf345b1" class="cell" data-execution_count="2">
+<div id="423186da" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -316,7 +316,7 @@ import sympy as sp
 
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
-        ui.panel_sidebar(
+        ui.sidebar(
     ui.input_slider(id="N",label="Num. points per experiment",min=10,max=3000,value=10,step=1),
     ui.input_slider(id="a",label="a (left limit)",min=0.0,max=3.0,value=0.0,step=0.01),
     ui.input_slider(id="b",label="b (right limit)",min=1.0,max=10.0,value=1.0,step=0.01), 
@@ -325,7 +325,7 @@ app_ui = ui.page_fluid(
      
             ),
 
-        ui.panel_main(ui.output_plot("plot"),),
+        ui.output_plot("plot"),
     ),
 )
 
@@ -469,7 +469,7 @@ Using algorithms
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>The algorithm implemented in <a href="#fig-integapp" class="quarto-xref">Figure&nbsp;3</a> above will always provide a numerical estimate. However, some functions are not integrable. In this case the numerical estimate provided by the app will be completely incorrect. We must understand the limitations of algorithms before trusting their output!</li>
+<li>The algorithm implemented in <a href="#fig-integapp" class="quarto-xref">Figure&nbsp;3</a> above will always provide a numerical estimate. However, some functions are not integrable. In such cases the numerical estimate provided by the app will be completely incorrect. We must understand the limitations of algorithms before trusting their output!</li>
 <li>There exist functions that are integrable but cannot be estimated using the above technique. We cannot rely solely on algorithms.</li>
 <li>How do we know how accurate the integral estimate is?</li>
 <li>There exist much more computationally efficient methods for estimating integrals to a given accuracy.</li>

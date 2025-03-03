@@ -40,9 +40,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <meta name="shinylive:serviceworker_dir" content="..">
-<script src="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../site_libs/quarto-contrib/shinylive-0.2.8/shinylive/shinylive.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/shinylive.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -169,99 +169,12 @@ window.Quarto = {
 <section id="cryptography" class="level2">
 <h2 class="anchored" data-anchor-id="cryptography">Cryptography</h2>
 <p>Cryptography is the practice and study of techniques for securing communication and information against unauthorized access, modification, or forgery. It is used to protect sensitive data by transforming it into a format that is difficult for unintended recipients to understand or manipulate. This transformation often relies on mathematical algorithms and cryptographic keys.</p>
-<p>Hash functions are algorithms that take an input and produce a fixed-size string of characters, which is unique to the input data. In <a href="#fig-encrypt" class="quarto-xref">Figure&nbsp;1</a> you can encrypt a message using a hash-function. The `shared secret’ is a number that is used to encrypt the message.</p>
-<div id="fig-encrypt" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-encrypt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<pre id="fig-encrypt" class="shinylive-python" data-engine="python"><code>#| standalone: true
-#| components: [viewer]
-#| viewerHeight: 200
-
-from shiny import App, Inputs, Outputs, Session, render, ui
-from shiny import reactive
-
-import numpy as np
-from pathlib import Path
-import matplotlib.pyplot as plt
-from scipy.integrate import odeint
-import sympy as sp
-import pandas as pd
-from cryptography.hazmat.primitives.kdf.hkdf import HKDF
-from cryptography.hazmat.primitives import hashes
-from cryptography.hazmat.primitives.asymmetric import dh
-import os
-from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-
-
-app_ui = ui.page_fluid(
-    ui.layout_sidebar(
-        ui.panel_sidebar(
-    ui.input_slider(id="shared_secret",label="shared secret",min=10,max=3000,value=23,step=1),
-    ui.input_text(id='text',label="Message to encrypt",value="Yarrrr"),
-         
-     
-            ),
-
-        ui.panel_main(ui.output_table("result"),),
-    ),
-)
-
-def server(input, output, session):
-    
-
-    def encrypt_message(key, plaintext):
-        iv=5
-        iv=iv.to_bytes(16, 'big')
-        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))
-        encryptor = cipher.encryptor()
-        ciphertext = encryptor.update(plaintext) + encryptor.finalize()
-        return iv,ciphertext
-    
-
-
-
-    @render.table
-    def result():
-        # list of strings
-        shared_secret=int(input.shared_secret())
-        text=input.text()
-        # Step 1: Generate Diffie-Hellman Parameters and Keys
-       
-
-        #shared_secret=int(np.mod(g**(a*b),p))
-        shared_secret_bytes=shared_secret.to_bytes(16,'big')
-        #shared_secret=g**(a*b)
-        derived_key = HKDF(
-            algorithm=hashes.SHA256(),
-            length=32,
-            salt=None,
-            info=b"diffie-hellman-key-exchange",
-        ).derive(shared_secret_bytes)
-        
-        # Step 4: Encrypt a Message Using AES
-        message = text.encode(encoding="utf-8")
-        iv, ciphertext = encrypt_message(derived_key, message)
-
-         # Decrypt the message
-        data_dict = {
-            'Encrypted Message':[ciphertext.hex()],
-            'Encrypted Message':[ciphertext.hex()],
-            }
-
-        # Create a DataFrame
-        df = pd.DataFrame(data_dict)
-        # Calling DataFrame constructor on list
-        return df
-
-   
-app = App(app_ui, server)</code></pre>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-encrypt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1
-</figcaption>
-</figure>
-</div>
-<p>Given knowledge of the shared secret an encrypted message can be decrypted. If you paste the encrypted message from <a href="#fig-encrypt" class="quarto-xref">Figure&nbsp;1</a> into <a href="#fig-decrypt" class="quarto-xref">Figure&nbsp;2</a> you will recover the original message, assuming that you use the same shared secret.</p>
+</section>
+<section id="decrypting-an-encrypted-message" class="level2">
+<h2 class="anchored" data-anchor-id="decrypting-an-encrypted-message">Decrypting an encrypted message</h2>
+<p>Suppose you happen upon the encrypted message:</p>
+<p>9995fc19ee935e80d28b19db3709a9ce414ec1bd29cd006115114fbd6bd2f6e5cb84aec0d6468233e1</p>
+<p>If you paste the message into <a href="#fig-decrypt" class="quarto-xref">Figure&nbsp;1</a>, you can decrypt it if you can guess the <em>shared secret</em> used to encrypt the original message (Hint: use the slider to try different values of the shared secret … it is smaller than 100 for this example).</p>
 <div id="fig-decrypt" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-decrypt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -288,12 +201,12 @@ import base64
 
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
-        ui.panel_sidebar(
+        ui.sidebar(
     ui.input_slider(id="shared_secret",label="Shared secret",min=10,max=3000,value=31,step=1),
     ui.input_text(id='text',label="Message to decrypt",value="8968d20bbc5b"),
             ),
 
-        ui.panel_main(ui.output_table("result"),),
+        ui.output_table("result"),
     ),
 )
 
@@ -351,15 +264,108 @@ def server(input, output, session):
 app = App(app_ui, server)</code></pre>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-decrypt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+<p>Hash functions are algorithms that take an input and produce a fixed-size string of characters, which is unique to the input data. In <a href="#fig-encrypt" class="quarto-xref">Figure&nbsp;2</a> you can encrypt a message using a hash-function. The <em>shared secret</em> is a number that is required to encrypt the message.</p>
+<p>Explore how you can encrypt your own message using <a href="#fig-encrypt" class="quarto-xref">Figure&nbsp;2</a> and decrypt using <a href="#fig-decrypt" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<div id="fig-encrypt" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-encrypt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-encrypt" class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 200
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+import sympy as sp
+import pandas as pd
+from cryptography.hazmat.primitives.kdf.hkdf import HKDF
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import dh
+import os
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.sidebar(
+    ui.input_slider(id="shared_secret",label="shared secret",min=10,max=3000,value=23,step=1),
+    ui.input_text(id='text',label="Message to encrypt",value="Yarrrr"),
+         
+     
+            ),
+
+        ui.output_table("result"),
+    ),
+)
+
+def server(input, output, session):
+    
+
+    def encrypt_message(key, plaintext):
+        iv=5
+        iv=iv.to_bytes(16, 'big')
+        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))
+        encryptor = cipher.encryptor()
+        ciphertext = encryptor.update(plaintext) + encryptor.finalize()
+        return iv,ciphertext
+    
+
+
+
+    @render.table
+    def result():
+        # list of strings
+        shared_secret=int(input.shared_secret())
+        text=input.text()
+        # Step 1: Generate Diffie-Hellman Parameters and Keys
+       
+
+        #shared_secret=int(np.mod(g**(a*b),p))
+        shared_secret_bytes=shared_secret.to_bytes(16,'big')
+        #shared_secret=g**(a*b)
+        derived_key = HKDF(
+            algorithm=hashes.SHA256(),
+            length=32,
+            salt=None,
+            info=b"diffie-hellman-key-exchange",
+        ).derive(shared_secret_bytes)
+        
+        # Step 4: Encrypt a Message Using AES
+        message = text.encode(encoding="utf-8")
+        iv, ciphertext = encrypt_message(derived_key, message)
+
+         # Decrypt the message
+        data_dict = {
+            'Encrypted Message':[ciphertext.hex()],
+            'Encrypted Message':[ciphertext.hex()],
+            }
+
+        # Create a DataFrame
+        df = pd.DataFrame(data_dict)
+        # Calling DataFrame constructor on list
+        return df
+
+   
+app = App(app_ui, server)</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-encrypt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2
 </figcaption>
 </figure>
 </div>
-<p>For safe encryption using hash functions, two parties must safely share a secret in order that they can encrypt/decrypt messages.</p>
+<p>The problem with the above encryption is that two parties must somehow safely share a secret in order that they can encrypt/decrypt messages. This is where the interesting mathematics happens!</p>
 <section id="generating-a-shared-secret" class="level3">
 <h3 class="anchored" data-anchor-id="generating-a-shared-secret">Generating a shared secret</h3>
 <p>The Diffie-Hellman algorithm is used for two parties (Alice and Bob) to <em>safely</em> share a secret.</p>
-<p>Some publicly shared information is firstly agreed between the two parties: a prime number, <span class="math inline">\(p\)</span>, and a generator <span class="math inline">\(g&lt;p\)</span>.</p>
+<p>Some publicly shared information is firstly agreed between the two parties: a prime number, <span class="math inline">\(p\)</span>, and a generator <span class="math inline">\(g&lt;p\)</span>. We need to use Number Theory and Group Theory to identify <em>safe</em> values for <span class="math inline">\(g\)</span> and <span class="math inline">\(p\)</span>.</p>
 <p>Alice and Bob then both generate their own private keys: <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. These numbers are not publicly shared.</p>
 <p>Alice uses her private key and the shared information to compute her public key</p>
 <p><span class="math display">\[
@@ -386,7 +392,7 @@ g^x \pmod p= 2^3 \pmod 5 = 3.
 \]</span></p>
 </div>
 </div>
-<p>Similarly Bob uses his private key to compute <span class="math display">\[
+<p>Similarly, Bob uses his private key to compute <span class="math display">\[
 Y=g^y \pmod p.
 \]</span></p>
 <p>Alice and Bob now exchange their public keys <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. Alice uses Bob’s public key to compute</p>
@@ -399,7 +405,7 @@ X^y \pmod p.
 <p>Because of the commutativity of multiplication of exponents <span class="math display">\[
 s=Y^x\pmod p = g^{xy}\pmod p = X^y\pmod p
 \]</span></p>
-<p>Hence Alice and Bob both have a shared secret.</p>
+<p>Hence Alice and Bob both have a shared secret. They can use this shared secret to encrypt/decrypt messages using hash functions.</p>
 <p>You can explore the generation of a shared secret in <a href="#fig-sharedsecret" class="quarto-xref">Figure&nbsp;3</a>.</p>
 <div id="fig-sharedsecret" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -426,7 +432,7 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
-        ui.panel_sidebar(
+        ui.sidebar(
     ui.input_slider(id="p",label="p",min=10,max=3000,value=23,step=1),
     ui.input_slider(id="g",label="g (generator)",min=0,max=15.0,value=5,step=1),
     ui.input_slider(id="a",label="Private key Bob",min=1,max=10,value=2,step=1),
@@ -436,7 +442,7 @@ app_ui = ui.page_fluid(
      
             ),
 
-        ui.panel_main(ui.output_table("result"),),
+        ui.output_table("result"),
     ),
 )
 
@@ -491,12 +497,12 @@ Figure&nbsp;3
 <p><span class="math display">\[
 Y^x \pmod p
 \]</span> and therefore decrypt the message.</p>
-<p>Consider the publicly available information: <span class="math inline">\(p\)</span>, <span class="math inline">\(g\)</span> and the public key <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. To obtain the shared secret a hacker could solve the following problem</p>
+<p>Consider the publicly available information: <span class="math inline">\(p\)</span>, <span class="math inline">\(g\)</span> and the public key <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. To obtain the shared secret a hacker could try to solve the following problem</p>
 <p><span class="math display">\[
 g^x \pmod p = X,
 \]</span></p>
 <p>where <span class="math inline">\(x\)</span> is Alice’s private key. This is known as the discrete logarithm problem . In <a href="#fig-discretlog" class="quarto-xref">Figure&nbsp;4</a> you can explore how an observer could identify Alice’s private key, <span class="math inline">\(x\)</span> (where the marker sits on the horizontal line).</p>
-<p>It can be shown that when <span class="math inline">\(p\)</span> is chosen appropriately that there are not efficient methods to solve this problem. Hence the Diffie-Hellman is secure given appropriate choices for <span class="math inline">\(p\)</span> and <span class="math inline">\(g\)</span>.</p>
+<p>It can be shown that when <span class="math inline">\(p\)</span> and <span class="math inline">\(g\)</span> are chosen appropriately that there are not efficient methods to solve this problem. Hence the Diffie-Hellman is secure given appropriate choices for <span class="math inline">\(p\)</span> and <span class="math inline">\(g\)</span>.</p>
 <div id="fig-discretlog" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-discretlog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -514,13 +520,14 @@ from scipy.integrate import odeint
 
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
-        ui.panel_sidebar(
+        ui.sidebar(
     ui.input_slider(id="p",label="p (prime number)",min=5,max=300,value=23,step=1),
     ui.input_slider(id="g",label="g (generator)",min=0,max=30,value=5,step=1),
     ui.input_slider(id="s",label="Public key",min=1,max=100,value=5,step=1),      
             ),
 
-        ui.panel_main(ui.output_plot("plot"),),
+        
+        ui.output_plot("plot"),
     ),
 )
 
@@ -592,7 +599,7 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
-        ui.panel_sidebar(
+        ui.sidebar(
     ui.input_slider(id="p",label="p (prime number)",min=10,max=3000,value=23,step=1),
     ui.input_slider(id="g",label="g (generator)",min=0,max=15.0,value=5,step=1),
     ui.input_slider(id="a",label="Private key Bob",min=1,max=10,value=2,step=1),
@@ -602,7 +609,7 @@ app_ui = ui.page_fluid(
      
             ),
 
-        ui.panel_main(ui.output_table("result"),),
+        ui.output_table("result"),
     ),
 )
 
@@ -681,16 +688,7 @@ def server(input, output, session):
         # Calling DataFrame constructor on list
         return df
 
-         
-
- 
-        
-        
-        
-       
-
-
-    
+   
 app = App(app_ui, server)</code></pre>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-dhelmanencryption-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -705,7 +703,7 @@ Figure&nbsp;5
 <p>f04ed308495b04694943d414e0444151fe141d05581b3eb2a4f168</p>
 <p>Suppose that we know that it has been encrypted using Diffie Helman algorithm. The encryptors have been a little slap dash and used the following values for publicly available information:</p>
 <p>p=31 q=23</p>
-<p>Can you use <a href="#fig-diffiehelmanndecrypt" class="quarto-xref">Figure&nbsp;6</a> to unencrypt the message using the available information?</p>
+<p>Can you use <a href="#fig-diffiehelmanndecrypt" class="quarto-xref">Figure&nbsp;6</a> to decrypt the message using the available information?</p>
 <div id="fig-diffiehelmanndecrypt" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-diffiehelmanndecrypt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -732,7 +730,7 @@ import base64
 
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
-        ui.panel_sidebar(
+        ui.sidebar(
     ui.input_slider(id="p",label="p",min=10,max=3000,value=23,step=1),
     ui.input_slider(id="g",label="g (generator)",min=0,max=33,value=5,step=1),
     ui.input_slider(id="a",label="Private key Bob",min=1,max=10,value=2,step=1),
@@ -741,7 +739,7 @@ app_ui = ui.page_fluid(
     ui.input_text(id='text',label="Message to decrypt",value="8968d20bbc5b"),
             ),
 
-        ui.panel_main(ui.output_table("result"),),
+        ui.output_table("result"),
     ),
 )
 
@@ -818,8 +816,9 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>At Dundee, core concepts from integration are introduced in the modules <em>Maths 1A</em> and <em>Maths 1B</em> and developed further in the modules <em>Maths 2A</em> and <em>Maths 2B</em>.</p>
-<p>In the modules <em>Introduction to Programming</em> and <em>Computer Algebra and Dynamical systems</em> you would be introduced to techniques that enable you to perform numerical integration.</p>
+<p>At Dundee, core concepts from number theory are introduced in the module <em>Topics in Pure Mathematics</em></p>
+<p>In the modules <em>Introduction to Programming</em> and <em>Computer Algebra and Dynamical systems</em> you would be introduced to programming techniques that enable you to explore encryption algorithms.</p>
+<p>At Level 4 we offer honours projects that consider different aspects of cryptography and group theory.</p>
 <p>You can find out more about these modules <a href="https://www.dundee.ac.uk/undergraduate/mathematics-bsc/teaching-and-assessment">here</a>.</p>
 </div>
 </div>
