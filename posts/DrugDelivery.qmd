@@ -52,7 +52,7 @@ from scipy.integrate import simpson
 
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
-        ui.panel_sidebar(
+        ui.sidebar(
     ui.input_slider(id="k",label="Drug half life (h)",min=1,max=8,value=6,step=1),
     ui.input_slider(id="t1",label="First time (h)",min=0.0,max=10.0,value=7.0,step=1.0),
     ui.input_slider(id="t2",label="Second time (h)",min=10.0,max=17.0,value=12.0,step=1.0),
@@ -65,7 +65,7 @@ app_ui = ui.page_fluid(
           
             ),
 
-        ui.panel_main(ui.output_plot("plot"),),
+        ui.output_plot("plot"),
     ),
 )
 

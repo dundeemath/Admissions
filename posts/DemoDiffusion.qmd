@@ -1,0 +1,64 @@
+---
+title: "Time stepping"
+format: html 
+image: 'DampedOscillation.png'
+categories: [Differential Equations, Calculus, Mathematical Biology]
+filters:
+  - shinylive
+---
+
+
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 800
+import numpy as np
+import matplotlib.pyplot as plt
+from shiny import App, reactive, render, ui
+
+# Define UI
+app_ui = ui.page_fluid(
+    ui.h2("Live Updating Plot in Shiny for Python"),
+    ui.output_text("time_display"),
+    ui.output_plot("time_plot"),
+)
+
+# Define Server Logic
+def server(input, output, session):
+    time_step = reactive.Value(0)  # Reactive variable for time step
+
+    @reactive.effect
+    def update_time():
+        """Continuously update the time step and re-render the plot."""
+        time_step.set(time_step() + 1)  # Increment time step
+        reactive.invalidate_later(100, update_time)  # Schedule next update
+
+    @output
+    @render.text
+    def time_display():
+        """Show the current time step."""
+        return f"Current Time Step: {time_step()}"
+
+    @output
+    @render.plot
+    def time_plot():
+        """Plot a sine wave that updates over time."""
+        t = time_step() * 0.1  # Convert step count to time
+        x = np.linspace(0, 10, 100)
+        y = np.sin(x + t)  # Time-dependent function
+
+        fig, ax = plt.subplots()
+        ax.plot(x, y, label=f"Time = {t:.1f}s", color="blue")
+        ax.set_ylim(-1.5, 1.5)
+        ax.set_title("Sine Wave Animation")
+        ax.legend()
+        return fig  # Return updated figure
+
+# Run the Shiny App
+app = App(app_ui, server)
+
+
+```
+
+
+
