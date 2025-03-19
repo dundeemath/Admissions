@@ -339,7 +339,7 @@ from scipy.integrate import odeint
 
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
-        ui.panel_sidebar(
+        ui.sidebar(
     ui.input_slider(id="r",label="r",min=0.0,max=5.0,value=0.1,step=0.001),             
     ui.input_slider(id="u0",label="u_0",min=0.0,max=1.0,value=0.5,step=0.01),
     ui.input_slider(id="T",label="Number of iterations",min=0.0,max=60.0,value=20.0,step=1.0),
@@ -349,7 +349,7 @@ app_ui = ui.page_fluid(
           
             ),
 
-        ui.panel_main(ui.output_plot("plot"),),
+        ui.output_plot("plot"),
     ),
 )
 
