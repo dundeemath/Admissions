@@ -112,88 +112,88 @@
     "text": "## Prototype code that plots a trigonometric function and its derivative\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ndx=0.01\nx = np.arange(0, 20, dx)\ny = np.sin(x)\n\ndy_dx=np.cos(x)\n\nfig, ax = plt.subplots(1,2)\nax[0].plot(x, y)\nax[0].set_xlabel('x')\nax[0].set_ylabel('y(x)')\n\nax[1].plot(x, dy_dx)\nax[1].set_xlabel('x')\nax[1].set_ylabel('dy/dx')\n\nax[0].grid(True)\nax[1].grid(True)\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\nMathematics, University of Dundee"
   },
   {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#mathematics-degrees",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#mathematics-degrees",
-    "title": "Recurrence relations to chaos",
-    "section": "Mathematics degrees",
-    "text": "Mathematics degrees\n\nBecome a logical numerate problem solver\nLearn about exciting new areas of mathematics\nLearn how to apply mathematics to real world problems\nDevelop computer programming skills\nDevelop communication skills"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#logical-numerate-problem-solvers-are-valued",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#logical-numerate-problem-solvers-are-valued",
-    "title": "Recurrence relations to chaos",
-    "section": "Logical numerate problem solvers are valued",
-    "text": "Logical numerate problem solvers are valued"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#mathematics-degrees-1",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#mathematics-degrees-1",
-    "title": "Recurrence relations to chaos",
-    "section": "Mathematics degrees",
-    "text": "Mathematics degrees\n\nSingle honours Mathematics degrees\nJoint Honours (e.g. with Accountancy, Economics, Physics, Life Sciences, Psychology)\nFlexibility in structure of degree pathways"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#recurrence-relations",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#recurrence-relations",
-    "title": "Recurrence relations to chaos",
-    "section": "Recurrence relations",
-    "text": "Recurrence relations\nThe value of an endowment policy increases at the rate of 5 per annum. The initial value is £7000. How much is it worth after two years?\n\n\\[\nu_0=7000\n\\]\n. . . \\[\nu_1=1.05 \\times 7000= 7350\n\\]\n. . . \\[\nu_2 =1.05 u_1 = 1.05 \\times  7350 =   7717\n\\]"
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#recurrence-relations---example",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#recurrence-relations---example",
+    "title": "From linear recurrence relations to chaos",
+    "section": "Recurrence relations - example",
+    "text": "Recurrence relations - example\nThe value of an endowment policy increases at the rate of 5 per annum. The initial value is £7000. How much is it worth after two years?\n\n\\[\nu_0=7000\n\\]\n. . . \\[\nu_1=1.05 \\times 7000= 7350\n\\]\n. . . \\[\nu_2 =1.05 u_1 = 1.05 \\times  7350 =   7717\n\\]"
   },
   {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#simulating-the-accumulation",
     "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#simulating-the-accumulation",
-    "title": "Recurrence relations to chaos",
+    "title": "From linear recurrence relations to chaos",
     "section": "Simulating the accumulation",
     "text": "Simulating the accumulation\nhttps://dundeemath.github.io/Admissions/posts/RecurrenceRelations.html\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"a\",label=\"Interest rate (%)\",min=1.0,max=5.0,value=1.05,step=0.001),\n            \n     \n    ui.input_slider(id=\"u0\",label=\"Initial amount (£)\",min=2500.0,max=10000.0,value=3000.0,step=500),\n    ui.input_slider(id=\"T\",label=\"Number of years\",min=0.0,max=60.0,value=3.0,step=1.0),\n    ),\n\n        ui.output_plot(\"plot\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n    @render.plot\n    def plot():\n        fig, ax = plt.subplots()\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        a=float(input.a())\n        b=0.0\n        u0=float(input.u0())\n        T=int(input.T())\n       \n        # Define rhs of LV ODEs\n        def rhs_pop_model(y,t,a,b):\n          \n\n          rhs=a*y+b\n\n          return rhs\n        def DiscreteSol(rhs_pop_model,y_0,t,a,b):\n            y=np.zeros_like(t,dtype=float)\n            y[0]=y_0\n            for i in t:\n                if i&gt;0:\n                    y[i]=rhs_pop_model(y[i-1],t[i],a,b)\n            return y\n\n\n        # Define discretised t domain\n        t = np.arange(0, T, 1)\n        # define initial conditions\n        init_cond=u0\n        \n        # Compute numerical solution of ODEs\n        sol1 = DiscreteSol(rhs_pop_model,init_cond,t,a,b)\n\n        # Plot results\n        y=sol1\n        \n        ax.plot(t,y)\n        ax.set_xlabel('$n$')\n        ax.set_ylabel('$u_n$')\n\n        plt.grid()\n        plt.show()\n    \napp = App(app_ui, server)\n\n\nFigure 1"
   },
   {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#general-form-for-a-recurrence-relation",
     "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#general-form-for-a-recurrence-relation",
-    "title": "Recurrence relations to chaos",
+    "title": "From linear recurrence relations to chaos",
     "section": "General form for a recurrence relation",
     "text": "General form for a recurrence relation\n\\[u_{n+1}=r u_n+b\\]\n\nConvergence\nThe solutions converges if \\(|r|&lt;1\\).\n\n\nA limit\nAs \\(n\\rightarrow \\infty\\), \\(u_n\\rightarrow \\frac{b}{1-r}\\).\nThe limiting value is an example of a fixed point."
   },
   {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#simulate-the-linear-recurrence-relation",
     "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#simulate-the-linear-recurrence-relation",
-    "title": "Recurrence relations to chaos",
+    "title": "From linear recurrence relations to chaos",
     "section": "Simulate the linear recurrence relation",
     "text": "Simulate the linear recurrence relation\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"a\",label=\"r\",min=-1.0,max=3,value=0.1,step=0.001),\n    ui.input_slider(id=\"b\",label=\"b\",min=0.0,max=15.0,value=10.0,step=0.01),             \n     \n    ui.input_slider(id=\"u0\",label=\"u_0\",min=0.0,max=20.0,value=5.0,step=1.0),\n    ui.input_slider(id=\"T\",label=\"Number of iterations\",min=0.0,max=60.0,value=20.0,step=1.0),\n              \n          \n            ),\n\n        ui.output_plot(\"plot\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n    @render.plot\n    def plot():\n        fig, ax = plt.subplots()\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        a=float(input.a())\n        b=float(input.b())\n        u0=float(input.u0())\n        T=int(input.T())\n       \n        # Define rhs of LV ODEs\n        def rhs_pop_model(y,t,a,b):\n          \n\n          rhs=a*y+b\n\n          return rhs\n        def DiscreteSol(rhs_pop_model,y_0,t,a,b):\n            y=np.zeros_like(t,dtype=float)\n            y[0]=y_0\n            for i in t:\n                if i&gt;0:\n                    y[i]=rhs_pop_model(y[i-1],t[i],a,b)\n            return y\n\n\n        # Define discretised t domain\n        t = np.arange(0, T, 1)\n        # define initial conditions\n        init_cond=u0\n        \n        # Compute numerical solution of ODEs\n        sol1 = DiscreteSol(rhs_pop_model,init_cond,t,a,b)\n\n        # Plot results\n        y=sol1\n        \n        ax.plot(t,y)\n        ax.set_xlabel('$n$')\n        ax.set_ylabel('$u_n$')\n\n        plt.grid()\n        plt.show()\n    \napp = App(app_ui, server)\n\n\nFigure 2"
   },
   {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#summarising-the-results-in-a-bifurcation-diagram",
     "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#summarising-the-results-in-a-bifurcation-diagram",
-    "title": "Recurrence relations to chaos",
+    "title": "From linear recurrence relations to chaos",
     "section": "Summarising the results in a bifurcation diagram",
     "text": "Summarising the results in a bifurcation diagram"
   },
   {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#now-with-a-bifurcation-diagram",
     "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#now-with-a-bifurcation-diagram",
-    "title": "Recurrence relations to chaos",
+    "title": "From linear recurrence relations to chaos",
     "section": "Now with a bifurcation diagram",
     "text": "Now with a bifurcation diagram\n\\[u_{n+1}=ru_n+b \\]\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"r\",label=\"r\",min=0.0,max=5.0,value=0.1,step=0.001),\n    ui.input_slider(id=\"b\",label=\"b\",min=0.0,max=5.0,value=0.1,step=0.001),             \n    ui.input_slider(id=\"u0\",label=\"u_0\",min=0.0,max=1.0,value=0.5,step=0.01),\n    ui.input_slider(id=\"T\",label=\"Number of iterations\",min=0.0,max=60.0,value=20.0,step=1.0),\n    ),\n\n        ui.output_plot(\"plot\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n    @render.plot\n    def plot():\n        fig, ax = plt.subplots(2,1)\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        r=float(input.r())\n        b=float(input.b())\n\n        u0=float(input.u0())\n        T=int(input.T())\n        \n\n        # Define rhs of logistic map \n        def lin_map(y,t,r,b):\n          rhs=r*y+b\n          return rhs\n        \n        def DiscreteSol(rhs_pop_model,y_0,t,r,b):\n            y=np.zeros_like(t,dtype=float)\n            y[0]=y_0\n            for i in t:\n                if i&gt;0:\n\n                    y[i]=rhs_pop_model(y[i-1],t[i],r,b)\n            return y\n\n        # Define discretised t domain\n        t = np.arange(0, T, 1)\n        # define initial conditions\n        init_cond=u0\n        \n        # Compute numerical solution of ODEs\n        sol1 = DiscreteSol(lin_map,init_cond,t,r,b)\n\n        # Plot results\n        y=sol1\n        \n        ax[0].plot(t,y)\n        ax[0].set_xlabel('$n$')\n        ax[0].set_ylabel('$u_n$')\n        ax[0].set_title('Simulation')\n\n        r_vec_1=np.linspace(0,0.99,100)\n        r_vec_2=np.linspace(1.01,5.0,100)\n\n        ax[1].plot(r_vec_1,b/(1-r_vec_1))\n        ax[1].plot(r_vec_2,b/(1-r_vec_2\n        ))\n        max_x_st=5.0\n        ax[1].plot([r,r],[-max_x_st,max_x_st],'r--')\n        ax[1].set_ylim([-max_x_st,max_x_st])\n        ax[1].set_xlabel('$r$')\n        ax[1].set_ylabel('$u^*$')\n\n        ax[1].set_title('Bifurcation diagram')\n        plt.grid()\n        plt.show()\n    \napp = App(app_ui, server)\n\n\nFigure 3"
   },
   {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#a-nonlinear-recurrence-relation",
     "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#a-nonlinear-recurrence-relation",
-    "title": "Recurrence relations to chaos",
+    "title": "From linear recurrence relations to chaos",
     "section": "A nonlinear recurrence relation",
     "text": "A nonlinear recurrence relation\n\\[\nu_{n+1}=ru_n(1-u_n)\n\\]\n. . . Rearranging \\[\nu_{n+1}=ru_n - ru_n^2\n\\]\n\nQuestion: how do solutions of this nonlinear system behave?"
   },
   {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#solving-numerically",
     "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#solving-numerically",
-    "title": "Recurrence relations to chaos",
+    "title": "From linear recurrence relations to chaos",
     "section": "Solving numerically",
     "text": "Solving numerically\n\\[\nu_{n+1}=ru_n(1-u_n)\n\\]\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"r\",label=\"r\",min=0.0,max=5.0,value=0.1,step=0.001),             \n    ui.input_slider(id=\"u0\",label=\"u_0\",min=0.0,max=1.0,value=0.5,step=0.01),\n    ui.input_slider(id=\"T\",label=\"Number of iterations\",min=0.0,max=60.0,value=20.0,step=1.0),\n    \n              \n          \n            ),\n\n        ui.output_plot(\"plot\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n    @render.plot\n    def plot():\n        fig, ax = plt.subplots()\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        r=float(input.r())\n        u0=float(input.u0())\n        T=int(input.T())\n        \n\n        # Define rhs of logistic map \n        def logistic_map(y,t,r):\n          rhs=r*y*(1-y)\n          return rhs\n        \n        def DiscreteSol(rhs_pop_model,y_0,t,r):\n            y=np.zeros_like(t,dtype=float)\n            y[0]=y_0\n            for i in t:\n                if i&gt;0:\n\n                    y[i]=rhs_pop_model(y[i-1],t[i],r)\n            return y\n\n        # Define discretised t domain\n        t = np.arange(0, T, 1)\n        # define initial conditions\n        init_cond=u0\n        \n        # Compute numerical solution of ODEs\n        sol1 = DiscreteSol(logistic_map,init_cond,t,r)\n\n        # Plot results\n        y=sol1\n        \n        ax.plot(t,y)\n        ax.set_xlabel('$n$')\n        ax.set_ylabel('$u_n$')\n\n        plt.grid()\n\n        \n        \n\n        plt.show()\n    \napp = App(app_ui, server)\n\n\nFigure 4"
   },
   {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#now-with-a-bifurcation-diagram-1",
     "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#now-with-a-bifurcation-diagram-1",
-    "title": "Recurrence relations to chaos",
+    "title": "From linear recurrence relations to chaos",
     "section": "Now with a bifurcation diagram",
     "text": "Now with a bifurcation diagram\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"r\",label=\"r\",min=0.0,max=5.0,value=0.1,step=0.001),             \n    ui.input_slider(id=\"u0\",label=\"u_0\",min=0.0,max=1.0,value=0.5,step=0.01),\n    ui.input_slider(id=\"T\",label=\"Number of iterations\",min=0.0,max=60.0,value=20.0,step=1.0),\n    ui.input_slider(id=\"r_range\",label=\"r zoomed\",min=0.0,max=4.0,value=[0.0,4.0],step=0.001),\n    ui.input_slider(id=\"u_range\",label=\"u zoomed\",min=0.0,max=1.0,value=[0.0,1.0],step=0.01),\n              \n          \n            ),\n\n        ui.output_plot(\"plot\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n    @render.plot\n    def plot():\n        fig, ax = plt.subplots(3,1)\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        r=float(input.r())\n        u0=float(input.u0())\n        T=int(input.T())\n        r_min=float(input.r_range()[0])\n        r_max=float(input.r_range()[1])\n        u_min=float(input.u_range()[0])\n        u_max=float(input.u_range()[1])\n\n\n        # Define rhs of logistic map \n        def logistic_map(y,t,r):\n          rhs=r*y*(1-y)\n          return rhs\n        \n        def DiscreteSol(rhs_pop_model,y_0,t,r):\n            y=np.zeros_like(t,dtype=float)\n            y[0]=y_0\n            for i in t:\n                if i&gt;0:\n\n                    y[i]=rhs_pop_model(y[i-1],t[i],r)\n            return y\n\n        # Define discretised t domain\n        t = np.arange(0, T, 1)\n        # define initial conditions\n        init_cond=u0\n        \n        # Compute numerical solution of ODEs\n        sol1 = DiscreteSol(logistic_map,init_cond,t,r)\n\n        # Plot results\n        y=sol1\n        \n        ax[0].plot(t,y)\n        ax[0].set_xlabel('$n$')\n        ax[0].set_ylabel('$u_n$')\n\n        plt.grid()\n\n        # Parameters\n        n_iterations = 1000  # total iterations for each value of r\n        n_last = 100         # number of iterations to plot (for steady state)\n        r_values = np.linspace(0.0, 4.0, 10000)  # range of r values\n        u0 = 0.5  # initial population (seed)\n\n        delta=0.25\n        #r_min=r-delta\n        #r_max=r+delta\n\n        r_values2 = np.linspace(r_min, r_max, 10000)  # range of r values\n\n        # Initialize plot\n        x = np.full_like(r_values, u0)\n        x2 = np.full_like(r_values2, u0)\n\n        # Iterate and plot bifurcation diagram\n         \n        for _ in range(n_iterations):\n            x = r_values * x * (1 - x)  # logistic map function\n            x2 = r_values2 * x2 * (1 - x2)  # logistic map function\n\n            if _ &gt;= (n_iterations - n_last):  # plot only steady state\n                ax[1].plot(r_values, x, ',k', alpha=0.25)\n                ax[1].plot([r,r],[0,1],'r--')\n                ax[2].plot(r_values2, x2, ',k', alpha=0.25)\n                ax[2].plot([r,r],[0,1],'r--')\n\n            # Labels and display\n            ax[1].set_title(\"Bifurcation Diagram\")\n            ax[1].set_xlabel(\"$r$\")\n            ax[1].set_ylabel(\"$u^*$\")\n            ax[2].set_title(\"Bifurcation Diagram (zoomed in) \")\n            ax[2].set_xlabel(\"$r$\")\n            ax[2].set_ylabel(\"$u^*$\")\n            ax[2].set_xlim([r_min,r_max])\n            ax[2].set_ylim([u_min,u_max])\n\n\n\n        plt.show()\n    \napp = App(app_ui, server)\n\n\nFigure 5"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#mathematics-degrees",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#mathematics-degrees",
+    "title": "From linear recurrence relations to chaos",
+    "section": "Mathematics degrees",
+    "text": "Mathematics degrees\n\nBecome a logical numerate problem solver\nLearn about exciting new areas of mathematics\nLearn how to apply mathematics to real world problems\nDevelop computer programming skills\nDevelop communication skills"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#logical-numerate-problem-solvers-are-valued",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#logical-numerate-problem-solvers-are-valued",
+    "title": "From linear recurrence relations to chaos",
+    "section": "Logical numerate problem solvers are valued",
+    "text": "Logical numerate problem solvers are valued"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#mathematics-degrees-1",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#mathematics-degrees-1",
+    "title": "From linear recurrence relations to chaos",
+    "section": "Mathematics degrees",
+    "text": "Mathematics degrees\n\nSingle honours Mathematics degrees\nJoint Honours (e.g. with Accountancy, Economics, Physics, Life Sciences, Psychology)\nFlexibility in structure of degree pathways"
   },
   {
     "objectID": "Slides/STEMExpo2025/STEMExpo2025.html#skills-developed-in-maths-degrees",
