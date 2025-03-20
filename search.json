@@ -116,7 +116,7 @@
     "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#recurrence-relations---example",
     "title": "From linear recurrence relations to chaos",
     "section": "Recurrence relations - example",
-    "text": "Recurrence relations - example\nThe value of an endowment policy increases at the rate of 5 per annum. The initial value is £7000. How much is it worth after two years?\n\n\\[\nu_0=7000\n\\]\n. . . \\[\nu_1=1.05 \\times 7000= 7350\n\\]\n. . . \\[\nu_2 =1.05 u_1 = 1.05 \\times  7350 =   7717\n\\]"
+    "text": "Recurrence relations - example\nThe value of an endowment policy increases at the rate of 5 % per annum. The initial value is £7000. How much is it worth after two years?\n\n\\[\nu_0=7000\n\\]\n. . . \\[\nu_1=1.05 \\times 7000= 7350\n\\]\n. . . \\[\nu_2 =1.05 u_1 = 1.05 \\times  7350 =   7717\n\\]"
   },
   {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#simulating-the-accumulation",
