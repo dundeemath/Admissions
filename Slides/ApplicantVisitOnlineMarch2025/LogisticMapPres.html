@@ -548,14 +548,14 @@ Figure&nbsp;1
 </section>
 <section id="general-form-for-a-recurrence-relation" class="slide level2">
 <h2>General form for a recurrence relation</h2>
-<p><span class="math display">\[u_{n+1}=a u_n+b\]</span></p>
+<p><span class="math display">\[u_{n+1}=r u_n+b\]</span></p>
 <div class="fragment">
 <p><em>Convergence</em></p>
-<p>The solutions converges if <span class="math inline">\(|a|&lt;1\)</span>.</p>
+<p>The solutions converges if <span class="math inline">\(|r|&lt;1\)</span>.</p>
 </div>
 <div class="fragment">
 <p><em>A limit</em></p>
-<p>As <span class="math inline">\(n\rightarrow \infty\)</span>, <span class="math inline">\(u_n\rightarrow \frac{b}{1-a}\)</span>.</p>
+<p>As <span class="math inline">\(n\rightarrow \infty\)</span>, <span class="math inline">\(u_n\rightarrow \frac{b}{1-r}\)</span>.</p>
 <p>The limiting value is an example of a <em>fixed point</em>.</p>
 </div>
 </section>
@@ -579,7 +579,7 @@ Figure&nbsp;1
 <span id="fig-popmodel-13"><a href="#fig-popmodel-13"></a>app_ui = ui.page_fluid(</span>
 <span id="fig-popmodel-14"><a href="#fig-popmodel-14"></a>    ui.layout_sidebar(</span>
 <span id="fig-popmodel-15"><a href="#fig-popmodel-15"></a>        ui.sidebar(</span>
-<span id="fig-popmodel-16"><a href="#fig-popmodel-16"></a>    ui.input_slider(id="a",label="a",min=-1.0,max=3,value=0.1,step=0.001),</span>
+<span id="fig-popmodel-16"><a href="#fig-popmodel-16"></a>    ui.input_slider(id="a",label="r",min=-1.0,max=3,value=0.1,step=0.001),</span>
 <span id="fig-popmodel-17"><a href="#fig-popmodel-17"></a>    ui.input_slider(id="b",label="b",min=0.0,max=15.0,value=10.0,step=0.01),             </span>
 <span id="fig-popmodel-18"><a href="#fig-popmodel-18"></a>     </span>
 <span id="fig-popmodel-19"><a href="#fig-popmodel-19"></a>    ui.input_slider(id="u0",label="u_0",min=0.0,max=20.0,value=5.0,step=1.0),</span>
