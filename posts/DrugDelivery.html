@@ -174,12 +174,18 @@ window.Quarto = {
 <section id="model-development" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="model-development"><span class="header-section-number">1.1</span> Model development</h2>
 <p>Let <span class="math inline">\(t\)</span> represent time and <span class="math inline">\(C(t)\)</span> represent the drug concentration in the blood stream.</p>
-<p>Suppose that the drug has a half-life of 6 hours and that at some set of times, <span class="math inline">\(\{t_i\}\)</span>, a concentration of drug <span class="math inline">\(c_i\)</span> is delivered to the patient.</p>
+<p>Suppose that the drug has a half-life of 6 hours and that at some set of times, <span class="math inline">\(\{t_i\}\)</span>, a concentration of drug <span class="math inline">\(c_i\)</span> is delivered to a patient.</p>
 <p>Consider the model <span class="math display">\[
 \frac{dC}{dt}=-kC+\sum_i c_i \delta(t_i), \quad N(0)=0.
 \]</span></p>
 <p>The first term describes the linear degradation of the drug. The second term represent instantaneous delivery of drug at a prescribed set of times.</p>
 <p>In <a href="#fig-popmodel" class="quarto-xref">Figure&nbsp;1</a> you can explore the effect of different treatment protocols.</p>
+<p>The AUC refers to the area under the curve. This is a metric used to calculate the total dosage delivered to the patient. It is just the integral</p>
+<p><span class="math display">\[
+AUC=\int_0^T C(t)dt.
+\]</span></p>
+<p><span class="math inline">\(C_{max}\)</span> refers to the maximum concentration experienced by the patient.</p>
+<p>In a real world setting constraints might be placed on AUC and <span class="math inline">\(C_{max}\)</span> (e.g.&nbsp;we can play around with the timing of delivery but the max concentration must never exceed some critical value).</p>
 <div id="fig-popmodel" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-popmodel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -199,9 +205,9 @@ from scipy.integrate import simpson
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.sidebar(
-    ui.input_slider(id="k",label="Drug half life (h)",min=1,max=8,value=6,step=1),
+    ui.input_slider(id="k",label="Drug half life (h)",min=1,max=12,value=6,step=1),
     ui.input_slider(id="t1",label="First time (h)",min=0.0,max=10.0,value=7.0,step=1.0),
-    ui.input_slider(id="t2",label="Second time (h)",min=10.0,max=17.0,value=12.0,step=1.0),
+    ui.input_slider(id="t2",label="Second time (h)",min=10.0,max=18.0,value=12.0,step=1.0),
     ui.input_slider(id="t3",label="Third time (h)",min=17.0,max=22.0,value=18.0,step=1.0),
     ui.input_slider(id="c1",label="First conc.",min=0.0,max=12.0,value=4.0,step=1.0),
     ui.input_slider(id="c2",label="Second conc.",min=0.0,max=12.0,value=4.0,step=1.0),
@@ -216,10 +222,10 @@ app_ui = ui.page_fluid(
 )
 
 def server(input, output, session):
-    
+
     @render.plot
     def plot():
-        fig, ax = plt.subplots(2,1)
+        fig, ax = plt.subplots()
         #ax.set_ylim([-2, 2])
         # Filter fata
         
@@ -243,23 +249,23 @@ def server(input, output, session):
           rhs[0]=dN_dt
           return rhs
 
-        c1_default=12
-        c2_default=0.0
-        c3_default=0.0
+        #c1_default=12
+        #c2_default=0.0
+        #c3_default=0.0
 
         T_final=96
         num_days=int(T_final/24)
 
-        drug_conc_default_day=[c1_default,c2_default,c3_default,0]
+        #drug_conc_default_day=[c1_default,c2_default,c3_default,0]
         drug_conc_day=[c1,c2,c3,0]
         t_sort_day=[0.0,t1,t2,t3]
 
-        drug_conc_default=[]
+        #drug_conc_default=[]
         drug_conc=[]
         t_sort=[]
         Cmax=0.0
         for i in range(num_days):
-            drug_conc_default=drug_conc_default+drug_conc_default_day
+            #drug_conc_default=drug_conc_default+drug_conc_default_day
             drug_conc=drug_conc+drug_conc_day
 
             t_sort_day_i = [x + i*24.0 for x in t_sort_day]
@@ -287,12 +293,12 @@ def server(input, output, session):
 
             N_0=N[-1]
             N_0=N_0+drug_conc[i]
-            ax[0].plot(t, N,'b')
+            ax.plot(t, N,'b')
             AUC=AUC+simpson(N, x=t)
             Cmax=np.max([Cmax,np.max(N)])
 
         
-        N_0=0.0
+        '''N_0=0.0
         AUC_t=0.0
         cmax_t=0.0
         for i in range(len(t_sort)-1):
@@ -315,13 +321,13 @@ def server(input, output, session):
             ax[1].plot(t, N,'r')
             AUC_t=AUC_t+simpson(N, x=t)
             cmax_t=np.max([cmax_t,np.max(N)])
+        '''
 
+        #ax[1].set_xlabel('$t$ (h)')
+        ax.set_xlabel('$t$ (h)')
 
-        ax[1].set_xlabel('$t$ (h)')
-        ax[0].set_xlabel('$t$ (h)')
-
-        ax[0].set_title('AUC = ' + str(int(AUC)) +', Cmax = ' + str(int(Cmax)))
-        ax[1].set_title('AUC = ' + str(int(AUC_t)) + ', Cmax = ' + str(int(cmax_t)))
+        ax.set_title('AUC = ' + str(int(AUC)) +', Cmax = ' + str(int(Cmax)))
+        #ax[1].set_title('AUC = ' + str(int(AUC_t)) + ', Cmax = ' + str(int(cmax_t)))
 
         #ax.set_ylim([0,max_inf*1.4])
 
@@ -335,10 +341,141 @@ Figure&nbsp;1
 </figcaption>
 </figure>
 </div>
+</section>
+<section id="a-specific-modelling-problem" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="a-specific-modelling-problem"><span class="header-section-number">1.2</span> A specific modelling problem</h2>
+<p>Here is a modelling challenge?</p>
+<p>You work for a drug company who are designing a new drug. The drug has to be administered twice a day, at 12 hour intervals, and the administered drug concentration is fixed at a value of 4 (for reasons outside your control).</p>
+<p>Can you use <a href="#fig-drughalflife" class="quarto-xref">Figure&nbsp;2</a> to answer the following questions:</p>
 <ul>
-<li>Explore the effect of the drug half life on hte concentration profile.</li>
-<li>Is taking the drug three times per day ‘better’ than taking it twice?</li>
+<li>What must the half-life of the drug be such that the concentration does not fall below a critical level 2?</li>
+<li>How rigid does the patient need to stick the 12 hour intervals?</li>
+<li>What happens to the AUC as the half-life of the drug increases?</li>
 </ul>
+<div id="fig-drughalflife" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-drughalflife-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre id="fig-drughalflife" class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 500
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+from scipy.integrate import simpson
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.sidebar(
+    ui.input_slider(id="k",label="Drug half life (h)",min=1,max=12,value=6,step=1),
+    ui.input_slider(id="t1",label="First time (h)",min=0.0,max=10.0,value=7.0,step=1.0),
+    ui.input_slider(id="t2",label="Second time (h)",min=10.0,max=18.0,value=12.0,step=1.0),
+                 
+          
+            ),
+
+        ui.output_plot("plot"),
+    ),
+)
+
+def server(input, output, session):
+
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots()
+        #ax.set_ylim([-2, 2])
+        # Filter fata
+        
+        
+        drug_half_life=float(input.k())
+        t1=float(input.t1())
+        t2=float(input.t2())
+        c1=4.0 
+        c2=4.0 
+
+        k=np.log(2)/drug_half_life
+
+        
+        # Define rhs of LV ODEs
+        def rhs_pop_model(x,t,k,r):
+          rhs=np.zeros_like(x,dtype=float)
+          N=x[0]
+          dN_dt=-k*N
+          rhs[0]=dN_dt
+          return rhs
+
+        #c1_default=12
+        #c2_default=0.0
+        #c3_default=0.0
+
+        T_final=96
+        num_days=int(T_final/24)
+
+        #drug_conc_default_day=[c1_default,c2_default,c3_default,0]
+        drug_conc_day=[c1,c2,0]
+        t_sort_day=[0.0,t1,t2]
+
+        #drug_conc_default=[]
+        drug_conc=[]
+        t_sort=[]
+        Cmax=0.0
+        for i in range(num_days):
+            #drug_conc_default=drug_conc_default+drug_conc_default_day
+            drug_conc=drug_conc+drug_conc_day
+
+            t_sort_day_i = [x + i*24.0 for x in t_sort_day]
+
+
+            t_sort=t_sort+t_sort_day_i
+        
+        t_sort.append(T_final)        #t_sort=[0.0,t1,t2,t3,24.0,t1+24.0,t2+24.0,t3+24,48.0]
+        N_0=0.0
+        AUC=0.0
+
+        for i in range(len(t_sort)-1):
+        # Define discretised t domain
+            t = np.linspace(t_sort[i], t_sort[i+1], 1000)
+            print(t)
+
+            # define initial conditions
+            init_cond=[N_0]
+        
+            # Compute numerical solution of ODEs
+            sol1 = odeint(rhs_pop_model, init_cond,t,args=(k,1))
+
+            # Plot results
+            N=sol1[:,0]
+
+            N_0=N[-1]
+            N_0=N_0+drug_conc[i]
+            ax.plot(t, N,'b')
+            AUC=AUC+simpson(N, x=t)
+            Cmax=np.max([Cmax,np.max(N)])
+
+        
+        
+        #ax[1].set_xlabel('$t$ (h)')
+        ax.set_xlabel('$t$ (h)')
+
+        ax.set_title('AUC = ' + str(int(AUC)) +', Cmax = ' + str(int(Cmax)))
+        #ax[1].set_title('AUC = ' + str(int(AUC_t)) + ', Cmax = ' + str(int(cmax_t)))
+
+        #ax.set_ylim([0,max_inf*1.4])
+
+        plt.grid()
+        plt.show()
+    
+app = App(app_ui, server)</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-drughalflife-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
+</figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
