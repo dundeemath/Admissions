@@ -158,7 +158,7 @@ You can explore the solutions to  @eq-logisticmap using @fig-logisticmodel.
 * show that when $r=3.2$ the solution is periodic and repeats every second step
 * show that when $r=3.47$ the solution is periodic and repeats every fourth step
 * show that when $r=3.7$ that the solution is neither periodic nor reaches a steady value.
-* use the `$r$ zoomed' and `$u$ zoomed' sliders to magnify the third figure. Can you see self similarity (i.e. at fine scales the bifurcation structure looks similar to that at large scales?).
+* use the $r \  \textrm{zoomed}$ and $u \ \textrm{zoomed}$ sliders to magnify the third figure. Can you see self similarity (i.e. at fine scales the bifurcation structure looks similar to that at large scales?).
 
 
 The logistic map provides one of the simplest mathematical formulations of a phenomenon known as chaos. Whilst a precise definition of chaos involves some technical concepts, chaotic systems are broadly characterised by:
@@ -186,7 +186,7 @@ from scipy.integrate import odeint
 
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
-        ui.panel_sidebar(
+        ui.sidebar(
     ui.input_slider(id="r",label="r",min=0.0,max=5.0,value=0.1,step=0.001),             
     ui.input_slider(id="u0",label="u_0",min=0.0,max=1.0,value=0.5,step=0.01),
     ui.input_slider(id="T",label="Number of iterations",min=0.0,max=60.0,value=20.0,step=1.0),
@@ -196,7 +196,7 @@ app_ui = ui.page_fluid(
           
             ),
 
-        ui.panel_main(ui.output_plot("plot"),),
+        ui.output_plot("plot"),
     ),
 )
 

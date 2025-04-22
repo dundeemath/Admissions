@@ -1,0 +1,889 @@
+---
+title: "Grove Academy Talk"
+institute: "University of Dundee"
+date: 03-26-2025
+author: "Dr. Philip Murray"
+format: 
+  revealjs:
+    html-math-method: mathjax
+    theme: [default, resources/custom.scss]
+    logo: logo.png
+    chalkboard: true
+
+    
+
+    template-partials:
+      - resources/title-slide.html
+    footnotes-hover: true
+    slide-number: True
+filters:
+  - shinylive
+---
+
+## Why Mathematics?
+
+* route into many numerate professions
+* diverse career opportunities
+* learn a language that can be applied in many contexts
+* well paid jobs
+* learn skills for the digital age
+
+
+. . .
+
+* Because you enjoy it!
+
+
+## What happens on a Mathematics degree?
+:::: {.columns}
+
+::: {.column width="60%"}
+
+* Build on Higher/Advanced Higher
+* Learn how to apply mathematics to real world problems
+* Develop programming skills needed to solve mathematical problems
+* Develop communication skills
+
+:::
+
+::: {.column width="40%"}
+![](NSSREsults2024.png)
+:::
+
+::::
+
+. . .
+
+ Learn to become a *logical numerate problem solver*
+
+
+
+## Logical numerate problem solvers are valued
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](../../Images/MathsCareers.png)
+
+
+:::
+
+::: {.column width="50%"}
+![](../../Images/IFSCareerEarningsTable.png)
+:::
+::::
+
+www.ima.org
+
+
+## What have recent Dundee graduates gone on to do?
+
+:::: {.columns}
+
+::: {.column width="50%"}
+* Actuaries
+* Accountants
+* Data analysts
+* Engineers
+* Trade analysts
+:::
+
+::: {.column width="50%"}
+
+* App. developers
+* Teachers
+* Academia
+* Programmers
+:::
+::::
+
+
+## How is Mathematics taught at Uni?
+
+* develop core syllabus (e.g. algebra and calculus) 
+* learn about new mathematical topics (e.g. statistics, dynamical systems, differential geometry, operational research ...)
+
+* lectures (50 minute, twice a week)
+* weekly tutorials (usually associated with worksheets)
+* computer labs (develop programming skills)
+
+
+## Flex your mathematical muscles with a final year project 
+
+- develop independent problem solving skills
+- develop programming and presentation skills
+
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+* The $25,000,000,000 eigenvector
+* The mathematics of monopoly
+* How sat. navs work?
+:::
+::: {.column width="50%"}
+
+![](PrintGallery.png)
+
+:::
+::::
+
+
+# Today's activity
+
+## Explore how mathematics underpins cryptography
+
+
+1. How to banks securely transfer data to your phone?
+2. How can governments securely communicate sensitive information?
+
+https://dundeemath.github.io/Admissions/posts/Cryptography.html
+
+![](SignalBBC.png)
+
+## Decryption using hash functions {.smaller}
+
+* Hash functions provide a way to encrypt/decrypt messages
+
+*  Both encrytion/decryption use the same shared secret number
+
+9995fc19ee935e80d28b19db3709a9ce414ec1bd29cd006115114fbd6bd2f6e5cb84aec0d6468233e1
+
+[DecryptUsingThisLink](https://dundeemath.github.io/Admissions/posts/Cryptography.html)
+
+
+
+::: {#fig-decrypt}
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 300
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+import sympy as sp
+import pandas as pd
+from cryptography.hazmat.primitives.kdf.hkdf import HKDF
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import dh
+import os
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+import base64
+
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.sidebar(
+    ui.input_slider(id="shared_secret",label="Shared secret",min=10,max=3000,value=31,step=1),
+    ui.input_text(id='text',label="Message to decrypt",value="8968d20bbc5b"),
+            ),
+
+        ui.output_table("result"),
+    ),
+)
+
+def server(input, output, session):
+    
+
+
+    
+    def decrypt_message(key, iv, ciphertext):
+        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))
+        decryptor = cipher.decryptor()
+        plaintext = decryptor.update(ciphertext) + decryptor.finalize()
+        return plaintext
+
+
+
+    @render.table
+    def result():
+        # list of strings
+        shared_secret=int(input.shared_secret())
+        encrypted_text=str(input.text())
+
+        encrypted_text=bytes.fromhex(encrypted_text)
+
+
+
+
+        #text=text.encode(encoding="utf-8")
+        #encrypted_text = encrypted_text.encode('ISO-8859-1')
+
+        shared_secret_bytes=shared_secret.to_bytes(16,'big')
+        derived_key = HKDF(
+            algorithm=hashes.SHA256(),
+            length=32,
+            salt=None,
+            info=b"diffie-hellman-key-exchange",
+        ).derive(shared_secret_bytes)
+        
+        
+        iv=5
+        iv=iv.to_bytes(16, 'big')
+                
+        decrypted_message = decrypt_message(derived_key, iv, encrypted_text)
+
+       
+        data_dict = {
+            'Decrypted Message':[decrypted_message]
+            }
+
+        # Create a DataFrame
+        df = pd.DataFrame(data_dict)
+        # Calling DataFrame constructor on list
+        return df
+
+app = App(app_ui, server)
+```
+:::
+
+
+## Encrypting a message
+
+You can also [encrypt](https://dundeemath.github.io/Admissions/posts/Cryptography.html) a message.
+
+You'll need to use the same shared secret to perform the decryption.
+
+::: {#fig-encrypt}
+
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 300
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+import sympy as sp
+import pandas as pd
+from cryptography.hazmat.primitives.kdf.hkdf import HKDF
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import dh
+import os
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.sidebar(
+    ui.input_slider(id="shared_secret",label="shared secret",min=10,max=3000,value=23,step=1),
+    ui.input_text(id='text',label="Message to encrypt",value="Yarrrr"),
+         
+     
+            ),
+
+        ui.output_table("result"),
+    ),
+)
+
+def server(input, output, session):
+    
+
+    def encrypt_message(key, plaintext):
+        iv=5
+        iv=iv.to_bytes(16, 'big')
+        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))
+        encryptor = cipher.encryptor()
+        ciphertext = encryptor.update(plaintext) + encryptor.finalize()
+        return iv,ciphertext
+    
+
+
+
+    @render.table
+    def result():
+        # list of strings
+        shared_secret=int(input.shared_secret())
+        text=input.text()
+        # Step 1: Generate Diffie-Hellman Parameters and Keys
+       
+
+        #shared_secret=int(np.mod(g**(a*b),p))
+        shared_secret_bytes=shared_secret.to_bytes(16,'big')
+        #shared_secret=g**(a*b)
+        derived_key = HKDF(
+            algorithm=hashes.SHA256(),
+            length=32,
+            salt=None,
+            info=b"diffie-hellman-key-exchange",
+        ).derive(shared_secret_bytes)
+        
+        # Step 4: Encrypt a Message Using AES
+        message = text.encode(encoding="utf-8")
+        iv, ciphertext = encrypt_message(derived_key, message)
+
+         # Decrypt the message
+        data_dict = {
+            'Encrypted Message':[ciphertext.hex()],
+            'Encrypted Message':[ciphertext.hex()],
+            }
+
+        # Create a DataFrame
+        df = pd.DataFrame(data_dict)
+        # Calling DataFrame constructor on list
+        return df
+
+   
+app = App(app_ui, server)
+```
+:::
+
+
+## There are two problems with our encryption
+
+1. Brute force - messages can be decrypted using trial and error
+2. Encryption requires both parties to share a secret number? How can this be safely achieved in practice?
+
+##
+
+![](RacingPigeon.png)
+
+##
+
+![](HorseBoundCourier.png)
+
+## Modular arithmetic
+
+In modular arithmetic we define a finite set of numbers and perform arithmetic operations on them.
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+$$ 2+3=5$$
+$$ 5+4=9$$
+
+$$ 11+ 3= ??$$
+
+In mathematical notation,  14 is congruent to 2 mod 12
+$$
+14 \equiv 2 \pmod{12}.
+$$
+:::
+
+::: {.column width="50%"}
+![](Clock.png)
+:::
+
+::::
+
+
+
+## Modular arithmetic
+
+In general
+
+$$
+a \pmod p
+$$
+means the remainder when $a$ is divided by $p$.
+
+So 
+$$
+13 \pmod{12} = ?? 
+$$
+
+$$
+27 \pmod{12} = ??
+$$
+
+## More modular arithmetic operations
+
+What is
+$$
+2^3 \pmod 7 =?
+$$
+
+. . . 
+
+Notably
+
+$$
+(g^a)^b \pmod p =  (g^b)^a \pmod p
+$$
+
+. . . 
+
+This result underpins an import secret-sharing algorithm known as the *Diffie-Hellman key exchange algorithm*.
+
+
+## Generating a shared secret {.smaller}
+
+Two parties: $\textrm{\textcolor{red}{Alice}}$ and $\textrm{\textcolor{blue}{Bob}}$.
+
+Select and share the following: prime number, $p$, and generator $g$ (primitive root of p).
+
+Each choose their own private keys $\textcolor{red}{x_A}$ and $\textcolor{blue}{x_B}$.
+
+$\textrm{\textcolor{red}{Alice}}$ computes public key
+$$
+y_A=g^{\textcolor{red}{x_A}} \pmod p
+$$
+
+
+
+$\textrm{\textcolor{blue}{Bob}}$ computes public key
+
+$$
+y_B=g^{\textcolor{blue}{x_B}} \pmod p
+$$
+
+They publicly exchange public keys.
+
+Then $\textrm{\textcolor{red}{Alice}}$ computes
+
+$$
+(y_B)^{\textcolor{red}{x_A}}=(g^{\textcolor{blue}{x_B}})^{\textcolor{red}{x_A}}= g^{\textcolor{red}{x_A}\textcolor{blue}{x_B}}=s \pmod{p}
+$$
+
+## Generating a shared secret {.smaller}
+
+Meanwhile, $\textrm{\textcolor{blue}{Bob}}$ computes
+$$
+(y_A)^{\textcolor{blue}{x_B}}=(g^{\textcolor{red}{x_A}})^{\textcolor{blue}{x_B}}= g^{\textcolor{red}{x_A}\textcolor{blue}{x_B}}=s \pmod{p}
+$$
+
+Hence they both hold the same shared secret, $s$. 
+
+They can use this for encryption/decryption of messages.
+
+## Demonstration using app
+
+::: {#fig-sharedsecret}
+
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 650
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+import sympy as sp
+import pandas as pd
+from cryptography.hazmat.primitives.kdf.hkdf import HKDF
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import dh
+import os
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.sidebar(
+    ui.input_slider(id="p",label="p",min=10,max=3000,value=23,step=1),
+    ui.input_slider(id="g",label="g (generator)",min=0,max=15.0,value=5,step=1),
+    ui.input_slider(id="a",label="Private key Alice",min=1,max=10,value=2,step=1),
+    ui.input_slider(id="b",label="Private key Bob",min=1,max=10,value=3,step=1), 
+    
+         
+     
+            ),
+
+        ui.output_table("result"),
+    ),
+)
+
+def server(input, output, session):
+        
+
+
+
+    @render.table
+    def result():
+        # list of strings
+        p=int(input.p())
+        g=int(input.g())
+        a=int(input.a())
+        b=int(input.b())
+        # Step 1: Generate Diffie-Hellman Parameters and 
+
+
+        alice_public_key=int(np.mod(g**(a),p))
+        bob_public_key=int(np.mod(g**(b),p))
+
+        shared_secret=int(np.mod(g**(a*b),p))
+        
+     
+        data_dict = {
+            'p': [p],
+            'g': [g],
+            'Alice public key': [alice_public_key],
+            'Bob public key': [bob_public_key],
+            'Shared secret': [shared_secret],
+            }
+
+        # Create a DataFrame
+        df = pd.DataFrame(data_dict)
+        # Calling DataFrame constructor on list
+        return df
+
+app = App(app_ui, server)
+```
+:::
+
+
+## Why is it safe?
+
+Publicly shared info: $p$, $g$, $y_A=g^{\textcolor{red}{x_A}}$, $y_B=g^{\textcolor{blue}{x_B}}$.
+
+. . . 
+To identify the shared secret, a hacker needs to solve 
+$$
+g^{\textcolor{red}{x_A}}=y_A \pmod p.
+$$
+for the unknown $x_A$.
+
+. . .
+
+Given $\textcolor{red}{x_A}$, then they can compute the shared secret
+
+$$
+s=y_B^{\textcolor{red}{x_A}}=g^{\textcolor{red}{x_A} \textcolor{blue}{x_B}}.
+$$
+
+## Prime numbers and primitive roots {.smaller}
+
+A prime number, $p$, has factors $p$ and 1.
+
+Suppose that $g$ is a primitive root of $p$. $g$ has the property that
+$$
+g^{k} \pmod p
+$$
+generates all the numbers less than $p$.
+
+So if $p=5$, 3 is a primitive root as
+
+$$
+3^2\equiv 4 \pmod 5, \ \ 3^3\ \equiv 2 \pmod 5,
+$$
+
+$$
+3^4\equiv 1 \pmod 5, \ \ 3^5 \equiv 3 \pmod 5.
+$$
+
+## The discrete logarithm problem {.smaller}
+
+The problem 
+$$
+g^{x_A}=y_A \pmod p.
+$$
+
+is hard to solve.
+
+Choose $p$ to be a prime number and $g$ to be a *primitive root* of $p$.
+
+::: {#fig-discretlog fig-align="center"}
+
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 400
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.sidebar(
+    ui.input_slider(id="p",label="p (prime number)",min=5,max=300,value=23,step=1),
+    ui.input_slider(id="g",label="g (generator)",min=0,max=30,value=5,step=1),
+    ui.input_slider(id="s",label="Public key",min=1,max=100,value=5,step=1),      
+            ),
+
+        
+        ui.output_plot("plot"),
+    ),
+)
+
+def server(input, output, session):
+    
+
+    
+
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots()
+        #ax.set_ylim([-2, 2])
+        # Filter fata
+        
+        
+        p=int(input.p())
+        g=int(input.g())
+        s=int(input.s())
+        
+    
+    
+        ax.set_xlabel('$x$')
+        ax.set_ylabel('$f$')
+
+       
+        a_vec=np.linspace(0,p-1,p,dtype='uint64')
+        function_mod = np.mod(np.power(g, a_vec), p)
+
+        #function_mod=[pow(g,a,p) for a in a_vec]
+    
+
+        ax.plot(a_vec,function_mod,'x',a_vec,np.ones_like(a_vec)*s,'r--')
+
+        fig.tight_layout()
+        plt.grid()
+        plt.show()
+    
+app = App(app_ui, server)
+```
+:::
+
+## Encryption with Diffie Hellman -putting it all together {.smaller}
+
+::: {#fig-dhelmanencryption}
+
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 500
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+import sympy as sp
+import pandas as pd
+from cryptography.hazmat.primitives.kdf.hkdf import HKDF
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import dh
+import os
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.sidebar(
+    ui.input_slider(id="p",label="p (prime number)",min=10,max=3000,value=23,step=1),
+    ui.input_slider(id="g",label="g (generator)",min=0,max=15.0,value=5,step=1),
+    ui.input_slider(id="a",label="Private key Bob",min=1,max=10,value=2,step=1),
+    ui.input_slider(id="b",label="Private key Alice",min=1,max=10,value=3,step=1), 
+    ui.input_text(id='text',label="Message to encrypt",value="sin(x)"),
+         
+     
+            ),
+
+        ui.output_table("result"),
+    ),
+)
+
+def server(input, output, session):
+    
+
+    def encrypt_message(key, plaintext):
+        iv=5
+        iv=iv.to_bytes(16, 'big')
+        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))
+        encryptor = cipher.encryptor()
+        ciphertext = encryptor.update(plaintext) + encryptor.finalize()
+        return iv,ciphertext
+    
+    def decrypt_message(key, iv, ciphertext):
+        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))
+        decryptor = cipher.decryptor()
+        plaintext = decryptor.update(ciphertext) + decryptor.finalize()
+        return plaintext
+
+
+
+    @render.table
+    def result():
+        # list of strings
+        p=int(input.p())
+        g=int(input.g())
+        a=int(input.a())
+        text=input.text()
+        b=int(input.b())
+        # Step 1: Generate Diffie-Hellman Parameters and Keys
+        parameters = dh.generate_parameters(generator=2, key_size=512)
+
+        # Generate private/public key pairs for two parties
+        private_key_a = parameters.generate_private_key()
+        private_key_b = parameters.generate_private_key()
+
+        # Generate public keys
+        public_key_a = private_key_a.public_key()
+        public_key_b = private_key_b.public_key()
+
+        # Step 2: Derive Shared Secret
+        shared_key_a = private_key_a.exchange(public_key_b)
+        shared_key_b = private_key_b.exchange(public_key_a)
+
+        # Validate shared keys are identical
+        assert shared_key_a == shared_key_b, "Shared keys are not equal!"
+
+        shared_secret=int(np.mod(g**(a*b),p))
+        shared_secret_bytes=shared_secret.to_bytes(16,'big')
+        #shared_secret=g**(a*b)
+        derived_key = HKDF(
+            algorithm=hashes.SHA256(),
+            length=32,
+            salt=None,
+            info=b"diffie-hellman-key-exchange",
+        ).derive(shared_secret_bytes)
+        
+        # Step 4: Encrypt a Message Using AES
+        message = text.encode(encoding="utf-8")
+        iv, ciphertext = encrypt_message(derived_key, message)
+        print("Ciphertext:", ciphertext.hex())
+
+        # Decrypt the message
+        decrypted_message = decrypt_message(derived_key, iv, ciphertext)
+        data_dict = {
+            'p': [p],
+            'g': [g],
+            'Message': [text],
+            'Shared secret Alice': [shared_secret],
+            'Encrypted Message':[ciphertext.hex()],
+            }
+
+        # Create a DataFrame
+        df = pd.DataFrame(data_dict)
+        # Calling DataFrame constructor on list
+        return df
+
+   
+app = App(app_ui, server)
+```
+:::
+
+## Decryption
+::: {#fig-decrypt}
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 300
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+import sympy as sp
+import pandas as pd
+from cryptography.hazmat.primitives.kdf.hkdf import HKDF
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import dh
+import os
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+import base64
+
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.sidebar(
+    ui.input_slider(id="shared_secret",label="Shared secret",min=10,max=3000,value=31,step=1),
+    ui.input_text(id='text',label="Message to decrypt",value="8968d20bbc5b"),
+            ),
+
+        ui.output_table("result"),
+    ),
+)
+
+def server(input, output, session):
+    
+
+
+    
+    def decrypt_message(key, iv, ciphertext):
+        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))
+        decryptor = cipher.decryptor()
+        plaintext = decryptor.update(ciphertext) + decryptor.finalize()
+        return plaintext
+
+
+
+    @render.table
+    def result():
+        # list of strings
+        shared_secret=int(input.shared_secret())
+        encrypted_text=str(input.text())
+
+        encrypted_text=bytes.fromhex(encrypted_text)
+
+
+
+
+        #text=text.encode(encoding="utf-8")
+        #encrypted_text = encrypted_text.encode('ISO-8859-1')
+
+        shared_secret_bytes=shared_secret.to_bytes(16,'big')
+        derived_key = HKDF(
+            algorithm=hashes.SHA256(),
+            length=32,
+            salt=None,
+            info=b"diffie-hellman-key-exchange",
+        ).derive(shared_secret_bytes)
+        
+        
+        iv=5
+        iv=iv.to_bytes(16, 'big')
+                
+        decrypted_message = decrypt_message(derived_key, iv, encrypted_text)
+
+       
+        data_dict = {
+            'Decrypted Message':[decrypted_message]
+            }
+
+        # Create a DataFrame
+        df = pd.DataFrame(data_dict)
+        # Calling DataFrame constructor on list
+        return df
+
+app = App(app_ui, server)
+```
+:::
+
+
+
+
+## Some reasons to study mathematics
+
+* Have fun whilst you learn to to become logical numerate problem solver
+* Excellent career opportunities post graduation
+* Higher salaries than many other disciplines
+* Excellent teaching and student community
+
+## Cryptography
+
+* Mathematics underpins modern encryption
+* Necessary to keep data safe online
+* The security of modern cryptographic algorithms is strongly dependent on number theory and group theory.
+
+## Apps
+
+* Apps used today are published online
+* They are written in Python
+* In a maths degree you will learn when and why algorithms work
+* Implement algorithms

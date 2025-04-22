@@ -1,0 +1,611 @@
+---
+title: "From linear recurrence relations to chaos"
+institute: "University of Dundee"
+date: 03-20-2025
+author: "Dr. Philip Murray"
+format: 
+  revealjs:
+    html-math-method: mathjax
+    theme: [default, resources/custom.scss]
+    logo: logo.png
+    chalkboard: true
+
+    
+
+    template-partials:
+      - resources/title-slide.html
+    footnotes-hover: true
+    slide-number: True
+filters:
+  - shinylive
+---
+
+
+
+## Recurrence relations - example 
+
+The value of an endowment policy increases at the rate of 5 \% per annum. The initial value is £7000. How much is it worth after two years?
+
+. . .
+
+$$
+u_0=7000
+$$
+
+. . . 
+$$
+u_1=1.05 \times 7000= 7350 
+$$
+
+. . .
+$$
+u_2 =1.05 u_1 = 1.05 \times  7350 =   7717
+$$
+ 
+
+
+
+## Simulating the accumulation
+
+https://dundeemath.github.io/Admissions/posts/RecurrenceRelations.html
+
+
+::: {#fig-popmodel}
+
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 500
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.sidebar(
+    ui.input_slider(id="a",label="Interest rate (%)",min=1.0,max=5.0,value=1.05,step=0.001),
+            
+     
+    ui.input_slider(id="u0",label="Initial amount (£)",min=2500.0,max=10000.0,value=3000.0,step=500),
+    ui.input_slider(id="T",label="Number of years",min=0.0,max=60.0,value=3.0,step=1.0),
+    ),
+
+        ui.output_plot("plot"),
+    ),
+)
+
+def server(input, output, session):
+    
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots()
+        #ax.set_ylim([-2, 2])
+        # Filter fata
+        
+        
+        a=float(input.a())
+        b=0.0
+        u0=float(input.u0())
+        T=int(input.T())
+       
+        # Define rhs of LV ODEs
+        def rhs_pop_model(y,t,a,b):
+          
+
+          rhs=a*y+b
+
+          return rhs
+        def DiscreteSol(rhs_pop_model,y_0,t,a,b):
+            y=np.zeros_like(t,dtype=float)
+            y[0]=y_0
+            for i in t:
+                if i>0:
+                    y[i]=rhs_pop_model(y[i-1],t[i],a,b)
+            return y
+
+
+        # Define discretised t domain
+        t = np.arange(0, T, 1)
+        # define initial conditions
+        init_cond=u0
+        
+        # Compute numerical solution of ODEs
+        sol1 = DiscreteSol(rhs_pop_model,init_cond,t,a,b)
+
+        # Plot results
+        y=sol1
+        
+        ax.plot(t,y)
+        ax.set_xlabel('$n$')
+        ax.set_ylabel('$u_n$')
+
+        plt.grid()
+        plt.show()
+    
+app = App(app_ui, server)
+```
+:::
+
+## General form for a recurrence relation
+$$u_{n+1}=r u_n+b$$
+
+. . . 
+
+
+*Convergence*
+
+The solutions converges if $|r|<1$.
+
+ . . . 
+
+\vspace{3cm}
+
+*A limit* 
+
+ As $n\rightarrow \infty$, $u_n\rightarrow \frac{b}{1-r}$.
+
+
+ The limiting value is an example of a *fixed point*.
+
+
+
+
+
+## Simulate the linear recurrence relation
+
+::: {#fig-popmodel}
+
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 500
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.sidebar(
+    ui.input_slider(id="a",label="r",min=-1.0,max=3,value=0.1,step=0.001),
+    ui.input_slider(id="b",label="b",min=0.0,max=15.0,value=10.0,step=0.01),             
+     
+    ui.input_slider(id="u0",label="u_0",min=0.0,max=20.0,value=5.0,step=1.0),
+    ui.input_slider(id="T",label="Number of iterations",min=0.0,max=60.0,value=20.0,step=1.0),
+              
+          
+            ),
+
+        ui.output_plot("plot"),
+    ),
+)
+
+def server(input, output, session):
+    
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots()
+        #ax.set_ylim([-2, 2])
+        # Filter fata
+        
+        
+        a=float(input.a())
+        b=float(input.b())
+        u0=float(input.u0())
+        T=int(input.T())
+       
+        # Define rhs of LV ODEs
+        def rhs_pop_model(y,t,a,b):
+          
+
+          rhs=a*y+b
+
+          return rhs
+        def DiscreteSol(rhs_pop_model,y_0,t,a,b):
+            y=np.zeros_like(t,dtype=float)
+            y[0]=y_0
+            for i in t:
+                if i>0:
+                    y[i]=rhs_pop_model(y[i-1],t[i],a,b)
+            return y
+
+
+        # Define discretised t domain
+        t = np.arange(0, T, 1)
+        # define initial conditions
+        init_cond=u0
+        
+        # Compute numerical solution of ODEs
+        sol1 = DiscreteSol(rhs_pop_model,init_cond,t,a,b)
+
+        # Plot results
+        y=sol1
+        
+        ax.plot(t,y)
+        ax.set_xlabel('$n$')
+        ax.set_ylabel('$u_n$')
+
+        plt.grid()
+        plt.show()
+    
+app = App(app_ui, server)
+```
+:::
+
+
+## Summarising the results in a bifurcation diagram
+
+
+##  Now with a bifurcation diagram {.smaller}
+
+
+$$u_{n+1}=ru_n+b $$
+
+::: {#fig-logisticmodel}
+
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 500
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.sidebar(
+    ui.input_slider(id="r",label="r",min=0.0,max=5.0,value=0.1,step=0.001),
+    ui.input_slider(id="b",label="b",min=0.0,max=5.0,value=0.1,step=0.001),             
+    ui.input_slider(id="u0",label="u_0",min=0.0,max=1.0,value=0.5,step=0.01),
+    ui.input_slider(id="T",label="Number of iterations",min=0.0,max=60.0,value=20.0,step=1.0),
+    ),
+
+        ui.output_plot("plot"),
+    ),
+)
+
+def server(input, output, session):
+    
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots(2,1)
+        #ax.set_ylim([-2, 2])
+        # Filter fata
+        
+        
+        r=float(input.r())
+        b=float(input.b())
+
+        u0=float(input.u0())
+        T=int(input.T())
+        
+
+        # Define rhs of logistic map 
+        def lin_map(y,t,r,b):
+          rhs=r*y+b
+          return rhs
+        
+        def DiscreteSol(rhs_pop_model,y_0,t,r,b):
+            y=np.zeros_like(t,dtype=float)
+            y[0]=y_0
+            for i in t:
+                if i>0:
+
+                    y[i]=rhs_pop_model(y[i-1],t[i],r,b)
+            return y
+
+        # Define discretised t domain
+        t = np.arange(0, T, 1)
+        # define initial conditions
+        init_cond=u0
+        
+        # Compute numerical solution of ODEs
+        sol1 = DiscreteSol(lin_map,init_cond,t,r,b)
+
+        # Plot results
+        y=sol1
+        
+        ax[0].plot(t,y)
+        ax[0].set_xlabel('$n$')
+        ax[0].set_ylabel('$u_n$')
+        ax[0].set_title('Simulation')
+
+        r_vec_1=np.linspace(0,0.99,100)
+        r_vec_2=np.linspace(1.01,5.0,100)
+
+        ax[1].plot(r_vec_1,b/(1-r_vec_1))
+        ax[1].plot(r_vec_2,b/(1-r_vec_2
+        ))
+        max_x_st=5.0
+        ax[1].plot([r,r],[-max_x_st,max_x_st],'r--')
+        ax[1].set_ylim([-max_x_st,max_x_st])
+        ax[1].set_xlabel('$r$')
+        ax[1].set_ylabel('$u^*$')
+
+        ax[1].set_title('Bifurcation diagram')
+        plt.grid()
+        plt.show()
+    
+app = App(app_ui, server)
+```
+:::
+
+## A nonlinear recurrence relation
+
+$$
+u_{n+1}=ru_n(1-u_n)
+$$
+
+. . .
+Rearranging
+$$
+u_{n+1}=ru_n - ru_n^2
+$$
+
+. . . 
+
+Question: how do solutions of this nonlinear system behave?
+
+##  Solving numerically {.smaller}
+$$
+u_{n+1}=ru_n(1-u_n)
+$$
+
+::: {#fig-logisticmodel}
+
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 500
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.sidebar(
+    ui.input_slider(id="r",label="r",min=0.0,max=5.0,value=0.1,step=0.001),             
+    ui.input_slider(id="u0",label="u_0",min=0.0,max=1.0,value=0.5,step=0.01),
+    ui.input_slider(id="T",label="Number of iterations",min=0.0,max=60.0,value=20.0,step=1.0),
+    
+              
+          
+            ),
+
+        ui.output_plot("plot"),
+    ),
+)
+
+def server(input, output, session):
+    
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots()
+        #ax.set_ylim([-2, 2])
+        # Filter fata
+        
+        
+        r=float(input.r())
+        u0=float(input.u0())
+        T=int(input.T())
+        
+
+        # Define rhs of logistic map 
+        def logistic_map(y,t,r):
+          rhs=r*y*(1-y)
+          return rhs
+        
+        def DiscreteSol(rhs_pop_model,y_0,t,r):
+            y=np.zeros_like(t,dtype=float)
+            y[0]=y_0
+            for i in t:
+                if i>0:
+
+                    y[i]=rhs_pop_model(y[i-1],t[i],r)
+            return y
+
+        # Define discretised t domain
+        t = np.arange(0, T, 1)
+        # define initial conditions
+        init_cond=u0
+        
+        # Compute numerical solution of ODEs
+        sol1 = DiscreteSol(logistic_map,init_cond,t,r)
+
+        # Plot results
+        y=sol1
+        
+        ax.plot(t,y)
+        ax.set_xlabel('$n$')
+        ax.set_ylabel('$u_n$')
+
+        plt.grid()
+
+        
+        
+
+        plt.show()
+    
+app = App(app_ui, server)
+```
+:::
+
+
+##  Now with a bifurcation diagram
+
+::: {#fig-logisticmodel}
+
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 500
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+from shiny import reactive
+
+import numpy as np
+from pathlib import Path
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+
+app_ui = ui.page_fluid(
+    ui.layout_sidebar(
+        ui.sidebar(
+    ui.input_slider(id="r",label="r",min=0.0,max=5.0,value=0.1,step=0.001),             
+    ui.input_slider(id="u0",label="u_0",min=0.0,max=1.0,value=0.5,step=0.01),
+    ui.input_slider(id="T",label="Number of iterations",min=0.0,max=60.0,value=20.0,step=1.0),
+    ui.input_slider(id="r_range",label="r zoomed",min=0.0,max=4.0,value=[0.0,4.0],step=0.001),
+    ui.input_slider(id="u_range",label="u zoomed",min=0.0,max=1.0,value=[0.0,1.0],step=0.01),
+              
+          
+            ),
+
+        ui.output_plot("plot"),
+    ),
+)
+
+def server(input, output, session):
+    
+    @render.plot
+    def plot():
+        fig, ax = plt.subplots(3,1)
+        #ax.set_ylim([-2, 2])
+        # Filter fata
+        
+        
+        r=float(input.r())
+        u0=float(input.u0())
+        T=int(input.T())
+        r_min=float(input.r_range()[0])
+        r_max=float(input.r_range()[1])
+        u_min=float(input.u_range()[0])
+        u_max=float(input.u_range()[1])
+
+
+        # Define rhs of logistic map 
+        def logistic_map(y,t,r):
+          rhs=r*y*(1-y)
+          return rhs
+        
+        def DiscreteSol(rhs_pop_model,y_0,t,r):
+            y=np.zeros_like(t,dtype=float)
+            y[0]=y_0
+            for i in t:
+                if i>0:
+
+                    y[i]=rhs_pop_model(y[i-1],t[i],r)
+            return y
+
+        # Define discretised t domain
+        t = np.arange(0, T, 1)
+        # define initial conditions
+        init_cond=u0
+        
+        # Compute numerical solution of ODEs
+        sol1 = DiscreteSol(logistic_map,init_cond,t,r)
+
+        # Plot results
+        y=sol1
+        
+        ax[0].plot(t,y)
+        ax[0].set_xlabel('$n$')
+        ax[0].set_ylabel('$u_n$')
+
+        plt.grid()
+
+        # Parameters
+        n_iterations = 1000  # total iterations for each value of r
+        n_last = 100         # number of iterations to plot (for steady state)
+        r_values = np.linspace(0.0, 4.0, 10000)  # range of r values
+        u0 = 0.5  # initial population (seed)
+
+        delta=0.25
+        #r_min=r-delta
+        #r_max=r+delta
+
+        r_values2 = np.linspace(r_min, r_max, 10000)  # range of r values
+
+        # Initialize plot
+        x = np.full_like(r_values, u0)
+        x2 = np.full_like(r_values2, u0)
+
+        # Iterate and plot bifurcation diagram
+         
+        for _ in range(n_iterations):
+            x = r_values * x * (1 - x)  # logistic map function
+            x2 = r_values2 * x2 * (1 - x2)  # logistic map function
+
+            if _ >= (n_iterations - n_last):  # plot only steady state
+                ax[1].plot(r_values, x, ',k', alpha=0.25)
+                ax[1].plot([r,r],[0,1],'r--')
+                ax[2].plot(r_values2, x2, ',k', alpha=0.25)
+                ax[2].plot([r,r],[0,1],'r--')
+
+            # Labels and display
+            ax[1].set_title("Bifurcation Diagram")
+            ax[1].set_xlabel("$r$")
+            ax[1].set_ylabel("$u^*$")
+            ax[2].set_title("Bifurcation Diagram (zoomed in) ")
+            ax[2].set_xlabel("$r$")
+            ax[2].set_ylabel("$u^*$")
+            ax[2].set_xlim([r_min,r_max])
+            ax[2].set_ylim([u_min,u_max])
+
+
+
+        plt.show()
+    
+app = App(app_ui, server)
+```
+:::
+
+
+## Mathematics degrees
+
+*  Become a *logical numerate problem solver*
+* Learn about exciting new areas of mathematics
+* Learn how to apply mathematics to real world problems
+* Develop computer programming skills
+* Develop communication skills
+
+
+
+## Logical numerate problem solvers are valued
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](../../Images/MathsCareers.png)
+
+
+:::
+
+::: {.column width="50%"}
+![](../../Images/IFSCareerEarningsTable.png)
+:::
+::::
+
+## Mathematics degrees 
+
+* Single honours Mathematics degrees 
+* Joint Honours (e.g. with Accountancy, Economics, Physics, Life Sciences, Psychology)
+* Flexibility in structure of degree pathways

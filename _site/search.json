@@ -112,6 +112,90 @@
     "text": "## Prototype code that plots a trigonometric function and its derivative\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ndx=0.01\nx = np.arange(0, 20, dx)\ny = np.sin(x)\n\ndy_dx=np.cos(x)\n\nfig, ax = plt.subplots(1,2)\nax[0].plot(x, y)\nax[0].set_xlabel('x')\nax[0].set_ylabel('y(x)')\n\nax[1].plot(x, dy_dx)\nax[1].set_xlabel('x')\nax[1].set_ylabel('dy/dx')\n\nax[0].grid(True)\nax[1].grid(True)\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\nMathematics, University of Dundee"
   },
   {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#recurrence-relations---example",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#recurrence-relations---example",
+    "title": "From linear recurrence relations to chaos",
+    "section": "Recurrence relations - example",
+    "text": "Recurrence relations - example\nThe value of an endowment policy increases at the rate of 5 % per annum. The initial value is £7000. How much is it worth after two years?\n\n\\[\nu_0=7000\n\\]\n. . . \\[\nu_1=1.05 \\times 7000= 7350\n\\]\n. . . \\[\nu_2 =1.05 u_1 = 1.05 \\times  7350 =   7717\n\\]"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#simulating-the-accumulation",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#simulating-the-accumulation",
+    "title": "From linear recurrence relations to chaos",
+    "section": "Simulating the accumulation",
+    "text": "Simulating the accumulation\nhttps://dundeemath.github.io/Admissions/posts/RecurrenceRelations.html\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"a\",label=\"Interest rate (%)\",min=1.0,max=5.0,value=1.05,step=0.001),\n            \n     \n    ui.input_slider(id=\"u0\",label=\"Initial amount (£)\",min=2500.0,max=10000.0,value=3000.0,step=500),\n    ui.input_slider(id=\"T\",label=\"Number of years\",min=0.0,max=60.0,value=3.0,step=1.0),\n    ),\n\n        ui.output_plot(\"plot\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n    @render.plot\n    def plot():\n        fig, ax = plt.subplots()\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        a=float(input.a())\n        b=0.0\n        u0=float(input.u0())\n        T=int(input.T())\n       \n        # Define rhs of LV ODEs\n        def rhs_pop_model(y,t,a,b):\n          \n\n          rhs=a*y+b\n\n          return rhs\n        def DiscreteSol(rhs_pop_model,y_0,t,a,b):\n            y=np.zeros_like(t,dtype=float)\n            y[0]=y_0\n            for i in t:\n                if i&gt;0:\n                    y[i]=rhs_pop_model(y[i-1],t[i],a,b)\n            return y\n\n\n        # Define discretised t domain\n        t = np.arange(0, T, 1)\n        # define initial conditions\n        init_cond=u0\n        \n        # Compute numerical solution of ODEs\n        sol1 = DiscreteSol(rhs_pop_model,init_cond,t,a,b)\n\n        # Plot results\n        y=sol1\n        \n        ax.plot(t,y)\n        ax.set_xlabel('$n$')\n        ax.set_ylabel('$u_n$')\n\n        plt.grid()\n        plt.show()\n    \napp = App(app_ui, server)\n\n\nFigure 1"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#general-form-for-a-recurrence-relation",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#general-form-for-a-recurrence-relation",
+    "title": "From linear recurrence relations to chaos",
+    "section": "General form for a recurrence relation",
+    "text": "General form for a recurrence relation\n\\[u_{n+1}=r u_n+b\\]\n\nConvergence\nThe solutions converges if \\(|r|&lt;1\\).\n\n\nA limit\nAs \\(n\\rightarrow \\infty\\), \\(u_n\\rightarrow \\frac{b}{1-r}\\).\nThe limiting value is an example of a fixed point."
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#simulate-the-linear-recurrence-relation",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#simulate-the-linear-recurrence-relation",
+    "title": "From linear recurrence relations to chaos",
+    "section": "Simulate the linear recurrence relation",
+    "text": "Simulate the linear recurrence relation\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"a\",label=\"r\",min=-1.0,max=3,value=0.1,step=0.001),\n    ui.input_slider(id=\"b\",label=\"b\",min=0.0,max=15.0,value=10.0,step=0.01),             \n     \n    ui.input_slider(id=\"u0\",label=\"u_0\",min=0.0,max=20.0,value=5.0,step=1.0),\n    ui.input_slider(id=\"T\",label=\"Number of iterations\",min=0.0,max=60.0,value=20.0,step=1.0),\n              \n          \n            ),\n\n        ui.output_plot(\"plot\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n    @render.plot\n    def plot():\n        fig, ax = plt.subplots()\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        a=float(input.a())\n        b=float(input.b())\n        u0=float(input.u0())\n        T=int(input.T())\n       \n        # Define rhs of LV ODEs\n        def rhs_pop_model(y,t,a,b):\n          \n\n          rhs=a*y+b\n\n          return rhs\n        def DiscreteSol(rhs_pop_model,y_0,t,a,b):\n            y=np.zeros_like(t,dtype=float)\n            y[0]=y_0\n            for i in t:\n                if i&gt;0:\n                    y[i]=rhs_pop_model(y[i-1],t[i],a,b)\n            return y\n\n\n        # Define discretised t domain\n        t = np.arange(0, T, 1)\n        # define initial conditions\n        init_cond=u0\n        \n        # Compute numerical solution of ODEs\n        sol1 = DiscreteSol(rhs_pop_model,init_cond,t,a,b)\n\n        # Plot results\n        y=sol1\n        \n        ax.plot(t,y)\n        ax.set_xlabel('$n$')\n        ax.set_ylabel('$u_n$')\n\n        plt.grid()\n        plt.show()\n    \napp = App(app_ui, server)\n\n\nFigure 2"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#summarising-the-results-in-a-bifurcation-diagram",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#summarising-the-results-in-a-bifurcation-diagram",
+    "title": "From linear recurrence relations to chaos",
+    "section": "Summarising the results in a bifurcation diagram",
+    "text": "Summarising the results in a bifurcation diagram"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#now-with-a-bifurcation-diagram",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#now-with-a-bifurcation-diagram",
+    "title": "From linear recurrence relations to chaos",
+    "section": "Now with a bifurcation diagram",
+    "text": "Now with a bifurcation diagram\n\\[u_{n+1}=ru_n+b \\]\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"r\",label=\"r\",min=0.0,max=5.0,value=0.1,step=0.001),\n    ui.input_slider(id=\"b\",label=\"b\",min=0.0,max=5.0,value=0.1,step=0.001),             \n    ui.input_slider(id=\"u0\",label=\"u_0\",min=0.0,max=1.0,value=0.5,step=0.01),\n    ui.input_slider(id=\"T\",label=\"Number of iterations\",min=0.0,max=60.0,value=20.0,step=1.0),\n    ),\n\n        ui.output_plot(\"plot\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n    @render.plot\n    def plot():\n        fig, ax = plt.subplots(2,1)\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        r=float(input.r())\n        b=float(input.b())\n\n        u0=float(input.u0())\n        T=int(input.T())\n        \n\n        # Define rhs of logistic map \n        def lin_map(y,t,r,b):\n          rhs=r*y+b\n          return rhs\n        \n        def DiscreteSol(rhs_pop_model,y_0,t,r,b):\n            y=np.zeros_like(t,dtype=float)\n            y[0]=y_0\n            for i in t:\n                if i&gt;0:\n\n                    y[i]=rhs_pop_model(y[i-1],t[i],r,b)\n            return y\n\n        # Define discretised t domain\n        t = np.arange(0, T, 1)\n        # define initial conditions\n        init_cond=u0\n        \n        # Compute numerical solution of ODEs\n        sol1 = DiscreteSol(lin_map,init_cond,t,r,b)\n\n        # Plot results\n        y=sol1\n        \n        ax[0].plot(t,y)\n        ax[0].set_xlabel('$n$')\n        ax[0].set_ylabel('$u_n$')\n        ax[0].set_title('Simulation')\n\n        r_vec_1=np.linspace(0,0.99,100)\n        r_vec_2=np.linspace(1.01,5.0,100)\n\n        ax[1].plot(r_vec_1,b/(1-r_vec_1))\n        ax[1].plot(r_vec_2,b/(1-r_vec_2\n        ))\n        max_x_st=5.0\n        ax[1].plot([r,r],[-max_x_st,max_x_st],'r--')\n        ax[1].set_ylim([-max_x_st,max_x_st])\n        ax[1].set_xlabel('$r$')\n        ax[1].set_ylabel('$u^*$')\n\n        ax[1].set_title('Bifurcation diagram')\n        plt.grid()\n        plt.show()\n    \napp = App(app_ui, server)\n\n\nFigure 3"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#a-nonlinear-recurrence-relation",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#a-nonlinear-recurrence-relation",
+    "title": "From linear recurrence relations to chaos",
+    "section": "A nonlinear recurrence relation",
+    "text": "A nonlinear recurrence relation\n\\[\nu_{n+1}=ru_n(1-u_n)\n\\]\n. . . Rearranging \\[\nu_{n+1}=ru_n - ru_n^2\n\\]\n\nQuestion: how do solutions of this nonlinear system behave?"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#solving-numerically",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#solving-numerically",
+    "title": "From linear recurrence relations to chaos",
+    "section": "Solving numerically",
+    "text": "Solving numerically\n\\[\nu_{n+1}=ru_n(1-u_n)\n\\]\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"r\",label=\"r\",min=0.0,max=5.0,value=0.1,step=0.001),             \n    ui.input_slider(id=\"u0\",label=\"u_0\",min=0.0,max=1.0,value=0.5,step=0.01),\n    ui.input_slider(id=\"T\",label=\"Number of iterations\",min=0.0,max=60.0,value=20.0,step=1.0),\n    \n              \n          \n            ),\n\n        ui.output_plot(\"plot\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n    @render.plot\n    def plot():\n        fig, ax = plt.subplots()\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        r=float(input.r())\n        u0=float(input.u0())\n        T=int(input.T())\n        \n\n        # Define rhs of logistic map \n        def logistic_map(y,t,r):\n          rhs=r*y*(1-y)\n          return rhs\n        \n        def DiscreteSol(rhs_pop_model,y_0,t,r):\n            y=np.zeros_like(t,dtype=float)\n            y[0]=y_0\n            for i in t:\n                if i&gt;0:\n\n                    y[i]=rhs_pop_model(y[i-1],t[i],r)\n            return y\n\n        # Define discretised t domain\n        t = np.arange(0, T, 1)\n        # define initial conditions\n        init_cond=u0\n        \n        # Compute numerical solution of ODEs\n        sol1 = DiscreteSol(logistic_map,init_cond,t,r)\n\n        # Plot results\n        y=sol1\n        \n        ax.plot(t,y)\n        ax.set_xlabel('$n$')\n        ax.set_ylabel('$u_n$')\n\n        plt.grid()\n\n        \n        \n\n        plt.show()\n    \napp = App(app_ui, server)\n\n\nFigure 4"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#now-with-a-bifurcation-diagram-1",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#now-with-a-bifurcation-diagram-1",
+    "title": "From linear recurrence relations to chaos",
+    "section": "Now with a bifurcation diagram",
+    "text": "Now with a bifurcation diagram\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"r\",label=\"r\",min=0.0,max=5.0,value=0.1,step=0.001),             \n    ui.input_slider(id=\"u0\",label=\"u_0\",min=0.0,max=1.0,value=0.5,step=0.01),\n    ui.input_slider(id=\"T\",label=\"Number of iterations\",min=0.0,max=60.0,value=20.0,step=1.0),\n    ui.input_slider(id=\"r_range\",label=\"r zoomed\",min=0.0,max=4.0,value=[0.0,4.0],step=0.001),\n    ui.input_slider(id=\"u_range\",label=\"u zoomed\",min=0.0,max=1.0,value=[0.0,1.0],step=0.01),\n              \n          \n            ),\n\n        ui.output_plot(\"plot\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n    @render.plot\n    def plot():\n        fig, ax = plt.subplots(3,1)\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        r=float(input.r())\n        u0=float(input.u0())\n        T=int(input.T())\n        r_min=float(input.r_range()[0])\n        r_max=float(input.r_range()[1])\n        u_min=float(input.u_range()[0])\n        u_max=float(input.u_range()[1])\n\n\n        # Define rhs of logistic map \n        def logistic_map(y,t,r):\n          rhs=r*y*(1-y)\n          return rhs\n        \n        def DiscreteSol(rhs_pop_model,y_0,t,r):\n            y=np.zeros_like(t,dtype=float)\n            y[0]=y_0\n            for i in t:\n                if i&gt;0:\n\n                    y[i]=rhs_pop_model(y[i-1],t[i],r)\n            return y\n\n        # Define discretised t domain\n        t = np.arange(0, T, 1)\n        # define initial conditions\n        init_cond=u0\n        \n        # Compute numerical solution of ODEs\n        sol1 = DiscreteSol(logistic_map,init_cond,t,r)\n\n        # Plot results\n        y=sol1\n        \n        ax[0].plot(t,y)\n        ax[0].set_xlabel('$n$')\n        ax[0].set_ylabel('$u_n$')\n\n        plt.grid()\n\n        # Parameters\n        n_iterations = 1000  # total iterations for each value of r\n        n_last = 100         # number of iterations to plot (for steady state)\n        r_values = np.linspace(0.0, 4.0, 10000)  # range of r values\n        u0 = 0.5  # initial population (seed)\n\n        delta=0.25\n        #r_min=r-delta\n        #r_max=r+delta\n\n        r_values2 = np.linspace(r_min, r_max, 10000)  # range of r values\n\n        # Initialize plot\n        x = np.full_like(r_values, u0)\n        x2 = np.full_like(r_values2, u0)\n\n        # Iterate and plot bifurcation diagram\n         \n        for _ in range(n_iterations):\n            x = r_values * x * (1 - x)  # logistic map function\n            x2 = r_values2 * x2 * (1 - x2)  # logistic map function\n\n            if _ &gt;= (n_iterations - n_last):  # plot only steady state\n                ax[1].plot(r_values, x, ',k', alpha=0.25)\n                ax[1].plot([r,r],[0,1],'r--')\n                ax[2].plot(r_values2, x2, ',k', alpha=0.25)\n                ax[2].plot([r,r],[0,1],'r--')\n\n            # Labels and display\n            ax[1].set_title(\"Bifurcation Diagram\")\n            ax[1].set_xlabel(\"$r$\")\n            ax[1].set_ylabel(\"$u^*$\")\n            ax[2].set_title(\"Bifurcation Diagram (zoomed in) \")\n            ax[2].set_xlabel(\"$r$\")\n            ax[2].set_ylabel(\"$u^*$\")\n            ax[2].set_xlim([r_min,r_max])\n            ax[2].set_ylim([u_min,u_max])\n\n\n\n        plt.show()\n    \napp = App(app_ui, server)\n\n\nFigure 5"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#mathematics-degrees",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#mathematics-degrees",
+    "title": "From linear recurrence relations to chaos",
+    "section": "Mathematics degrees",
+    "text": "Mathematics degrees\n\nBecome a logical numerate problem solver\nLearn about exciting new areas of mathematics\nLearn how to apply mathematics to real world problems\nDevelop computer programming skills\nDevelop communication skills"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#logical-numerate-problem-solvers-are-valued",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#logical-numerate-problem-solvers-are-valued",
+    "title": "From linear recurrence relations to chaos",
+    "section": "Logical numerate problem solvers are valued",
+    "text": "Logical numerate problem solvers are valued"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#mathematics-degrees-1",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#mathematics-degrees-1",
+    "title": "From linear recurrence relations to chaos",
+    "section": "Mathematics degrees",
+    "text": "Mathematics degrees\n\nSingle honours Mathematics degrees\nJoint Honours (e.g. with Accountancy, Economics, Physics, Life Sciences, Psychology)\nFlexibility in structure of degree pathways"
+  },
+  {
     "objectID": "Slides/STEMExpo2025/STEMExpo2025.html#skills-developed-in-maths-degrees",
     "href": "Slides/STEMExpo2025/STEMExpo2025.html#skills-developed-in-maths-degrees",
     "title": "STEM Day 2025",
@@ -403,7 +487,7 @@
     "href": "posts/RecurrenceRelations.html",
     "title": "Recurrence relations and chaos",
     "section": "",
-    "text": "You might have previously encountered a recurrence relation of the form\n\\[\nu_{n+1}=au_n+b\n\\tag{1}\\] where \\(a\\) and \\(b\\) are constants.\nGiven numerical values for \\(a\\) and \\(b\\) and an initial condition, \\(u_0\\), a sequence can be computed that is a solution to Equation 1. This type of task is laborious and well suited to a computer (see Figure 1).\n\n\n\n\n\n\nA typical Higher-like question\n\n\n\nThe population of Dundonian hobbits is observed to be declining by 5% per year. To increase the population, it is planned that 1000 of the species will be released at the end of May each year.\nLet \\(u_n\\) represent the population of the hobbits at the beginning of June, \\(n\\) years after the first annual reintroduction into the population.\nSuppose that \\(u_n\\) and \\(u_{n+1}\\) satisfy the recurrence relation \\[\nu_{n+1}=au_n+b,\n\\] where \\(a\\) and \\(b\\) are constants.\n\nState the values of \\(a\\) and \\(b\\).\nExplain whether or not the population of the Dundonian hobbit will stabilise in the long term.\nThe population of Dundonian hobbits at the beginning of the reintroduction programme was estimated at 5000. Explain whether or not the population will ever exceed 10000.\n\n\n\nExplore how the computed solution depend on model parameters as follows:\n\nset \\(b=0\\) by varying the parameter \\(a\\) identify solutions that:\n\ntend to zero monotonically\noscillate about 0\nblow up\n\nset b&gt;0\n\nshow that the solution converges to a non-zero value in the case where \\(0&lt;a&lt;1\\).\nshow that the solution is oscillatory for \\(-1&lt;a&lt;0\\).\n\n\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"a\",label=\"a\",min=-1.0,max=3,value=0.1,step=0.001),\n    ui.input_slider(id=\"b\",label=\"b\",min=0.0,max=15.0,value=10.0,step=0.01),             \n     \n    ui.input_slider(id=\"u0\",label=\"u_0\",min=0.0,max=20.0,value=5.0,step=1.0),\n    ui.input_slider(id=\"T\",label=\"Number of iterations\",min=0.0,max=60.0,value=20.0,step=1.0),\n              \n          \n            ),\n\n        ui.output_plot(\"plot\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n    @render.plot\n    def plot():\n        fig, ax = plt.subplots()\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        a=float(input.a())\n        b=float(input.b())\n        u0=float(input.u0())\n        T=int(input.T())\n       \n        # Define rhs of LV ODEs\n        def rhs_pop_model(y,t,a,b):\n          \n\n          rhs=a*y+b\n\n          return rhs\n        def DiscreteSol(rhs_pop_model,y_0,t,a,b):\n            y=np.zeros_like(t,dtype=float)\n            y[0]=y_0\n            for i in t:\n                if i&gt;0:\n                    y[i]=rhs_pop_model(y[i-1],t[i],a,b)\n            return y\n\n\n        # Define discretised t domain\n        t = np.arange(0, T, 1)\n        # define initial conditions\n        init_cond=u0\n        \n        # Compute numerical solution of ODEs\n        sol1 = DiscreteSol(rhs_pop_model,init_cond,t,a,b)\n\n        # Plot results\n        y=sol1\n        \n        ax.plot(t,y)\n        ax.set_xlabel('$n$')\n        ax.set_ylabel('$u_n$')\n\n        plt.grid()\n        plt.show()\n    \napp = App(app_ui, server)\n\n\nFigure 1\n\n\n\n\n\n\nThe recurrence relation explored in Figure 1 is linear (the right-hand-side is a linear function of \\(u_n\\)). When the model is generalised much richer dynamical behaviours can be observed. One famous example is the logistic map, where the governing equation can be written as \\[\nu_{n+1}=ru_n(1-u_n).\n\\tag{2}\\]\nNote that the right-hand side is now a quadratic function of \\(u_n\\).\nYou can explore the solutions to Equation 2 using Figure 2.\n\nshow that when \\(0&lt;r&lt;1\\) the solution converges monotonically to 0.0.\nshow that when \\(0&lt;r&lt;2\\) the solution converges monotonically to a non-zero value.\nshow that when \\(2&lt;r&lt;3\\) the solution is oscillatory and converges to a non-zero value.\nshow that when \\(r=3.2\\) the solution is periodic and repeats every second step\nshow that when \\(r=3.47\\) the solution is periodic and repeats every fourth step\nshow that when \\(r=3.7\\) that the solution is neither periodic nor reaches a steady value.\nuse the $r$ zoomed' and\\(u\\) zoomed’ sliders to magnify the third figure. Can you see self similarity (i.e. at fine scales the bifurcation structure looks similar to that at large scales?).\n\nThe logistic map provides one of the simplest mathematical formulations of a phenomenon known as chaos. Whilst a precise definition of chaos involves some technical concepts, chaotic systems are broadly characterised by:\n\nhaving non-periodic, non-steady solution\nsensitivity to initial conditions\nappearing to be unpredictable even through they are deterministic.\nself similarity\n\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.panel_sidebar(\n    ui.input_slider(id=\"r\",label=\"r\",min=0.0,max=5.0,value=0.1,step=0.001),             \n    ui.input_slider(id=\"u0\",label=\"u_0\",min=0.0,max=1.0,value=0.5,step=0.01),\n    ui.input_slider(id=\"T\",label=\"Number of iterations\",min=0.0,max=60.0,value=20.0,step=1.0),\n    ui.input_slider(id=\"r_range\",label=\"r zoomed\",min=0.0,max=4.0,value=[0.0,4.0],step=0.001),\n    ui.input_slider(id=\"u_range\",label=\"u zoomed\",min=0.0,max=1.0,value=[0.0,1.0],step=0.01),\n              \n          \n            ),\n\n        ui.panel_main(ui.output_plot(\"plot\"),),\n    ),\n)\n\ndef server(input, output, session):\n    \n    @render.plot\n    def plot():\n        fig, ax = plt.subplots(3,1)\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        r=float(input.r())\n        u0=float(input.u0())\n        T=int(input.T())\n        r_min=float(input.r_range()[0])\n        r_max=float(input.r_range()[1])\n        u_min=float(input.u_range()[0])\n        u_max=float(input.u_range()[1])\n\n\n        # Define rhs of logistic map \n        def logistic_map(y,t,r):\n          rhs=r*y*(1-y)\n          return rhs\n        \n        def DiscreteSol(rhs_pop_model,y_0,t,r):\n            y=np.zeros_like(t,dtype=float)\n            y[0]=y_0\n            for i in t:\n                if i&gt;0:\n\n                    y[i]=rhs_pop_model(y[i-1],t[i],r)\n            return y\n\n        # Define discretised t domain\n        t = np.arange(0, T, 1)\n        # define initial conditions\n        init_cond=u0\n        \n        # Compute numerical solution of ODEs\n        sol1 = DiscreteSol(logistic_map,init_cond,t,r)\n\n        # Plot results\n        y=sol1\n        \n        ax[0].plot(t,y)\n        ax[0].set_xlabel('$n$')\n        ax[0].set_ylabel('$u_n$')\n\n        plt.grid()\n\n        # Parameters\n        n_iterations = 1000  # total iterations for each value of r\n        n_last = 100         # number of iterations to plot (for steady state)\n        r_values = np.linspace(0.0, 4.0, 10000)  # range of r values\n        u0 = 0.5  # initial population (seed)\n\n        delta=0.25\n        #r_min=r-delta\n        #r_max=r+delta\n\n        r_values2 = np.linspace(r_min, r_max, 10000)  # range of r values\n\n        # Initialize plot\n        x = np.full_like(r_values, u0)\n        x2 = np.full_like(r_values2, u0)\n\n        # Iterate and plot bifurcation diagram\n         \n        for _ in range(n_iterations):\n            x = r_values * x * (1 - x)  # logistic map function\n            x2 = r_values2 * x2 * (1 - x2)  # logistic map function\n\n            if _ &gt;= (n_iterations - n_last):  # plot only steady state\n                ax[1].plot(r_values, x, ',k', alpha=0.25)\n                ax[1].plot([r,r],[0,1],'r--')\n                ax[2].plot(r_values2, x2, ',k', alpha=0.25)\n                ax[2].plot([r,r],[0,1],'r--')\n\n            # Labels and display\n            ax[1].set_title(\"Bifurcation Diagram\")\n            ax[1].set_xlabel(\"$r$\")\n            ax[1].set_ylabel(\"$u^*$\")\n            ax[2].set_title(\"Bifurcation Diagram (zoomed in) \")\n            ax[2].set_xlabel(\"$r$\")\n            ax[2].set_ylabel(\"$u^*$\")\n            ax[2].set_xlim([r_min,r_max])\n            ax[2].set_ylim([u_min,u_max])\n\n\n\n        plt.show()\n    \napp = App(app_ui, server)\n\n\nFigure 2\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nAt Dundee, core concepts from calculus (e.g. differential equations) and algebra that are needed to study dynamical systems are introduced in the modules Maths 1A and Maths 1B and developed further in the modules Maths 2A and Maths 2B.\nAt Level 2 in the module Discrete Maths you would be introduced to discrete dynamical systems (e.g. recurrence relations, Markov chains). In the modules Introduction to Programming and Computer Algebra and Dynamical systems you would be introduced to techniques that enable you to numerically analyse difference equations.\nAt Level 3 in the module Mathematical Biology you would consider discrete dynamical systems model applied to Biological systems.\nAt Level 4 we offer a number of honours projects that investigate chaotic systems (e.g. the Lorenz equations, the double pendulum)\nYou can find out more about these modules here."
+    "text": "You might have previously encountered a recurrence relation of the form\n\\[\nu_{n+1}=au_n+b\n\\tag{1}\\] where \\(a\\) and \\(b\\) are constants.\nGiven numerical values for \\(a\\) and \\(b\\) and an initial condition, \\(u_0\\), a sequence can be computed that is a solution to Equation 1. This type of task is laborious and well suited to a computer (see Figure 1).\n\n\n\n\n\n\nA typical Higher-like question\n\n\n\nThe population of Dundonian hobbits is observed to be declining by 5% per year. To increase the population, it is planned that 1000 of the species will be released at the end of May each year.\nLet \\(u_n\\) represent the population of the hobbits at the beginning of June, \\(n\\) years after the first annual reintroduction into the population.\nSuppose that \\(u_n\\) and \\(u_{n+1}\\) satisfy the recurrence relation \\[\nu_{n+1}=au_n+b,\n\\] where \\(a\\) and \\(b\\) are constants.\n\nState the values of \\(a\\) and \\(b\\).\nExplain whether or not the population of the Dundonian hobbit will stabilise in the long term.\nThe population of Dundonian hobbits at the beginning of the reintroduction programme was estimated at 5000. Explain whether or not the population will ever exceed 10000.\n\n\n\nExplore how the computed solution depend on model parameters as follows:\n\nset \\(b=0\\) by varying the parameter \\(a\\) identify solutions that:\n\ntend to zero monotonically\noscillate about 0\nblow up\n\nset b&gt;0\n\nshow that the solution converges to a non-zero value in the case where \\(0&lt;a&lt;1\\).\nshow that the solution is oscillatory for \\(-1&lt;a&lt;0\\).\n\n\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"a\",label=\"a\",min=-1.0,max=3,value=0.1,step=0.001),\n    ui.input_slider(id=\"b\",label=\"b\",min=0.0,max=15.0,value=10.0,step=0.01),             \n     \n    ui.input_slider(id=\"u0\",label=\"u_0\",min=0.0,max=20.0,value=5.0,step=1.0),\n    ui.input_slider(id=\"T\",label=\"Number of iterations\",min=0.0,max=60.0,value=20.0,step=1.0),\n              \n          \n            ),\n\n        ui.output_plot(\"plot\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n    @render.plot\n    def plot():\n        fig, ax = plt.subplots()\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        a=float(input.a())\n        b=float(input.b())\n        u0=float(input.u0())\n        T=int(input.T())\n       \n        # Define rhs of LV ODEs\n        def rhs_pop_model(y,t,a,b):\n          \n\n          rhs=a*y+b\n\n          return rhs\n        def DiscreteSol(rhs_pop_model,y_0,t,a,b):\n            y=np.zeros_like(t,dtype=float)\n            y[0]=y_0\n            for i in t:\n                if i&gt;0:\n                    y[i]=rhs_pop_model(y[i-1],t[i],a,b)\n            return y\n\n\n        # Define discretised t domain\n        t = np.arange(0, T, 1)\n        # define initial conditions\n        init_cond=u0\n        \n        # Compute numerical solution of ODEs\n        sol1 = DiscreteSol(rhs_pop_model,init_cond,t,a,b)\n\n        # Plot results\n        y=sol1\n        \n        ax.plot(t,y)\n        ax.set_xlabel('$n$')\n        ax.set_ylabel('$u_n$')\n\n        plt.grid()\n        plt.show()\n    \napp = App(app_ui, server)\n\n\nFigure 1\n\n\n\n\n\n\nThe recurrence relation explored in Figure 1 is linear (the right-hand-side is a linear function of \\(u_n\\)). When the model is generalised much richer dynamical behaviours can be observed. One famous example is the logistic map, where the governing equation can be written as \\[\nu_{n+1}=ru_n(1-u_n).\n\\tag{2}\\]\nNote that the right-hand side is now a quadratic function of \\(u_n\\).\nYou can explore the solutions to Equation 2 using Figure 2.\n\nshow that when \\(0&lt;r&lt;1\\) the solution converges monotonically to 0.0.\nshow that when \\(0&lt;r&lt;2\\) the solution converges monotonically to a non-zero value.\nshow that when \\(2&lt;r&lt;3\\) the solution is oscillatory and converges to a non-zero value.\nshow that when \\(r=3.2\\) the solution is periodic and repeats every second step\nshow that when \\(r=3.47\\) the solution is periodic and repeats every fourth step\nshow that when \\(r=3.7\\) that the solution is neither periodic nor reaches a steady value.\nuse the \\(r \\  \\textrm{zoomed}\\) and \\(u \\ \\textrm{zoomed}\\) sliders to magnify the third figure. Can you see self similarity (i.e. at fine scales the bifurcation structure looks similar to that at large scales?).\n\nThe logistic map provides one of the simplest mathematical formulations of a phenomenon known as chaos. Whilst a precise definition of chaos involves some technical concepts, chaotic systems are broadly characterised by:\n\nhaving non-periodic, non-steady solution\nsensitivity to initial conditions\nappearing to be unpredictable even through they are deterministic.\nself similarity\n\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"r\",label=\"r\",min=0.0,max=5.0,value=0.1,step=0.001),             \n    ui.input_slider(id=\"u0\",label=\"u_0\",min=0.0,max=1.0,value=0.5,step=0.01),\n    ui.input_slider(id=\"T\",label=\"Number of iterations\",min=0.0,max=60.0,value=20.0,step=1.0),\n    ui.input_slider(id=\"r_range\",label=\"r zoomed\",min=0.0,max=4.0,value=[0.0,4.0],step=0.001),\n    ui.input_slider(id=\"u_range\",label=\"u zoomed\",min=0.0,max=1.0,value=[0.0,1.0],step=0.01),\n              \n          \n            ),\n\n        ui.output_plot(\"plot\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n    @render.plot\n    def plot():\n        fig, ax = plt.subplots(3,1)\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        r=float(input.r())\n        u0=float(input.u0())\n        T=int(input.T())\n        r_min=float(input.r_range()[0])\n        r_max=float(input.r_range()[1])\n        u_min=float(input.u_range()[0])\n        u_max=float(input.u_range()[1])\n\n\n        # Define rhs of logistic map \n        def logistic_map(y,t,r):\n          rhs=r*y*(1-y)\n          return rhs\n        \n        def DiscreteSol(rhs_pop_model,y_0,t,r):\n            y=np.zeros_like(t,dtype=float)\n            y[0]=y_0\n            for i in t:\n                if i&gt;0:\n\n                    y[i]=rhs_pop_model(y[i-1],t[i],r)\n            return y\n\n        # Define discretised t domain\n        t = np.arange(0, T, 1)\n        # define initial conditions\n        init_cond=u0\n        \n        # Compute numerical solution of ODEs\n        sol1 = DiscreteSol(logistic_map,init_cond,t,r)\n\n        # Plot results\n        y=sol1\n        \n        ax[0].plot(t,y)\n        ax[0].set_xlabel('$n$')\n        ax[0].set_ylabel('$u_n$')\n\n        plt.grid()\n\n        # Parameters\n        n_iterations = 1000  # total iterations for each value of r\n        n_last = 100         # number of iterations to plot (for steady state)\n        r_values = np.linspace(0.0, 4.0, 10000)  # range of r values\n        u0 = 0.5  # initial population (seed)\n\n        delta=0.25\n        #r_min=r-delta\n        #r_max=r+delta\n\n        r_values2 = np.linspace(r_min, r_max, 10000)  # range of r values\n\n        # Initialize plot\n        x = np.full_like(r_values, u0)\n        x2 = np.full_like(r_values2, u0)\n\n        # Iterate and plot bifurcation diagram\n         \n        for _ in range(n_iterations):\n            x = r_values * x * (1 - x)  # logistic map function\n            x2 = r_values2 * x2 * (1 - x2)  # logistic map function\n\n            if _ &gt;= (n_iterations - n_last):  # plot only steady state\n                ax[1].plot(r_values, x, ',k', alpha=0.25)\n                ax[1].plot([r,r],[0,1],'r--')\n                ax[2].plot(r_values2, x2, ',k', alpha=0.25)\n                ax[2].plot([r,r],[0,1],'r--')\n\n            # Labels and display\n            ax[1].set_title(\"Bifurcation Diagram\")\n            ax[1].set_xlabel(\"$r$\")\n            ax[1].set_ylabel(\"$u^*$\")\n            ax[2].set_title(\"Bifurcation Diagram (zoomed in) \")\n            ax[2].set_xlabel(\"$r$\")\n            ax[2].set_ylabel(\"$u^*$\")\n            ax[2].set_xlim([r_min,r_max])\n            ax[2].set_ylim([u_min,u_max])\n\n\n\n        plt.show()\n    \napp = App(app_ui, server)\n\n\nFigure 2\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nAt Dundee, core concepts from calculus (e.g. differential equations) and algebra that are needed to study dynamical systems are introduced in the modules Maths 1A and Maths 1B and developed further in the modules Maths 2A and Maths 2B.\nAt Level 2 in the module Discrete Maths you would be introduced to discrete dynamical systems (e.g. recurrence relations, Markov chains). In the modules Introduction to Programming and Computer Algebra and Dynamical systems you would be introduced to techniques that enable you to numerically analyse difference equations.\nAt Level 3 in the module Mathematical Biology you would consider discrete dynamical systems model applied to Biological systems.\nAt Level 4 we offer a number of honours projects that investigate chaotic systems (e.g. the Lorenz equations, the double pendulum)\nYou can find out more about these modules here."
   },
   {
     "objectID": "posts/RecurrenceRelations.html#a-linear-recurrence-relation",
@@ -417,7 +501,7 @@
     "href": "posts/RecurrenceRelations.html#the-logistic-map",
     "title": "Recurrence relations and chaos",
     "section": "",
-    "text": "The recurrence relation explored in Figure 1 is linear (the right-hand-side is a linear function of \\(u_n\\)). When the model is generalised much richer dynamical behaviours can be observed. One famous example is the logistic map, where the governing equation can be written as \\[\nu_{n+1}=ru_n(1-u_n).\n\\tag{2}\\]\nNote that the right-hand side is now a quadratic function of \\(u_n\\).\nYou can explore the solutions to Equation 2 using Figure 2.\n\nshow that when \\(0&lt;r&lt;1\\) the solution converges monotonically to 0.0.\nshow that when \\(0&lt;r&lt;2\\) the solution converges monotonically to a non-zero value.\nshow that when \\(2&lt;r&lt;3\\) the solution is oscillatory and converges to a non-zero value.\nshow that when \\(r=3.2\\) the solution is periodic and repeats every second step\nshow that when \\(r=3.47\\) the solution is periodic and repeats every fourth step\nshow that when \\(r=3.7\\) that the solution is neither periodic nor reaches a steady value.\nuse the $r$ zoomed' and\\(u\\) zoomed’ sliders to magnify the third figure. Can you see self similarity (i.e. at fine scales the bifurcation structure looks similar to that at large scales?).\n\nThe logistic map provides one of the simplest mathematical formulations of a phenomenon known as chaos. Whilst a precise definition of chaos involves some technical concepts, chaotic systems are broadly characterised by:\n\nhaving non-periodic, non-steady solution\nsensitivity to initial conditions\nappearing to be unpredictable even through they are deterministic.\nself similarity\n\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.panel_sidebar(\n    ui.input_slider(id=\"r\",label=\"r\",min=0.0,max=5.0,value=0.1,step=0.001),             \n    ui.input_slider(id=\"u0\",label=\"u_0\",min=0.0,max=1.0,value=0.5,step=0.01),\n    ui.input_slider(id=\"T\",label=\"Number of iterations\",min=0.0,max=60.0,value=20.0,step=1.0),\n    ui.input_slider(id=\"r_range\",label=\"r zoomed\",min=0.0,max=4.0,value=[0.0,4.0],step=0.001),\n    ui.input_slider(id=\"u_range\",label=\"u zoomed\",min=0.0,max=1.0,value=[0.0,1.0],step=0.01),\n              \n          \n            ),\n\n        ui.panel_main(ui.output_plot(\"plot\"),),\n    ),\n)\n\ndef server(input, output, session):\n    \n    @render.plot\n    def plot():\n        fig, ax = plt.subplots(3,1)\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        r=float(input.r())\n        u0=float(input.u0())\n        T=int(input.T())\n        r_min=float(input.r_range()[0])\n        r_max=float(input.r_range()[1])\n        u_min=float(input.u_range()[0])\n        u_max=float(input.u_range()[1])\n\n\n        # Define rhs of logistic map \n        def logistic_map(y,t,r):\n          rhs=r*y*(1-y)\n          return rhs\n        \n        def DiscreteSol(rhs_pop_model,y_0,t,r):\n            y=np.zeros_like(t,dtype=float)\n            y[0]=y_0\n            for i in t:\n                if i&gt;0:\n\n                    y[i]=rhs_pop_model(y[i-1],t[i],r)\n            return y\n\n        # Define discretised t domain\n        t = np.arange(0, T, 1)\n        # define initial conditions\n        init_cond=u0\n        \n        # Compute numerical solution of ODEs\n        sol1 = DiscreteSol(logistic_map,init_cond,t,r)\n\n        # Plot results\n        y=sol1\n        \n        ax[0].plot(t,y)\n        ax[0].set_xlabel('$n$')\n        ax[0].set_ylabel('$u_n$')\n\n        plt.grid()\n\n        # Parameters\n        n_iterations = 1000  # total iterations for each value of r\n        n_last = 100         # number of iterations to plot (for steady state)\n        r_values = np.linspace(0.0, 4.0, 10000)  # range of r values\n        u0 = 0.5  # initial population (seed)\n\n        delta=0.25\n        #r_min=r-delta\n        #r_max=r+delta\n\n        r_values2 = np.linspace(r_min, r_max, 10000)  # range of r values\n\n        # Initialize plot\n        x = np.full_like(r_values, u0)\n        x2 = np.full_like(r_values2, u0)\n\n        # Iterate and plot bifurcation diagram\n         \n        for _ in range(n_iterations):\n            x = r_values * x * (1 - x)  # logistic map function\n            x2 = r_values2 * x2 * (1 - x2)  # logistic map function\n\n            if _ &gt;= (n_iterations - n_last):  # plot only steady state\n                ax[1].plot(r_values, x, ',k', alpha=0.25)\n                ax[1].plot([r,r],[0,1],'r--')\n                ax[2].plot(r_values2, x2, ',k', alpha=0.25)\n                ax[2].plot([r,r],[0,1],'r--')\n\n            # Labels and display\n            ax[1].set_title(\"Bifurcation Diagram\")\n            ax[1].set_xlabel(\"$r$\")\n            ax[1].set_ylabel(\"$u^*$\")\n            ax[2].set_title(\"Bifurcation Diagram (zoomed in) \")\n            ax[2].set_xlabel(\"$r$\")\n            ax[2].set_ylabel(\"$u^*$\")\n            ax[2].set_xlim([r_min,r_max])\n            ax[2].set_ylim([u_min,u_max])\n\n\n\n        plt.show()\n    \napp = App(app_ui, server)\n\n\nFigure 2\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nAt Dundee, core concepts from calculus (e.g. differential equations) and algebra that are needed to study dynamical systems are introduced in the modules Maths 1A and Maths 1B and developed further in the modules Maths 2A and Maths 2B.\nAt Level 2 in the module Discrete Maths you would be introduced to discrete dynamical systems (e.g. recurrence relations, Markov chains). In the modules Introduction to Programming and Computer Algebra and Dynamical systems you would be introduced to techniques that enable you to numerically analyse difference equations.\nAt Level 3 in the module Mathematical Biology you would consider discrete dynamical systems model applied to Biological systems.\nAt Level 4 we offer a number of honours projects that investigate chaotic systems (e.g. the Lorenz equations, the double pendulum)\nYou can find out more about these modules here."
+    "text": "The recurrence relation explored in Figure 1 is linear (the right-hand-side is a linear function of \\(u_n\\)). When the model is generalised much richer dynamical behaviours can be observed. One famous example is the logistic map, where the governing equation can be written as \\[\nu_{n+1}=ru_n(1-u_n).\n\\tag{2}\\]\nNote that the right-hand side is now a quadratic function of \\(u_n\\).\nYou can explore the solutions to Equation 2 using Figure 2.\n\nshow that when \\(0&lt;r&lt;1\\) the solution converges monotonically to 0.0.\nshow that when \\(0&lt;r&lt;2\\) the solution converges monotonically to a non-zero value.\nshow that when \\(2&lt;r&lt;3\\) the solution is oscillatory and converges to a non-zero value.\nshow that when \\(r=3.2\\) the solution is periodic and repeats every second step\nshow that when \\(r=3.47\\) the solution is periodic and repeats every fourth step\nshow that when \\(r=3.7\\) that the solution is neither periodic nor reaches a steady value.\nuse the \\(r \\  \\textrm{zoomed}\\) and \\(u \\ \\textrm{zoomed}\\) sliders to magnify the third figure. Can you see self similarity (i.e. at fine scales the bifurcation structure looks similar to that at large scales?).\n\nThe logistic map provides one of the simplest mathematical formulations of a phenomenon known as chaos. Whilst a precise definition of chaos involves some technical concepts, chaotic systems are broadly characterised by:\n\nhaving non-periodic, non-steady solution\nsensitivity to initial conditions\nappearing to be unpredictable even through they are deterministic.\nself similarity\n\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"r\",label=\"r\",min=0.0,max=5.0,value=0.1,step=0.001),             \n    ui.input_slider(id=\"u0\",label=\"u_0\",min=0.0,max=1.0,value=0.5,step=0.01),\n    ui.input_slider(id=\"T\",label=\"Number of iterations\",min=0.0,max=60.0,value=20.0,step=1.0),\n    ui.input_slider(id=\"r_range\",label=\"r zoomed\",min=0.0,max=4.0,value=[0.0,4.0],step=0.001),\n    ui.input_slider(id=\"u_range\",label=\"u zoomed\",min=0.0,max=1.0,value=[0.0,1.0],step=0.01),\n              \n          \n            ),\n\n        ui.output_plot(\"plot\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n    @render.plot\n    def plot():\n        fig, ax = plt.subplots(3,1)\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        r=float(input.r())\n        u0=float(input.u0())\n        T=int(input.T())\n        r_min=float(input.r_range()[0])\n        r_max=float(input.r_range()[1])\n        u_min=float(input.u_range()[0])\n        u_max=float(input.u_range()[1])\n\n\n        # Define rhs of logistic map \n        def logistic_map(y,t,r):\n          rhs=r*y*(1-y)\n          return rhs\n        \n        def DiscreteSol(rhs_pop_model,y_0,t,r):\n            y=np.zeros_like(t,dtype=float)\n            y[0]=y_0\n            for i in t:\n                if i&gt;0:\n\n                    y[i]=rhs_pop_model(y[i-1],t[i],r)\n            return y\n\n        # Define discretised t domain\n        t = np.arange(0, T, 1)\n        # define initial conditions\n        init_cond=u0\n        \n        # Compute numerical solution of ODEs\n        sol1 = DiscreteSol(logistic_map,init_cond,t,r)\n\n        # Plot results\n        y=sol1\n        \n        ax[0].plot(t,y)\n        ax[0].set_xlabel('$n$')\n        ax[0].set_ylabel('$u_n$')\n\n        plt.grid()\n\n        # Parameters\n        n_iterations = 1000  # total iterations for each value of r\n        n_last = 100         # number of iterations to plot (for steady state)\n        r_values = np.linspace(0.0, 4.0, 10000)  # range of r values\n        u0 = 0.5  # initial population (seed)\n\n        delta=0.25\n        #r_min=r-delta\n        #r_max=r+delta\n\n        r_values2 = np.linspace(r_min, r_max, 10000)  # range of r values\n\n        # Initialize plot\n        x = np.full_like(r_values, u0)\n        x2 = np.full_like(r_values2, u0)\n\n        # Iterate and plot bifurcation diagram\n         \n        for _ in range(n_iterations):\n            x = r_values * x * (1 - x)  # logistic map function\n            x2 = r_values2 * x2 * (1 - x2)  # logistic map function\n\n            if _ &gt;= (n_iterations - n_last):  # plot only steady state\n                ax[1].plot(r_values, x, ',k', alpha=0.25)\n                ax[1].plot([r,r],[0,1],'r--')\n                ax[2].plot(r_values2, x2, ',k', alpha=0.25)\n                ax[2].plot([r,r],[0,1],'r--')\n\n            # Labels and display\n            ax[1].set_title(\"Bifurcation Diagram\")\n            ax[1].set_xlabel(\"$r$\")\n            ax[1].set_ylabel(\"$u^*$\")\n            ax[2].set_title(\"Bifurcation Diagram (zoomed in) \")\n            ax[2].set_xlabel(\"$r$\")\n            ax[2].set_ylabel(\"$u^*$\")\n            ax[2].set_xlim([r_min,r_max])\n            ax[2].set_ylim([u_min,u_max])\n\n\n\n        plt.show()\n    \napp = App(app_ui, server)\n\n\nFigure 2\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nAt Dundee, core concepts from calculus (e.g. differential equations) and algebra that are needed to study dynamical systems are introduced in the modules Maths 1A and Maths 1B and developed further in the modules Maths 2A and Maths 2B.\nAt Level 2 in the module Discrete Maths you would be introduced to discrete dynamical systems (e.g. recurrence relations, Markov chains). In the modules Introduction to Programming and Computer Algebra and Dynamical systems you would be introduced to techniques that enable you to numerically analyse difference equations.\nAt Level 3 in the module Mathematical Biology you would consider discrete dynamical systems model applied to Biological systems.\nAt Level 4 we offer a number of honours projects that investigate chaotic systems (e.g. the Lorenz equations, the double pendulum)\nYou can find out more about these modules here."
   },
   {
     "objectID": "posts/EstimatingPi.html",
@@ -525,571 +609,25 @@
     "text": "2 Estimating an integral\nConsider Figure 2. Here we have plotted the function \\[\ny=x^2, \\quad x \\in [0,1].\n\\]\nThe shaded ‘area under the curve’ can be represented by the integral \\[\nI=\\int_0^1 x^2 \\textrm{d}x.\n\\]\nTo estimate the integral we again uniformly sample points from within the circumscribed square. By counting how many points fall inside the shaded region we can estimate the integral to be \\[\n\\hat{I}=\\textrm{Area square} \\times \\textrm{Frac points in shaded region} = 1\\times \\frac{N_R}{N_S}\n\\]\n\nHold a small number of rice grains above the square in Figure 2 drop onto the page.\nCount the total number of rice grains that fall inside the square, \\(N_S\\), and the shaded region, \\(N_R\\).\nInput data into Table 2 and compute the quantity \\[\n\\frac{N_R}{N_S}.\n\\]\nRepeat Steps 1-3.\nCompute the mean of the samples.\nExplore computationally using the ‘Monte Carlo integration’ app.\n\n\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\n\n\n\nTable 2: A table to record counts.\n\n\n\n\n\nIteration\n\\(N_S\\)\n\\(N_R\\)\n\\(\\hat{I}=N_R/N_S\\)\n\n\n\n\n1\n\n\n\n\n\n2\n\n\n\n\n\n3\n\n\n\n\n\n4\n\n\n\n\n\n5\n\n\n\n\n\n6\n\n\n\n\n\n—\n———\n—–\n——\n\n\nMean\nN/A\nN/A"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "These pages are hosted by Mathematics staff at the University of Dundee. They are intended to support ongoing student recruitment and outreach activities."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#the-blood-supply-chain",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#the-blood-supply-chain",
-    "title": "Applicant visit",
-    "section": "The blood supply chain",
-    "text": "The blood supply chain\n\nBlood is a valuable and perishable resource.\nAdequate supply is fundamental to operation of health service.\nManagement of stocks occurs at multiple points in the supply chain.\nScottish National Blood Transfusion Service (SNBTS) management the Scottish supply chain"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#there-are-8-major-blood-groups",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#there-are-8-major-blood-groups",
-    "title": "Applicant visit",
-    "section": "There are 8 major blood groups",
-    "text": "There are 8 major blood groups\n\nAntibody expression determined blood type.\nThere are 8 major blood types."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#cross-grouping-is-somewhat-permitted",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#cross-grouping-is-somewhat-permitted",
-    "title": "Applicant visit",
-    "section": "Cross grouping is somewhat permitted",
-    "text": "Cross grouping is somewhat permitted\n\nO\\(^-\\) is the universal blood donor."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#donor-and-recipient-distributions",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#donor-and-recipient-distributions",
-    "title": "Applicant visit",
-    "section": "Donor and recipient distributions",
-    "text": "Donor and recipient distributions\n\n\nBlood donor population\n\n\nWhole population"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#national-policy-drive-to-reduce-o--usage",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#national-policy-drive-to-reduce-o--usage",
-    "title": "Applicant visit",
-    "section": "National policy drive to reduce O\\(^-\\) usage",
-    "text": "National policy drive to reduce O\\(^-\\) usage\n\nSNBTS blood banks requested 14.8% units of O\\(^-\\) (the national target is 13.5 %).\nScottish hospitals need to order 95 fewer O\\(^-\\) negative units per month."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#blood-inventory-key-performance-indicators-kpis",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#blood-inventory-key-performance-indicators-kpis",
-    "title": "Applicant visit",
-    "section": "Blood inventory key performance indicators (KPIs)",
-    "text": "Blood inventory key performance indicators (KPIs)\n\nISI - issuable stock index (how many days until run out)\nWAPI - waste as a percentage of issuable stock mean age of transfused units\n\n\n\n\n\n\n\nManual optimisation\n\n\nTweak stock thresholds to get KPIs within target ranges"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#previous-work",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#previous-work",
-    "title": "Applicant visit",
-    "section": "Previous work",
-    "text": "Previous work\n\nRegression\nSimulation (e.g Katsialiaki, 2007)\n\nAfter interviewing seven transfusion laboratory managers from high-performing transfusion centres in the UK, it was concluded that “in direct opposition to what is claimed in the literature, none of the hospitals surveyed used complex models or equations to readjust target stock levels on a frequent basis” (Stanger, 2014)"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#features",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#features",
-    "title": "Applicant visit",
-    "section": "Features",
-    "text": "Features\n\nRelatively small hospital that does not have a trauma centre.\nRelatively short distance to emergency supply.\nStandard delivery on Mon, Wed and Friday.\nEmergency restock if O neg falls below minimal threshold.\nSpare capacity check triggered if other stocks fall below minimal levels.\nShort dated units (age 28-35 days) preferentially used."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#the-fridge",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#the-fridge",
-    "title": "Applicant visit",
-    "section": "The fridge",
-    "text": "The fridge"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#short-dated-stock-management",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#short-dated-stock-management",
-    "title": "Applicant visit",
-    "section": "Short dated stock management",
-    "text": "Short dated stock management"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#switching-the-ageblood-type-order",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#switching-the-ageblood-type-order",
-    "title": "Applicant visit",
-    "section": "Switching the age/blood type order",
-    "text": "Switching the age/blood type order"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#pri-stock-thresholds-two-time-periods",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#pri-stock-thresholds-two-time-periods",
-    "title": "Applicant visit",
-    "section": "PRI stock thresholds (two time periods)",
-    "text": "PRI stock thresholds (two time periods)"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#age-distribution-of-supplied-and-transfused-units",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#age-distribution-of-supplied-and-transfused-units",
-    "title": "Applicant visit",
-    "section": "Age distribution of supplied and transfused units",
-    "text": "Age distribution of supplied and transfused units\n\n\nSupplied units\n\n\nTransfused units"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#initial-aims",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#initial-aims",
-    "title": "Applicant visit",
-    "section": "Initial Aims",
-    "text": "Initial Aims\n\nIs the stocking strategy optimal at PRI?\nCan O\\(^-\\) discards be reduced?\nCan O\\(^-\\) cross grouping be reduced?\nWhat is the likelihood of O\\(^-\\) ever being unavailable (i.e. never event)?"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#algorithm-outline",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#algorithm-outline",
-    "title": "Applicant visit",
-    "section": "Algorithm outline",
-    "text": "Algorithm outline\nLet \\(N=N_{i,j,k}\\) represent number of units on \\(i^{th}\\) day of age \\(j\\) and blood group \\(k\\).\nLet \\(n_i,k\\) be the total number of units of type \\(k\\).\n\nAt each simulated day:\n\nIdentify the day of the week and the demand events that occurred on that day.\nHow many units of a certain blood type are needed?\nRandomly sample from appropriate supply distribution\nRepopulate ‘fridge’ with new units up to stock threshold, \\(\\mathbf{r}\\).\nSimulate each recorded transfusion, removing units using the preference matrix."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#simulation-snapshot",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#simulation-snapshot",
-    "title": "Applicant visit",
-    "section": "Simulation snapshot",
-    "text": "Simulation snapshot\n\n\nFigure 1"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#comparing-simulation-output-with-observations-from-pri",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#comparing-simulation-output-with-observations-from-pri",
-    "title": "Applicant visit",
-    "section": "Comparing simulation output with observations from PRI",
-    "text": "Comparing simulation output with observations from PRI\n\n\n\n\n\nNo waste, 12 emergency callouts in dataset."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#comparing-total-number-of-cross-grouping-events",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#comparing-total-number-of-cross-grouping-events",
-    "title": "Applicant visit",
-    "section": "Comparing total number of cross grouping events",
-    "text": "Comparing total number of cross grouping events\n\n\nAll stock\n\n\nShort-dated"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#recap-of-simulation-results",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#recap-of-simulation-results",
-    "title": "Applicant visit",
-    "section": "Recap of simulation results",
-    "text": "Recap of simulation results\n\nModel simulations capture many features of the PRI dataset in the given period.\nSimilar agreement between simulations and records are evident in the period from August to December when the thresholds were different.\nCan we now use the simulation as way to explore different thresholds?"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#optimisation",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#optimisation",
-    "title": "Applicant visit",
-    "section": "Optimisation",
-    "text": "Optimisation\nLet \\(n_e\\) represent the level of blood that triggers a ‘spare-capacity’ emergency restock. Define \\[\nE(\\mathbf{r})=\\sum_{k=1}^{8}\\sum_{i=0}^{N_T}N_{i,j=N_A,k}+ \\gamma \\sum_{k=1}^{8}\\sum_{i=0}^{N_T} \\mathbf{1}(n_{i,k}&lt;n_e),\n\\] where \\(\\gamma\\) represents the relative cost of one spare capacity event per wasted unit of blood.\nWe want to identify \\(\\min_{\\mathbf{r}}(E(\\mathbf{r}))\\).\n\nWe applied a simulated annealing algorithm to identify the vector \\(\\mathbf{r}^*\\) that minimises \\(E(\\mathbf{r^*})\\).\nThe search space was constrained so that the ratio of thresholds was within a tolerance factor of background population frequencies."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#identifying-an-optimal-region-of-parameter-spaxce",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#identifying-an-optimal-region-of-parameter-spaxce",
-    "title": "Applicant visit",
-    "section": "Identifying an optimal region of parameter spaxce",
-    "text": "Identifying an optimal region of parameter spaxce\n\n\n\n\n\nZero waste and a reduction in emergency callouts."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#time-averaging",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#time-averaging",
-    "title": "Applicant visit",
-    "section": "Time averaging",
-    "text": "Time averaging"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#what-is-going-on",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#what-is-going-on",
-    "title": "Applicant visit",
-    "section": "What is going on?",
-    "text": "What is going on?\n\n\n\nDemand is oscillatory.\nFriday is the biggest delivery day when units are 2 or 3 days old.\nWhen supply model is changed to make age distribution of supplied units independent of day, the waves are much less pronounced."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#suggestion-a-time-dependent-stocking-strategy",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#suggestion-a-time-dependent-stocking-strategy",
-    "title": "Applicant visit",
-    "section": "Suggestion: a time-dependent stocking strategy",
-    "text": "Suggestion: a time-dependent stocking strategy\n\n\n\nWednesday - increase thresholds by 25% from base line\nFriday - decrease thresholds by 25% from base line\nStocks averaged over the week are at the same levels\nReduce amount of units delivered on Friday\nDampens oscillatory dynamics\nEmergency call outs reduce from 7 to 2."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#a-single-population-model-no-cross-grouping",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#a-single-population-model-no-cross-grouping",
-    "title": "Applicant visit",
-    "section": "A single population model (no cross grouping)",
-    "text": "A single population model (no cross grouping)\nIndependent variables: \\(a\\) and \\(t\\)\nDependent variable: \\(q=q(a,t)\\) number density of RBC units\nIntegro-PDE: \\[\n\\begin{aligned}\n\\frac{\\partial {q}}{\\partial t}+\\frac{\\partial {q}}{\\partial a}= k_1(t)(r-n(t-\\tau)){f}(a) -k_2(t) {q} {g}(a,a^*(t)), \\quad (t,a) \\in (0,T] \\times (0,A].\n\\label{MainQeqnTime}\n\\end{aligned}\n\\]\nTotal number of RBC units: \\[\n\\begin{aligned}\nn(t)=\\int_{0}^A {q}(a,t)\\mathrm{d}a.\n\\end{aligned}\n\\]\n\\(f=f(a)\\): prescribed age distribution of supplied units"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#demand-term",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#demand-term",
-    "title": "Applicant visit",
-    "section": "Demand term",
-    "text": "Demand term\n\\[\ng(a,a^*(t))=\n\\begin{cases}\n    1&  a \\geq a^*(t),\\\\\n    0,              & a &lt; a^*(t),\n\\end{cases}\n\\]\nwhere \\(a^*(t)\\) is defined by \\[\n\\begin{aligned}\n\\eta(t)=\\int_{a^*(t)}^A {q} \\mathrm{d}a.\n\\end{aligned}\n\\]\nA boundary condition at age \\(a=0\\) is given by \\[\n\\begin{aligned}\n{q}(0,t) \\equiv 0, \\nonumber\n\\end{aligned}\n\\] The initial conditions are: \\[\n\\begin{aligned}\n{q}(a,0)=q_0(a), \\quad a \\in (0, A].\n\\label{IC}\n\\end{aligned}\n\\]"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#two-simplifying-assumptions",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#two-simplifying-assumptions",
-    "title": "Applicant visit",
-    "section": "Two simplifying assumptions",
-    "text": "Two simplifying assumptions\n\n\nSource term non zero: \\[a\\in[a_0,a_1]\\] Sink term non zero: \\[a\\in[a^*,A]\\]\nwhere \\[\na_0&lt;a_1&lt;a^*&lt;A.\n\\].\n\nApprox. as uniform"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#a-steady-state-solution",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#a-steady-state-solution",
-    "title": "Applicant visit",
-    "section": "A steady state solution",
-    "text": "A steady state solution\n\n\n\\[\n\\begin{aligned}\nq&=0, \\quad 0&lt;a&lt;a_0, \\nonumber \\\\\n{q}&=\\frac{k_1}{a_1-a_0}(r-n)(a-a_0), \\quad a_0\\leq a \\leq a_1, \\nonumber \\\\\n{q}&= k_1(r-n), \\quad a_1&lt;a&lt;a^*,  \\nonumber\\\\\n{q}&= k_1(r-n)e^{-k_2(a-a^*)},  \\quad a^*\\leq a\\leq A.\n\\label{Steadystate3}\n\\end{aligned}\n\\] where \\[\n\\begin{aligned}\na^*=A+\\frac{1}{k_2}\\ln\\left( 1-\\frac{k_2\\left(\\frac{1}{k_1}+\\gamma(a^*)\\right)}{(\\frac{r}{\\eta}-1)} \\right),\n\\end{aligned}\n\\]"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#parameter-exploration",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#parameter-exploration",
-    "title": "Applicant visit",
-    "section": "Parameter exploration",
-    "text": "Parameter exploration\n\n\nInventory size\n\n\nMin. age of transf. unit"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#derivation-of-expressions-for-kpis",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#derivation-of-expressions-for-kpis",
-    "title": "Applicant visit",
-    "section": "Derivation of expressions for KPIs",
-    "text": "Derivation of expressions for KPIs\nThe WAPI is:\n\\[\n\\begin{aligned}\nWAPI=100e^{-k_2(A-a^*)}.\n\\end{aligned}\n\\]\nThe ISI is: \\[\n\\begin{aligned}\nISI=\\frac{\\frac{1}{k_1}+\\frac{r}{\\eta}(a^*-\\mu)}{\\frac{r}{\\eta}-1}.\n\\end{aligned}\n\\]\n\nKPIs depend on \\(a^*\\) which is defined implicitly."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#the-low-wastage-limit",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#the-low-wastage-limit",
-    "title": "Applicant visit",
-    "section": "The low wastage limit",
-    "text": "The low wastage limit\n\n\nAssume \\[\na^*\\ll A\n\\]\nHence \\[\na^*=\\frac{r-\\eta}{k_2\\eta}-\\frac{1}{k_1}+\\mu\n\\] and \\[\n\\begin{aligned}\nWAPI&=100e^{-k_2(A+\\frac{1}{k_1}-\\mu)}e^{\\frac{r}{\\eta}-1}, \\nonumber\\\\\nISI&= \\frac{r}{k_2\\eta}-\\frac{1}{k_1}=a_{exp}-\\mu,  \\nonumber \\\\\na_{exp}&=\\frac{r}{k_2\\eta}-\\frac{1}{k_1}+\\mu. \\label{derivedKPIs}\n\\end{aligned}\n\\]\nHence, explicit formula for KPIs."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#mean-age-of-transfused-units-two-different-time-periods",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#mean-age-of-transfused-units-two-different-time-periods",
-    "title": "Applicant visit",
-    "section": "Mean age of transfused units: two different time periods",
-    "text": "Mean age of transfused units: two different time periods\n\n\nTime period 1\n\n\nTime period 2"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#restock-thresholds-for-target-kpis",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#restock-thresholds-for-target-kpis",
-    "title": "Applicant visit",
-    "section": "Restock thresholds for target KPIs",
-    "text": "Restock thresholds for target KPIs\n\\[\n\\begin{aligned}\nr_{WAPI} &=  {r_{max}}+\\eta\\left(1-\\ln\\left(\\frac{100}{T_{WAPI}}\\right)\\right), \\nonumber \\\\\nr_{ISI}&=k_2\\eta\\left(T_{ISI}+\\frac{1}{k_1}\\right), \\nonumber \\\\\nr_{age}&={r_{max}}-k_2\\eta(A-T_{age}).   \\label{tagetformulae}\n\\end{aligned}\n\\]"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#comparing-restock-thresholds",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#comparing-restock-thresholds",
-    "title": "Applicant visit",
-    "section": "Comparing restock thresholds",
-    "text": "Comparing restock thresholds\n\n\nTime period 1\n\n\nTime period 2"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#acknowledgements",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#acknowledgements",
-    "title": "Applicant visit",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\n\nCait Warren worked on this project as part of her Honours Project and as a Vacation summer student.\nSinal Vaz was an MSc student who worked on the PDE model.\nProf. Fordyce Davidson worked on model development.\nBlood transfusion staff at PRI have been very helpful in describing their processes.\nClare Webb, Duncan Gowans (Tayside Haematology) initiated the project with an audit and have provided advice."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#conclusions",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#conclusions",
-    "title": "Applicant visit",
-    "section": "Conclusions",
-    "text": "Conclusions\n\nDevelop a mechanistic mathematical model that could be used to explore red blood cell stocking strategy.\nWe did this and validated the model output by comparing predictions with measurements.\nOptimisation indicated that PRI could stock more OPos without increasing waste,\nThe age distribution of supplied units results in peaks and troughs in the age distribution.\nDampening the oscillatory phenomenon by using time dependent thresholds reduced emergency call outs.\nNext step is to validate predictions using a new dataset."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#but-...",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#but-...",
-    "title": "Applicant visit",
-    "section": "But ...",
-    "text": "But ...\n\nKell +\nUnused units from theatre coming back to the fridge\nPreferences influences by other factors (e.g. Aneg or Oneg for Apos patient)\nActive bleeders get Pos units (male, female &gt; 50 y)\nSometime O Neg is given first in emergencies\nOn occasions younger units may be used preferentially\nSometime BTS staff have to make judgement calls (compliance with cross-grouping guidelines at weekends?)"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#moving-to-a-statistical-model-of-demand",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#moving-to-a-statistical-model-of-demand",
-    "title": "Applicant visit",
-    "section": "Moving to a statistical model of demand",
-    "text": "Moving to a statistical model of demand\n\nWho cares what happened in PRI between August ’19 and August ’20?\nWe have looked at waiting time distributions? Highly dependent on day of the week."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#where-next",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/StAndrewsFeb2025.html#where-next",
-    "title": "Applicant visit",
-    "section": "Where next?",
-    "text": "Where next?\n\nHave a dataset from a larger hospital (Ninewells in Dundee). It has a trauma centre and maternity unit. Will the approach still be valid?\nSNBTS are keen to try to integrate into their code base.\nWhat about geographically isolated locations (e.g. Orkney?)\n\n\n\n\n\nMathematics, University of Dundee"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#the-blood-supply-chain",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#the-blood-supply-chain",
-    "title": "Applicant visit",
-    "section": "The blood supply chain",
-    "text": "The blood supply chain\n\nBlood is a valuable and perishable resource.\nAdequate supply is fundamental to operation of health service.\nManagement of stocks occurs at multiple points in the supply chain.\nScottish National Blood Transfusion Service (SNBTS) management the Scottish supply chain"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#there-are-8-major-blood-groups",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#there-are-8-major-blood-groups",
-    "title": "Applicant visit",
-    "section": "There are 8 major blood groups",
-    "text": "There are 8 major blood groups\n\nAntibody expression determined blood type.\nThere are 8 major blood types."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#cross-grouping-is-somewhat-permitted",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#cross-grouping-is-somewhat-permitted",
-    "title": "Applicant visit",
-    "section": "Cross grouping is somewhat permitted",
-    "text": "Cross grouping is somewhat permitted\n\nO\\(^-\\) is the universal blood donor."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#donor-and-recipient-distributions",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#donor-and-recipient-distributions",
-    "title": "Applicant visit",
-    "section": "Donor and recipient distributions",
-    "text": "Donor and recipient distributions\n\n\nBlood donor population\n\n\nWhole population"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#national-policy-drive-to-reduce-o--usage",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#national-policy-drive-to-reduce-o--usage",
-    "title": "Applicant visit",
-    "section": "National policy drive to reduce O\\(^-\\) usage",
-    "text": "National policy drive to reduce O\\(^-\\) usage\n\nSNBTS blood banks requested 14.8% units of O\\(^-\\) (the national target is 13.5 %).\nScottish hospitals need to order 95 fewer O\\(^-\\) negative units per month."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#blood-inventory-key-performance-indicators-kpis",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#blood-inventory-key-performance-indicators-kpis",
-    "title": "Applicant visit",
-    "section": "Blood inventory key performance indicators (KPIs)",
-    "text": "Blood inventory key performance indicators (KPIs)\n\nISI - issuable stock index (how many days until run out)\nWAPI - waste as a percentage of issuable stock mean age of transfused units\n\n\n\n\n\n\n\nManual optimisation\n\n\nTweak stock thresholds to get KPIs within target ranges"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#previous-work",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#previous-work",
-    "title": "Applicant visit",
-    "section": "Previous work",
-    "text": "Previous work\n\nRegression\nSimulation (e.g Katsialiaki, 2007)\n\nAfter interviewing seven transfusion laboratory managers from high-performing transfusion centres in the UK, it was concluded that “in direct opposition to what is claimed in the literature, none of the hospitals surveyed used complex models or equations to readjust target stock levels on a frequent basis” (Stanger, 2014)"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#features",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#features",
-    "title": "Applicant visit",
-    "section": "Features",
-    "text": "Features\n\nRelatively small hospital that does not have a trauma centre.\nRelatively short distance to emergency supply.\nStandard delivery on Mon, Wed and Friday.\nEmergency restock if O neg falls below minimal threshold.\nSpare capacity check triggered if other stocks fall below minimal levels.\nShort dated units (age 28-35 days) preferentially used."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#the-fridge",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#the-fridge",
-    "title": "Applicant visit",
-    "section": "The fridge",
-    "text": "The fridge"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#short-dated-stock-management",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#short-dated-stock-management",
-    "title": "Applicant visit",
-    "section": "Short dated stock management",
-    "text": "Short dated stock management"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#switching-the-ageblood-type-order",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#switching-the-ageblood-type-order",
-    "title": "Applicant visit",
-    "section": "Switching the age/blood type order",
-    "text": "Switching the age/blood type order"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#pri-stock-thresholds-two-time-periods",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#pri-stock-thresholds-two-time-periods",
-    "title": "Applicant visit",
-    "section": "PRI stock thresholds (two time periods)",
-    "text": "PRI stock thresholds (two time periods)"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#age-distribution-of-supplied-and-transfused-units",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#age-distribution-of-supplied-and-transfused-units",
-    "title": "Applicant visit",
-    "section": "Age distribution of supplied and transfused units",
-    "text": "Age distribution of supplied and transfused units\n\n\nSupplied units\n\n\nTransfused units"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#initial-aims",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#initial-aims",
-    "title": "Applicant visit",
-    "section": "Initial Aims",
-    "text": "Initial Aims\n\nIs the stocking strategy optimal at PRI?\nCan O\\(^-\\) discards be reduced?\nCan O\\(^-\\) cross grouping be reduced?\nWhat is the likelihood of O\\(^-\\) ever being unavailable (i.e. never event)?"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#algorithm-outline",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#algorithm-outline",
-    "title": "Applicant visit",
-    "section": "Algorithm outline",
-    "text": "Algorithm outline\nLet \\(N=N_{i,j,k}\\) represent number of units on \\(i^{th}\\) day of age \\(j\\) and blood group \\(k\\).\nLet \\(n_i,k\\) be the total number of units of type \\(k\\).\n\nAt each simulated day:\n\nIdentify the day of the week and the demand events that occurred on that day.\nHow many units of a certain blood type are needed?\nRandomly sample from appropriate supply distribution\nRepopulate ‘fridge’ with new units up to stock threshold, \\(\\mathbf{r}\\).\nSimulate each recorded transfusion, removing units using the preference matrix."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#simulation-snapshot",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#simulation-snapshot",
-    "title": "Applicant visit",
-    "section": "Simulation snapshot",
-    "text": "Simulation snapshot\n\n\nFigure 1"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#comparing-simulation-output-with-observations-from-pri",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#comparing-simulation-output-with-observations-from-pri",
-    "title": "Applicant visit",
-    "section": "Comparing simulation output with observations from PRI",
-    "text": "Comparing simulation output with observations from PRI\n\n\n\n\n\nNo waste, 12 emergency callouts in dataset."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#comparing-total-number-of-cross-grouping-events",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#comparing-total-number-of-cross-grouping-events",
-    "title": "Applicant visit",
-    "section": "Comparing total number of cross grouping events",
-    "text": "Comparing total number of cross grouping events\n\n\nAll stock\n\n\nShort-dated"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#recap-of-simulation-results",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#recap-of-simulation-results",
-    "title": "Applicant visit",
-    "section": "Recap of simulation results",
-    "text": "Recap of simulation results\n\nModel simulations capture many features of the PRI dataset in the given period.\nSimilar agreement between simulations and records are evident in the period from August to December when the thresholds were different.\nCan we now use the simulation as way to explore different thresholds?"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#optimisation",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#optimisation",
-    "title": "Applicant visit",
-    "section": "Optimisation",
-    "text": "Optimisation\nLet \\(n_e\\) represent the level of blood that triggers a ‘spare-capacity’ emergency restock. Define \\[\nE(\\mathbf{r})=\\sum_{k=1}^{8}\\sum_{i=0}^{N_T}N_{i,j=N_A,k}+ \\gamma \\sum_{k=1}^{8}\\sum_{i=0}^{N_T} \\mathbf{1}(n_{i,k}&lt;n_e),\n\\] where \\(\\gamma\\) represents the relative cost of one spare capacity event per wasted unit of blood.\nWe want to identify \\(\\min_{\\mathbf{r}}(E(\\mathbf{r}))\\).\n\nWe applied a simulated annealing algorithm to identify the vector \\(\\mathbf{r}^*\\) that minimises \\(E(\\mathbf{r^*})\\).\nThe search space was constrained so that the ratio of thresholds was within a tolerance factor of background population frequencies."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#identifying-an-optimal-region-of-parameter-spaxce",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#identifying-an-optimal-region-of-parameter-spaxce",
-    "title": "Applicant visit",
-    "section": "Identifying an optimal region of parameter spaxce",
-    "text": "Identifying an optimal region of parameter spaxce\n\n\n\n\n\nZero waste and a reduction in emergency callouts."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#time-averaging",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#time-averaging",
-    "title": "Applicant visit",
-    "section": "Time averaging",
-    "text": "Time averaging"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#what-is-going-on",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#what-is-going-on",
-    "title": "Applicant visit",
-    "section": "What is going on?",
-    "text": "What is going on?\n\n\n\nDemand is oscillatory.\nFriday is the biggest delivery day when units are 2 or 3 days old.\nWhen supply model is changed to make age distribution of supplied units independent of day, the waves are much less pronounced."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#suggestion-a-time-dependent-stocking-strategy",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#suggestion-a-time-dependent-stocking-strategy",
-    "title": "Applicant visit",
-    "section": "Suggestion: a time-dependent stocking strategy",
-    "text": "Suggestion: a time-dependent stocking strategy\n\n\n\nWednesday - increase thresholds by 25% from base line\nFriday - decrease thresholds by 25% from base line\nStocks averaged over the week are at the same levels\nReduce amount of units delivered on Friday\nDampens oscillatory dynamics\nEmergency call outs reduce from 7 to 2."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#a-single-population-model-no-cross-grouping",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#a-single-population-model-no-cross-grouping",
-    "title": "Applicant visit",
-    "section": "A single population model (no cross grouping)",
-    "text": "A single population model (no cross grouping)\nIndependent variables: \\(a\\) and \\(t\\)\nDependent variable: \\(q=q(a,t)\\) number density of RBC units\nIntegro-PDE: \\[\n\\begin{aligned}\n\\frac{\\partial {q}}{\\partial t}+\\frac{\\partial {q}}{\\partial a}= k_1(t)(r-n(t-\\tau)){f}(a) -k_2(t) {q} {g}(a,a^*(t)), \\quad (t,a) \\in (0,T] \\times (0,A].\n\\label{MainQeqnTime}\n\\end{aligned}\n\\]\nTotal number of RBC units: \\[\n\\begin{aligned}\nn(t)=\\int_{0}^A {q}(a,t)\\mathrm{d}a.\n\\end{aligned}\n\\]\n\\(f=f(a)\\): prescribed age distribution of supplied units"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#demand-term",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#demand-term",
-    "title": "Applicant visit",
-    "section": "Demand term",
-    "text": "Demand term\n\\[\ng(a,a^*(t))=\n\\begin{cases}\n    1&  a \\geq a^*(t),\\\\\n    0,              & a &lt; a^*(t),\n\\end{cases}\n\\]\nwhere \\(a^*(t)\\) is defined by \\[\n\\begin{aligned}\n\\eta(t)=\\int_{a^*(t)}^A {q} \\mathrm{d}a.\n\\end{aligned}\n\\]\nA boundary condition at age \\(a=0\\) is given by \\[\n\\begin{aligned}\n{q}(0,t) \\equiv 0, \\nonumber\n\\end{aligned}\n\\] The initial conditions are: \\[\n\\begin{aligned}\n{q}(a,0)=q_0(a), \\quad a \\in (0, A].\n\\label{IC}\n\\end{aligned}\n\\]"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#two-simplifying-assumptions",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#two-simplifying-assumptions",
-    "title": "Applicant visit",
-    "section": "Two simplifying assumptions",
-    "text": "Two simplifying assumptions\n\n\nSource term non zero: \\[a\\in[a_0,a_1]\\] Sink term non zero: \\[a\\in[a^*,A]\\]\nwhere \\[\na_0&lt;a_1&lt;a^*&lt;A.\n\\].\n\nApprox. as uniform"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#a-steady-state-solution",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#a-steady-state-solution",
-    "title": "Applicant visit",
-    "section": "A steady state solution",
-    "text": "A steady state solution\n\n\n\\[\n\\begin{aligned}\nq&=0, \\quad 0&lt;a&lt;a_0, \\nonumber \\\\\n{q}&=\\frac{k_1}{a_1-a_0}(r-n)(a-a_0), \\quad a_0\\leq a \\leq a_1, \\nonumber \\\\\n{q}&= k_1(r-n), \\quad a_1&lt;a&lt;a^*,  \\nonumber\\\\\n{q}&= k_1(r-n)e^{-k_2(a-a^*)},  \\quad a^*\\leq a\\leq A.\n\\label{Steadystate3}\n\\end{aligned}\n\\] where \\[\n\\begin{aligned}\na^*=A+\\frac{1}{k_2}\\ln\\left( 1-\\frac{k_2\\left(\\frac{1}{k_1}+\\gamma(a^*)\\right)}{(\\frac{r}{\\eta}-1)} \\right),\n\\end{aligned}\n\\]"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#parameter-exploration",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#parameter-exploration",
-    "title": "Applicant visit",
-    "section": "Parameter exploration",
-    "text": "Parameter exploration\n\n\nInventory size\n\n\nMin. age of transf. unit"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#derivation-of-expressions-for-kpis",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#derivation-of-expressions-for-kpis",
-    "title": "Applicant visit",
-    "section": "Derivation of expressions for KPIs",
-    "text": "Derivation of expressions for KPIs\nThe WAPI is:\n\\[\n\\begin{aligned}\nWAPI=100e^{-k_2(A-a^*)}.\n\\end{aligned}\n\\]\nThe ISI is: \\[\n\\begin{aligned}\nISI=\\frac{\\frac{1}{k_1}+\\frac{r}{\\eta}(a^*-\\mu)}{\\frac{r}{\\eta}-1}.\n\\end{aligned}\n\\]\n\nKPIs depend on \\(a^*\\) which is defined implicitly."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#the-low-wastage-limit",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#the-low-wastage-limit",
-    "title": "Applicant visit",
-    "section": "The low wastage limit",
-    "text": "The low wastage limit\n\n\nAssume \\[\na^*\\ll A\n\\]\nHence \\[\na^*=\\frac{r-\\eta}{k_2\\eta}-\\frac{1}{k_1}+\\mu\n\\] and \\[\n\\begin{aligned}\nWAPI&=100e^{-k_2(A+\\frac{1}{k_1}-\\mu)}e^{\\frac{r}{\\eta}-1}, \\nonumber\\\\\nISI&= \\frac{r}{k_2\\eta}-\\frac{1}{k_1}=a_{exp}-\\mu,  \\nonumber \\\\\na_{exp}&=\\frac{r}{k_2\\eta}-\\frac{1}{k_1}+\\mu. \\label{derivedKPIs}\n\\end{aligned}\n\\]\nHence, explicit formula for KPIs."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#mean-age-of-transfused-units-two-different-time-periods",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#mean-age-of-transfused-units-two-different-time-periods",
-    "title": "Applicant visit",
-    "section": "Mean age of transfused units: two different time periods",
-    "text": "Mean age of transfused units: two different time periods\n\n\nTime period 1\n\n\nTime period 2"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#restock-thresholds-for-target-kpis",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#restock-thresholds-for-target-kpis",
-    "title": "Applicant visit",
-    "section": "Restock thresholds for target KPIs",
-    "text": "Restock thresholds for target KPIs\n\\[\n\\begin{aligned}\nr_{WAPI} &=  {r_{max}}+\\eta\\left(1-\\ln\\left(\\frac{100}{T_{WAPI}}\\right)\\right), \\nonumber \\\\\nr_{ISI}&=k_2\\eta\\left(T_{ISI}+\\frac{1}{k_1}\\right), \\nonumber \\\\\nr_{age}&={r_{max}}-k_2\\eta(A-T_{age}).   \\label{tagetformulae}\n\\end{aligned}\n\\]"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#comparing-restock-thresholds",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#comparing-restock-thresholds",
-    "title": "Applicant visit",
-    "section": "Comparing restock thresholds",
-    "text": "Comparing restock thresholds\n\n\nTime period 1\n\n\nTime period 2"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#acknowledgements",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#acknowledgements",
-    "title": "Applicant visit",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\n\nCait Warren worked on this project as part of her Honours Project and as a Vacation summer student.\nSinal Vaz was an MSc student who worked on the PDE model.\nProf. Fordyce Davidson worked on model development.\nBlood transfusion staff at PRI have been very helpful in describing their processes.\nClare Webb, Duncan Gowans (Tayside Haematology) initiated the project with an audit and have provided advice."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#conclusions",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#conclusions",
-    "title": "Applicant visit",
-    "section": "Conclusions",
-    "text": "Conclusions\n\nDevelop a mechanistic mathematical model that could be used to explore red blood cell stocking strategy.\nWe did this and validated the model output by comparing predictions with measurements.\nOptimisation indicated that PRI could stock more OPos without increasing waste,\nThe age distribution of supplied units results in peaks and troughs in the age distribution.\nDampening the oscillatory phenomenon by using time dependent thresholds reduced emergency call outs.\nNext step is to validate predictions using a new dataset."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#but-...",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#but-...",
-    "title": "Applicant visit",
-    "section": "But ...",
-    "text": "But ...\n\nKell +\nUnused units from theatre coming back to the fridge\nPreferences influences by other factors (e.g. Aneg or Oneg for Apos patient)\nActive bleeders get Pos units (male, female &gt; 50 y)\nSometime O Neg is given first in emergencies\nOn occasions younger units may be used preferentially\nSometime BTS staff have to make judgement calls (compliance with cross-grouping guidelines at weekends?)"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#moving-to-a-statistical-model-of-demand",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#moving-to-a-statistical-model-of-demand",
-    "title": "Applicant visit",
-    "section": "Moving to a statistical model of demand",
-    "text": "Moving to a statistical model of demand\n\nWho cares what happened in PRI between August ’19 and August ’20?\nWe have looked at waiting time distributions? Highly dependent on day of the week."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#where-next",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#where-next",
-    "title": "Applicant visit",
-    "section": "Where next?",
-    "text": "Where next?\n\nHave a dataset from a larger hospital (Ninewells in Dundee). It has a trauma centre and maternity unit. Will the approach still be valid?\nSNBTS are keen to try to integrate into their code base.\nWhat about geographically isolated locations (e.g. Orkney?)\n\n\n\n\n\nMathematics, University of Dundee"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#skills-developed-in-maths-degrees",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#skills-developed-in-maths-degrees",
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#why-mathematics",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#why-mathematics",
     "title": "Applicant visit talk",
-    "section": "Skills developed in maths degrees",
-    "text": "Skills developed in maths degrees\n\nStudents become logical numerate problem solvers\nDevelop technical mathematical skills\nLearn how to apply mathematics to different problems\nDevelop computer programming skills\nDevelop communication skills"
+    "section": "Why Mathematics?",
+    "text": "Why Mathematics?\n\nBecome a logical numerate problem solver\nLearn about exciting new areas of mathematics\nLearn how to apply mathematics to real world problems\nDevelop computer programming skills\nDevelop communication skills"
   },
   {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#stem-skills-are-valuable",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#stem-skills-are-valuable",
-    "title": "Applicant visit",
-    "section": "STEM skills are valuable",
-    "text": "STEM skills are valuable"
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#logical-numerate-problem-solvers-are-valued",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#logical-numerate-problem-solvers-are-valued",
+    "title": "Applicant visit talk",
+    "section": "Logical numerate problem solvers are valued",
+    "text": "Logical numerate problem solvers are valued"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#mathematics-degrees",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#mathematics-degrees",
+    "title": "Applicant visit talk",
+    "section": "Mathematics degrees",
+    "text": "Mathematics degrees\n\nSingle honours Mathematics degrees\nJoint Honours (e.g. with Accountancy, Economics, Physics, Life Sciences, Psychology)\nFlexibility in structure of degree pathways"
   },
   {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#teaching-delivery",
@@ -1106,41 +644,6 @@
     "text": "Final year project\n\ndevelop independent problem solving skills\nwork on an exciting mathematical topic\ndevelop programming and presentation skills\nTopics include:\n\nThe $25,000,000,000 eigenvector\nThe Mathematics of monopoly\nHow Sat Navs work?"
   },
   {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#estimate-pi-using-monte-carlo-techniques",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#estimate-pi-using-monte-carlo-techniques",
-    "title": "Applicant visit",
-    "section": "Estimate \\(\\pi\\) using Monte Carlo techniques",
-    "text": "Estimate \\(\\pi\\) using Monte Carlo techniques\n\n\nProbability of uniformly sampled point falling in circle is\n\\[\n\\frac{\\textrm{Area circle}}{\\textrm{Area square}}=\\frac{\\pi}{4}\n\\]\n\n\n\n\n\n\n\n\n\nFigure 1"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#estimate-definite-integral-using-monte-carlo-method",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#estimate-definite-integral-using-monte-carlo-method",
-    "title": "Applicant visit",
-    "section": "Estimate definite integral using Monte Carlo method",
-    "text": "Estimate definite integral using Monte Carlo method\n\n\nEstimate the definite integral \\[\n\\int_a^b f(x)\\textrm{d}x.\n\\]\nProb. of uniformly sampled point falling in shaded region \\[\n\\frac{\\textrm{Area shaded}}{\\textrm{Area square}}\n\\]\n\n\n\n\n\n\n\n\n\nFigure 6"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#method",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#method",
-    "title": "Applicant visit",
-    "section": "Method",
-    "text": "Method\n\nReal life sampling (rice grains)\nGet a computer to generate samples\n\nSee printed worksheet for further details."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#what-have-we-learned",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#what-have-we-learned",
-    "title": "Applicant visit",
-    "section": "What have we learned?",
-    "text": "What have we learned?\n\nWe can study mathematics using experiential learning\nWe can program algorithms to help understand mathematical concepts\n\n\n\n\n\nMathematics, University of Dundee"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#mathematics-skills-are-valuable",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#mathematics-skills-are-valuable",
-    "title": "Applicant visit talk",
-    "section": "Mathematics skills are valuable",
-    "text": "Mathematics skills are valuable"
-  },
-  {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#explore-how-mathematics-underpins-cryptography",
     "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#explore-how-mathematics-underpins-cryptography",
     "title": "Applicant visit talk",
@@ -1148,18 +651,11 @@
     "text": "Explore how mathematics underpins cryptography\n\nHow to banks securely transfer data to your phone?\nHow can governments securely communicate sensitive information?\n\nhttps://dundeemath.github.io/Admissions/posts/Cryptography.html"
   },
   {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#hash-functions",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#hash-functions",
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#decryption-using-hash-functions",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#decryption-using-hash-functions",
     "title": "Applicant visit talk",
-    "section": "Hash functions",
-    "text": "Hash functions\n\nHash functions provide a way to encrypt messages\nBoth encrytion/decryption use the same shared secret number\n\n9995fc19ee935e80d28b19db3709a9ce414ec1bd29cd006115114fbd6bd2f6e5cb84aec0d6468233e1\nDecryptUsingThisLink\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 300\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\nimport sympy as sp\nimport pandas as pd\nfrom cryptography.hazmat.primitives.kdf.hkdf import HKDF\nfrom cryptography.hazmat.primitives import hashes\nfrom cryptography.hazmat.primitives.asymmetric import dh\nimport os\nfrom cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes\nimport base64\n\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"shared_secret\",label=\"Shared secret\",min=10,max=3000,value=31,step=1),\n    ui.input_text(id='text',label=\"Message to decrypt\",value=\"8968d20bbc5b\"),\n            ),\n\n        ui.output_table(\"result\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n\n\n    \n    def decrypt_message(key, iv, ciphertext):\n        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))\n        decryptor = cipher.decryptor()\n        plaintext = decryptor.update(ciphertext) + decryptor.finalize()\n        return plaintext\n\n\n\n    @render.table\n    def result():\n        # list of strings\n        shared_secret=int(input.shared_secret())\n        encrypted_text=str(input.text())\n\n        encrypted_text=bytes.fromhex(encrypted_text)\n\n\n\n\n        #text=text.encode(encoding=\"utf-8\")\n        #encrypted_text = encrypted_text.encode('ISO-8859-1')\n\n        shared_secret_bytes=shared_secret.to_bytes(16,'big')\n        derived_key = HKDF(\n            algorithm=hashes.SHA256(),\n            length=32,\n            salt=None,\n            info=b\"diffie-hellman-key-exchange\",\n        ).derive(shared_secret_bytes)\n        \n        \n        iv=5\n        iv=iv.to_bytes(16, 'big')\n                \n        decrypted_message = decrypt_message(derived_key, iv, encrypted_text)\n\n       \n        data_dict = {\n            'Decrypted Message':[decrypted_message]\n            }\n\n        # Create a DataFrame\n        df = pd.DataFrame(data_dict)\n        # Calling DataFrame constructor on list\n        return df\n\napp = App(app_ui, server)\n\n\nFigure 1"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#section",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#section",
-    "title": "Applicant visit",
-    "section": "",
-    "text": "In mathematical notation we say that 13 is congruent to 1 mod 12 \\[\n13 \\equiv 1 \\mod 12.\n\\]\nIn general:\n\\[\na \\mod p\n\\] means the remainder when I divide \\(a\\) by \\(p\\).\nSo \\[\n13 \\mod 12 = ??\n27 \\mod 12 = ??\n\\]"
+    "section": "Decryption using hash functions",
+    "text": "Decryption using hash functions\n\nHash functions provide a way to encrypt/decrypt messages\nBoth encrytion/decryption use the same shared secret number\n\n9995fc19ee935e80d28b19db3709a9ce414ec1bd29cd006115114fbd6bd2f6e5cb84aec0d6468233e1\nDecryptUsingThisLink\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 300\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\nimport sympy as sp\nimport pandas as pd\nfrom cryptography.hazmat.primitives.kdf.hkdf import HKDF\nfrom cryptography.hazmat.primitives import hashes\nfrom cryptography.hazmat.primitives.asymmetric import dh\nimport os\nfrom cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes\nimport base64\n\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"shared_secret\",label=\"Shared secret\",min=10,max=3000,value=31,step=1),\n    ui.input_text(id='text',label=\"Message to decrypt\",value=\"8968d20bbc5b\"),\n            ),\n\n        ui.output_table(\"result\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n\n\n    \n    def decrypt_message(key, iv, ciphertext):\n        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))\n        decryptor = cipher.decryptor()\n        plaintext = decryptor.update(ciphertext) + decryptor.finalize()\n        return plaintext\n\n\n\n    @render.table\n    def result():\n        # list of strings\n        shared_secret=int(input.shared_secret())\n        encrypted_text=str(input.text())\n\n        encrypted_text=bytes.fromhex(encrypted_text)\n\n\n\n\n        #text=text.encode(encoding=\"utf-8\")\n        #encrypted_text = encrypted_text.encode('ISO-8859-1')\n\n        shared_secret_bytes=shared_secret.to_bytes(16,'big')\n        derived_key = HKDF(\n            algorithm=hashes.SHA256(),\n            length=32,\n            salt=None,\n            info=b\"diffie-hellman-key-exchange\",\n        ).derive(shared_secret_bytes)\n        \n        \n        iv=5\n        iv=iv.to_bytes(16, 'big')\n                \n        decrypted_message = decrypt_message(derived_key, iv, encrypted_text)\n\n       \n        data_dict = {\n            'Decrypted Message':[decrypted_message]\n            }\n\n        # Create a DataFrame\n        df = pd.DataFrame(data_dict)\n        # Calling DataFrame constructor on list\n        return df\n\napp = App(app_ui, server)\n\n\nFigure 1"
   },
   {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#encrypting-a-message",
@@ -1169,69 +665,6 @@
     "text": "Encrypting a message\nYou can also encrypt a message.\nYou’ll need to use the same shared secret to perform the decryption.\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 300\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\nimport sympy as sp\nimport pandas as pd\nfrom cryptography.hazmat.primitives.kdf.hkdf import HKDF\nfrom cryptography.hazmat.primitives import hashes\nfrom cryptography.hazmat.primitives.asymmetric import dh\nimport os\nfrom cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes\n\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"shared_secret\",label=\"shared secret\",min=10,max=3000,value=23,step=1),\n    ui.input_text(id='text',label=\"Message to encrypt\",value=\"Yarrrr\"),\n         \n     \n            ),\n\n        ui.output_table(\"result\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n\n    def encrypt_message(key, plaintext):\n        iv=5\n        iv=iv.to_bytes(16, 'big')\n        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))\n        encryptor = cipher.encryptor()\n        ciphertext = encryptor.update(plaintext) + encryptor.finalize()\n        return iv,ciphertext\n    \n\n\n\n    @render.table\n    def result():\n        # list of strings\n        shared_secret=int(input.shared_secret())\n        text=input.text()\n        # Step 1: Generate Diffie-Hellman Parameters and Keys\n       \n\n        #shared_secret=int(np.mod(g**(a*b),p))\n        shared_secret_bytes=shared_secret.to_bytes(16,'big')\n        #shared_secret=g**(a*b)\n        derived_key = HKDF(\n            algorithm=hashes.SHA256(),\n            length=32,\n            salt=None,\n            info=b\"diffie-hellman-key-exchange\",\n        ).derive(shared_secret_bytes)\n        \n        # Step 4: Encrypt a Message Using AES\n        message = text.encode(encoding=\"utf-8\")\n        iv, ciphertext = encrypt_message(derived_key, message)\n\n         # Decrypt the message\n        data_dict = {\n            'Encrypted Message':[ciphertext.hex()],\n            'Encrypted Message':[ciphertext.hex()],\n            }\n\n        # Create a DataFrame\n        df = pd.DataFrame(data_dict)\n        # Calling DataFrame constructor on list\n        return df\n\n   \napp = App(app_ui, server)\n\n\nFigure 2"
   },
   {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#what-is-the-the-problem",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#what-is-the-the-problem",
-    "title": "Applicant visit",
-    "section": "What is the the problem?",
-    "text": "What is the the problem?\n\nMessages can easily be decrypted using brute force\nEncryption requires both parties to know a shared secret\n\nHow can we safely share a secret?"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#modular-arithmetic",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#modular-arithmetic",
-    "title": "Applicant visit talk",
-    "section": "Modular arithmetic",
-    "text": "Modular arithmetic\nIn modular arithmetic we define a finite set of numbers and perform arithmetic operations on them.\n\n\n\\[ 2+3=5\\] \\[ 5+4=9\\]\n\\[ 11+ 3= ??\\]\nIn mathematical notation, 14 is congruent to 2 mod 12 \\[\n14 \\equiv 2 \\pmod{12}.\n\\]"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#section-1",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#section-1",
-    "title": "Applicant visit",
-    "section": "",
-    "text": "In mathematical notation we say that 13 is congruent to 1 mod 12 \\[\n13 \\equiv 1 \\mod 12.\n\\]\nIn general:\n\\[\na \\mod p\n\\] means the remainder when I divide \\(a\\) by \\(p\\).\nSo \\[\n13 \\mod 12 = ??\n27 \\mod 12 = ??\n\\]"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#section-2",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#section-2",
-    "title": "Applicant visit",
-    "section": "",
-    "text": "In general:\n\\[\na \\mod p\n\\] means the remainder when I divide \\(a\\) by \\(p\\).\nSo \\[\n13 \\mod 12 = ??\n27 \\mod 12 = ??\n\\]"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#more-arithmetic-operations",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#more-arithmetic-operations",
-    "title": "Applicant visit",
-    "section": "More arithmetic operations",
-    "text": "More arithmetic operations\nWhat is? \\[\n2^3 \\mod 7 =?\n\\]\nNotably\n\\[\n(g^a)^b \\mod p =  (g^b)^a \\mod p\n\\]\nThis result underpins an import secret-sharing algorithm known as the Diffie-Helman algorithm."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#generating-a-shared-secret",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#generating-a-shared-secret",
-    "title": "Applicant visit talk",
-    "section": "Generating a shared secret",
-    "text": "Generating a shared secret\nTwo parties: \\(\\textrm{\\textcolor{red}{Alice}}\\) and \\(\\textrm{\\textcolor{blue}{Bob}}\\).\nSelect and share the following: prime number, \\(p\\), and generator \\(g\\) (primitive root of p).\nEach choose their own private keys \\(\\textcolor{red}{x_A}\\) and \\(\\textcolor{blue}{x_B}\\).\n\\(\\textrm{\\textcolor{red}{Alice}}\\) computes public key \\[\ny_A=g^{\\textcolor{red}{x_A}} \\pmod p\n\\]\n\\(\\textrm{\\textcolor{blue}{Bob}}\\) computes public key\n\\[\ny_B=g^{\\textcolor{blue}{x_B}} \\pmod p\n\\]\nThey publicly exchange public keys.\nThen \\(\\textrm{\\textcolor{red}{Alice}}\\) computes\n\\[\n(y_B)^{\\textcolor{red}{x_A}}=(g^{\\textcolor{blue}{x_B}})^{\\textcolor{red}{x_A}}= g^{\\textcolor{red}{x_A}\\textcolor{blue}{x_B}}=s \\pmod{p}\n\\]"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#why-is-it-safe",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#why-is-it-safe",
-    "title": "Applicant visit talk",
-    "section": "Why is it safe?",
-    "text": "Why is it safe?\nPublicly shared info: \\(p\\), \\(g\\), \\(y_A=g^{\\textcolor{red}{x_A}}\\), \\(y_B=g^{\\textcolor{blue}{x_B}}\\).\n. . . To identify the shared secret, a hacker needs to solve \\[\ng^{\\textcolor{red}{x_A}}=y_A \\pmod p.\n\\] for the unknown \\(x_A\\).\n\nGiven \\(\\textcolor{red}{x_A}\\), then they can compute the shared secret\n\\[\ns=y_B^{\\textcolor{red}{x_A}}=g^{\\textcolor{red}{x_A} \\textcolor{blue}{x_B}}.\n\\]"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#the-discrete-logarithm-problem",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#the-discrete-logarithm-problem",
-    "title": "Applicant visit talk",
-    "section": "The discrete logarithm problem",
-    "text": "The discrete logarithm problem\nThe problem \\[\ng^{x_A}=y_A \\pmod p.\n\\]\nis hard to solve.\nChoose \\(p\\) to be a prime number and \\(g\\) to be a primitive root of \\(p\\).\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 400\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"p\",label=\"p (prime number)\",min=5,max=300,value=23,step=1),\n    ui.input_slider(id=\"g\",label=\"g (generator)\",min=0,max=30,value=5,step=1),\n    ui.input_slider(id=\"s\",label=\"Public key\",min=1,max=100,value=5,step=1),      \n            ),\n\n        \n        ui.output_plot(\"plot\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n\n    \n\n    @render.plot\n    def plot():\n        fig, ax = plt.subplots()\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        p=int(input.p())\n        g=int(input.g())\n        s=int(input.s())\n        \n    \n    \n        ax.set_xlabel('$x$')\n        ax.set_ylabel('$f$')\n\n       \n        a_vec=np.linspace(0,p-1,p,dtype='uint64')\n        function_mod = np.mod(np.power(g, a_vec), p)\n\n        #function_mod=[pow(g,a,p) for a in a_vec]\n    \n\n        ax.plot(a_vec,function_mod,'x',a_vec,np.ones_like(a_vec)*s,'r--')\n\n        fig.tight_layout()\n        plt.grid()\n        plt.show()\n    \napp = App(app_ui, server)\n\n\nFigure 4"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#a-decryption-exercise",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#a-decryption-exercise",
-    "title": "Applicant visit",
-    "section": "A decryption exercise",
-    "text": "A decryption exercise\n9995fc19ee935e80d28b19db3709a9ce414ec1bd29cd006115114fbd6bd2f6e5cb84aec0d6468233e1\nDecryptUsingThisLink\nHint: use the slider to brute force the decryption.\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 300\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\nimport sympy as sp\nimport pandas as pd\nfrom cryptography.hazmat.primitives.kdf.hkdf import HKDF\nfrom cryptography.hazmat.primitives import hashes\nfrom cryptography.hazmat.primitives.asymmetric import dh\nimport os\nfrom cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes\nimport base64\n\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"shared_secret\",label=\"Shared secret\",min=10,max=3000,value=31,step=1),\n    ui.input_text(id='text',label=\"Message to decrypt\",value=\"8968d20bbc5b\"),\n            ),\n\n        ui.output_table(\"result\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n\n\n    \n    def decrypt_message(key, iv, ciphertext):\n        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))\n        decryptor = cipher.decryptor()\n        plaintext = decryptor.update(ciphertext) + decryptor.finalize()\n        return plaintext\n\n\n\n    @render.table\n    def result():\n        # list of strings\n        shared_secret=int(input.shared_secret())\n        encrypted_text=str(input.text())\n\n        encrypted_text=bytes.fromhex(encrypted_text)\n\n\n\n\n        #text=text.encode(encoding=\"utf-8\")\n        #encrypted_text = encrypted_text.encode('ISO-8859-1')\n\n        shared_secret_bytes=shared_secret.to_bytes(16,'big')\n        derived_key = HKDF(\n            algorithm=hashes.SHA256(),\n            length=32,\n            salt=None,\n            info=b\"diffie-hellman-key-exchange\",\n        ).derive(shared_secret_bytes)\n        \n        \n        iv=5\n        iv=iv.to_bytes(16, 'big')\n                \n        decrypted_message = decrypt_message(derived_key, iv, encrypted_text)\n\n       \n        data_dict = {\n            'Decrypted Message':[decrypted_message]\n            }\n\n        # Create a DataFrame\n        df = pd.DataFrame(data_dict)\n        # Calling DataFrame constructor on list\n        return df\n\napp = App(app_ui, server)\n\n\nFigure 1"
-  },
-  {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#there-are-two-problems-with-our-encryption",
     "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#there-are-two-problems-with-our-encryption",
     "title": "Applicant visit talk",
@@ -1239,25 +672,11 @@
     "text": "There are two problems with our encryption\n\nBrute force - messages can be decrypted using trial and error\nEncryption requires both parties to share a secret number? How can this be safely achieved in practice?"
   },
   {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#ctd.",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#ctd.",
-    "title": "Applicant visit",
-    "section": "Ctd.",
-    "text": "Ctd.\nBob computes\n\\[\n(y_A)^{\\textcolor{blue}{x_B}}=(g^{\\textcolor{red}{x_A}})^{\\textcolor{blue}{x_B}}= g^{\\textcolor{red}{x_A}x_B}=s\n\\]\nHence they both hold the same shared secret, \\(s\\).\nThey can use this for encryption/decryption of messages."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#generating-a-shared-secret-1",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#generating-a-shared-secret-1",
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#modular-arithmetic",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#modular-arithmetic",
     "title": "Applicant visit talk",
-    "section": "Generating a shared secret",
-    "text": "Generating a shared secret\nMeanwhile, \\(\\textrm{\\textcolor{blue}{Bob}}\\) computes \\[\n(y_A)^{\\textcolor{blue}{x_B}}=(g^{\\textcolor{red}{x_A}})^{\\textcolor{blue}{x_B}}= g^{\\textcolor{red}{x_A}\\textcolor{blue}{x_B}}=s \\pmod{p}\n\\]\nHence they both hold the same shared secret, \\(s\\).\nThey can use this for encryption/decryption of messages."
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#demonstration-using-app",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#demonstration-using-app",
-    "title": "Applicant visit talk",
-    "section": "Demonstration using app",
-    "text": "Demonstration using app\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 650\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\nimport sympy as sp\nimport pandas as pd\nfrom cryptography.hazmat.primitives.kdf.hkdf import HKDF\nfrom cryptography.hazmat.primitives import hashes\nfrom cryptography.hazmat.primitives.asymmetric import dh\nimport os\nfrom cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes\n\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"p\",label=\"p\",min=10,max=3000,value=23,step=1),\n    ui.input_slider(id=\"g\",label=\"g (generator)\",min=0,max=15.0,value=5,step=1),\n    ui.input_slider(id=\"a\",label=\"Private key Alice\",min=1,max=10,value=2,step=1),\n    ui.input_slider(id=\"b\",label=\"Private key Bob\",min=1,max=10,value=3,step=1), \n    \n         \n     \n            ),\n\n        ui.output_table(\"result\"),\n    ),\n)\n\ndef server(input, output, session):\n        \n\n\n\n    @render.table\n    def result():\n        # list of strings\n        p=int(input.p())\n        g=int(input.g())\n        a=int(input.a())\n        b=int(input.b())\n        # Step 1: Generate Diffie-Hellman Parameters and \n\n\n        alice_public_key=int(np.mod(g**(a),p))\n        bob_public_key=int(np.mod(g**(b),p))\n\n        shared_secret=int(np.mod(g**(a*b),p))\n        \n     \n        data_dict = {\n            'p': [p],\n            'g': [g],\n            'Alice public key': [alice_public_key],\n            'Bob public key': [bob_public_key],\n            'Shared secret': [shared_secret],\n            }\n\n        # Create a DataFrame\n        df = pd.DataFrame(data_dict)\n        # Calling DataFrame constructor on list\n        return df\n\napp = App(app_ui, server)\n\n\nFigure 3"
+    "section": "Modular arithmetic",
+    "text": "Modular arithmetic\nIn modular arithmetic we define a finite set of numbers and perform arithmetic operations on them.\n\n\n\\[ 2+3=5\\] \\[ 5+4=9\\]\n\\[ 11+ 3= ??\\]\nIn mathematical notation, 14 is congruent to 2 mod 12 \\[\n14 \\equiv 2 \\pmod{12}.\n\\]"
   },
   {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#modular-arithmetic-1",
@@ -1274,11 +693,32 @@
     "text": "More modular arithmetic operations\nWhat is \\[\n2^3 \\pmod 7 =?\n\\]\n\nNotably\n\\[\n(g^a)^b \\pmod p =  (g^b)^a \\pmod p\n\\]\n\n\nThis result underpins an import secret-sharing algorithm known as the Diffie-Hellman key exchange algorithm."
   },
   {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#prime-numbers-and-primitive-root",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#prime-numbers-and-primitive-root",
-    "title": "Applicant visit",
-    "section": "Prime numbers and primitive root",
-    "text": "Prime numbers and primitive root\nA prime number, \\(p\\), has factors \\(p\\) and 1.\nSuppose that \\(g\\) is a primitive root of \\(p\\). \\(g\\) has the property that \\[\ng^{k} \\pmod p\n\\] generates all the numbers less than \\(p\\).\nSo if \\(p=5\\), 3 is coprime as\n\\[\n3^2=4 \\pmod 5, \\ \\ 3^3=2 \\pmod 5,\n\\]\n\\[\n3^4=1 \\pmod 5, \\ \\ 3^5 = 3 \\pmod 5.\n\\]"
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#generating-a-shared-secret",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#generating-a-shared-secret",
+    "title": "Applicant visit talk",
+    "section": "Generating a shared secret",
+    "text": "Generating a shared secret\nTwo parties: \\(\\textrm{\\textcolor{red}{Alice}}\\) and \\(\\textrm{\\textcolor{blue}{Bob}}\\).\nSelect and share the following: prime number, \\(p\\), and generator \\(g\\) (primitive root of p).\nEach choose their own private keys \\(\\textcolor{red}{x_A}\\) and \\(\\textcolor{blue}{x_B}\\).\n\\(\\textrm{\\textcolor{red}{Alice}}\\) computes public key \\[\ny_A=g^{\\textcolor{red}{x_A}} \\pmod p\n\\]\n\\(\\textrm{\\textcolor{blue}{Bob}}\\) computes public key\n\\[\ny_B=g^{\\textcolor{blue}{x_B}} \\pmod p\n\\]\nThey publicly exchange public keys.\nThen \\(\\textrm{\\textcolor{red}{Alice}}\\) computes\n\\[\n(y_B)^{\\textcolor{red}{x_A}}=(g^{\\textcolor{blue}{x_B}})^{\\textcolor{red}{x_A}}= g^{\\textcolor{red}{x_A}\\textcolor{blue}{x_B}}=s \\pmod{p}\n\\]"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#generating-a-shared-secret-1",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#generating-a-shared-secret-1",
+    "title": "Applicant visit talk",
+    "section": "Generating a shared secret",
+    "text": "Generating a shared secret\nMeanwhile, \\(\\textrm{\\textcolor{blue}{Bob}}\\) computes \\[\n(y_A)^{\\textcolor{blue}{x_B}}=(g^{\\textcolor{red}{x_A}})^{\\textcolor{blue}{x_B}}= g^{\\textcolor{red}{x_A}\\textcolor{blue}{x_B}}=s \\pmod{p}\n\\]\nHence they both hold the same shared secret, \\(s\\).\nThey can use this for encryption/decryption of messages."
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#demonstration-using-app",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#demonstration-using-app",
+    "title": "Applicant visit talk",
+    "section": "Demonstration using app",
+    "text": "Demonstration using app\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 650\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\nimport sympy as sp\nimport pandas as pd\nfrom cryptography.hazmat.primitives.kdf.hkdf import HKDF\nfrom cryptography.hazmat.primitives import hashes\nfrom cryptography.hazmat.primitives.asymmetric import dh\nimport os\nfrom cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes\n\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"p\",label=\"p\",min=10,max=3000,value=23,step=1),\n    ui.input_slider(id=\"g\",label=\"g (generator)\",min=0,max=15.0,value=5,step=1),\n    ui.input_slider(id=\"a\",label=\"Private key Alice\",min=1,max=10,value=2,step=1),\n    ui.input_slider(id=\"b\",label=\"Private key Bob\",min=1,max=10,value=3,step=1), \n    \n         \n     \n            ),\n\n        ui.output_table(\"result\"),\n    ),\n)\n\ndef server(input, output, session):\n        \n\n\n\n    @render.table\n    def result():\n        # list of strings\n        p=int(input.p())\n        g=int(input.g())\n        a=int(input.a())\n        b=int(input.b())\n        # Step 1: Generate Diffie-Hellman Parameters and \n\n\n        alice_public_key=int(np.mod(g**(a),p))\n        bob_public_key=int(np.mod(g**(b),p))\n\n        shared_secret=int(np.mod(g**(a*b),p))\n        \n     \n        data_dict = {\n            'p': [p],\n            'g': [g],\n            'Alice public key': [alice_public_key],\n            'Bob public key': [bob_public_key],\n            'Shared secret': [shared_secret],\n            }\n\n        # Create a DataFrame\n        df = pd.DataFrame(data_dict)\n        # Calling DataFrame constructor on list\n        return df\n\napp = App(app_ui, server)\n\n\nFigure 3"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#why-is-it-safe",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#why-is-it-safe",
+    "title": "Applicant visit talk",
+    "section": "Why is it safe?",
+    "text": "Why is it safe?\nPublicly shared info: \\(p\\), \\(g\\), \\(y_A=g^{\\textcolor{red}{x_A}}\\), \\(y_B=g^{\\textcolor{blue}{x_B}}\\).\n. . . To identify the shared secret, a hacker needs to solve \\[\ng^{\\textcolor{red}{x_A}}=y_A \\pmod p.\n\\] for the unknown \\(x_A\\).\n\nGiven \\(\\textcolor{red}{x_A}\\), then they can compute the shared secret\n\\[\ns=y_B^{\\textcolor{red}{x_A}}=g^{\\textcolor{red}{x_A} \\textcolor{blue}{x_B}}.\n\\]"
   },
   {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#prime-numbers-and-primitive-roots",
@@ -1288,18 +728,25 @@
     "text": "Prime numbers and primitive roots\nA prime number, \\(p\\), has factors \\(p\\) and 1.\nSuppose that \\(g\\) is a primitive root of \\(p\\). \\(g\\) has the property that \\[\ng^{k} \\pmod p\n\\] generates all the numbers less than \\(p\\).\nSo if \\(p=5\\), 3 is a primitive root as\n\\[\n3^2\\equiv 4 \\pmod 5, \\ \\ 3^3\\ \\equiv 2 \\pmod 5,\n\\]\n\\[\n3^4\\equiv 1 \\pmod 5, \\ \\ 3^5 \\equiv 3 \\pmod 5.\n\\]"
   },
   {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#putting-it-all-together",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#putting-it-all-together",
-    "title": "Applicant visit",
-    "section": "Putting it all together",
-    "text": "Putting it all together\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\nimport sympy as sp\nimport pandas as pd\nfrom cryptography.hazmat.primitives.kdf.hkdf import HKDF\nfrom cryptography.hazmat.primitives import hashes\nfrom cryptography.hazmat.primitives.asymmetric import dh\nimport os\nfrom cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes\n\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"p\",label=\"p (prime number)\",min=10,max=3000,value=23,step=1),\n    ui.input_slider(id=\"g\",label=\"g (generator)\",min=0,max=15.0,value=5,step=1),\n    ui.input_slider(id=\"a\",label=\"Private key Bob\",min=1,max=10,value=2,step=1),\n    ui.input_slider(id=\"b\",label=\"Private key Alice\",min=1,max=10,value=3,step=1), \n    ui.input_text(id='text',label=\"Message to encrypt\",value=\"sin(x)\"),\n         \n     \n            ),\n\n        ui.output_table(\"result\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n\n    def encrypt_message(key, plaintext):\n        iv=5\n        iv=iv.to_bytes(16, 'big')\n        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))\n        encryptor = cipher.encryptor()\n        ciphertext = encryptor.update(plaintext) + encryptor.finalize()\n        return iv,ciphertext\n    \n    def decrypt_message(key, iv, ciphertext):\n        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))\n        decryptor = cipher.decryptor()\n        plaintext = decryptor.update(ciphertext) + decryptor.finalize()\n        return plaintext\n\n\n\n    @render.table\n    def result():\n        # list of strings\n        p=int(input.p())\n        g=int(input.g())\n        a=int(input.a())\n        text=input.text()\n        b=int(input.b())\n        # Step 1: Generate Diffie-Hellman Parameters and Keys\n        parameters = dh.generate_parameters(generator=2, key_size=512)\n\n        # Generate private/public key pairs for two parties\n        private_key_a = parameters.generate_private_key()\n        private_key_b = parameters.generate_private_key()\n\n        # Generate public keys\n        public_key_a = private_key_a.public_key()\n        public_key_b = private_key_b.public_key()\n\n        # Step 2: Derive Shared Secret\n        shared_key_a = private_key_a.exchange(public_key_b)\n        shared_key_b = private_key_b.exchange(public_key_a)\n\n        # Validate shared keys are identical\n        assert shared_key_a == shared_key_b, \"Shared keys are not equal!\"\n\n        shared_secret=int(np.mod(g**(a*b),p))\n        shared_secret_bytes=shared_secret.to_bytes(16,'big')\n        #shared_secret=g**(a*b)\n        derived_key = HKDF(\n            algorithm=hashes.SHA256(),\n            length=32,\n            salt=None,\n            info=b\"diffie-hellman-key-exchange\",\n        ).derive(shared_secret_bytes)\n        \n        # Step 4: Encrypt a Message Using AES\n        message = text.encode(encoding=\"utf-8\")\n        iv, ciphertext = encrypt_message(derived_key, message)\n        print(\"Ciphertext:\", ciphertext.hex())\n\n        # Decrypt the message\n        decrypted_message = decrypt_message(derived_key, iv, ciphertext)\n        data_dict = {\n            'p': [p],\n            'g': [g],\n            'Message': [text],\n            'Shared secret Alice': [shared_secret],\n            'Encrypted Message':[ciphertext.hex()],\n            }\n\n        # Create a DataFrame\n        df = pd.DataFrame(data_dict)\n        # Calling DataFrame constructor on list\n        return df\n\n   \napp = App(app_ui, server)\n\n\nFigure 5\n\n\n\n\n\n\n\nMathematics, University of Dundee"
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#the-discrete-logarithm-problem",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#the-discrete-logarithm-problem",
+    "title": "Applicant visit talk",
+    "section": "The discrete logarithm problem",
+    "text": "The discrete logarithm problem\nThe problem \\[\ng^{x_A}=y_A \\pmod p.\n\\]\nis hard to solve.\nChoose \\(p\\) to be a prime number and \\(g\\) to be a primitive root of \\(p\\).\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 400\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"p\",label=\"p (prime number)\",min=5,max=300,value=23,step=1),\n    ui.input_slider(id=\"g\",label=\"g (generator)\",min=0,max=30,value=5,step=1),\n    ui.input_slider(id=\"s\",label=\"Public key\",min=1,max=100,value=5,step=1),      \n            ),\n\n        \n        ui.output_plot(\"plot\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n\n    \n\n    @render.plot\n    def plot():\n        fig, ax = plt.subplots()\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        p=int(input.p())\n        g=int(input.g())\n        s=int(input.s())\n        \n    \n    \n        ax.set_xlabel('$x$')\n        ax.set_ylabel('$f$')\n\n       \n        a_vec=np.linspace(0,p-1,p,dtype='uint64')\n        function_mod = np.mod(np.power(g, a_vec), p)\n\n        #function_mod=[pow(g,a,p) for a in a_vec]\n    \n\n        ax.plot(a_vec,function_mod,'x',a_vec,np.ones_like(a_vec)*s,'r--')\n\n        fig.tight_layout()\n        plt.grid()\n        plt.show()\n    \napp = App(app_ui, server)\n\n\nFigure 4"
   },
   {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#encryption-with-diffie-helman--putting-it-all-together",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#encryption-with-diffie-helman--putting-it-all-together",
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#encryption-with-diffie-hellman--putting-it-all-together",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#encryption-with-diffie-hellman--putting-it-all-together",
     "title": "Applicant visit talk",
-    "section": "Encryption with Diffie Helman -putting it all together",
-    "text": "Encryption with Diffie Helman -putting it all together\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\nimport sympy as sp\nimport pandas as pd\nfrom cryptography.hazmat.primitives.kdf.hkdf import HKDF\nfrom cryptography.hazmat.primitives import hashes\nfrom cryptography.hazmat.primitives.asymmetric import dh\nimport os\nfrom cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes\n\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"p\",label=\"p (prime number)\",min=10,max=3000,value=23,step=1),\n    ui.input_slider(id=\"g\",label=\"g (generator)\",min=0,max=15.0,value=5,step=1),\n    ui.input_slider(id=\"a\",label=\"Private key Bob\",min=1,max=10,value=2,step=1),\n    ui.input_slider(id=\"b\",label=\"Private key Alice\",min=1,max=10,value=3,step=1), \n    ui.input_text(id='text',label=\"Message to encrypt\",value=\"sin(x)\"),\n         \n     \n            ),\n\n        ui.output_table(\"result\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n\n    def encrypt_message(key, plaintext):\n        iv=5\n        iv=iv.to_bytes(16, 'big')\n        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))\n        encryptor = cipher.encryptor()\n        ciphertext = encryptor.update(plaintext) + encryptor.finalize()\n        return iv,ciphertext\n    \n    def decrypt_message(key, iv, ciphertext):\n        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))\n        decryptor = cipher.decryptor()\n        plaintext = decryptor.update(ciphertext) + decryptor.finalize()\n        return plaintext\n\n\n\n    @render.table\n    def result():\n        # list of strings\n        p=int(input.p())\n        g=int(input.g())\n        a=int(input.a())\n        text=input.text()\n        b=int(input.b())\n        # Step 1: Generate Diffie-Hellman Parameters and Keys\n        parameters = dh.generate_parameters(generator=2, key_size=512)\n\n        # Generate private/public key pairs for two parties\n        private_key_a = parameters.generate_private_key()\n        private_key_b = parameters.generate_private_key()\n\n        # Generate public keys\n        public_key_a = private_key_a.public_key()\n        public_key_b = private_key_b.public_key()\n\n        # Step 2: Derive Shared Secret\n        shared_key_a = private_key_a.exchange(public_key_b)\n        shared_key_b = private_key_b.exchange(public_key_a)\n\n        # Validate shared keys are identical\n        assert shared_key_a == shared_key_b, \"Shared keys are not equal!\"\n\n        shared_secret=int(np.mod(g**(a*b),p))\n        shared_secret_bytes=shared_secret.to_bytes(16,'big')\n        #shared_secret=g**(a*b)\n        derived_key = HKDF(\n            algorithm=hashes.SHA256(),\n            length=32,\n            salt=None,\n            info=b\"diffie-hellman-key-exchange\",\n        ).derive(shared_secret_bytes)\n        \n        # Step 4: Encrypt a Message Using AES\n        message = text.encode(encoding=\"utf-8\")\n        iv, ciphertext = encrypt_message(derived_key, message)\n        print(\"Ciphertext:\", ciphertext.hex())\n\n        # Decrypt the message\n        decrypted_message = decrypt_message(derived_key, iv, ciphertext)\n        data_dict = {\n            'p': [p],\n            'g': [g],\n            'Message': [text],\n            'Shared secret Alice': [shared_secret],\n            'Encrypted Message':[ciphertext.hex()],\n            }\n\n        # Create a DataFrame\n        df = pd.DataFrame(data_dict)\n        # Calling DataFrame constructor on list\n        return df\n\n   \napp = App(app_ui, server)\n\n\nFigure 5"
+    "section": "Encryption with Diffie Hellman -putting it all together",
+    "text": "Encryption with Diffie Hellman -putting it all together\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\nimport sympy as sp\nimport pandas as pd\nfrom cryptography.hazmat.primitives.kdf.hkdf import HKDF\nfrom cryptography.hazmat.primitives import hashes\nfrom cryptography.hazmat.primitives.asymmetric import dh\nimport os\nfrom cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes\n\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"p\",label=\"p (prime number)\",min=10,max=3000,value=23,step=1),\n    ui.input_slider(id=\"g\",label=\"g (generator)\",min=0,max=15.0,value=5,step=1),\n    ui.input_slider(id=\"a\",label=\"Private key Bob\",min=1,max=10,value=2,step=1),\n    ui.input_slider(id=\"b\",label=\"Private key Alice\",min=1,max=10,value=3,step=1), \n    ui.input_text(id='text',label=\"Message to encrypt\",value=\"sin(x)\"),\n         \n     \n            ),\n\n        ui.output_table(\"result\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n\n    def encrypt_message(key, plaintext):\n        iv=5\n        iv=iv.to_bytes(16, 'big')\n        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))\n        encryptor = cipher.encryptor()\n        ciphertext = encryptor.update(plaintext) + encryptor.finalize()\n        return iv,ciphertext\n    \n    def decrypt_message(key, iv, ciphertext):\n        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))\n        decryptor = cipher.decryptor()\n        plaintext = decryptor.update(ciphertext) + decryptor.finalize()\n        return plaintext\n\n\n\n    @render.table\n    def result():\n        # list of strings\n        p=int(input.p())\n        g=int(input.g())\n        a=int(input.a())\n        text=input.text()\n        b=int(input.b())\n        # Step 1: Generate Diffie-Hellman Parameters and Keys\n        parameters = dh.generate_parameters(generator=2, key_size=512)\n\n        # Generate private/public key pairs for two parties\n        private_key_a = parameters.generate_private_key()\n        private_key_b = parameters.generate_private_key()\n\n        # Generate public keys\n        public_key_a = private_key_a.public_key()\n        public_key_b = private_key_b.public_key()\n\n        # Step 2: Derive Shared Secret\n        shared_key_a = private_key_a.exchange(public_key_b)\n        shared_key_b = private_key_b.exchange(public_key_a)\n\n        # Validate shared keys are identical\n        assert shared_key_a == shared_key_b, \"Shared keys are not equal!\"\n\n        shared_secret=int(np.mod(g**(a*b),p))\n        shared_secret_bytes=shared_secret.to_bytes(16,'big')\n        #shared_secret=g**(a*b)\n        derived_key = HKDF(\n            algorithm=hashes.SHA256(),\n            length=32,\n            salt=None,\n            info=b\"diffie-hellman-key-exchange\",\n        ).derive(shared_secret_bytes)\n        \n        # Step 4: Encrypt a Message Using AES\n        message = text.encode(encoding=\"utf-8\")\n        iv, ciphertext = encrypt_message(derived_key, message)\n        print(\"Ciphertext:\", ciphertext.hex())\n\n        # Decrypt the message\n        decrypted_message = decrypt_message(derived_key, iv, ciphertext)\n        data_dict = {\n            'p': [p],\n            'g': [g],\n            'Message': [text],\n            'Shared secret Alice': [shared_secret],\n            'Encrypted Message':[ciphertext.hex()],\n            }\n\n        # Create a DataFrame\n        df = pd.DataFrame(data_dict)\n        # Calling DataFrame constructor on list\n        return df\n\n   \napp = App(app_ui, server)\n\n\nFigure 5"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#decryption",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#decryption",
+    "title": "Applicant visit talk",
+    "section": "Decryption",
+    "text": "Decryption\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 300\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\nimport sympy as sp\nimport pandas as pd\nfrom cryptography.hazmat.primitives.kdf.hkdf import HKDF\nfrom cryptography.hazmat.primitives import hashes\nfrom cryptography.hazmat.primitives.asymmetric import dh\nimport os\nfrom cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes\nimport base64\n\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"shared_secret\",label=\"Shared secret\",min=10,max=3000,value=31,step=1),\n    ui.input_text(id='text',label=\"Message to decrypt\",value=\"8968d20bbc5b\"),\n            ),\n\n        ui.output_table(\"result\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n\n\n    \n    def decrypt_message(key, iv, ciphertext):\n        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))\n        decryptor = cipher.decryptor()\n        plaintext = decryptor.update(ciphertext) + decryptor.finalize()\n        return plaintext\n\n\n\n    @render.table\n    def result():\n        # list of strings\n        shared_secret=int(input.shared_secret())\n        encrypted_text=str(input.text())\n\n        encrypted_text=bytes.fromhex(encrypted_text)\n\n\n\n\n        #text=text.encode(encoding=\"utf-8\")\n        #encrypted_text = encrypted_text.encode('ISO-8859-1')\n\n        shared_secret_bytes=shared_secret.to_bytes(16,'big')\n        derived_key = HKDF(\n            algorithm=hashes.SHA256(),\n            length=32,\n            salt=None,\n            info=b\"diffie-hellman-key-exchange\",\n        ).derive(shared_secret_bytes)\n        \n        \n        iv=5\n        iv=iv.to_bytes(16, 'big')\n                \n        decrypted_message = decrypt_message(derived_key, iv, encrypted_text)\n\n       \n        data_dict = {\n            'Decrypted Message':[decrypted_message]\n            }\n\n        # Create a DataFrame\n        df = pd.DataFrame(data_dict)\n        # Calling DataFrame constructor on list\n        return df\n\napp = App(app_ui, server)\n\n\nFigure 6"
   },
   {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#some-reasons-to-study-mathematics",
@@ -1316,41 +763,6 @@
     "text": "Cryptography\n\nMathematics underpins modern encryption\nNecessary to keep data safe online\nThe security of modern cryptographic algorithms is strongly dependent on number theory and group theory."
   },
   {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#decryption-using-hash-functions",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#decryption-using-hash-functions",
-    "title": "Applicant visit talk",
-    "section": "Decryption using hash functions",
-    "text": "Decryption using hash functions\n\nHash functions provide a way to encrypt/decrypt messages\nBoth encrytion/decryption use the same shared secret number\n\n9995fc19ee935e80d28b19db3709a9ce414ec1bd29cd006115114fbd6bd2f6e5cb84aec0d6468233e1\nDecryptUsingThisLink\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 300\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\nimport sympy as sp\nimport pandas as pd\nfrom cryptography.hazmat.primitives.kdf.hkdf import HKDF\nfrom cryptography.hazmat.primitives import hashes\nfrom cryptography.hazmat.primitives.asymmetric import dh\nimport os\nfrom cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes\nimport base64\n\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"shared_secret\",label=\"Shared secret\",min=10,max=3000,value=31,step=1),\n    ui.input_text(id='text',label=\"Message to decrypt\",value=\"8968d20bbc5b\"),\n            ),\n\n        ui.output_table(\"result\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n\n\n    \n    def decrypt_message(key, iv, ciphertext):\n        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))\n        decryptor = cipher.decryptor()\n        plaintext = decryptor.update(ciphertext) + decryptor.finalize()\n        return plaintext\n\n\n\n    @render.table\n    def result():\n        # list of strings\n        shared_secret=int(input.shared_secret())\n        encrypted_text=str(input.text())\n\n        encrypted_text=bytes.fromhex(encrypted_text)\n\n\n\n\n        #text=text.encode(encoding=\"utf-8\")\n        #encrypted_text = encrypted_text.encode('ISO-8859-1')\n\n        shared_secret_bytes=shared_secret.to_bytes(16,'big')\n        derived_key = HKDF(\n            algorithm=hashes.SHA256(),\n            length=32,\n            salt=None,\n            info=b\"diffie-hellman-key-exchange\",\n        ).derive(shared_secret_bytes)\n        \n        \n        iv=5\n        iv=iv.to_bytes(16, 'big')\n                \n        decrypted_message = decrypt_message(derived_key, iv, encrypted_text)\n\n       \n        data_dict = {\n            'Decrypted Message':[decrypted_message]\n            }\n\n        # Create a DataFrame\n        df = pd.DataFrame(data_dict)\n        # Calling DataFrame constructor on list\n        return df\n\napp = App(app_ui, server)\n\n\nFigure 1"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#encryption-with-diffie-hellman--putting-it-all-together",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#encryption-with-diffie-hellman--putting-it-all-together",
-    "title": "Applicant visit talk",
-    "section": "Encryption with Diffie Hellman -putting it all together",
-    "text": "Encryption with Diffie Hellman -putting it all together\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\nimport sympy as sp\nimport pandas as pd\nfrom cryptography.hazmat.primitives.kdf.hkdf import HKDF\nfrom cryptography.hazmat.primitives import hashes\nfrom cryptography.hazmat.primitives.asymmetric import dh\nimport os\nfrom cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes\n\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"p\",label=\"p (prime number)\",min=10,max=3000,value=23,step=1),\n    ui.input_slider(id=\"g\",label=\"g (generator)\",min=0,max=15.0,value=5,step=1),\n    ui.input_slider(id=\"a\",label=\"Private key Bob\",min=1,max=10,value=2,step=1),\n    ui.input_slider(id=\"b\",label=\"Private key Alice\",min=1,max=10,value=3,step=1), \n    ui.input_text(id='text',label=\"Message to encrypt\",value=\"sin(x)\"),\n         \n     \n            ),\n\n        ui.output_table(\"result\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n\n    def encrypt_message(key, plaintext):\n        iv=5\n        iv=iv.to_bytes(16, 'big')\n        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))\n        encryptor = cipher.encryptor()\n        ciphertext = encryptor.update(plaintext) + encryptor.finalize()\n        return iv,ciphertext\n    \n    def decrypt_message(key, iv, ciphertext):\n        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))\n        decryptor = cipher.decryptor()\n        plaintext = decryptor.update(ciphertext) + decryptor.finalize()\n        return plaintext\n\n\n\n    @render.table\n    def result():\n        # list of strings\n        p=int(input.p())\n        g=int(input.g())\n        a=int(input.a())\n        text=input.text()\n        b=int(input.b())\n        # Step 1: Generate Diffie-Hellman Parameters and Keys\n        parameters = dh.generate_parameters(generator=2, key_size=512)\n\n        # Generate private/public key pairs for two parties\n        private_key_a = parameters.generate_private_key()\n        private_key_b = parameters.generate_private_key()\n\n        # Generate public keys\n        public_key_a = private_key_a.public_key()\n        public_key_b = private_key_b.public_key()\n\n        # Step 2: Derive Shared Secret\n        shared_key_a = private_key_a.exchange(public_key_b)\n        shared_key_b = private_key_b.exchange(public_key_a)\n\n        # Validate shared keys are identical\n        assert shared_key_a == shared_key_b, \"Shared keys are not equal!\"\n\n        shared_secret=int(np.mod(g**(a*b),p))\n        shared_secret_bytes=shared_secret.to_bytes(16,'big')\n        #shared_secret=g**(a*b)\n        derived_key = HKDF(\n            algorithm=hashes.SHA256(),\n            length=32,\n            salt=None,\n            info=b\"diffie-hellman-key-exchange\",\n        ).derive(shared_secret_bytes)\n        \n        # Step 4: Encrypt a Message Using AES\n        message = text.encode(encoding=\"utf-8\")\n        iv, ciphertext = encrypt_message(derived_key, message)\n        print(\"Ciphertext:\", ciphertext.hex())\n\n        # Decrypt the message\n        decrypted_message = decrypt_message(derived_key, iv, ciphertext)\n        data_dict = {\n            'p': [p],\n            'g': [g],\n            'Message': [text],\n            'Shared secret Alice': [shared_secret],\n            'Encrypted Message':[ciphertext.hex()],\n            }\n\n        # Create a DataFrame\n        df = pd.DataFrame(data_dict)\n        # Calling DataFrame constructor on list\n        return df\n\n   \napp = App(app_ui, server)\n\n\nFigure 5"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#why-mathematics",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#why-mathematics",
-    "title": "Applicant visit talk",
-    "section": "Why Mathematics?",
-    "text": "Why Mathematics?\n\nBecome a logical numerate problem solver\nLearn about exciting new areas of mathematics\nLearn how to apply mathematics to real world problems\nDevelop computer programming skills\nDevelop communication skills"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#logical-numerate-problem-solver-are-valued",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#logical-numerate-problem-solver-are-valued",
-    "title": "Applicant visit talk",
-    "section": "Logical numerate problem solver are valued",
-    "text": "Logical numerate problem solver are valued"
-  },
-  {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#decryption",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#decryption",
-    "title": "Applicant visit talk",
-    "section": "Decryption",
-    "text": "Decryption\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 300\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\nimport sympy as sp\nimport pandas as pd\nfrom cryptography.hazmat.primitives.kdf.hkdf import HKDF\nfrom cryptography.hazmat.primitives import hashes\nfrom cryptography.hazmat.primitives.asymmetric import dh\nimport os\nfrom cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes\nimport base64\n\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"shared_secret\",label=\"Shared secret\",min=10,max=3000,value=31,step=1),\n    ui.input_text(id='text',label=\"Message to decrypt\",value=\"8968d20bbc5b\"),\n            ),\n\n        ui.output_table(\"result\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n\n\n    \n    def decrypt_message(key, iv, ciphertext):\n        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))\n        decryptor = cipher.decryptor()\n        plaintext = decryptor.update(ciphertext) + decryptor.finalize()\n        return plaintext\n\n\n\n    @render.table\n    def result():\n        # list of strings\n        shared_secret=int(input.shared_secret())\n        encrypted_text=str(input.text())\n\n        encrypted_text=bytes.fromhex(encrypted_text)\n\n\n\n\n        #text=text.encode(encoding=\"utf-8\")\n        #encrypted_text = encrypted_text.encode('ISO-8859-1')\n\n        shared_secret_bytes=shared_secret.to_bytes(16,'big')\n        derived_key = HKDF(\n            algorithm=hashes.SHA256(),\n            length=32,\n            salt=None,\n            info=b\"diffie-hellman-key-exchange\",\n        ).derive(shared_secret_bytes)\n        \n        \n        iv=5\n        iv=iv.to_bytes(16, 'big')\n                \n        decrypted_message = decrypt_message(derived_key, iv, encrypted_text)\n\n       \n        data_dict = {\n            'Decrypted Message':[decrypted_message]\n            }\n\n        # Create a DataFrame\n        df = pd.DataFrame(data_dict)\n        # Calling DataFrame constructor on list\n        return df\n\napp = App(app_ui, server)\n\n\nFigure 6"
-  },
-  {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#apps",
     "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#apps",
     "title": "Applicant visit talk",
@@ -1358,17 +770,227 @@
     "text": "Apps\n\nApps used today are published online\nThey are written in Python\nIn a maths degree you will learn when and why algorithms work\nImplement algorithms"
   },
   {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#logical-numerate-problem-solvers-are-valued",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#logical-numerate-problem-solvers-are-valued",
-    "title": "Applicant visit talk",
-    "section": "Logical numerate problem solvers are valued",
-    "text": "Logical numerate problem solvers are valued"
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "These pages are hosted by Mathematics staff at the University of Dundee. They are intended to support ongoing student recruitment and outreach activities."
   },
   {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#mathematics-degrees",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/ApplicantVisitOnlineMarch2025.html#mathematics-degrees",
-    "title": "Applicant visit talk",
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#why-mathematics",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#why-mathematics",
+    "title": "Grove Academy Talk",
+    "section": "Why Mathematics?",
+    "text": "Why Mathematics?\n\nroute into many numerate professions\ndiverse career opportunities\nlearn a language that can be applied in many contexts\nwell paid jobs\nlearn skills for the digital age\n\n\n\nBecause you enjoy it!"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#logical-numerate-problem-solvers-are-valued",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#logical-numerate-problem-solvers-are-valued",
+    "title": "Grove Academy Talk",
+    "section": "Logical numerate problem solvers are valued",
+    "text": "Logical numerate problem solvers are valued\n\n\n\n\n\n\nwww.ima.org"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#mathematics-degrees",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#mathematics-degrees",
+    "title": "Grove talk",
     "section": "Mathematics degrees",
     "text": "Mathematics degrees\n\nSingle honours Mathematics degrees\nJoint Honours (e.g. with Accountancy, Economics, Physics, Life Sciences, Psychology)\nFlexibility in structure of degree pathways"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#teaching-delivery",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#teaching-delivery",
+    "title": "Grove talk",
+    "section": "Teaching delivery",
+    "text": "Teaching delivery\n\nTwo teaching semesters in the academic year\n3 or 4 modules in each semester\nIn each module (some combination of):\n\nlectures\ntutorials\nworkshops\ncomputer classes"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#final-year-project",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#final-year-project",
+    "title": "Grove talk",
+    "section": "Final year project",
+    "text": "Final year project\n\ndevelop independent problem solving skills\nwork on an exciting mathematical topic\ndevelop programming and presentation skills\nTopics include:\n\nThe $25,000,000,000 eigenvector\nThe Mathematics of monopoly\nHow Sat Navs work?\nChaos"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#explore-how-mathematics-underpins-cryptography",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#explore-how-mathematics-underpins-cryptography",
+    "title": "Grove Academy Talk",
+    "section": "Explore how mathematics underpins cryptography",
+    "text": "Explore how mathematics underpins cryptography\n\nHow to banks securely transfer data to your phone?\nHow can governments securely communicate sensitive information?\n\nhttps://dundeemath.github.io/Admissions/posts/Cryptography.html"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#decryption-using-hash-functions",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#decryption-using-hash-functions",
+    "title": "Grove Academy Talk",
+    "section": "Decryption using hash functions",
+    "text": "Decryption using hash functions\n\nHash functions provide a way to encrypt/decrypt messages\nBoth encrytion/decryption use the same shared secret number\n\n9995fc19ee935e80d28b19db3709a9ce414ec1bd29cd006115114fbd6bd2f6e5cb84aec0d6468233e1\nDecryptUsingThisLink\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 300\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\nimport sympy as sp\nimport pandas as pd\nfrom cryptography.hazmat.primitives.kdf.hkdf import HKDF\nfrom cryptography.hazmat.primitives import hashes\nfrom cryptography.hazmat.primitives.asymmetric import dh\nimport os\nfrom cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes\nimport base64\n\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"shared_secret\",label=\"Shared secret\",min=10,max=3000,value=31,step=1),\n    ui.input_text(id='text',label=\"Message to decrypt\",value=\"8968d20bbc5b\"),\n            ),\n\n        ui.output_table(\"result\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n\n\n    \n    def decrypt_message(key, iv, ciphertext):\n        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))\n        decryptor = cipher.decryptor()\n        plaintext = decryptor.update(ciphertext) + decryptor.finalize()\n        return plaintext\n\n\n\n    @render.table\n    def result():\n        # list of strings\n        shared_secret=int(input.shared_secret())\n        encrypted_text=str(input.text())\n\n        encrypted_text=bytes.fromhex(encrypted_text)\n\n\n\n\n        #text=text.encode(encoding=\"utf-8\")\n        #encrypted_text = encrypted_text.encode('ISO-8859-1')\n\n        shared_secret_bytes=shared_secret.to_bytes(16,'big')\n        derived_key = HKDF(\n            algorithm=hashes.SHA256(),\n            length=32,\n            salt=None,\n            info=b\"diffie-hellman-key-exchange\",\n        ).derive(shared_secret_bytes)\n        \n        \n        iv=5\n        iv=iv.to_bytes(16, 'big')\n                \n        decrypted_message = decrypt_message(derived_key, iv, encrypted_text)\n\n       \n        data_dict = {\n            'Decrypted Message':[decrypted_message]\n            }\n\n        # Create a DataFrame\n        df = pd.DataFrame(data_dict)\n        # Calling DataFrame constructor on list\n        return df\n\napp = App(app_ui, server)\n\n\nFigure 1"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#encrypting-a-message",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#encrypting-a-message",
+    "title": "Grove Academy Talk",
+    "section": "Encrypting a message",
+    "text": "Encrypting a message\nYou can also encrypt a message.\nYou’ll need to use the same shared secret to perform the decryption.\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 300\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\nimport sympy as sp\nimport pandas as pd\nfrom cryptography.hazmat.primitives.kdf.hkdf import HKDF\nfrom cryptography.hazmat.primitives import hashes\nfrom cryptography.hazmat.primitives.asymmetric import dh\nimport os\nfrom cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes\n\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"shared_secret\",label=\"shared secret\",min=10,max=3000,value=23,step=1),\n    ui.input_text(id='text',label=\"Message to encrypt\",value=\"Yarrrr\"),\n         \n     \n            ),\n\n        ui.output_table(\"result\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n\n    def encrypt_message(key, plaintext):\n        iv=5\n        iv=iv.to_bytes(16, 'big')\n        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))\n        encryptor = cipher.encryptor()\n        ciphertext = encryptor.update(plaintext) + encryptor.finalize()\n        return iv,ciphertext\n    \n\n\n\n    @render.table\n    def result():\n        # list of strings\n        shared_secret=int(input.shared_secret())\n        text=input.text()\n        # Step 1: Generate Diffie-Hellman Parameters and Keys\n       \n\n        #shared_secret=int(np.mod(g**(a*b),p))\n        shared_secret_bytes=shared_secret.to_bytes(16,'big')\n        #shared_secret=g**(a*b)\n        derived_key = HKDF(\n            algorithm=hashes.SHA256(),\n            length=32,\n            salt=None,\n            info=b\"diffie-hellman-key-exchange\",\n        ).derive(shared_secret_bytes)\n        \n        # Step 4: Encrypt a Message Using AES\n        message = text.encode(encoding=\"utf-8\")\n        iv, ciphertext = encrypt_message(derived_key, message)\n\n         # Decrypt the message\n        data_dict = {\n            'Encrypted Message':[ciphertext.hex()],\n            'Encrypted Message':[ciphertext.hex()],\n            }\n\n        # Create a DataFrame\n        df = pd.DataFrame(data_dict)\n        # Calling DataFrame constructor on list\n        return df\n\n   \napp = App(app_ui, server)\n\n\nFigure 2"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#there-are-two-problems-with-our-encryption",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#there-are-two-problems-with-our-encryption",
+    "title": "Grove Academy Talk",
+    "section": "There are two problems with our encryption",
+    "text": "There are two problems with our encryption\n\nBrute force - messages can be decrypted using trial and error\nEncryption requires both parties to share a secret number? How can this be safely achieved in practice?"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#modular-arithmetic",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#modular-arithmetic",
+    "title": "Grove Academy Talk",
+    "section": "Modular arithmetic",
+    "text": "Modular arithmetic\nIn modular arithmetic we define a finite set of numbers and perform arithmetic operations on them.\n\n\n\\[ 2+3=5\\] \\[ 5+4=9\\]\n\\[ 11+ 3= ??\\]\nIn mathematical notation, 14 is congruent to 2 mod 12 \\[\n14 \\equiv 2 \\pmod{12}.\n\\]"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#modular-arithmetic-1",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#modular-arithmetic-1",
+    "title": "Grove Academy Talk",
+    "section": "Modular arithmetic",
+    "text": "Modular arithmetic\nIn general\n\\[\na \\pmod p\n\\] means the remainder when \\(a\\) is divided by \\(p\\).\nSo \\[\n13 \\pmod{12} = ??\n\\]\n\\[\n27 \\pmod{12} = ??\n\\]"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#more-modular-arithmetic-operations",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#more-modular-arithmetic-operations",
+    "title": "Grove Academy Talk",
+    "section": "More modular arithmetic operations",
+    "text": "More modular arithmetic operations\nWhat is \\[\n2^3 \\pmod 7 =?\n\\]\n\nNotably\n\\[\n(g^a)^b \\pmod p =  (g^b)^a \\pmod p\n\\]\n\n\nThis result underpins an import secret-sharing algorithm known as the Diffie-Hellman key exchange algorithm."
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#generating-a-shared-secret",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#generating-a-shared-secret",
+    "title": "Grove Academy Talk",
+    "section": "Generating a shared secret",
+    "text": "Generating a shared secret\nTwo parties: \\(\\textrm{\\textcolor{red}{Alice}}\\) and \\(\\textrm{\\textcolor{blue}{Bob}}\\).\nSelect and share the following: prime number, \\(p\\), and generator \\(g\\) (primitive root of p).\nEach choose their own private keys \\(\\textcolor{red}{x_A}\\) and \\(\\textcolor{blue}{x_B}\\).\n\\(\\textrm{\\textcolor{red}{Alice}}\\) computes public key \\[\ny_A=g^{\\textcolor{red}{x_A}} \\pmod p\n\\]\n\\(\\textrm{\\textcolor{blue}{Bob}}\\) computes public key\n\\[\ny_B=g^{\\textcolor{blue}{x_B}} \\pmod p\n\\]\nThey publicly exchange public keys.\nThen \\(\\textrm{\\textcolor{red}{Alice}}\\) computes\n\\[\n(y_B)^{\\textcolor{red}{x_A}}=(g^{\\textcolor{blue}{x_B}})^{\\textcolor{red}{x_A}}= g^{\\textcolor{red}{x_A}\\textcolor{blue}{x_B}}=s \\pmod{p}\n\\]"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#generating-a-shared-secret-1",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#generating-a-shared-secret-1",
+    "title": "Grove Academy Talk",
+    "section": "Generating a shared secret",
+    "text": "Generating a shared secret\nMeanwhile, \\(\\textrm{\\textcolor{blue}{Bob}}\\) computes \\[\n(y_A)^{\\textcolor{blue}{x_B}}=(g^{\\textcolor{red}{x_A}})^{\\textcolor{blue}{x_B}}= g^{\\textcolor{red}{x_A}\\textcolor{blue}{x_B}}=s \\pmod{p}\n\\]\nHence they both hold the same shared secret, \\(s\\).\nThey can use this for encryption/decryption of messages."
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#demonstration-using-app",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#demonstration-using-app",
+    "title": "Grove Academy Talk",
+    "section": "Demonstration using app",
+    "text": "Demonstration using app\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 650\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\nimport sympy as sp\nimport pandas as pd\nfrom cryptography.hazmat.primitives.kdf.hkdf import HKDF\nfrom cryptography.hazmat.primitives import hashes\nfrom cryptography.hazmat.primitives.asymmetric import dh\nimport os\nfrom cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes\n\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"p\",label=\"p\",min=10,max=3000,value=23,step=1),\n    ui.input_slider(id=\"g\",label=\"g (generator)\",min=0,max=15.0,value=5,step=1),\n    ui.input_slider(id=\"a\",label=\"Private key Alice\",min=1,max=10,value=2,step=1),\n    ui.input_slider(id=\"b\",label=\"Private key Bob\",min=1,max=10,value=3,step=1), \n    \n         \n     \n            ),\n\n        ui.output_table(\"result\"),\n    ),\n)\n\ndef server(input, output, session):\n        \n\n\n\n    @render.table\n    def result():\n        # list of strings\n        p=int(input.p())\n        g=int(input.g())\n        a=int(input.a())\n        b=int(input.b())\n        # Step 1: Generate Diffie-Hellman Parameters and \n\n\n        alice_public_key=int(np.mod(g**(a),p))\n        bob_public_key=int(np.mod(g**(b),p))\n\n        shared_secret=int(np.mod(g**(a*b),p))\n        \n     \n        data_dict = {\n            'p': [p],\n            'g': [g],\n            'Alice public key': [alice_public_key],\n            'Bob public key': [bob_public_key],\n            'Shared secret': [shared_secret],\n            }\n\n        # Create a DataFrame\n        df = pd.DataFrame(data_dict)\n        # Calling DataFrame constructor on list\n        return df\n\napp = App(app_ui, server)\n\n\nFigure 3"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#why-is-it-safe",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#why-is-it-safe",
+    "title": "Grove Academy Talk",
+    "section": "Why is it safe?",
+    "text": "Why is it safe?\nPublicly shared info: \\(p\\), \\(g\\), \\(y_A=g^{\\textcolor{red}{x_A}}\\), \\(y_B=g^{\\textcolor{blue}{x_B}}\\).\n. . . To identify the shared secret, a hacker needs to solve \\[\ng^{\\textcolor{red}{x_A}}=y_A \\pmod p.\n\\] for the unknown \\(x_A\\).\n\nGiven \\(\\textcolor{red}{x_A}\\), then they can compute the shared secret\n\\[\ns=y_B^{\\textcolor{red}{x_A}}=g^{\\textcolor{red}{x_A} \\textcolor{blue}{x_B}}.\n\\]"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#prime-numbers-and-primitive-roots",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#prime-numbers-and-primitive-roots",
+    "title": "Grove Academy Talk",
+    "section": "Prime numbers and primitive roots",
+    "text": "Prime numbers and primitive roots\nA prime number, \\(p\\), has factors \\(p\\) and 1.\nSuppose that \\(g\\) is a primitive root of \\(p\\). \\(g\\) has the property that \\[\ng^{k} \\pmod p\n\\] generates all the numbers less than \\(p\\).\nSo if \\(p=5\\), 3 is a primitive root as\n\\[\n3^2\\equiv 4 \\pmod 5, \\ \\ 3^3\\ \\equiv 2 \\pmod 5,\n\\]\n\\[\n3^4\\equiv 1 \\pmod 5, \\ \\ 3^5 \\equiv 3 \\pmod 5.\n\\]"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#the-discrete-logarithm-problem",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#the-discrete-logarithm-problem",
+    "title": "Grove Academy Talk",
+    "section": "The discrete logarithm problem",
+    "text": "The discrete logarithm problem\nThe problem \\[\ng^{x_A}=y_A \\pmod p.\n\\]\nis hard to solve.\nChoose \\(p\\) to be a prime number and \\(g\\) to be a primitive root of \\(p\\).\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 400\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"p\",label=\"p (prime number)\",min=5,max=300,value=23,step=1),\n    ui.input_slider(id=\"g\",label=\"g (generator)\",min=0,max=30,value=5,step=1),\n    ui.input_slider(id=\"s\",label=\"Public key\",min=1,max=100,value=5,step=1),      \n            ),\n\n        \n        ui.output_plot(\"plot\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n\n    \n\n    @render.plot\n    def plot():\n        fig, ax = plt.subplots()\n        #ax.set_ylim([-2, 2])\n        # Filter fata\n        \n        \n        p=int(input.p())\n        g=int(input.g())\n        s=int(input.s())\n        \n    \n    \n        ax.set_xlabel('$x$')\n        ax.set_ylabel('$f$')\n\n       \n        a_vec=np.linspace(0,p-1,p,dtype='uint64')\n        function_mod = np.mod(np.power(g, a_vec), p)\n\n        #function_mod=[pow(g,a,p) for a in a_vec]\n    \n\n        ax.plot(a_vec,function_mod,'x',a_vec,np.ones_like(a_vec)*s,'r--')\n\n        fig.tight_layout()\n        plt.grid()\n        plt.show()\n    \napp = App(app_ui, server)\n\n\nFigure 4"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#encryption-with-diffie-hellman--putting-it-all-together",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#encryption-with-diffie-hellman--putting-it-all-together",
+    "title": "Grove Academy Talk",
+    "section": "Encryption with Diffie Hellman -putting it all together",
+    "text": "Encryption with Diffie Hellman -putting it all together\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 500\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\nimport sympy as sp\nimport pandas as pd\nfrom cryptography.hazmat.primitives.kdf.hkdf import HKDF\nfrom cryptography.hazmat.primitives import hashes\nfrom cryptography.hazmat.primitives.asymmetric import dh\nimport os\nfrom cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes\n\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"p\",label=\"p (prime number)\",min=10,max=3000,value=23,step=1),\n    ui.input_slider(id=\"g\",label=\"g (generator)\",min=0,max=15.0,value=5,step=1),\n    ui.input_slider(id=\"a\",label=\"Private key Bob\",min=1,max=10,value=2,step=1),\n    ui.input_slider(id=\"b\",label=\"Private key Alice\",min=1,max=10,value=3,step=1), \n    ui.input_text(id='text',label=\"Message to encrypt\",value=\"sin(x)\"),\n         \n     \n            ),\n\n        ui.output_table(\"result\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n\n    def encrypt_message(key, plaintext):\n        iv=5\n        iv=iv.to_bytes(16, 'big')\n        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))\n        encryptor = cipher.encryptor()\n        ciphertext = encryptor.update(plaintext) + encryptor.finalize()\n        return iv,ciphertext\n    \n    def decrypt_message(key, iv, ciphertext):\n        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))\n        decryptor = cipher.decryptor()\n        plaintext = decryptor.update(ciphertext) + decryptor.finalize()\n        return plaintext\n\n\n\n    @render.table\n    def result():\n        # list of strings\n        p=int(input.p())\n        g=int(input.g())\n        a=int(input.a())\n        text=input.text()\n        b=int(input.b())\n        # Step 1: Generate Diffie-Hellman Parameters and Keys\n        parameters = dh.generate_parameters(generator=2, key_size=512)\n\n        # Generate private/public key pairs for two parties\n        private_key_a = parameters.generate_private_key()\n        private_key_b = parameters.generate_private_key()\n\n        # Generate public keys\n        public_key_a = private_key_a.public_key()\n        public_key_b = private_key_b.public_key()\n\n        # Step 2: Derive Shared Secret\n        shared_key_a = private_key_a.exchange(public_key_b)\n        shared_key_b = private_key_b.exchange(public_key_a)\n\n        # Validate shared keys are identical\n        assert shared_key_a == shared_key_b, \"Shared keys are not equal!\"\n\n        shared_secret=int(np.mod(g**(a*b),p))\n        shared_secret_bytes=shared_secret.to_bytes(16,'big')\n        #shared_secret=g**(a*b)\n        derived_key = HKDF(\n            algorithm=hashes.SHA256(),\n            length=32,\n            salt=None,\n            info=b\"diffie-hellman-key-exchange\",\n        ).derive(shared_secret_bytes)\n        \n        # Step 4: Encrypt a Message Using AES\n        message = text.encode(encoding=\"utf-8\")\n        iv, ciphertext = encrypt_message(derived_key, message)\n        print(\"Ciphertext:\", ciphertext.hex())\n\n        # Decrypt the message\n        decrypted_message = decrypt_message(derived_key, iv, ciphertext)\n        data_dict = {\n            'p': [p],\n            'g': [g],\n            'Message': [text],\n            'Shared secret Alice': [shared_secret],\n            'Encrypted Message':[ciphertext.hex()],\n            }\n\n        # Create a DataFrame\n        df = pd.DataFrame(data_dict)\n        # Calling DataFrame constructor on list\n        return df\n\n   \napp = App(app_ui, server)\n\n\nFigure 5"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#decryption",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#decryption",
+    "title": "Grove Academy Talk",
+    "section": "Decryption",
+    "text": "Decryption\n\n\n\n#| standalone: true\n#| components: [viewer]\n#| viewerHeight: 300\n\nfrom shiny import App, Inputs, Outputs, Session, render, ui\nfrom shiny import reactive\n\nimport numpy as np\nfrom pathlib import Path\nimport matplotlib.pyplot as plt\nfrom scipy.integrate import odeint\nimport sympy as sp\nimport pandas as pd\nfrom cryptography.hazmat.primitives.kdf.hkdf import HKDF\nfrom cryptography.hazmat.primitives import hashes\nfrom cryptography.hazmat.primitives.asymmetric import dh\nimport os\nfrom cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes\nimport base64\n\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n    ui.input_slider(id=\"shared_secret\",label=\"Shared secret\",min=10,max=3000,value=31,step=1),\n    ui.input_text(id='text',label=\"Message to decrypt\",value=\"8968d20bbc5b\"),\n            ),\n\n        ui.output_table(\"result\"),\n    ),\n)\n\ndef server(input, output, session):\n    \n\n\n    \n    def decrypt_message(key, iv, ciphertext):\n        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))\n        decryptor = cipher.decryptor()\n        plaintext = decryptor.update(ciphertext) + decryptor.finalize()\n        return plaintext\n\n\n\n    @render.table\n    def result():\n        # list of strings\n        shared_secret=int(input.shared_secret())\n        encrypted_text=str(input.text())\n\n        encrypted_text=bytes.fromhex(encrypted_text)\n\n\n\n\n        #text=text.encode(encoding=\"utf-8\")\n        #encrypted_text = encrypted_text.encode('ISO-8859-1')\n\n        shared_secret_bytes=shared_secret.to_bytes(16,'big')\n        derived_key = HKDF(\n            algorithm=hashes.SHA256(),\n            length=32,\n            salt=None,\n            info=b\"diffie-hellman-key-exchange\",\n        ).derive(shared_secret_bytes)\n        \n        \n        iv=5\n        iv=iv.to_bytes(16, 'big')\n                \n        decrypted_message = decrypt_message(derived_key, iv, encrypted_text)\n\n       \n        data_dict = {\n            'Decrypted Message':[decrypted_message]\n            }\n\n        # Create a DataFrame\n        df = pd.DataFrame(data_dict)\n        # Calling DataFrame constructor on list\n        return df\n\napp = App(app_ui, server)\n\n\nFigure 6"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#some-reasons-to-study-mathematics",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#some-reasons-to-study-mathematics",
+    "title": "Grove Academy Talk",
+    "section": "Some reasons to study mathematics",
+    "text": "Some reasons to study mathematics\n\nHave fun whilst you learn to to become logical numerate problem solver\nExcellent career opportunities post graduation\nHigher salaries than many other disciplines\nExcellent teaching and student community"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#cryptography",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#cryptography",
+    "title": "Grove Academy Talk",
+    "section": "Cryptography",
+    "text": "Cryptography\n\nMathematics underpins modern encryption\nNecessary to keep data safe online\nThe security of modern cryptographic algorithms is strongly dependent on number theory and group theory."
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#apps",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#apps",
+    "title": "Grove Academy Talk",
+    "section": "Apps",
+    "text": "Apps\n\nApps used today are published online\nThey are written in Python\nIn a maths degree you will learn when and why algorithms work\nImplement algorithms"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#what-happens-on-a-maths-degree",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#what-happens-on-a-maths-degree",
+    "title": "Grove talk",
+    "section": "What happens on a Maths degree?",
+    "text": "What happens on a Maths degree?\n\nLectures\nWeekly tutorials\nComputer labs"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#what-happens-on-a-mathematics-degree",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#what-happens-on-a-mathematics-degree",
+    "title": "Grove Academy Talk",
+    "section": "What happens on a Mathematics degree?",
+    "text": "What happens on a Mathematics degree?\n\n\n\nBuild on Higher/Advanced Higher\nLearn how to apply mathematics to real world problems\nDevelop programming skills needed to solve mathematical problems\nDevelop communication skills\n\n\n\n\n\nLearn to become a logical numerate problem solver"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#where-have-recent-dundee-graduates-go",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#where-have-recent-dundee-graduates-go",
+    "title": "Grove talk",
+    "section": "Where have recent Dundee graduates go?",
+    "text": "Where have recent Dundee graduates go?\n\nActuaries\nAccountants\nData analysts\nEngineers\nTeachers\nAcademics\nIT"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#how-is-mathenatics-taught",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#how-is-mathenatics-taught",
+    "title": "Grove talk",
+    "section": "How is Mathenatics taught?",
+    "text": "How is Mathenatics taught?\n\nLectures\nWeekly tutorials\nComputer labs"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#flex-your-mathematical-muscles-with-a-final-year-project",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#flex-your-mathematical-muscles-with-a-final-year-project",
+    "title": "Grove Academy Talk",
+    "section": "Flex your mathematical muscles with a final year project",
+    "text": "Flex your mathematical muscles with a final year project\n\ndevelop independent problem solving skills\ndevelop programming and presentation skills\n\n\n\n\nThe $25,000,000,000 eigenvector\nThe mathematics of monopoly\nHow sat. navs work?"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#how-is-mathematics-taught",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#how-is-mathematics-taught",
+    "title": "Grove Academy",
+    "section": "How is Mathematics taught?",
+    "text": "How is Mathematics taught?\n\nDevelop core syllabus + learn about new mathematical topics\nLectures (50 minute, twice a week)\nWeekly tutorials (usually associated with worksheets)\nComputer labs (develop programming skills)"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#what-have-recent-dundee-graduates-gone-on-to-do",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#what-have-recent-dundee-graduates-gone-on-to-do",
+    "title": "Grove Academy Talk",
+    "section": "What have recent Dundee graduates gone on to do?",
+    "text": "What have recent Dundee graduates gone on to do?\n\n\n\nActuaries\nAccountants\nData analysts\nEngineers\nTrade analysts\n\n\n\nApp. developers\nTeachers\nAcademia\nProgrammers"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#how-is-mathematics-taught-at-uni",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/GroveTalk.html#how-is-mathematics-taught-at-uni",
+    "title": "Grove Academy Talk",
+    "section": "How is Mathematics taught at Uni?",
+    "text": "How is Mathematics taught at Uni?\n\ndevelop core syllabus (e.g. algebra and calculus)\nlearn about new mathematical topics (e.g. statistics, dynamical systems, differential geometry, operational research …)\nlectures (50 minute, twice a week)\nweekly tutorials (usually associated with worksheets)\ncomputer labs (develop programming skills)"
   }
 ]
