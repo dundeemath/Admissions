@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>D’Arcy Thompson and 2D mappings Worksheet – University of Dundee Mathematics</title>
+<title>Discovering Degrees 2025 – University of Dundee Mathematics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,22 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -106,7 +106,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -116,10 +116,10 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../UoD_logo_RGB.png" alt="" class="navbar-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../UoD_logo_RGB.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">University of Dundee Mathematics</span>
     </a>
   </div>
@@ -141,7 +141,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">D’Arcy Thompson and 2D mappings Worksheet</h1>
+<h1 class="title">Discovering Degrees 2025</h1>
 </div>
 
 
@@ -158,115 +158,221 @@ window.Quarto = {
 </header>
 
 
-<p>We can represent a point, <span class="math inline">\(P\)</span>, in the plane using a vector with components representing its <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> coordinates, i.e. <span class="math display">\[
-\mathbf{v}_P=[x_P,y_P]
-\]</span> represent a point with coordinates <span class="math inline">\(x_P\)</span> and <span class="math inline">\(y_P\)</span>.</p>
-<p>A transformation is performed by defining a new point, <span class="math inline">\(P'\)</span>, with new cooridnates that are some functions of the old coordinates, i.e. <span class="math display">\[
-\mathbf{v}_{P'}=[x_{P'},y_{P'}]=[f(x_{P},y_{P}),g(x_{P},y_{P})].
-\]</span> where <span class="math inline">\(f(.,.)\)</span> and <span class="math inline">\(g(.,.)\)</span> are functions that will represent a particular transformation.</p>
-<section id="linear-transformation" class="level2">
-<h2 class="anchored" data-anchor-id="linear-transformation">Linear transformation</h2>
-<section id="translation" class="level3">
-<h3 class="anchored" data-anchor-id="translation">Translation</h3>
-<p>Suppose that <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are defined such that <span class="math display">\[
-f(x,y)=x+t_x
-\]</span> and <span class="math display">\[
-g(x,y)=y+t_y
-\]</span></p>
-<p>where <span class="math inline">\(t_x\)</span> and <span class="math inline">\(t_y\)</span> are constants.</p>
-<ol type="1">
-<li>Compute the transformation of the point <span class="math inline">\(P(1,2)\)</span> in the case <span class="math inline">\((t_x,t_y)=(3,0)\)</span>.</li>
-<li>Identify the inverse of the transformation in 1.</li>
-</ol>
-<div id="260023a2" class="cell" data-execution_count="1">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Worksheet_files/figure-html/cell-2-output-1.png" width="569" height="411" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="scalings" class="level3">
-<h3 class="anchored" data-anchor-id="scalings">Scalings</h3>
-<p>Consider a scaling transformation defined such that <span class="math display">\[
-f(x,y)=a*x
-\]</span> and <span class="math display">\[
-g(x,y)=b*y
-\]</span> where <span class="math inline">\(b\)</span> is a constant.</p>
-<ol type="1">
-<li><p>Compute the transformation of the point <span class="math inline">\(P(2,1)\)</span> in the case <span class="math inline">\(b=2\)</span>.</p></li>
-<li><p>Identify the inverse of the transformation in 1. Are there values of <span class="math inline">\(b\)</span> for which an inverse does not exist?</p></li>
-</ol>
-<div id="abe7e7cb" class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Worksheet_files/figure-html/cell-3-output-1.png" width="569" height="411" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="rotation" class="level3">
-<h3 class="anchored" data-anchor-id="rotation">Rotation</h3>
-<p>Now consider a transformation <span class="math display">\[
-f(x,y)=\cos\theta x -\sin\theta y
-\]</span> and <span class="math display">\[
-g(x,y)=\sin\theta x +\cos\theta y
-\]</span></p>
-<p>where <span class="math inline">\(\theta\)</span> is a constant value.</p>
-<ol type="1">
-<li><p>Compute the transformation of the point <span class="math inline">\(P(2,0)\)</span> in the case <span class="math inline">\(\theta=90\deg (\frac{\pi}{2} rad)\)</span>.</p></li>
-<li><p>Identify the inverse of the transformation in 1.</p></li>
-</ol>
-<div id="6df94151" class="cell" data-execution_count="3">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Worksheet_files/figure-html/cell-4-output-1.png" width="569" height="411" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="shear" class="level3">
-<h3 class="anchored" data-anchor-id="shear">Shear</h3>
+<p>This worksheet is accompanied by web apps that can be found here (https://dundeemath.github.io/Admissions/).</p>
+<section id="estimating-pi" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="estimating-pi"><span class="header-section-number">1</span> Estimating <span class="math inline">\(\pi\)</span></h2>
+<p>Consider <a href="#fig-circ" class="quarto-xref">Figure&nbsp;1</a>. The ratio of the area of the circle to that of the circumscribed square is</p>
 <p><span class="math display">\[
-f(x,y)=x+ay
-\]</span> and <span class="math display">\[
-g(x,y)= y
-\]</span> where <span class="math inline">\(a\)</span> is a positive constant.</p>
+\frac{\textrm{Area circle}}{\textrm{Area square}}=\frac{\pi}{4}.
+\]</span></p>
+<p>Suppose we uniformly sample points from within the square. The probability of a point landing in the circle is proportional to the relative area of the circle, i.e. <span class="math display">\[
+\frac{\pi}{4}.
+\]</span></p>
+<p>Hence we can estimate <span class="math inline">\(\pi\)</span> by counting the number of uniformly sampled points that fall within the circle.</p>
+<p>To sample the points:</p>
 <ol type="1">
-<li>Compute the transformation of the point <span class="math inline">\(P(0,2)\)</span> in the case <span class="math inline">\(a=2\)</span>.</li>
+<li>Hold a small number of rice grains above the circle in <a href="#fig-circ" class="quarto-xref">Figure&nbsp;1</a> and drop onto the page. Vary dropping height to ensure the rice grains land approximately uniformly in the square.</li>
+<li><ol type="i">
+<li>Drop rice grains on to the square.</li>
+<li>Count the total number of rice grains that fall inside the square, <span class="math inline">\(N_S\)</span>, and the circle, <span class="math inline">\(N_C\)</span>.</li>
+<li>Input the data into <a href="#tbl-circ" class="quarto-xref">Table&nbsp;1</a> and compute the quantity <span class="math display">\[
+\hat{\pi}=4\frac{N_C}{N_S}.
+\]</span></li>
+<li>Repeat Steps (i)-(iii).</li>
+</ol></li>
+<li>Compute the mean of the samples.</li>
+<li>Explore computationally using the ‘Estimating <span class="math inline">\(\pi\)</span>’ app.</li>
 </ol>
-<div id="f05c3762" class="cell" data-execution_count="4">
+<div id="cell-fig-circ" class="cell" data-fig-width="3" data-execution_count="1">
 <div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Worksheet_files/figure-html/cell-5-output-1.png" width="569" height="411" class="figure-img"></p>
+<div id="fig-circ" class="quarto-float quarto-figure quarto-figure-center anchored" height="434" data-fig-pos="h" width="472">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-circ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Worksheet_files/figure-html/fig-circ-output-1.png" id="fig-circ" data-fig-pos="h" width="472" height="434" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-circ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
+<div id="tbl-circ" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-circ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: A table to record counts.
+</figcaption>
+<div aria-describedby="tbl-circ-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover caption-top table">
+<thead>
+<tr class="header">
+<th>Iteration</th>
+<th><span class="math inline">\(N_S\)</span></th>
+<th><span class="math inline">\(N_C\)</span></th>
+<th><span class="math inline">\(\hat{\pi}=4N_C/N_S\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>—</td>
+<td>———</td>
+<td>—–</td>
+<td>——</td>
+</tr>
+<tr class="even">
+<td>Mean</td>
+<td>N/A</td>
+<td>N/A</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
 </section>
-<section id="a-general-representation" class="level3">
-<h3 class="anchored" data-anchor-id="a-general-representation">A general representation</h3>
-<p>If you have been introduced to vectors and matrices then you may spot that the above transformations can be represented as a matrix multiplication of a vector.</p>
-<p>Consider the matrix <span class="math display">\[
-A=
-\begin{pmatrix}
-a_{11} &amp; a_{12} \\ a_{21} &amp; a_{22}
-\end{pmatrix}.
+<section id="estimating-an-integral" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="estimating-an-integral"><span class="header-section-number">2</span> Estimating an integral</h2>
+<p>Consider <a href="#fig-int" class="quarto-xref">Figure&nbsp;2</a>. Here we have plotted the function <span class="math display">\[
+y=x^2, \quad x \in [0,1].
 \]</span></p>
-<p>Define <span class="math display">\[
-\mathbf{v}_{P'}=A\mathbf{v}_P
+<p>The shaded ‘area under the curve’ can be represented by the integral <span class="math display">\[
+I=\int_0^1 x^2 \textrm{d}x.
 \]</span></p>
-<p>Can you identify values of the parameters <span class="math inline">\(a_{11}\)</span>, <span class="math inline">\(a_{12}\)</span> etc. that descibe the rotation, shear and scaling transformations?</p>
+<p>To estimate the integral we again uniformly sample points from within the circumscribed square. By counting how many points fall inside the shaded region we can estimate the integral to be <span class="math display">\[
+\hat{I}=\textrm{Area square} \times \textrm{Frac points in shaded region} = 1\times \frac{N_R}{N_S}
+\]</span></p>
+<ol type="1">
+<li>Hold a small number of rice grains above the square in <a href="#fig-int" class="quarto-xref">Figure&nbsp;2</a> drop onto the page.</li>
+<li>Count the total number of rice grains that fall inside the square, <span class="math inline">\(N_S\)</span>, and the shaded region, <span class="math inline">\(N_R\)</span>.</li>
+<li>Input data into <a href="#tbl-int" class="quarto-xref">Table&nbsp;2</a> and compute the quantity <span class="math display">\[
+\frac{N_R}{N_S}.
+\]</span></li>
+<li>Repeat Steps 1-3.</li>
+<li>Compute the mean of the samples.</li>
+<li>Explore computationally using the ‘Monte Carlo integration’ app.</li>
+</ol>
+<div id="cell-fig-int" class="cell" data-fig-width="2" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-int" class="quarto-float quarto-figure quarto-figure-center anchored" height="434" data-fig-pos="h" width="448">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-int-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Worksheet_files/figure-html/fig-int-output-1.png" id="fig-int" data-fig-pos="h" width="448" height="434" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-int-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div id="tbl-int" class="striped hover quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-int-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: A table to record counts.
+</figcaption>
+<div aria-describedby="tbl-int-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-striped table-hover caption-top table">
+<thead>
+<tr class="header">
+<th>Iteration</th>
+<th><span class="math inline">\(N_S\)</span></th>
+<th><span class="math inline">\(N_R\)</span></th>
+<th><span class="math inline">\(\hat{I}=N_R/N_S\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>—</td>
+<td>———</td>
+<td>—–</td>
+<td>——</td>
+</tr>
+<tr class="even">
+<td>Mean</td>
+<td>N/A</td>
+<td>N/A</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
