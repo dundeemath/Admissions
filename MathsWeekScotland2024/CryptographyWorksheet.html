@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>D’Arcy Thompson and 2D mappings Worksheet – University of Dundee Mathematics</title>
+<title>Cryptography – University of Dundee Mathematics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -135,13 +135,13 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Worksheet.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="CryptographyWorksheet.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">D’Arcy Thompson and 2D mappings Worksheet</h1>
+<h1 class="title">Cryptography</h1>
 </div>
 
 
@@ -158,112 +158,251 @@ window.Quarto = {
 </header>
 
 
-<p>We can represent a point, <span class="math inline">\(P\)</span>, in the plane using a vector with components representing its <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> coordinates, i.e. <span class="math display">\[
-\mathbf{v}_P=[x_P,y_P]
-\]</span> represent a point with coordinates <span class="math inline">\(x_P\)</span> and <span class="math inline">\(y_P\)</span>.</p>
-<p>A transformation is performed by defining a new point, <span class="math inline">\(P'\)</span>, with new cooridnates that are some functions of the old coordinates, i.e. <span class="math display">\[
-\mathbf{v}_{P'}=[x_{P'},y_{P'}]=[f(x_{P},y_{P}),g(x_{P},y_{P})].
-\]</span> where <span class="math inline">\(f(.,.)\)</span> and <span class="math inline">\(g(.,.)\)</span> are functions that will represent a particular transformation.</p>
-<section id="linear-transformation" class="level2">
-<h2 class="anchored" data-anchor-id="linear-transformation">Linear transformation</h2>
-<section id="translation" class="level3">
-<h3 class="anchored" data-anchor-id="translation">Translation</h3>
-<p>Suppose that <span class="math inline">\(f\)</span> and <span class="math inline">\(g\)</span> are defined such that <span class="math display">\[
-f(x,y)=x+t_x
-\]</span> and <span class="math display">\[
-g(x,y)=y+t_y
+<section id="modular-arithmetic" class="level1">
+<h1>Modular arithmetic</h1>
+<p>We can use the notation <span class="math display">\[
+y= a \pmod p
 \]</span></p>
-<p>where <span class="math inline">\(t_x\)</span> and <span class="math inline">\(t_y\)</span> are constants.</p>
-<ol type="1">
-<li>Compute the transformation of the point <span class="math inline">\(P(1,2)\)</span> in the case <span class="math inline">\((t_x,t_y)=(3,0)\)</span>.</li>
-<li>Identify the inverse of the transformation in 1.</li>
-</ol>
-<div id="0cb1206f" class="cell" data-execution_count="1">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Worksheet_files/figure-html/cell-2-output-1.png" width="569" height="411" class="figure-img"></p>
-</figure>
+<p>to represent the remainder after division.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Example
 </div>
 </div>
-</div>
-</section>
-<section id="scalings" class="level3">
-<h3 class="anchored" data-anchor-id="scalings">Scalings</h3>
-<p>Consider a scaling transformation defined such that <span class="math display">\[
-f(x,y)=a*x
-\]</span> and <span class="math display">\[
-g(x,y)=b*y
-\]</span> where <span class="math inline">\(b\)</span> is a constant.</p>
-<ol type="1">
-<li><p>Compute the transformation of the point <span class="math inline">\(P(2,1)\)</span> in the case <span class="math inline">\(b=2\)</span>.</p></li>
-<li><p>Identify the inverse of the transformation in 1. Are there values of <span class="math inline">\(b\)</span> for which an inverse does not exist?</p></li>
-</ol>
-<div id="6a7ae625" class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Worksheet_files/figure-html/cell-3-output-1.png" width="569" height="411" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="rotation" class="level3">
-<h3 class="anchored" data-anchor-id="rotation">Rotation</h3>
-<p>Now consider a transformation <span class="math display">\[
-f(x,y)=\cos\theta x -\sin\theta y
-\]</span> and <span class="math display">\[
-g(x,y)=\sin\theta x +\cos\theta y
+<div class="callout-body-container callout-body">
+<p>For example, if <span class="math inline">\(p=4\)</span> and <span class="math inline">\(a =11\)</span>. Then <span class="math display">\[
+a \pmod p
+\]</span> is <span class="math display">\[
+11 \pmod 4.
+\]</span> This means the remainder when 11 is divided by 4.</p>
+<p>As 4 goes into 11 two times with three left over <span class="math display">\[
+11  \equiv 3 \pmod{4}.
 \]</span></p>
-<p>where <span class="math inline">\(\theta\)</span> is a constant value.</p>
+</div>
+</div>
+<section id="exercises" class="level2">
+<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
 <ol type="1">
-<li><p>Compute the transformation of the point <span class="math inline">\(P(2,0)\)</span> in the case <span class="math inline">\(\theta=90\deg (\frac{\pi}{2} rad)\)</span>.</p></li>
-<li><p>Identify the inverse of the transformation in 1.</p></li>
+<li><p>Compute</p>
+<ol type="a">
+<li><span class="math inline">\(5\pmod 3\)</span></li>
+<li><span class="math inline">\(13\pmod 7\)</span></li>
+<li><span class="math inline">\(18\pmod 4\)</span></li>
+</ol></li>
 </ol>
-<div id="9a9840a8" class="cell" data-execution_count="3">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Worksheet_files/figure-html/cell-4-output-1.png" width="569" height="411" class="figure-img"></p>
-</figure>
-</div>
-</div>
-</div>
 </section>
-<section id="shear" class="level3">
-<h3 class="anchored" data-anchor-id="shear">Shear</h3>
+<section id="exponents-under-modular-arithmetic" class="level2">
+<h2 class="anchored" data-anchor-id="exponents-under-modular-arithmetic">Exponents under modular arithmetic</h2>
+<p>We can perform arithmetic operations (e.g.&nbsp;addition, multiplication, powers) under modular arithmetic. Examples are multiplication</p>
+<p><span class="math display">\[ ab  \pmod{4}\]</span> and exponentiation <span class="math display">\[
+a^x \pmod p.
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Suppose <span class="math inline">\(a=3\)</span>, <span class="math inline">\(x=2\)</span> and <span class="math inline">\(p=7\)</span>. Then</p>
 <p><span class="math display">\[
-f(x,y)=x+ay
-\]</span> and <span class="math display">\[
-g(x,y)= y
-\]</span> where <span class="math inline">\(a\)</span> is a positive constant.</p>
-<ol type="1">
-<li>Compute the transformation of the point <span class="math inline">\(P(0,2)\)</span> in the case <span class="math inline">\(a=2\)</span>.</li>
-</ol>
-<div id="709eda60" class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="Worksheet_files/figure-html/cell-5-output-1.png" width="569" height="411" class="figure-img"></p>
-</figure>
-</div>
+a^x = 3^2 = 9.
+\]</span></p>
+<p>So <span class="math inline">\(a^x \pmod{p}\)</span> is just <span class="math display">\[
+9\pmod{7} \equiv 2.
+\]</span></p>
 </div>
 </div>
 </section>
-<section id="a-general-representation" class="level3">
-<h3 class="anchored" data-anchor-id="a-general-representation">A general representation</h3>
-<p>If you have been introduced to vectors and matrices then you may spot that the above transformations can be represented as a matrix multiplication of a vector.</p>
-<p>Consider the matrix <span class="math display">\[
-A=
-\begin{pmatrix}
-a_{11} &amp; a_{12} \\ a_{21} &amp; a_{22}
-\end{pmatrix}.
+<section id="exercises-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercises-1">Exercises</h2>
+<p>Compute</p>
+<ol type="1">
+<li><span class="math inline">\(4 \times 3 \pmod{4}\)</span></li>
+<li><span class="math inline">\(5^2 \pmod{4}\)</span></li>
+<li><span class="math inline">\(8^2 \pmod{5}\)</span></li>
+<li><span class="math inline">\(2^9 \pmod{5}\)</span>.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Did you get the same answer for (c) and (d)?</p>
+<p>This is because we can write <span class="math inline">\(8=2^3\)</span> and <span class="math inline">\(4=2^2\)</span>.</p>
+<p>So (b) can be written as <span class="math display">\[
+(2^3)^2 \pmod{5}
+\]</span> whilst (c) is written as <span class="math display">\[
+2^{3^2} \pmod{5}
 \]</span></p>
-<p>Define <span class="math display">\[
-\mathbf{v}_{P'}=A\mathbf{v}_P
+<p>In general <span class="math display">\[
+a^{(b^c)}={(a^b)}^c \pmod{p}
 \]</span></p>
-<p>Can you identify values of the parameters <span class="math inline">\(a_{11}\)</span>, <span class="math inline">\(a_{12}\)</span> etc. that descibe the rotation, shear and scaling transformations?</p>
+</div>
+</div>
+</section>
+<section id="a-caesar-cipher" class="level2">
+<h2 class="anchored" data-anchor-id="a-caesar-cipher">A Caesar cipher</h2>
+<p>Using a cipher to encrypt a message requires replacing letters with letters, symbols or numbers.</p>
+<p>Consider the cipher</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Letter</th>
+<th>Encryption</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>a</td>
+<td>b</td>
+</tr>
+<tr class="even">
+<td>c</td>
+<td>d</td>
+</tr>
+<tr class="odd">
+<td>l</td>
+<td>r</td>
+</tr>
+<tr class="even">
+<td>u</td>
+<td>p</td>
+</tr>
+<tr class="odd">
+<td>b</td>
+<td>q</td>
+</tr>
+<tr class="even">
+<td>s</td>
+<td>t</td>
+</tr>
+<tr class="odd">
+<td>t</td>
+<td>m</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The word <em>tub</em> would be encrypted as <em>mpq</em>.</p>
+<p>Using the table, the letter t is replaced by m, u is replaced by p etc.</p>
+</div>
+</div>
+<p>Can you use the cipher to</p>
+<ol type="1">
+<li><p>encrypt the message <em>tall</em>?</p></li>
+<li><p>decrypt the word <em>dbrdprpm</em>?</p></li>
+</ol>
+<p><br><br></p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These types of fixed ciphers are not useful in modern encryption as they can be cracked using frequency analysis (with enough examples of words, use the known frequencies of letters in the english languages to crack the cipher).</p>
+</div>
+</div>
+<p>A hash function is similar to a cipher in that letters in a message are represented by some other symbols. However, the output of hash functions is designed so that they cannot be cracked using frequency analysis.</p>
+</section>
+<section id="the-discrete-log-problem" class="level2">
+<h2 class="anchored" data-anchor-id="the-discrete-log-problem">The discrete log problem</h2>
+<p>Cracking Diffie-Hellman requires a computer to solve the discrete logarithm problem</p>
+<p><span class="math display">\[
+a^x \mod p = q.
+\]</span></p>
+<p>Suppose <span class="math inline">\(a=2\)</span>, <span class="math inline">\(p=7\)</span> and <span class="math inline">\(q=5\)</span>.</p>
+<p>The discrete log problem takes the form <span class="math display">\[
+2^x \mod 11 = 10.
+\]</span></p>
+<p>Usually, when confronted with a difficult problem, we might consider an easier problem first. Here are some examples:</p>
+<p>Try to solve the following problems for <span class="math inline">\(x\)</span>:</p>
+<ol type="1">
+<li><span class="math display">\[2 x = 10\]</span>.</li>
+</ol>
+<p><br><br></p>
+<ol start="2" type="1">
+<li>Now try <span class="math inline">\(2^x= 10\)</span>.</li>
+</ol>
+<p><br><br></p>
+<pre><code>Does this second equation have a solution if we restrict  $x$ to being an integer?</code></pre>
+<ol start="3" type="1">
+<li>Now consider introducing modular arithmetic. Try to solve</li>
+</ol>
+<p><span class="math display">\[
+2x \pmod{11} = 10
+\]</span></p>
+<p><br><br></p>
+<p><br><br></p>
+<ul>
+<li>did you find a solution?</li>
+<li>is there more than one?</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="a">
+<li><p>Try inspection (guessing): for example is 0 a solution? If so, substituting yields <span class="math display">\[
+0 \pmod{11}\neq 10.
+\]</span> Hence 0 is not a solution.</p></li>
+<li><p>Could you sketch a graph of the function <span class="math display">\[
+y(x)=2x \pmod{11}.
+\]</span></p></li>
+</ol>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Finally, let’s consider the problem</li>
+</ol>
+<p><span class="math display">\[
+2^x \pmod{11} = 10.
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Diffie-Hellmann works because there is not a nice way to solve this problem.</p>
+<p>Try using the app to have a look at the graph and find a solution by inspection!</p>
+</div>
+</div>
 
 
 </section>
