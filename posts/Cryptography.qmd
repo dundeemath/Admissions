@@ -18,7 +18,7 @@ Cryptography is the practice and study of techniques for securing communication 
 
 Suppose you happen upon the encrypted message:
 
-9995fc19ee935e80d28b19db3709a9ce414ec1bd29cd006115114fbd6bd2f6e5cb84aec0d6468233e1
+92ff0e9b25c797469785ce73ba4ded76d7d4ba6154c84926aa52038a3cf06da800d36b68cb
 
 If you paste the message into  @fig-decrypt, you can decrypt it if you can guess the *shared secret* used to encrypt the original message (Hint: use the slider to try different values of the shared secret ... it is smaller than 100 for this example).
 
