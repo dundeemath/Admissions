@@ -215,8 +215,8 @@ Note
 <p><span class="math display">\[
 a^x = 3^2 = 9.
 \]</span></p>
-<p>So <span class="math inline">\(a^x \pmod{p}\)</span> is just <span class="math display">\[
-9\pmod{7} \equiv 2.
+<p>So <span class="math display">\[
+9 \equiv 2 \pmod{7}.
 \]</span></p>
 </div>
 </div>
@@ -227,8 +227,8 @@ a^x = 3^2 = 9.
 <ol type="1">
 <li><span class="math inline">\(4 \times 3 \pmod{4}\)</span></li>
 <li><span class="math inline">\(5^2 \pmod{4}\)</span></li>
-<li><span class="math inline">\(8^2 \pmod{5}\)</span></li>
-<li><span class="math inline">\(2^9 \pmod{5}\)</span>.</li>
+<li><span class="math inline">\((2^3)^2 \pmod{5}\)</span></li>
+<li><span class="math inline">\((2^2)^3 \pmod{5}\)</span>.</li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -240,15 +240,9 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Did you get the same answer for (c) and (d)?</p>
-<p>This is because we can write <span class="math inline">\(8=2^3\)</span> and <span class="math inline">\(4=2^2\)</span>.</p>
-<p>So (b) can be written as <span class="math display">\[
-(2^3)^2 \pmod{5}
-\]</span> whilst (c) is written as <span class="math display">\[
-2^{3^2} \pmod{5}
-\]</span></p>
-<p>In general <span class="math display">\[
-a^{(b^c)}={(a^b)}^c \pmod{p}
+<p>Did you get the same answer for (3) and (4)?</p>
+<p>This is because in general <span class="math display">\[
+(a^b)^c \sim (a^c)^b  \pmod{p}
 \]</span></p>
 </div>
 </div>
@@ -312,7 +306,7 @@ Example
 <p>Can you use the cipher to</p>
 <ol type="1">
 <li><p>encrypt the message <em>tall</em>?</p></li>
-<li><p>decrypt the word <em>dbrdprpm</em>?</p></li>
+<li><p>decrypt the word <em>dbrdprpt</em>?</p></li>
 </ol>
 <p><br><br></p>
 <div class="callout callout-style-default callout-warning callout-titled">

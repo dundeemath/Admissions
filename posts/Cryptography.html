@@ -461,8 +461,8 @@ def server(input, output, session):
         # Step 1: Generate Diffie-Hellman Parameters and 
 
 
-        alice_public_key=int(np.mod(g**(a),p))
-        bob_public_key=int(np.mod(g**(b),p))
+        bob_public_key=int(np.mod(g**(a),p))
+        alice_public_key=int(np.mod(g**(b),p))
 
         shared_secret=int(np.mod(g**(a*b),p))
         
@@ -703,7 +703,7 @@ Figure&nbsp;5
 <p>Suppose that we want to decrypt the message</p>
 <p>f04ed308495b04694943d414e0444151fe141d05581b3eb2a4f168</p>
 <p>Suppose that we know that it has been encrypted using Diffie Helman algorithm. The encryptors have been a little slap dash and used the following values for publicly available information:</p>
-<p>p=31 q=23</p>
+<p>p=31 g=23</p>
 <p>Can you use <a href="#fig-diffiehelmanndecrypt" class="quarto-xref">Figure&nbsp;6</a> to decrypt the message using the available information?</p>
 <div id="fig-diffiehelmanndecrypt" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -735,7 +735,7 @@ app_ui = ui.page_fluid(
     ui.input_slider(id="p",label="p",min=10,max=3000,value=23,step=1),
     ui.input_slider(id="g",label="g (generator)",min=0,max=33,value=5,step=1),
     ui.input_slider(id="a",label="Private key Bob",min=1,max=10,value=2,step=1),
-    ui.input_slider(id="b",label="Private key Sue",min=1,max=10,value=3,step=1),
+    ui.input_slider(id="b",label="Private key Alice",min=1,max=10,value=3,step=1),
  
     ui.input_text(id='text',label="Message to decrypt",value="8968d20bbc5b"),
             ),
