@@ -174,7 +174,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="decrypting-an-encrypted-message">Decrypting an encrypted message</h2>
 <p>Suppose you happen upon the encrypted message:</p>
 <p>92ff0e9b25c797469785ce73ba4ded76d7d4ba6154c84926aa52038a3cf06da800d36b68cb</p>
-<p>If you paste the message into <a href="#fig-decrypt" class="quarto-xref">Figure&nbsp;1</a>, you can decrypt it if you can guess the <em>shared secret</em> used to encrypt the original message (Hint: use the slider to try different values of the shared secret … it is smaller than 100 for this example).</p>
+<p>If you paste the message into <a href="#fig-decrypt" class="quarto-xref">Figure&nbsp;1</a>, you can decrypt it if you can guess the <em>shared secret</em> used to encrypt the original message (Hint: use the slider to try different values of the shared secret … it is smaller than 110 for this example).</p>
 <p>Note it may take a few moments for the code needed to run the app below to get installed via your web browser. It is advised to do this on a computer rather than a phone as it requires an approx. 20 MB download.</p>
 <div id="fig-decrypt" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -296,7 +296,7 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.sidebar(
-    ui.input_slider(id="shared_secret",label="shared secret",min=10,max=3000,value=23,step=1),
+    ui.input_slider(id="shared_secret",label="shared secret",min=10,max=400,value=23,step=1),
     ui.input_text(id='text',label="Message to encrypt",value="Yarrrr"),
          
      
@@ -433,8 +433,8 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.sidebar(
-    ui.input_slider(id="p",label="p",min=10,max=3000,value=23,step=1),
-    ui.input_slider(id="g",label="g (generator)",min=0,max=15.0,value=5,step=1),
+    ui.input_slider(id="p",label="p",min=10,max=500,value=23,step=1),
+    ui.input_slider(id="g",label="g (generator)",min=0,max=30,value=5,step=1),
     ui.input_slider(id="a",label="Private key Bob",min=1,max=10,value=2,step=1),
     ui.input_slider(id="b",label="Private key Alice",min=1,max=10,value=3,step=1), 
     
@@ -600,7 +600,7 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.sidebar(
-    ui.input_slider(id="p",label="p (prime number)",min=10,max=3000,value=23,step=1),
+    ui.input_slider(id="p",label="p (prime number)",min=10,max=300,value=23,step=1),
     ui.input_slider(id="g",label="g (generator)",min=0,max=15.0,value=5,step=1),
     ui.input_slider(id="a",label="Private key Bob",min=1,max=10,value=2,step=1),
     ui.input_slider(id="b",label="Private key Alice",min=1,max=10,value=3,step=1), 
@@ -732,7 +732,7 @@ import base64
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.sidebar(
-    ui.input_slider(id="p",label="p",min=10,max=3000,value=23,step=1),
+    ui.input_slider(id="p",label="p",min=10,max=300,value=23,step=1),
     ui.input_slider(id="g",label="g (generator)",min=0,max=33,value=5,step=1),
     ui.input_slider(id="a",label="Private key Bob",min=1,max=10,value=2,step=1),
     ui.input_slider(id="b",label="Private key Alice",min=1,max=10,value=3,step=1),
