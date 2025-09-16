@@ -6,14 +6,13 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <meta name="shinylive:serviceworker_dir" content="../..">
 <script src="../../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/load-shinylive-sw.js" type="module"></script>
 <script src="../../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/run-python-blocks.js" type="module"></script>
 <link href="../../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/shinylive.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.57">
+  <meta name="generator" content="quarto-1.7.32">
 
   <meta name="author" content="Dr.&nbsp;Philip Murray">
   <meta name="dcterms.date" content="2025-03-26">
@@ -36,8 +35,9 @@
       vertical-align: middle;
     }
     /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -48,7 +48,7 @@
     }
     @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
     }
     pre.numberSource code
       { counter-reset: source-line 0; }
@@ -101,7 +101,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-2095e1a2b15cef3f028023a6c3e93c6c.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-MQD60ZZ43S"></script>
 
   <script type="text/javascript">
@@ -117,204 +117,6 @@
   <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
-
-  .callout {
-    margin-top: 1em;
-    margin-bottom: 1em;  
-    border-radius: .25rem;
-  }
-
-  .callout.callout-style-simple { 
-    padding: 0em 0.5em;
-    border-left: solid #acacac .3rem;
-    border-right: solid 1px silver;
-    border-top: solid 1px silver;
-    border-bottom: solid 1px silver;
-    display: flex;
-  }
-
-  .callout.callout-style-default {
-    border-left: solid #acacac .3rem;
-    border-right: solid 1px silver;
-    border-top: solid 1px silver;
-    border-bottom: solid 1px silver;
-  }
-
-  .callout .callout-body-container {
-    flex-grow: 1;
-  }
-
-  .callout.callout-style-simple .callout-body {
-    font-size: 1rem;
-    font-weight: 400;
-  }
-
-  .callout.callout-style-default .callout-body {
-    font-size: 0.9rem;
-    font-weight: 400;
-  }
-
-  .callout.callout-titled.callout-style-simple .callout-body {
-    margin-top: 0.2em;
-  }
-
-  .callout:not(.callout-titled) .callout-body {
-      display: flex;
-  }
-
-  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
-    padding-left: 1.6em;
-  }
-
-  .callout.callout-titled .callout-header {
-    padding-top: 0.2em;
-    margin-bottom: -0.2em;
-  }
-
-  .callout.callout-titled .callout-title  p {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-  }
-    
-  .callout.callout-titled.callout-style-simple .callout-content  p {
-    margin-top: 0;
-  }
-
-  .callout.callout-titled.callout-style-default .callout-content  p {
-    margin-top: 0.7em;
-  }
-
-  .callout.callout-style-simple div.callout-title {
-    border-bottom: none;
-    font-size: .9rem;
-    font-weight: 600;
-    opacity: 75%;
-  }
-
-  .callout.callout-style-default  div.callout-title {
-    border-bottom: none;
-    font-weight: 600;
-    opacity: 85%;
-    font-size: 0.9rem;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-
-  .callout.callout-style-default div.callout-content {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-
-  .callout.callout-style-simple .callout-icon::before {
-    height: 1rem;
-    width: 1rem;
-    display: inline-block;
-    content: "";
-    background-repeat: no-repeat;
-    background-size: 1rem 1rem;
-  }
-
-  .callout.callout-style-default .callout-icon::before {
-    height: 0.9rem;
-    width: 0.9rem;
-    display: inline-block;
-    content: "";
-    background-repeat: no-repeat;
-    background-size: 0.9rem 0.9rem;
-  }
-
-  .callout-title {
-    display: flex
-  }
-    
-  .callout-icon::before {
-    margin-top: 1rem;
-    padding-right: .5rem;
-  }
-
-  .callout.no-icon::before {
-    display: none !important;
-  }
-
-  .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
-  }
-
-  .callout.callout-titled .callout-icon::before {
-    margin-top: .5rem;
-    padding-right: .5rem;
-  }
-
-  .callout:not(.callout-titled) .callout-icon::before {
-    margin-top: 1rem;
-    padding-right: .5rem;
-  }
-
-  /* Callout Types */
-
-  div.callout-note {
-    border-left-color: #4582ec !important;
-  }
-
-  div.callout-note .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
-  }
-
-  div.callout-note.callout-style-default .callout-title {
-    background-color: #dae6fb
-  }
-
-  div.callout-important {
-    border-left-color: #d9534f !important;
-  }
-
-  div.callout-important .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-important.callout-style-default .callout-title {
-    background-color: #f7dddc
-  }
-
-  div.callout-warning {
-    border-left-color: #f0ad4e !important;
-  }
-
-  div.callout-warning .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-warning.callout-style-default .callout-title {
-    background-color: #fcefdc
-  }
-
-  div.callout-tip {
-    border-left-color: #02b875 !important;
-  }
-
-  div.callout-tip .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-tip.callout-style-default .callout-title {
-    background-color: #ccf1e3
-  }
-
-  div.callout-caution {
-    border-left-color: #fd7e14 !important;
-  }
-
-  div.callout-caution .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
-  }
-
-  div.callout-caution.callout-style-default .callout-title {
-    background-color: #ffe5d0
-  }
-
-  </style>
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -530,90 +332,90 @@
 <div id="fig-decrypt" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-decrypt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="fig-decrypt" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="fig-decrypt-1"><a href="#fig-decrypt-1"></a>#| standalone: true</span>
-<span id="fig-decrypt-2"><a href="#fig-decrypt-2"></a>#| components: [viewer]</span>
-<span id="fig-decrypt-3"><a href="#fig-decrypt-3"></a>#| viewerHeight: 300</span>
-<span id="fig-decrypt-4"><a href="#fig-decrypt-4"></a></span>
-<span id="fig-decrypt-5"><a href="#fig-decrypt-5"></a>from shiny import App, Inputs, Outputs, Session, render, ui</span>
-<span id="fig-decrypt-6"><a href="#fig-decrypt-6"></a>from shiny import reactive</span>
-<span id="fig-decrypt-7"><a href="#fig-decrypt-7"></a></span>
-<span id="fig-decrypt-8"><a href="#fig-decrypt-8"></a>import numpy as np</span>
-<span id="fig-decrypt-9"><a href="#fig-decrypt-9"></a>from pathlib import Path</span>
-<span id="fig-decrypt-10"><a href="#fig-decrypt-10"></a>import matplotlib.pyplot as plt</span>
-<span id="fig-decrypt-11"><a href="#fig-decrypt-11"></a>from scipy.integrate import odeint</span>
-<span id="fig-decrypt-12"><a href="#fig-decrypt-12"></a>import sympy as sp</span>
-<span id="fig-decrypt-13"><a href="#fig-decrypt-13"></a>import pandas as pd</span>
-<span id="fig-decrypt-14"><a href="#fig-decrypt-14"></a>from cryptography.hazmat.primitives.kdf.hkdf import HKDF</span>
-<span id="fig-decrypt-15"><a href="#fig-decrypt-15"></a>from cryptography.hazmat.primitives import hashes</span>
-<span id="fig-decrypt-16"><a href="#fig-decrypt-16"></a>from cryptography.hazmat.primitives.asymmetric import dh</span>
-<span id="fig-decrypt-17"><a href="#fig-decrypt-17"></a>import os</span>
-<span id="fig-decrypt-18"><a href="#fig-decrypt-18"></a>from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes</span>
-<span id="fig-decrypt-19"><a href="#fig-decrypt-19"></a>import base64</span>
-<span id="fig-decrypt-20"><a href="#fig-decrypt-20"></a></span>
-<span id="fig-decrypt-21"><a href="#fig-decrypt-21"></a></span>
-<span id="fig-decrypt-22"><a href="#fig-decrypt-22"></a>app_ui = ui.page_fluid(</span>
-<span id="fig-decrypt-23"><a href="#fig-decrypt-23"></a>    ui.layout_sidebar(</span>
-<span id="fig-decrypt-24"><a href="#fig-decrypt-24"></a>        ui.sidebar(</span>
-<span id="fig-decrypt-25"><a href="#fig-decrypt-25"></a>    ui.input_slider(id="shared_secret",label="Shared secret",min=10,max=3000,value=31,step=1),</span>
-<span id="fig-decrypt-26"><a href="#fig-decrypt-26"></a>    ui.input_text(id='text',label="Message to decrypt",value="8968d20bbc5b"),</span>
-<span id="fig-decrypt-27"><a href="#fig-decrypt-27"></a>            ),</span>
-<span id="fig-decrypt-28"><a href="#fig-decrypt-28"></a></span>
-<span id="fig-decrypt-29"><a href="#fig-decrypt-29"></a>        ui.output_table("result"),</span>
-<span id="fig-decrypt-30"><a href="#fig-decrypt-30"></a>    ),</span>
-<span id="fig-decrypt-31"><a href="#fig-decrypt-31"></a>)</span>
-<span id="fig-decrypt-32"><a href="#fig-decrypt-32"></a></span>
-<span id="fig-decrypt-33"><a href="#fig-decrypt-33"></a>def server(input, output, session):</span>
-<span id="fig-decrypt-34"><a href="#fig-decrypt-34"></a>    </span>
-<span id="fig-decrypt-35"><a href="#fig-decrypt-35"></a></span>
-<span id="fig-decrypt-36"><a href="#fig-decrypt-36"></a></span>
-<span id="fig-decrypt-37"><a href="#fig-decrypt-37"></a>    </span>
-<span id="fig-decrypt-38"><a href="#fig-decrypt-38"></a>    def decrypt_message(key, iv, ciphertext):</span>
-<span id="fig-decrypt-39"><a href="#fig-decrypt-39"></a>        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))</span>
-<span id="fig-decrypt-40"><a href="#fig-decrypt-40"></a>        decryptor = cipher.decryptor()</span>
-<span id="fig-decrypt-41"><a href="#fig-decrypt-41"></a>        plaintext = decryptor.update(ciphertext) + decryptor.finalize()</span>
-<span id="fig-decrypt-42"><a href="#fig-decrypt-42"></a>        return plaintext</span>
-<span id="fig-decrypt-43"><a href="#fig-decrypt-43"></a></span>
-<span id="fig-decrypt-44"><a href="#fig-decrypt-44"></a></span>
-<span id="fig-decrypt-45"><a href="#fig-decrypt-45"></a></span>
-<span id="fig-decrypt-46"><a href="#fig-decrypt-46"></a>    @render.table</span>
-<span id="fig-decrypt-47"><a href="#fig-decrypt-47"></a>    def result():</span>
-<span id="fig-decrypt-48"><a href="#fig-decrypt-48"></a>        # list of strings</span>
-<span id="fig-decrypt-49"><a href="#fig-decrypt-49"></a>        shared_secret=int(input.shared_secret())</span>
-<span id="fig-decrypt-50"><a href="#fig-decrypt-50"></a>        encrypted_text=str(input.text())</span>
-<span id="fig-decrypt-51"><a href="#fig-decrypt-51"></a></span>
-<span id="fig-decrypt-52"><a href="#fig-decrypt-52"></a>        encrypted_text=bytes.fromhex(encrypted_text)</span>
-<span id="fig-decrypt-53"><a href="#fig-decrypt-53"></a></span>
-<span id="fig-decrypt-54"><a href="#fig-decrypt-54"></a></span>
-<span id="fig-decrypt-55"><a href="#fig-decrypt-55"></a></span>
-<span id="fig-decrypt-56"><a href="#fig-decrypt-56"></a></span>
-<span id="fig-decrypt-57"><a href="#fig-decrypt-57"></a>        #text=text.encode(encoding="utf-8")</span>
-<span id="fig-decrypt-58"><a href="#fig-decrypt-58"></a>        #encrypted_text = encrypted_text.encode('ISO-8859-1')</span>
-<span id="fig-decrypt-59"><a href="#fig-decrypt-59"></a></span>
-<span id="fig-decrypt-60"><a href="#fig-decrypt-60"></a>        shared_secret_bytes=shared_secret.to_bytes(16,'big')</span>
-<span id="fig-decrypt-61"><a href="#fig-decrypt-61"></a>        derived_key = HKDF(</span>
-<span id="fig-decrypt-62"><a href="#fig-decrypt-62"></a>            algorithm=hashes.SHA256(),</span>
-<span id="fig-decrypt-63"><a href="#fig-decrypt-63"></a>            length=32,</span>
-<span id="fig-decrypt-64"><a href="#fig-decrypt-64"></a>            salt=None,</span>
-<span id="fig-decrypt-65"><a href="#fig-decrypt-65"></a>            info=b"diffie-hellman-key-exchange",</span>
-<span id="fig-decrypt-66"><a href="#fig-decrypt-66"></a>        ).derive(shared_secret_bytes)</span>
-<span id="fig-decrypt-67"><a href="#fig-decrypt-67"></a>        </span>
-<span id="fig-decrypt-68"><a href="#fig-decrypt-68"></a>        </span>
-<span id="fig-decrypt-69"><a href="#fig-decrypt-69"></a>        iv=5</span>
-<span id="fig-decrypt-70"><a href="#fig-decrypt-70"></a>        iv=iv.to_bytes(16, 'big')</span>
-<span id="fig-decrypt-71"><a href="#fig-decrypt-71"></a>                </span>
-<span id="fig-decrypt-72"><a href="#fig-decrypt-72"></a>        decrypted_message = decrypt_message(derived_key, iv, encrypted_text)</span>
-<span id="fig-decrypt-73"><a href="#fig-decrypt-73"></a></span>
-<span id="fig-decrypt-74"><a href="#fig-decrypt-74"></a>       </span>
-<span id="fig-decrypt-75"><a href="#fig-decrypt-75"></a>        data_dict = {</span>
-<span id="fig-decrypt-76"><a href="#fig-decrypt-76"></a>            'Decrypted Message':[decrypted_message]</span>
-<span id="fig-decrypt-77"><a href="#fig-decrypt-77"></a>            }</span>
-<span id="fig-decrypt-78"><a href="#fig-decrypt-78"></a></span>
-<span id="fig-decrypt-79"><a href="#fig-decrypt-79"></a>        # Create a DataFrame</span>
-<span id="fig-decrypt-80"><a href="#fig-decrypt-80"></a>        df = pd.DataFrame(data_dict)</span>
-<span id="fig-decrypt-81"><a href="#fig-decrypt-81"></a>        # Calling DataFrame constructor on list</span>
-<span id="fig-decrypt-82"><a href="#fig-decrypt-82"></a>        return df</span>
-<span id="fig-decrypt-83"><a href="#fig-decrypt-83"></a></span>
-<span id="fig-decrypt-84"><a href="#fig-decrypt-84"></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a></a>#| standalone: true</span>
+<span id="cb1-2"><a></a>#| components: [viewer]</span>
+<span id="cb1-3"><a></a>#| viewerHeight: 300</span>
+<span id="cb1-4"><a></a></span>
+<span id="cb1-5"><a></a>from shiny import App, Inputs, Outputs, Session, render, ui</span>
+<span id="cb1-6"><a></a>from shiny import reactive</span>
+<span id="cb1-7"><a></a></span>
+<span id="cb1-8"><a></a>import numpy as np</span>
+<span id="cb1-9"><a></a>from pathlib import Path</span>
+<span id="cb1-10"><a></a>import matplotlib.pyplot as plt</span>
+<span id="cb1-11"><a></a>from scipy.integrate import odeint</span>
+<span id="cb1-12"><a></a>import sympy as sp</span>
+<span id="cb1-13"><a></a>import pandas as pd</span>
+<span id="cb1-14"><a></a>from cryptography.hazmat.primitives.kdf.hkdf import HKDF</span>
+<span id="cb1-15"><a></a>from cryptography.hazmat.primitives import hashes</span>
+<span id="cb1-16"><a></a>from cryptography.hazmat.primitives.asymmetric import dh</span>
+<span id="cb1-17"><a></a>import os</span>
+<span id="cb1-18"><a></a>from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes</span>
+<span id="cb1-19"><a></a>import base64</span>
+<span id="cb1-20"><a></a></span>
+<span id="cb1-21"><a></a></span>
+<span id="cb1-22"><a></a>app_ui = ui.page_fluid(</span>
+<span id="cb1-23"><a></a>    ui.layout_sidebar(</span>
+<span id="cb1-24"><a></a>        ui.sidebar(</span>
+<span id="cb1-25"><a></a>    ui.input_slider(id="shared_secret",label="Shared secret",min=10,max=3000,value=31,step=1),</span>
+<span id="cb1-26"><a></a>    ui.input_text(id='text',label="Message to decrypt",value="8968d20bbc5b"),</span>
+<span id="cb1-27"><a></a>            ),</span>
+<span id="cb1-28"><a></a></span>
+<span id="cb1-29"><a></a>        ui.output_table("result"),</span>
+<span id="cb1-30"><a></a>    ),</span>
+<span id="cb1-31"><a></a>)</span>
+<span id="cb1-32"><a></a></span>
+<span id="cb1-33"><a></a>def server(input, output, session):</span>
+<span id="cb1-34"><a></a>    </span>
+<span id="cb1-35"><a></a></span>
+<span id="cb1-36"><a></a></span>
+<span id="cb1-37"><a></a>    </span>
+<span id="cb1-38"><a></a>    def decrypt_message(key, iv, ciphertext):</span>
+<span id="cb1-39"><a></a>        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))</span>
+<span id="cb1-40"><a></a>        decryptor = cipher.decryptor()</span>
+<span id="cb1-41"><a></a>        plaintext = decryptor.update(ciphertext) + decryptor.finalize()</span>
+<span id="cb1-42"><a></a>        return plaintext</span>
+<span id="cb1-43"><a></a></span>
+<span id="cb1-44"><a></a></span>
+<span id="cb1-45"><a></a></span>
+<span id="cb1-46"><a></a>    @render.table</span>
+<span id="cb1-47"><a></a>    def result():</span>
+<span id="cb1-48"><a></a>        # list of strings</span>
+<span id="cb1-49"><a></a>        shared_secret=int(input.shared_secret())</span>
+<span id="cb1-50"><a></a>        encrypted_text=str(input.text())</span>
+<span id="cb1-51"><a></a></span>
+<span id="cb1-52"><a></a>        encrypted_text=bytes.fromhex(encrypted_text)</span>
+<span id="cb1-53"><a></a></span>
+<span id="cb1-54"><a></a></span>
+<span id="cb1-55"><a></a></span>
+<span id="cb1-56"><a></a></span>
+<span id="cb1-57"><a></a>        #text=text.encode(encoding="utf-8")</span>
+<span id="cb1-58"><a></a>        #encrypted_text = encrypted_text.encode('ISO-8859-1')</span>
+<span id="cb1-59"><a></a></span>
+<span id="cb1-60"><a></a>        shared_secret_bytes=shared_secret.to_bytes(16,'big')</span>
+<span id="cb1-61"><a></a>        derived_key = HKDF(</span>
+<span id="cb1-62"><a></a>            algorithm=hashes.SHA256(),</span>
+<span id="cb1-63"><a></a>            length=32,</span>
+<span id="cb1-64"><a></a>            salt=None,</span>
+<span id="cb1-65"><a></a>            info=b"diffie-hellman-key-exchange",</span>
+<span id="cb1-66"><a></a>        ).derive(shared_secret_bytes)</span>
+<span id="cb1-67"><a></a>        </span>
+<span id="cb1-68"><a></a>        </span>
+<span id="cb1-69"><a></a>        iv=5</span>
+<span id="cb1-70"><a></a>        iv=iv.to_bytes(16, 'big')</span>
+<span id="cb1-71"><a></a>                </span>
+<span id="cb1-72"><a></a>        decrypted_message = decrypt_message(derived_key, iv, encrypted_text)</span>
+<span id="cb1-73"><a></a></span>
+<span id="cb1-74"><a></a>       </span>
+<span id="cb1-75"><a></a>        data_dict = {</span>
+<span id="cb1-76"><a></a>            'Decrypted Message':[decrypted_message]</span>
+<span id="cb1-77"><a></a>            }</span>
+<span id="cb1-78"><a></a></span>
+<span id="cb1-79"><a></a>        # Create a DataFrame</span>
+<span id="cb1-80"><a></a>        df = pd.DataFrame(data_dict)</span>
+<span id="cb1-81"><a></a>        # Calling DataFrame constructor on list</span>
+<span id="cb1-82"><a></a>        return df</span>
+<span id="cb1-83"><a></a></span>
+<span id="cb1-84"><a></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-decrypt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1
@@ -628,88 +430,88 @@ Figure&nbsp;1
 <div id="fig-encrypt" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-encrypt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="fig-encrypt" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="fig-encrypt-1"><a href="#fig-encrypt-1"></a>#| standalone: true</span>
-<span id="fig-encrypt-2"><a href="#fig-encrypt-2"></a>#| components: [viewer]</span>
-<span id="fig-encrypt-3"><a href="#fig-encrypt-3"></a>#| viewerHeight: 300</span>
-<span id="fig-encrypt-4"><a href="#fig-encrypt-4"></a></span>
-<span id="fig-encrypt-5"><a href="#fig-encrypt-5"></a>from shiny import App, Inputs, Outputs, Session, render, ui</span>
-<span id="fig-encrypt-6"><a href="#fig-encrypt-6"></a>from shiny import reactive</span>
-<span id="fig-encrypt-7"><a href="#fig-encrypt-7"></a></span>
-<span id="fig-encrypt-8"><a href="#fig-encrypt-8"></a>import numpy as np</span>
-<span id="fig-encrypt-9"><a href="#fig-encrypt-9"></a>from pathlib import Path</span>
-<span id="fig-encrypt-10"><a href="#fig-encrypt-10"></a>import matplotlib.pyplot as plt</span>
-<span id="fig-encrypt-11"><a href="#fig-encrypt-11"></a>from scipy.integrate import odeint</span>
-<span id="fig-encrypt-12"><a href="#fig-encrypt-12"></a>import sympy as sp</span>
-<span id="fig-encrypt-13"><a href="#fig-encrypt-13"></a>import pandas as pd</span>
-<span id="fig-encrypt-14"><a href="#fig-encrypt-14"></a>from cryptography.hazmat.primitives.kdf.hkdf import HKDF</span>
-<span id="fig-encrypt-15"><a href="#fig-encrypt-15"></a>from cryptography.hazmat.primitives import hashes</span>
-<span id="fig-encrypt-16"><a href="#fig-encrypt-16"></a>from cryptography.hazmat.primitives.asymmetric import dh</span>
-<span id="fig-encrypt-17"><a href="#fig-encrypt-17"></a>import os</span>
-<span id="fig-encrypt-18"><a href="#fig-encrypt-18"></a>from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes</span>
-<span id="fig-encrypt-19"><a href="#fig-encrypt-19"></a></span>
-<span id="fig-encrypt-20"><a href="#fig-encrypt-20"></a></span>
-<span id="fig-encrypt-21"><a href="#fig-encrypt-21"></a>app_ui = ui.page_fluid(</span>
-<span id="fig-encrypt-22"><a href="#fig-encrypt-22"></a>    ui.layout_sidebar(</span>
-<span id="fig-encrypt-23"><a href="#fig-encrypt-23"></a>        ui.sidebar(</span>
-<span id="fig-encrypt-24"><a href="#fig-encrypt-24"></a>    ui.input_slider(id="shared_secret",label="shared secret",min=10,max=3000,value=23,step=1),</span>
-<span id="fig-encrypt-25"><a href="#fig-encrypt-25"></a>    ui.input_text(id='text',label="Message to encrypt",value="Yarrrr"),</span>
-<span id="fig-encrypt-26"><a href="#fig-encrypt-26"></a>         </span>
-<span id="fig-encrypt-27"><a href="#fig-encrypt-27"></a>     </span>
-<span id="fig-encrypt-28"><a href="#fig-encrypt-28"></a>            ),</span>
-<span id="fig-encrypt-29"><a href="#fig-encrypt-29"></a></span>
-<span id="fig-encrypt-30"><a href="#fig-encrypt-30"></a>        ui.output_table("result"),</span>
-<span id="fig-encrypt-31"><a href="#fig-encrypt-31"></a>    ),</span>
-<span id="fig-encrypt-32"><a href="#fig-encrypt-32"></a>)</span>
-<span id="fig-encrypt-33"><a href="#fig-encrypt-33"></a></span>
-<span id="fig-encrypt-34"><a href="#fig-encrypt-34"></a>def server(input, output, session):</span>
-<span id="fig-encrypt-35"><a href="#fig-encrypt-35"></a>    </span>
-<span id="fig-encrypt-36"><a href="#fig-encrypt-36"></a></span>
-<span id="fig-encrypt-37"><a href="#fig-encrypt-37"></a>    def encrypt_message(key, plaintext):</span>
-<span id="fig-encrypt-38"><a href="#fig-encrypt-38"></a>        iv=5</span>
-<span id="fig-encrypt-39"><a href="#fig-encrypt-39"></a>        iv=iv.to_bytes(16, 'big')</span>
-<span id="fig-encrypt-40"><a href="#fig-encrypt-40"></a>        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))</span>
-<span id="fig-encrypt-41"><a href="#fig-encrypt-41"></a>        encryptor = cipher.encryptor()</span>
-<span id="fig-encrypt-42"><a href="#fig-encrypt-42"></a>        ciphertext = encryptor.update(plaintext) + encryptor.finalize()</span>
-<span id="fig-encrypt-43"><a href="#fig-encrypt-43"></a>        return iv,ciphertext</span>
-<span id="fig-encrypt-44"><a href="#fig-encrypt-44"></a>    </span>
-<span id="fig-encrypt-45"><a href="#fig-encrypt-45"></a></span>
-<span id="fig-encrypt-46"><a href="#fig-encrypt-46"></a></span>
-<span id="fig-encrypt-47"><a href="#fig-encrypt-47"></a></span>
-<span id="fig-encrypt-48"><a href="#fig-encrypt-48"></a>    @render.table</span>
-<span id="fig-encrypt-49"><a href="#fig-encrypt-49"></a>    def result():</span>
-<span id="fig-encrypt-50"><a href="#fig-encrypt-50"></a>        # list of strings</span>
-<span id="fig-encrypt-51"><a href="#fig-encrypt-51"></a>        shared_secret=int(input.shared_secret())</span>
-<span id="fig-encrypt-52"><a href="#fig-encrypt-52"></a>        text=input.text()</span>
-<span id="fig-encrypt-53"><a href="#fig-encrypt-53"></a>        # Step 1: Generate Diffie-Hellman Parameters and Keys</span>
-<span id="fig-encrypt-54"><a href="#fig-encrypt-54"></a>       </span>
-<span id="fig-encrypt-55"><a href="#fig-encrypt-55"></a></span>
-<span id="fig-encrypt-56"><a href="#fig-encrypt-56"></a>        #shared_secret=int(np.mod(g**(a*b),p))</span>
-<span id="fig-encrypt-57"><a href="#fig-encrypt-57"></a>        shared_secret_bytes=shared_secret.to_bytes(16,'big')</span>
-<span id="fig-encrypt-58"><a href="#fig-encrypt-58"></a>        #shared_secret=g**(a*b)</span>
-<span id="fig-encrypt-59"><a href="#fig-encrypt-59"></a>        derived_key = HKDF(</span>
-<span id="fig-encrypt-60"><a href="#fig-encrypt-60"></a>            algorithm=hashes.SHA256(),</span>
-<span id="fig-encrypt-61"><a href="#fig-encrypt-61"></a>            length=32,</span>
-<span id="fig-encrypt-62"><a href="#fig-encrypt-62"></a>            salt=None,</span>
-<span id="fig-encrypt-63"><a href="#fig-encrypt-63"></a>            info=b"diffie-hellman-key-exchange",</span>
-<span id="fig-encrypt-64"><a href="#fig-encrypt-64"></a>        ).derive(shared_secret_bytes)</span>
-<span id="fig-encrypt-65"><a href="#fig-encrypt-65"></a>        </span>
-<span id="fig-encrypt-66"><a href="#fig-encrypt-66"></a>        # Step 4: Encrypt a Message Using AES</span>
-<span id="fig-encrypt-67"><a href="#fig-encrypt-67"></a>        message = text.encode(encoding="utf-8")</span>
-<span id="fig-encrypt-68"><a href="#fig-encrypt-68"></a>        iv, ciphertext = encrypt_message(derived_key, message)</span>
-<span id="fig-encrypt-69"><a href="#fig-encrypt-69"></a></span>
-<span id="fig-encrypt-70"><a href="#fig-encrypt-70"></a>         # Decrypt the message</span>
-<span id="fig-encrypt-71"><a href="#fig-encrypt-71"></a>        data_dict = {</span>
-<span id="fig-encrypt-72"><a href="#fig-encrypt-72"></a>            'Encrypted Message':[ciphertext.hex()],</span>
-<span id="fig-encrypt-73"><a href="#fig-encrypt-73"></a>            'Encrypted Message':[ciphertext.hex()],</span>
-<span id="fig-encrypt-74"><a href="#fig-encrypt-74"></a>            }</span>
-<span id="fig-encrypt-75"><a href="#fig-encrypt-75"></a></span>
-<span id="fig-encrypt-76"><a href="#fig-encrypt-76"></a>        # Create a DataFrame</span>
-<span id="fig-encrypt-77"><a href="#fig-encrypt-77"></a>        df = pd.DataFrame(data_dict)</span>
-<span id="fig-encrypt-78"><a href="#fig-encrypt-78"></a>        # Calling DataFrame constructor on list</span>
-<span id="fig-encrypt-79"><a href="#fig-encrypt-79"></a>        return df</span>
-<span id="fig-encrypt-80"><a href="#fig-encrypt-80"></a></span>
-<span id="fig-encrypt-81"><a href="#fig-encrypt-81"></a>   </span>
-<span id="fig-encrypt-82"><a href="#fig-encrypt-82"></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a></a>#| standalone: true</span>
+<span id="cb2-2"><a></a>#| components: [viewer]</span>
+<span id="cb2-3"><a></a>#| viewerHeight: 300</span>
+<span id="cb2-4"><a></a></span>
+<span id="cb2-5"><a></a>from shiny import App, Inputs, Outputs, Session, render, ui</span>
+<span id="cb2-6"><a></a>from shiny import reactive</span>
+<span id="cb2-7"><a></a></span>
+<span id="cb2-8"><a></a>import numpy as np</span>
+<span id="cb2-9"><a></a>from pathlib import Path</span>
+<span id="cb2-10"><a></a>import matplotlib.pyplot as plt</span>
+<span id="cb2-11"><a></a>from scipy.integrate import odeint</span>
+<span id="cb2-12"><a></a>import sympy as sp</span>
+<span id="cb2-13"><a></a>import pandas as pd</span>
+<span id="cb2-14"><a></a>from cryptography.hazmat.primitives.kdf.hkdf import HKDF</span>
+<span id="cb2-15"><a></a>from cryptography.hazmat.primitives import hashes</span>
+<span id="cb2-16"><a></a>from cryptography.hazmat.primitives.asymmetric import dh</span>
+<span id="cb2-17"><a></a>import os</span>
+<span id="cb2-18"><a></a>from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes</span>
+<span id="cb2-19"><a></a></span>
+<span id="cb2-20"><a></a></span>
+<span id="cb2-21"><a></a>app_ui = ui.page_fluid(</span>
+<span id="cb2-22"><a></a>    ui.layout_sidebar(</span>
+<span id="cb2-23"><a></a>        ui.sidebar(</span>
+<span id="cb2-24"><a></a>    ui.input_slider(id="shared_secret",label="shared secret",min=10,max=3000,value=23,step=1),</span>
+<span id="cb2-25"><a></a>    ui.input_text(id='text',label="Message to encrypt",value="Yarrrr"),</span>
+<span id="cb2-26"><a></a>         </span>
+<span id="cb2-27"><a></a>     </span>
+<span id="cb2-28"><a></a>            ),</span>
+<span id="cb2-29"><a></a></span>
+<span id="cb2-30"><a></a>        ui.output_table("result"),</span>
+<span id="cb2-31"><a></a>    ),</span>
+<span id="cb2-32"><a></a>)</span>
+<span id="cb2-33"><a></a></span>
+<span id="cb2-34"><a></a>def server(input, output, session):</span>
+<span id="cb2-35"><a></a>    </span>
+<span id="cb2-36"><a></a></span>
+<span id="cb2-37"><a></a>    def encrypt_message(key, plaintext):</span>
+<span id="cb2-38"><a></a>        iv=5</span>
+<span id="cb2-39"><a></a>        iv=iv.to_bytes(16, 'big')</span>
+<span id="cb2-40"><a></a>        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))</span>
+<span id="cb2-41"><a></a>        encryptor = cipher.encryptor()</span>
+<span id="cb2-42"><a></a>        ciphertext = encryptor.update(plaintext) + encryptor.finalize()</span>
+<span id="cb2-43"><a></a>        return iv,ciphertext</span>
+<span id="cb2-44"><a></a>    </span>
+<span id="cb2-45"><a></a></span>
+<span id="cb2-46"><a></a></span>
+<span id="cb2-47"><a></a></span>
+<span id="cb2-48"><a></a>    @render.table</span>
+<span id="cb2-49"><a></a>    def result():</span>
+<span id="cb2-50"><a></a>        # list of strings</span>
+<span id="cb2-51"><a></a>        shared_secret=int(input.shared_secret())</span>
+<span id="cb2-52"><a></a>        text=input.text()</span>
+<span id="cb2-53"><a></a>        # Step 1: Generate Diffie-Hellman Parameters and Keys</span>
+<span id="cb2-54"><a></a>       </span>
+<span id="cb2-55"><a></a></span>
+<span id="cb2-56"><a></a>        #shared_secret=int(np.mod(g**(a*b),p))</span>
+<span id="cb2-57"><a></a>        shared_secret_bytes=shared_secret.to_bytes(16,'big')</span>
+<span id="cb2-58"><a></a>        #shared_secret=g**(a*b)</span>
+<span id="cb2-59"><a></a>        derived_key = HKDF(</span>
+<span id="cb2-60"><a></a>            algorithm=hashes.SHA256(),</span>
+<span id="cb2-61"><a></a>            length=32,</span>
+<span id="cb2-62"><a></a>            salt=None,</span>
+<span id="cb2-63"><a></a>            info=b"diffie-hellman-key-exchange",</span>
+<span id="cb2-64"><a></a>        ).derive(shared_secret_bytes)</span>
+<span id="cb2-65"><a></a>        </span>
+<span id="cb2-66"><a></a>        # Step 4: Encrypt a Message Using AES</span>
+<span id="cb2-67"><a></a>        message = text.encode(encoding="utf-8")</span>
+<span id="cb2-68"><a></a>        iv, ciphertext = encrypt_message(derived_key, message)</span>
+<span id="cb2-69"><a></a></span>
+<span id="cb2-70"><a></a>         # Decrypt the message</span>
+<span id="cb2-71"><a></a>        data_dict = {</span>
+<span id="cb2-72"><a></a>            'Encrypted Message':[ciphertext.hex()],</span>
+<span id="cb2-73"><a></a>            'Encrypted Message':[ciphertext.hex()],</span>
+<span id="cb2-74"><a></a>            }</span>
+<span id="cb2-75"><a></a></span>
+<span id="cb2-76"><a></a>        # Create a DataFrame</span>
+<span id="cb2-77"><a></a>        df = pd.DataFrame(data_dict)</span>
+<span id="cb2-78"><a></a>        # Calling DataFrame constructor on list</span>
+<span id="cb2-79"><a></a>        return df</span>
+<span id="cb2-80"><a></a></span>
+<span id="cb2-81"><a></a>   </span>
+<span id="cb2-82"><a></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-encrypt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2
@@ -805,77 +607,77 @@ y_B=g^{\textcolor{blue}{x_B}} \pmod p
 <div id="fig-sharedsecret" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-sharedsecret-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="fig-sharedsecret" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="fig-sharedsecret-1"><a href="#fig-sharedsecret-1"></a>#| standalone: true</span>
-<span id="fig-sharedsecret-2"><a href="#fig-sharedsecret-2"></a>#| components: [viewer]</span>
-<span id="fig-sharedsecret-3"><a href="#fig-sharedsecret-3"></a>#| viewerHeight: 650</span>
-<span id="fig-sharedsecret-4"><a href="#fig-sharedsecret-4"></a></span>
-<span id="fig-sharedsecret-5"><a href="#fig-sharedsecret-5"></a>from shiny import App, Inputs, Outputs, Session, render, ui</span>
-<span id="fig-sharedsecret-6"><a href="#fig-sharedsecret-6"></a>from shiny import reactive</span>
-<span id="fig-sharedsecret-7"><a href="#fig-sharedsecret-7"></a></span>
-<span id="fig-sharedsecret-8"><a href="#fig-sharedsecret-8"></a>import numpy as np</span>
-<span id="fig-sharedsecret-9"><a href="#fig-sharedsecret-9"></a>from pathlib import Path</span>
-<span id="fig-sharedsecret-10"><a href="#fig-sharedsecret-10"></a>import matplotlib.pyplot as plt</span>
-<span id="fig-sharedsecret-11"><a href="#fig-sharedsecret-11"></a>from scipy.integrate import odeint</span>
-<span id="fig-sharedsecret-12"><a href="#fig-sharedsecret-12"></a>import sympy as sp</span>
-<span id="fig-sharedsecret-13"><a href="#fig-sharedsecret-13"></a>import pandas as pd</span>
-<span id="fig-sharedsecret-14"><a href="#fig-sharedsecret-14"></a>from cryptography.hazmat.primitives.kdf.hkdf import HKDF</span>
-<span id="fig-sharedsecret-15"><a href="#fig-sharedsecret-15"></a>from cryptography.hazmat.primitives import hashes</span>
-<span id="fig-sharedsecret-16"><a href="#fig-sharedsecret-16"></a>from cryptography.hazmat.primitives.asymmetric import dh</span>
-<span id="fig-sharedsecret-17"><a href="#fig-sharedsecret-17"></a>import os</span>
-<span id="fig-sharedsecret-18"><a href="#fig-sharedsecret-18"></a>from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes</span>
-<span id="fig-sharedsecret-19"><a href="#fig-sharedsecret-19"></a></span>
-<span id="fig-sharedsecret-20"><a href="#fig-sharedsecret-20"></a></span>
-<span id="fig-sharedsecret-21"><a href="#fig-sharedsecret-21"></a>app_ui = ui.page_fluid(</span>
-<span id="fig-sharedsecret-22"><a href="#fig-sharedsecret-22"></a>    ui.layout_sidebar(</span>
-<span id="fig-sharedsecret-23"><a href="#fig-sharedsecret-23"></a>        ui.sidebar(</span>
-<span id="fig-sharedsecret-24"><a href="#fig-sharedsecret-24"></a>    ui.input_slider(id="p",label="p",min=10,max=3000,value=23,step=1),</span>
-<span id="fig-sharedsecret-25"><a href="#fig-sharedsecret-25"></a>    ui.input_slider(id="g",label="g (generator)",min=0,max=15.0,value=5,step=1),</span>
-<span id="fig-sharedsecret-26"><a href="#fig-sharedsecret-26"></a>    ui.input_slider(id="a",label="Private key Alice",min=1,max=10,value=2,step=1),</span>
-<span id="fig-sharedsecret-27"><a href="#fig-sharedsecret-27"></a>    ui.input_slider(id="b",label="Private key Bob",min=1,max=10,value=3,step=1), </span>
-<span id="fig-sharedsecret-28"><a href="#fig-sharedsecret-28"></a>    </span>
-<span id="fig-sharedsecret-29"><a href="#fig-sharedsecret-29"></a>         </span>
-<span id="fig-sharedsecret-30"><a href="#fig-sharedsecret-30"></a>     </span>
-<span id="fig-sharedsecret-31"><a href="#fig-sharedsecret-31"></a>            ),</span>
-<span id="fig-sharedsecret-32"><a href="#fig-sharedsecret-32"></a></span>
-<span id="fig-sharedsecret-33"><a href="#fig-sharedsecret-33"></a>        ui.output_table("result"),</span>
-<span id="fig-sharedsecret-34"><a href="#fig-sharedsecret-34"></a>    ),</span>
-<span id="fig-sharedsecret-35"><a href="#fig-sharedsecret-35"></a>)</span>
-<span id="fig-sharedsecret-36"><a href="#fig-sharedsecret-36"></a></span>
-<span id="fig-sharedsecret-37"><a href="#fig-sharedsecret-37"></a>def server(input, output, session):</span>
-<span id="fig-sharedsecret-38"><a href="#fig-sharedsecret-38"></a>        </span>
-<span id="fig-sharedsecret-39"><a href="#fig-sharedsecret-39"></a></span>
-<span id="fig-sharedsecret-40"><a href="#fig-sharedsecret-40"></a></span>
-<span id="fig-sharedsecret-41"><a href="#fig-sharedsecret-41"></a></span>
-<span id="fig-sharedsecret-42"><a href="#fig-sharedsecret-42"></a>    @render.table</span>
-<span id="fig-sharedsecret-43"><a href="#fig-sharedsecret-43"></a>    def result():</span>
-<span id="fig-sharedsecret-44"><a href="#fig-sharedsecret-44"></a>        # list of strings</span>
-<span id="fig-sharedsecret-45"><a href="#fig-sharedsecret-45"></a>        p=int(input.p())</span>
-<span id="fig-sharedsecret-46"><a href="#fig-sharedsecret-46"></a>        g=int(input.g())</span>
-<span id="fig-sharedsecret-47"><a href="#fig-sharedsecret-47"></a>        a=int(input.a())</span>
-<span id="fig-sharedsecret-48"><a href="#fig-sharedsecret-48"></a>        b=int(input.b())</span>
-<span id="fig-sharedsecret-49"><a href="#fig-sharedsecret-49"></a>        # Step 1: Generate Diffie-Hellman Parameters and </span>
-<span id="fig-sharedsecret-50"><a href="#fig-sharedsecret-50"></a></span>
-<span id="fig-sharedsecret-51"><a href="#fig-sharedsecret-51"></a></span>
-<span id="fig-sharedsecret-52"><a href="#fig-sharedsecret-52"></a>        alice_public_key=int(np.mod(g**(a),p))</span>
-<span id="fig-sharedsecret-53"><a href="#fig-sharedsecret-53"></a>        bob_public_key=int(np.mod(g**(b),p))</span>
-<span id="fig-sharedsecret-54"><a href="#fig-sharedsecret-54"></a></span>
-<span id="fig-sharedsecret-55"><a href="#fig-sharedsecret-55"></a>        shared_secret=int(np.mod(g**(a*b),p))</span>
-<span id="fig-sharedsecret-56"><a href="#fig-sharedsecret-56"></a>        </span>
-<span id="fig-sharedsecret-57"><a href="#fig-sharedsecret-57"></a>     </span>
-<span id="fig-sharedsecret-58"><a href="#fig-sharedsecret-58"></a>        data_dict = {</span>
-<span id="fig-sharedsecret-59"><a href="#fig-sharedsecret-59"></a>            'p': [p],</span>
-<span id="fig-sharedsecret-60"><a href="#fig-sharedsecret-60"></a>            'g': [g],</span>
-<span id="fig-sharedsecret-61"><a href="#fig-sharedsecret-61"></a>            'Alice public key': [alice_public_key],</span>
-<span id="fig-sharedsecret-62"><a href="#fig-sharedsecret-62"></a>            'Bob public key': [bob_public_key],</span>
-<span id="fig-sharedsecret-63"><a href="#fig-sharedsecret-63"></a>            'Shared secret': [shared_secret],</span>
-<span id="fig-sharedsecret-64"><a href="#fig-sharedsecret-64"></a>            }</span>
-<span id="fig-sharedsecret-65"><a href="#fig-sharedsecret-65"></a></span>
-<span id="fig-sharedsecret-66"><a href="#fig-sharedsecret-66"></a>        # Create a DataFrame</span>
-<span id="fig-sharedsecret-67"><a href="#fig-sharedsecret-67"></a>        df = pd.DataFrame(data_dict)</span>
-<span id="fig-sharedsecret-68"><a href="#fig-sharedsecret-68"></a>        # Calling DataFrame constructor on list</span>
-<span id="fig-sharedsecret-69"><a href="#fig-sharedsecret-69"></a>        return df</span>
-<span id="fig-sharedsecret-70"><a href="#fig-sharedsecret-70"></a></span>
-<span id="fig-sharedsecret-71"><a href="#fig-sharedsecret-71"></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a></a>#| standalone: true</span>
+<span id="cb3-2"><a></a>#| components: [viewer]</span>
+<span id="cb3-3"><a></a>#| viewerHeight: 650</span>
+<span id="cb3-4"><a></a></span>
+<span id="cb3-5"><a></a>from shiny import App, Inputs, Outputs, Session, render, ui</span>
+<span id="cb3-6"><a></a>from shiny import reactive</span>
+<span id="cb3-7"><a></a></span>
+<span id="cb3-8"><a></a>import numpy as np</span>
+<span id="cb3-9"><a></a>from pathlib import Path</span>
+<span id="cb3-10"><a></a>import matplotlib.pyplot as plt</span>
+<span id="cb3-11"><a></a>from scipy.integrate import odeint</span>
+<span id="cb3-12"><a></a>import sympy as sp</span>
+<span id="cb3-13"><a></a>import pandas as pd</span>
+<span id="cb3-14"><a></a>from cryptography.hazmat.primitives.kdf.hkdf import HKDF</span>
+<span id="cb3-15"><a></a>from cryptography.hazmat.primitives import hashes</span>
+<span id="cb3-16"><a></a>from cryptography.hazmat.primitives.asymmetric import dh</span>
+<span id="cb3-17"><a></a>import os</span>
+<span id="cb3-18"><a></a>from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes</span>
+<span id="cb3-19"><a></a></span>
+<span id="cb3-20"><a></a></span>
+<span id="cb3-21"><a></a>app_ui = ui.page_fluid(</span>
+<span id="cb3-22"><a></a>    ui.layout_sidebar(</span>
+<span id="cb3-23"><a></a>        ui.sidebar(</span>
+<span id="cb3-24"><a></a>    ui.input_slider(id="p",label="p",min=10,max=3000,value=23,step=1),</span>
+<span id="cb3-25"><a></a>    ui.input_slider(id="g",label="g (generator)",min=0,max=15.0,value=5,step=1),</span>
+<span id="cb3-26"><a></a>    ui.input_slider(id="a",label="Private key Alice",min=1,max=10,value=2,step=1),</span>
+<span id="cb3-27"><a></a>    ui.input_slider(id="b",label="Private key Bob",min=1,max=10,value=3,step=1), </span>
+<span id="cb3-28"><a></a>    </span>
+<span id="cb3-29"><a></a>         </span>
+<span id="cb3-30"><a></a>     </span>
+<span id="cb3-31"><a></a>            ),</span>
+<span id="cb3-32"><a></a></span>
+<span id="cb3-33"><a></a>        ui.output_table("result"),</span>
+<span id="cb3-34"><a></a>    ),</span>
+<span id="cb3-35"><a></a>)</span>
+<span id="cb3-36"><a></a></span>
+<span id="cb3-37"><a></a>def server(input, output, session):</span>
+<span id="cb3-38"><a></a>        </span>
+<span id="cb3-39"><a></a></span>
+<span id="cb3-40"><a></a></span>
+<span id="cb3-41"><a></a></span>
+<span id="cb3-42"><a></a>    @render.table</span>
+<span id="cb3-43"><a></a>    def result():</span>
+<span id="cb3-44"><a></a>        # list of strings</span>
+<span id="cb3-45"><a></a>        p=int(input.p())</span>
+<span id="cb3-46"><a></a>        g=int(input.g())</span>
+<span id="cb3-47"><a></a>        a=int(input.a())</span>
+<span id="cb3-48"><a></a>        b=int(input.b())</span>
+<span id="cb3-49"><a></a>        # Step 1: Generate Diffie-Hellman Parameters and </span>
+<span id="cb3-50"><a></a></span>
+<span id="cb3-51"><a></a></span>
+<span id="cb3-52"><a></a>        alice_public_key=int(np.mod(g**(a),p))</span>
+<span id="cb3-53"><a></a>        bob_public_key=int(np.mod(g**(b),p))</span>
+<span id="cb3-54"><a></a></span>
+<span id="cb3-55"><a></a>        shared_secret=int(np.mod(g**(a*b),p))</span>
+<span id="cb3-56"><a></a>        </span>
+<span id="cb3-57"><a></a>     </span>
+<span id="cb3-58"><a></a>        data_dict = {</span>
+<span id="cb3-59"><a></a>            'p': [p],</span>
+<span id="cb3-60"><a></a>            'g': [g],</span>
+<span id="cb3-61"><a></a>            'Alice public key': [alice_public_key],</span>
+<span id="cb3-62"><a></a>            'Bob public key': [bob_public_key],</span>
+<span id="cb3-63"><a></a>            'Shared secret': [shared_secret],</span>
+<span id="cb3-64"><a></a>            }</span>
+<span id="cb3-65"><a></a></span>
+<span id="cb3-66"><a></a>        # Create a DataFrame</span>
+<span id="cb3-67"><a></a>        df = pd.DataFrame(data_dict)</span>
+<span id="cb3-68"><a></a>        # Calling DataFrame constructor on list</span>
+<span id="cb3-69"><a></a>        return df</span>
+<span id="cb3-70"><a></a></span>
+<span id="cb3-71"><a></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-sharedsecret-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3
@@ -920,66 +722,66 @@ g^{x_A}=y_A \pmod p.
 <div id="fig-discretlog" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-discretlog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="fig-discretlog" data-engine="python" data-fig-align="center"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="fig-discretlog-1"><a href="#fig-discretlog-1"></a>#| standalone: true</span>
-<span id="fig-discretlog-2"><a href="#fig-discretlog-2"></a>#| components: [viewer]</span>
-<span id="fig-discretlog-3"><a href="#fig-discretlog-3"></a>#| viewerHeight: 400</span>
-<span id="fig-discretlog-4"><a href="#fig-discretlog-4"></a></span>
-<span id="fig-discretlog-5"><a href="#fig-discretlog-5"></a>from shiny import App, Inputs, Outputs, Session, render, ui</span>
-<span id="fig-discretlog-6"><a href="#fig-discretlog-6"></a>from shiny import reactive</span>
-<span id="fig-discretlog-7"><a href="#fig-discretlog-7"></a></span>
-<span id="fig-discretlog-8"><a href="#fig-discretlog-8"></a>import numpy as np</span>
-<span id="fig-discretlog-9"><a href="#fig-discretlog-9"></a>from pathlib import Path</span>
-<span id="fig-discretlog-10"><a href="#fig-discretlog-10"></a>import matplotlib.pyplot as plt</span>
-<span id="fig-discretlog-11"><a href="#fig-discretlog-11"></a>from scipy.integrate import odeint</span>
-<span id="fig-discretlog-12"><a href="#fig-discretlog-12"></a></span>
-<span id="fig-discretlog-13"><a href="#fig-discretlog-13"></a>app_ui = ui.page_fluid(</span>
-<span id="fig-discretlog-14"><a href="#fig-discretlog-14"></a>    ui.layout_sidebar(</span>
-<span id="fig-discretlog-15"><a href="#fig-discretlog-15"></a>        ui.sidebar(</span>
-<span id="fig-discretlog-16"><a href="#fig-discretlog-16"></a>    ui.input_slider(id="p",label="p (prime number)",min=5,max=300,value=23,step=1),</span>
-<span id="fig-discretlog-17"><a href="#fig-discretlog-17"></a>    ui.input_slider(id="g",label="g (generator)",min=0,max=30,value=5,step=1),</span>
-<span id="fig-discretlog-18"><a href="#fig-discretlog-18"></a>    ui.input_slider(id="s",label="Public key",min=1,max=100,value=5,step=1),      </span>
-<span id="fig-discretlog-19"><a href="#fig-discretlog-19"></a>            ),</span>
-<span id="fig-discretlog-20"><a href="#fig-discretlog-20"></a></span>
-<span id="fig-discretlog-21"><a href="#fig-discretlog-21"></a>        </span>
-<span id="fig-discretlog-22"><a href="#fig-discretlog-22"></a>        ui.output_plot("plot"),</span>
-<span id="fig-discretlog-23"><a href="#fig-discretlog-23"></a>    ),</span>
-<span id="fig-discretlog-24"><a href="#fig-discretlog-24"></a>)</span>
-<span id="fig-discretlog-25"><a href="#fig-discretlog-25"></a></span>
-<span id="fig-discretlog-26"><a href="#fig-discretlog-26"></a>def server(input, output, session):</span>
-<span id="fig-discretlog-27"><a href="#fig-discretlog-27"></a>    </span>
-<span id="fig-discretlog-28"><a href="#fig-discretlog-28"></a></span>
-<span id="fig-discretlog-29"><a href="#fig-discretlog-29"></a>    </span>
-<span id="fig-discretlog-30"><a href="#fig-discretlog-30"></a></span>
-<span id="fig-discretlog-31"><a href="#fig-discretlog-31"></a>    @render.plot</span>
-<span id="fig-discretlog-32"><a href="#fig-discretlog-32"></a>    def plot():</span>
-<span id="fig-discretlog-33"><a href="#fig-discretlog-33"></a>        fig, ax = plt.subplots()</span>
-<span id="fig-discretlog-34"><a href="#fig-discretlog-34"></a>        #ax.set_ylim([-2, 2])</span>
-<span id="fig-discretlog-35"><a href="#fig-discretlog-35"></a>        # Filter fata</span>
-<span id="fig-discretlog-36"><a href="#fig-discretlog-36"></a>        </span>
-<span id="fig-discretlog-37"><a href="#fig-discretlog-37"></a>        </span>
-<span id="fig-discretlog-38"><a href="#fig-discretlog-38"></a>        p=int(input.p())</span>
-<span id="fig-discretlog-39"><a href="#fig-discretlog-39"></a>        g=int(input.g())</span>
-<span id="fig-discretlog-40"><a href="#fig-discretlog-40"></a>        s=int(input.s())</span>
-<span id="fig-discretlog-41"><a href="#fig-discretlog-41"></a>        </span>
-<span id="fig-discretlog-42"><a href="#fig-discretlog-42"></a>    </span>
-<span id="fig-discretlog-43"><a href="#fig-discretlog-43"></a>    </span>
-<span id="fig-discretlog-44"><a href="#fig-discretlog-44"></a>        ax.set_xlabel('$x$')</span>
-<span id="fig-discretlog-45"><a href="#fig-discretlog-45"></a>        ax.set_ylabel('$f$')</span>
-<span id="fig-discretlog-46"><a href="#fig-discretlog-46"></a></span>
-<span id="fig-discretlog-47"><a href="#fig-discretlog-47"></a>       </span>
-<span id="fig-discretlog-48"><a href="#fig-discretlog-48"></a>        a_vec=np.linspace(0,p-1,p,dtype='uint64')</span>
-<span id="fig-discretlog-49"><a href="#fig-discretlog-49"></a>        function_mod = np.mod(np.power(g, a_vec), p)</span>
-<span id="fig-discretlog-50"><a href="#fig-discretlog-50"></a></span>
-<span id="fig-discretlog-51"><a href="#fig-discretlog-51"></a>        #function_mod=[pow(g,a,p) for a in a_vec]</span>
-<span id="fig-discretlog-52"><a href="#fig-discretlog-52"></a>    </span>
-<span id="fig-discretlog-53"><a href="#fig-discretlog-53"></a></span>
-<span id="fig-discretlog-54"><a href="#fig-discretlog-54"></a>        ax.plot(a_vec,function_mod,'x',a_vec,np.ones_like(a_vec)*s,'r--')</span>
-<span id="fig-discretlog-55"><a href="#fig-discretlog-55"></a></span>
-<span id="fig-discretlog-56"><a href="#fig-discretlog-56"></a>        fig.tight_layout()</span>
-<span id="fig-discretlog-57"><a href="#fig-discretlog-57"></a>        plt.grid()</span>
-<span id="fig-discretlog-58"><a href="#fig-discretlog-58"></a>        plt.show()</span>
-<span id="fig-discretlog-59"><a href="#fig-discretlog-59"></a>    </span>
-<span id="fig-discretlog-60"><a href="#fig-discretlog-60"></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a></a>#| standalone: true</span>
+<span id="cb4-2"><a></a>#| components: [viewer]</span>
+<span id="cb4-3"><a></a>#| viewerHeight: 400</span>
+<span id="cb4-4"><a></a></span>
+<span id="cb4-5"><a></a>from shiny import App, Inputs, Outputs, Session, render, ui</span>
+<span id="cb4-6"><a></a>from shiny import reactive</span>
+<span id="cb4-7"><a></a></span>
+<span id="cb4-8"><a></a>import numpy as np</span>
+<span id="cb4-9"><a></a>from pathlib import Path</span>
+<span id="cb4-10"><a></a>import matplotlib.pyplot as plt</span>
+<span id="cb4-11"><a></a>from scipy.integrate import odeint</span>
+<span id="cb4-12"><a></a></span>
+<span id="cb4-13"><a></a>app_ui = ui.page_fluid(</span>
+<span id="cb4-14"><a></a>    ui.layout_sidebar(</span>
+<span id="cb4-15"><a></a>        ui.sidebar(</span>
+<span id="cb4-16"><a></a>    ui.input_slider(id="p",label="p (prime number)",min=5,max=300,value=23,step=1),</span>
+<span id="cb4-17"><a></a>    ui.input_slider(id="g",label="g (generator)",min=0,max=30,value=5,step=1),</span>
+<span id="cb4-18"><a></a>    ui.input_slider(id="s",label="Public key",min=1,max=100,value=5,step=1),      </span>
+<span id="cb4-19"><a></a>            ),</span>
+<span id="cb4-20"><a></a></span>
+<span id="cb4-21"><a></a>        </span>
+<span id="cb4-22"><a></a>        ui.output_plot("plot"),</span>
+<span id="cb4-23"><a></a>    ),</span>
+<span id="cb4-24"><a></a>)</span>
+<span id="cb4-25"><a></a></span>
+<span id="cb4-26"><a></a>def server(input, output, session):</span>
+<span id="cb4-27"><a></a>    </span>
+<span id="cb4-28"><a></a></span>
+<span id="cb4-29"><a></a>    </span>
+<span id="cb4-30"><a></a></span>
+<span id="cb4-31"><a></a>    @render.plot</span>
+<span id="cb4-32"><a></a>    def plot():</span>
+<span id="cb4-33"><a></a>        fig, ax = plt.subplots()</span>
+<span id="cb4-34"><a></a>        #ax.set_ylim([-2, 2])</span>
+<span id="cb4-35"><a></a>        # Filter fata</span>
+<span id="cb4-36"><a></a>        </span>
+<span id="cb4-37"><a></a>        </span>
+<span id="cb4-38"><a></a>        p=int(input.p())</span>
+<span id="cb4-39"><a></a>        g=int(input.g())</span>
+<span id="cb4-40"><a></a>        s=int(input.s())</span>
+<span id="cb4-41"><a></a>        </span>
+<span id="cb4-42"><a></a>    </span>
+<span id="cb4-43"><a></a>    </span>
+<span id="cb4-44"><a></a>        ax.set_xlabel('$x$')</span>
+<span id="cb4-45"><a></a>        ax.set_ylabel('$f$')</span>
+<span id="cb4-46"><a></a></span>
+<span id="cb4-47"><a></a>       </span>
+<span id="cb4-48"><a></a>        a_vec=np.linspace(0,p-1,p,dtype='uint64')</span>
+<span id="cb4-49"><a></a>        function_mod = np.mod(np.power(g, a_vec), p)</span>
+<span id="cb4-50"><a></a></span>
+<span id="cb4-51"><a></a>        #function_mod=[pow(g,a,p) for a in a_vec]</span>
+<span id="cb4-52"><a></a>    </span>
+<span id="cb4-53"><a></a></span>
+<span id="cb4-54"><a></a>        ax.plot(a_vec,function_mod,'x',a_vec,np.ones_like(a_vec)*s,'r--')</span>
+<span id="cb4-55"><a></a></span>
+<span id="cb4-56"><a></a>        fig.tight_layout()</span>
+<span id="cb4-57"><a></a>        plt.grid()</span>
+<span id="cb4-58"><a></a>        plt.show()</span>
+<span id="cb4-59"><a></a>    </span>
+<span id="cb4-60"><a></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-discretlog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4
@@ -992,119 +794,119 @@ Figure&nbsp;4
 <div id="fig-dhelmanencryption" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-dhelmanencryption-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="fig-dhelmanencryption" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="fig-dhelmanencryption-1"><a href="#fig-dhelmanencryption-1"></a>#| standalone: true</span>
-<span id="fig-dhelmanencryption-2"><a href="#fig-dhelmanencryption-2"></a>#| components: [viewer]</span>
-<span id="fig-dhelmanencryption-3"><a href="#fig-dhelmanencryption-3"></a>#| viewerHeight: 500</span>
-<span id="fig-dhelmanencryption-4"><a href="#fig-dhelmanencryption-4"></a></span>
-<span id="fig-dhelmanencryption-5"><a href="#fig-dhelmanencryption-5"></a>from shiny import App, Inputs, Outputs, Session, render, ui</span>
-<span id="fig-dhelmanencryption-6"><a href="#fig-dhelmanencryption-6"></a>from shiny import reactive</span>
-<span id="fig-dhelmanencryption-7"><a href="#fig-dhelmanencryption-7"></a></span>
-<span id="fig-dhelmanencryption-8"><a href="#fig-dhelmanencryption-8"></a>import numpy as np</span>
-<span id="fig-dhelmanencryption-9"><a href="#fig-dhelmanencryption-9"></a>from pathlib import Path</span>
-<span id="fig-dhelmanencryption-10"><a href="#fig-dhelmanencryption-10"></a>import matplotlib.pyplot as plt</span>
-<span id="fig-dhelmanencryption-11"><a href="#fig-dhelmanencryption-11"></a>from scipy.integrate import odeint</span>
-<span id="fig-dhelmanencryption-12"><a href="#fig-dhelmanencryption-12"></a>import sympy as sp</span>
-<span id="fig-dhelmanencryption-13"><a href="#fig-dhelmanencryption-13"></a>import pandas as pd</span>
-<span id="fig-dhelmanencryption-14"><a href="#fig-dhelmanencryption-14"></a>from cryptography.hazmat.primitives.kdf.hkdf import HKDF</span>
-<span id="fig-dhelmanencryption-15"><a href="#fig-dhelmanencryption-15"></a>from cryptography.hazmat.primitives import hashes</span>
-<span id="fig-dhelmanencryption-16"><a href="#fig-dhelmanencryption-16"></a>from cryptography.hazmat.primitives.asymmetric import dh</span>
-<span id="fig-dhelmanencryption-17"><a href="#fig-dhelmanencryption-17"></a>import os</span>
-<span id="fig-dhelmanencryption-18"><a href="#fig-dhelmanencryption-18"></a>from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes</span>
-<span id="fig-dhelmanencryption-19"><a href="#fig-dhelmanencryption-19"></a></span>
-<span id="fig-dhelmanencryption-20"><a href="#fig-dhelmanencryption-20"></a></span>
-<span id="fig-dhelmanencryption-21"><a href="#fig-dhelmanencryption-21"></a>app_ui = ui.page_fluid(</span>
-<span id="fig-dhelmanencryption-22"><a href="#fig-dhelmanencryption-22"></a>    ui.layout_sidebar(</span>
-<span id="fig-dhelmanencryption-23"><a href="#fig-dhelmanencryption-23"></a>        ui.sidebar(</span>
-<span id="fig-dhelmanencryption-24"><a href="#fig-dhelmanencryption-24"></a>    ui.input_slider(id="p",label="p (prime number)",min=10,max=3000,value=23,step=1),</span>
-<span id="fig-dhelmanencryption-25"><a href="#fig-dhelmanencryption-25"></a>    ui.input_slider(id="g",label="g (generator)",min=0,max=15.0,value=5,step=1),</span>
-<span id="fig-dhelmanencryption-26"><a href="#fig-dhelmanencryption-26"></a>    ui.input_slider(id="a",label="Private key Bob",min=1,max=10,value=2,step=1),</span>
-<span id="fig-dhelmanencryption-27"><a href="#fig-dhelmanencryption-27"></a>    ui.input_slider(id="b",label="Private key Alice",min=1,max=10,value=3,step=1), </span>
-<span id="fig-dhelmanencryption-28"><a href="#fig-dhelmanencryption-28"></a>    ui.input_text(id='text',label="Message to encrypt",value="sin(x)"),</span>
-<span id="fig-dhelmanencryption-29"><a href="#fig-dhelmanencryption-29"></a>         </span>
-<span id="fig-dhelmanencryption-30"><a href="#fig-dhelmanencryption-30"></a>     </span>
-<span id="fig-dhelmanencryption-31"><a href="#fig-dhelmanencryption-31"></a>            ),</span>
-<span id="fig-dhelmanencryption-32"><a href="#fig-dhelmanencryption-32"></a></span>
-<span id="fig-dhelmanencryption-33"><a href="#fig-dhelmanencryption-33"></a>        ui.output_table("result"),</span>
-<span id="fig-dhelmanencryption-34"><a href="#fig-dhelmanencryption-34"></a>    ),</span>
-<span id="fig-dhelmanencryption-35"><a href="#fig-dhelmanencryption-35"></a>)</span>
-<span id="fig-dhelmanencryption-36"><a href="#fig-dhelmanencryption-36"></a></span>
-<span id="fig-dhelmanencryption-37"><a href="#fig-dhelmanencryption-37"></a>def server(input, output, session):</span>
-<span id="fig-dhelmanencryption-38"><a href="#fig-dhelmanencryption-38"></a>    </span>
-<span id="fig-dhelmanencryption-39"><a href="#fig-dhelmanencryption-39"></a></span>
-<span id="fig-dhelmanencryption-40"><a href="#fig-dhelmanencryption-40"></a>    def encrypt_message(key, plaintext):</span>
-<span id="fig-dhelmanencryption-41"><a href="#fig-dhelmanencryption-41"></a>        iv=5</span>
-<span id="fig-dhelmanencryption-42"><a href="#fig-dhelmanencryption-42"></a>        iv=iv.to_bytes(16, 'big')</span>
-<span id="fig-dhelmanencryption-43"><a href="#fig-dhelmanencryption-43"></a>        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))</span>
-<span id="fig-dhelmanencryption-44"><a href="#fig-dhelmanencryption-44"></a>        encryptor = cipher.encryptor()</span>
-<span id="fig-dhelmanencryption-45"><a href="#fig-dhelmanencryption-45"></a>        ciphertext = encryptor.update(plaintext) + encryptor.finalize()</span>
-<span id="fig-dhelmanencryption-46"><a href="#fig-dhelmanencryption-46"></a>        return iv,ciphertext</span>
-<span id="fig-dhelmanencryption-47"><a href="#fig-dhelmanencryption-47"></a>    </span>
-<span id="fig-dhelmanencryption-48"><a href="#fig-dhelmanencryption-48"></a>    def decrypt_message(key, iv, ciphertext):</span>
-<span id="fig-dhelmanencryption-49"><a href="#fig-dhelmanencryption-49"></a>        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))</span>
-<span id="fig-dhelmanencryption-50"><a href="#fig-dhelmanencryption-50"></a>        decryptor = cipher.decryptor()</span>
-<span id="fig-dhelmanencryption-51"><a href="#fig-dhelmanencryption-51"></a>        plaintext = decryptor.update(ciphertext) + decryptor.finalize()</span>
-<span id="fig-dhelmanencryption-52"><a href="#fig-dhelmanencryption-52"></a>        return plaintext</span>
-<span id="fig-dhelmanencryption-53"><a href="#fig-dhelmanencryption-53"></a></span>
-<span id="fig-dhelmanencryption-54"><a href="#fig-dhelmanencryption-54"></a></span>
-<span id="fig-dhelmanencryption-55"><a href="#fig-dhelmanencryption-55"></a></span>
-<span id="fig-dhelmanencryption-56"><a href="#fig-dhelmanencryption-56"></a>    @render.table</span>
-<span id="fig-dhelmanencryption-57"><a href="#fig-dhelmanencryption-57"></a>    def result():</span>
-<span id="fig-dhelmanencryption-58"><a href="#fig-dhelmanencryption-58"></a>        # list of strings</span>
-<span id="fig-dhelmanencryption-59"><a href="#fig-dhelmanencryption-59"></a>        p=int(input.p())</span>
-<span id="fig-dhelmanencryption-60"><a href="#fig-dhelmanencryption-60"></a>        g=int(input.g())</span>
-<span id="fig-dhelmanencryption-61"><a href="#fig-dhelmanencryption-61"></a>        a=int(input.a())</span>
-<span id="fig-dhelmanencryption-62"><a href="#fig-dhelmanencryption-62"></a>        text=input.text()</span>
-<span id="fig-dhelmanencryption-63"><a href="#fig-dhelmanencryption-63"></a>        b=int(input.b())</span>
-<span id="fig-dhelmanencryption-64"><a href="#fig-dhelmanencryption-64"></a>        # Step 1: Generate Diffie-Hellman Parameters and Keys</span>
-<span id="fig-dhelmanencryption-65"><a href="#fig-dhelmanencryption-65"></a>        parameters = dh.generate_parameters(generator=2, key_size=512)</span>
-<span id="fig-dhelmanencryption-66"><a href="#fig-dhelmanencryption-66"></a></span>
-<span id="fig-dhelmanencryption-67"><a href="#fig-dhelmanencryption-67"></a>        # Generate private/public key pairs for two parties</span>
-<span id="fig-dhelmanencryption-68"><a href="#fig-dhelmanencryption-68"></a>        private_key_a = parameters.generate_private_key()</span>
-<span id="fig-dhelmanencryption-69"><a href="#fig-dhelmanencryption-69"></a>        private_key_b = parameters.generate_private_key()</span>
-<span id="fig-dhelmanencryption-70"><a href="#fig-dhelmanencryption-70"></a></span>
-<span id="fig-dhelmanencryption-71"><a href="#fig-dhelmanencryption-71"></a>        # Generate public keys</span>
-<span id="fig-dhelmanencryption-72"><a href="#fig-dhelmanencryption-72"></a>        public_key_a = private_key_a.public_key()</span>
-<span id="fig-dhelmanencryption-73"><a href="#fig-dhelmanencryption-73"></a>        public_key_b = private_key_b.public_key()</span>
-<span id="fig-dhelmanencryption-74"><a href="#fig-dhelmanencryption-74"></a></span>
-<span id="fig-dhelmanencryption-75"><a href="#fig-dhelmanencryption-75"></a>        # Step 2: Derive Shared Secret</span>
-<span id="fig-dhelmanencryption-76"><a href="#fig-dhelmanencryption-76"></a>        shared_key_a = private_key_a.exchange(public_key_b)</span>
-<span id="fig-dhelmanencryption-77"><a href="#fig-dhelmanencryption-77"></a>        shared_key_b = private_key_b.exchange(public_key_a)</span>
-<span id="fig-dhelmanencryption-78"><a href="#fig-dhelmanencryption-78"></a></span>
-<span id="fig-dhelmanencryption-79"><a href="#fig-dhelmanencryption-79"></a>        # Validate shared keys are identical</span>
-<span id="fig-dhelmanencryption-80"><a href="#fig-dhelmanencryption-80"></a>        assert shared_key_a == shared_key_b, "Shared keys are not equal!"</span>
-<span id="fig-dhelmanencryption-81"><a href="#fig-dhelmanencryption-81"></a></span>
-<span id="fig-dhelmanencryption-82"><a href="#fig-dhelmanencryption-82"></a>        shared_secret=int(np.mod(g**(a*b),p))</span>
-<span id="fig-dhelmanencryption-83"><a href="#fig-dhelmanencryption-83"></a>        shared_secret_bytes=shared_secret.to_bytes(16,'big')</span>
-<span id="fig-dhelmanencryption-84"><a href="#fig-dhelmanencryption-84"></a>        #shared_secret=g**(a*b)</span>
-<span id="fig-dhelmanencryption-85"><a href="#fig-dhelmanencryption-85"></a>        derived_key = HKDF(</span>
-<span id="fig-dhelmanencryption-86"><a href="#fig-dhelmanencryption-86"></a>            algorithm=hashes.SHA256(),</span>
-<span id="fig-dhelmanencryption-87"><a href="#fig-dhelmanencryption-87"></a>            length=32,</span>
-<span id="fig-dhelmanencryption-88"><a href="#fig-dhelmanencryption-88"></a>            salt=None,</span>
-<span id="fig-dhelmanencryption-89"><a href="#fig-dhelmanencryption-89"></a>            info=b"diffie-hellman-key-exchange",</span>
-<span id="fig-dhelmanencryption-90"><a href="#fig-dhelmanencryption-90"></a>        ).derive(shared_secret_bytes)</span>
-<span id="fig-dhelmanencryption-91"><a href="#fig-dhelmanencryption-91"></a>        </span>
-<span id="fig-dhelmanencryption-92"><a href="#fig-dhelmanencryption-92"></a>        # Step 4: Encrypt a Message Using AES</span>
-<span id="fig-dhelmanencryption-93"><a href="#fig-dhelmanencryption-93"></a>        message = text.encode(encoding="utf-8")</span>
-<span id="fig-dhelmanencryption-94"><a href="#fig-dhelmanencryption-94"></a>        iv, ciphertext = encrypt_message(derived_key, message)</span>
-<span id="fig-dhelmanencryption-95"><a href="#fig-dhelmanencryption-95"></a>        print("Ciphertext:", ciphertext.hex())</span>
-<span id="fig-dhelmanencryption-96"><a href="#fig-dhelmanencryption-96"></a></span>
-<span id="fig-dhelmanencryption-97"><a href="#fig-dhelmanencryption-97"></a>        # Decrypt the message</span>
-<span id="fig-dhelmanencryption-98"><a href="#fig-dhelmanencryption-98"></a>        decrypted_message = decrypt_message(derived_key, iv, ciphertext)</span>
-<span id="fig-dhelmanencryption-99"><a href="#fig-dhelmanencryption-99"></a>        data_dict = {</span>
-<span id="fig-dhelmanencryption-100"><a href="#fig-dhelmanencryption-100"></a>            'p': [p],</span>
-<span id="fig-dhelmanencryption-101"><a href="#fig-dhelmanencryption-101"></a>            'g': [g],</span>
-<span id="fig-dhelmanencryption-102"><a href="#fig-dhelmanencryption-102"></a>            'Message': [text],</span>
-<span id="fig-dhelmanencryption-103"><a href="#fig-dhelmanencryption-103"></a>            'Shared secret Alice': [shared_secret],</span>
-<span id="fig-dhelmanencryption-104"><a href="#fig-dhelmanencryption-104"></a>            'Encrypted Message':[ciphertext.hex()],</span>
-<span id="fig-dhelmanencryption-105"><a href="#fig-dhelmanencryption-105"></a>            }</span>
-<span id="fig-dhelmanencryption-106"><a href="#fig-dhelmanencryption-106"></a></span>
-<span id="fig-dhelmanencryption-107"><a href="#fig-dhelmanencryption-107"></a>        # Create a DataFrame</span>
-<span id="fig-dhelmanencryption-108"><a href="#fig-dhelmanencryption-108"></a>        df = pd.DataFrame(data_dict)</span>
-<span id="fig-dhelmanencryption-109"><a href="#fig-dhelmanencryption-109"></a>        # Calling DataFrame constructor on list</span>
-<span id="fig-dhelmanencryption-110"><a href="#fig-dhelmanencryption-110"></a>        return df</span>
-<span id="fig-dhelmanencryption-111"><a href="#fig-dhelmanencryption-111"></a></span>
-<span id="fig-dhelmanencryption-112"><a href="#fig-dhelmanencryption-112"></a>   </span>
-<span id="fig-dhelmanencryption-113"><a href="#fig-dhelmanencryption-113"></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a></a>#| standalone: true</span>
+<span id="cb5-2"><a></a>#| components: [viewer]</span>
+<span id="cb5-3"><a></a>#| viewerHeight: 500</span>
+<span id="cb5-4"><a></a></span>
+<span id="cb5-5"><a></a>from shiny import App, Inputs, Outputs, Session, render, ui</span>
+<span id="cb5-6"><a></a>from shiny import reactive</span>
+<span id="cb5-7"><a></a></span>
+<span id="cb5-8"><a></a>import numpy as np</span>
+<span id="cb5-9"><a></a>from pathlib import Path</span>
+<span id="cb5-10"><a></a>import matplotlib.pyplot as plt</span>
+<span id="cb5-11"><a></a>from scipy.integrate import odeint</span>
+<span id="cb5-12"><a></a>import sympy as sp</span>
+<span id="cb5-13"><a></a>import pandas as pd</span>
+<span id="cb5-14"><a></a>from cryptography.hazmat.primitives.kdf.hkdf import HKDF</span>
+<span id="cb5-15"><a></a>from cryptography.hazmat.primitives import hashes</span>
+<span id="cb5-16"><a></a>from cryptography.hazmat.primitives.asymmetric import dh</span>
+<span id="cb5-17"><a></a>import os</span>
+<span id="cb5-18"><a></a>from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes</span>
+<span id="cb5-19"><a></a></span>
+<span id="cb5-20"><a></a></span>
+<span id="cb5-21"><a></a>app_ui = ui.page_fluid(</span>
+<span id="cb5-22"><a></a>    ui.layout_sidebar(</span>
+<span id="cb5-23"><a></a>        ui.sidebar(</span>
+<span id="cb5-24"><a></a>    ui.input_slider(id="p",label="p (prime number)",min=10,max=3000,value=23,step=1),</span>
+<span id="cb5-25"><a></a>    ui.input_slider(id="g",label="g (generator)",min=0,max=15.0,value=5,step=1),</span>
+<span id="cb5-26"><a></a>    ui.input_slider(id="a",label="Private key Bob",min=1,max=10,value=2,step=1),</span>
+<span id="cb5-27"><a></a>    ui.input_slider(id="b",label="Private key Alice",min=1,max=10,value=3,step=1), </span>
+<span id="cb5-28"><a></a>    ui.input_text(id='text',label="Message to encrypt",value="sin(x)"),</span>
+<span id="cb5-29"><a></a>         </span>
+<span id="cb5-30"><a></a>     </span>
+<span id="cb5-31"><a></a>            ),</span>
+<span id="cb5-32"><a></a></span>
+<span id="cb5-33"><a></a>        ui.output_table("result"),</span>
+<span id="cb5-34"><a></a>    ),</span>
+<span id="cb5-35"><a></a>)</span>
+<span id="cb5-36"><a></a></span>
+<span id="cb5-37"><a></a>def server(input, output, session):</span>
+<span id="cb5-38"><a></a>    </span>
+<span id="cb5-39"><a></a></span>
+<span id="cb5-40"><a></a>    def encrypt_message(key, plaintext):</span>
+<span id="cb5-41"><a></a>        iv=5</span>
+<span id="cb5-42"><a></a>        iv=iv.to_bytes(16, 'big')</span>
+<span id="cb5-43"><a></a>        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))</span>
+<span id="cb5-44"><a></a>        encryptor = cipher.encryptor()</span>
+<span id="cb5-45"><a></a>        ciphertext = encryptor.update(plaintext) + encryptor.finalize()</span>
+<span id="cb5-46"><a></a>        return iv,ciphertext</span>
+<span id="cb5-47"><a></a>    </span>
+<span id="cb5-48"><a></a>    def decrypt_message(key, iv, ciphertext):</span>
+<span id="cb5-49"><a></a>        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))</span>
+<span id="cb5-50"><a></a>        decryptor = cipher.decryptor()</span>
+<span id="cb5-51"><a></a>        plaintext = decryptor.update(ciphertext) + decryptor.finalize()</span>
+<span id="cb5-52"><a></a>        return plaintext</span>
+<span id="cb5-53"><a></a></span>
+<span id="cb5-54"><a></a></span>
+<span id="cb5-55"><a></a></span>
+<span id="cb5-56"><a></a>    @render.table</span>
+<span id="cb5-57"><a></a>    def result():</span>
+<span id="cb5-58"><a></a>        # list of strings</span>
+<span id="cb5-59"><a></a>        p=int(input.p())</span>
+<span id="cb5-60"><a></a>        g=int(input.g())</span>
+<span id="cb5-61"><a></a>        a=int(input.a())</span>
+<span id="cb5-62"><a></a>        text=input.text()</span>
+<span id="cb5-63"><a></a>        b=int(input.b())</span>
+<span id="cb5-64"><a></a>        # Step 1: Generate Diffie-Hellman Parameters and Keys</span>
+<span id="cb5-65"><a></a>        parameters = dh.generate_parameters(generator=2, key_size=512)</span>
+<span id="cb5-66"><a></a></span>
+<span id="cb5-67"><a></a>        # Generate private/public key pairs for two parties</span>
+<span id="cb5-68"><a></a>        private_key_a = parameters.generate_private_key()</span>
+<span id="cb5-69"><a></a>        private_key_b = parameters.generate_private_key()</span>
+<span id="cb5-70"><a></a></span>
+<span id="cb5-71"><a></a>        # Generate public keys</span>
+<span id="cb5-72"><a></a>        public_key_a = private_key_a.public_key()</span>
+<span id="cb5-73"><a></a>        public_key_b = private_key_b.public_key()</span>
+<span id="cb5-74"><a></a></span>
+<span id="cb5-75"><a></a>        # Step 2: Derive Shared Secret</span>
+<span id="cb5-76"><a></a>        shared_key_a = private_key_a.exchange(public_key_b)</span>
+<span id="cb5-77"><a></a>        shared_key_b = private_key_b.exchange(public_key_a)</span>
+<span id="cb5-78"><a></a></span>
+<span id="cb5-79"><a></a>        # Validate shared keys are identical</span>
+<span id="cb5-80"><a></a>        assert shared_key_a == shared_key_b, "Shared keys are not equal!"</span>
+<span id="cb5-81"><a></a></span>
+<span id="cb5-82"><a></a>        shared_secret=int(np.mod(g**(a*b),p))</span>
+<span id="cb5-83"><a></a>        shared_secret_bytes=shared_secret.to_bytes(16,'big')</span>
+<span id="cb5-84"><a></a>        #shared_secret=g**(a*b)</span>
+<span id="cb5-85"><a></a>        derived_key = HKDF(</span>
+<span id="cb5-86"><a></a>            algorithm=hashes.SHA256(),</span>
+<span id="cb5-87"><a></a>            length=32,</span>
+<span id="cb5-88"><a></a>            salt=None,</span>
+<span id="cb5-89"><a></a>            info=b"diffie-hellman-key-exchange",</span>
+<span id="cb5-90"><a></a>        ).derive(shared_secret_bytes)</span>
+<span id="cb5-91"><a></a>        </span>
+<span id="cb5-92"><a></a>        # Step 4: Encrypt a Message Using AES</span>
+<span id="cb5-93"><a></a>        message = text.encode(encoding="utf-8")</span>
+<span id="cb5-94"><a></a>        iv, ciphertext = encrypt_message(derived_key, message)</span>
+<span id="cb5-95"><a></a>        print("Ciphertext:", ciphertext.hex())</span>
+<span id="cb5-96"><a></a></span>
+<span id="cb5-97"><a></a>        # Decrypt the message</span>
+<span id="cb5-98"><a></a>        decrypted_message = decrypt_message(derived_key, iv, ciphertext)</span>
+<span id="cb5-99"><a></a>        data_dict = {</span>
+<span id="cb5-100"><a></a>            'p': [p],</span>
+<span id="cb5-101"><a></a>            'g': [g],</span>
+<span id="cb5-102"><a></a>            'Message': [text],</span>
+<span id="cb5-103"><a></a>            'Shared secret Alice': [shared_secret],</span>
+<span id="cb5-104"><a></a>            'Encrypted Message':[ciphertext.hex()],</span>
+<span id="cb5-105"><a></a>            }</span>
+<span id="cb5-106"><a></a></span>
+<span id="cb5-107"><a></a>        # Create a DataFrame</span>
+<span id="cb5-108"><a></a>        df = pd.DataFrame(data_dict)</span>
+<span id="cb5-109"><a></a>        # Calling DataFrame constructor on list</span>
+<span id="cb5-110"><a></a>        return df</span>
+<span id="cb5-111"><a></a></span>
+<span id="cb5-112"><a></a>   </span>
+<span id="cb5-113"><a></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-dhelmanencryption-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5
@@ -1117,90 +919,90 @@ Figure&nbsp;5
 <div id="fig-decrypt" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-decrypt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="fig-decrypt" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="fig-decrypt-1"><a href="#fig-decrypt-1"></a>#| standalone: true</span>
-<span id="fig-decrypt-2"><a href="#fig-decrypt-2"></a>#| components: [viewer]</span>
-<span id="fig-decrypt-3"><a href="#fig-decrypt-3"></a>#| viewerHeight: 300</span>
-<span id="fig-decrypt-4"><a href="#fig-decrypt-4"></a></span>
-<span id="fig-decrypt-5"><a href="#fig-decrypt-5"></a>from shiny import App, Inputs, Outputs, Session, render, ui</span>
-<span id="fig-decrypt-6"><a href="#fig-decrypt-6"></a>from shiny import reactive</span>
-<span id="fig-decrypt-7"><a href="#fig-decrypt-7"></a></span>
-<span id="fig-decrypt-8"><a href="#fig-decrypt-8"></a>import numpy as np</span>
-<span id="fig-decrypt-9"><a href="#fig-decrypt-9"></a>from pathlib import Path</span>
-<span id="fig-decrypt-10"><a href="#fig-decrypt-10"></a>import matplotlib.pyplot as plt</span>
-<span id="fig-decrypt-11"><a href="#fig-decrypt-11"></a>from scipy.integrate import odeint</span>
-<span id="fig-decrypt-12"><a href="#fig-decrypt-12"></a>import sympy as sp</span>
-<span id="fig-decrypt-13"><a href="#fig-decrypt-13"></a>import pandas as pd</span>
-<span id="fig-decrypt-14"><a href="#fig-decrypt-14"></a>from cryptography.hazmat.primitives.kdf.hkdf import HKDF</span>
-<span id="fig-decrypt-15"><a href="#fig-decrypt-15"></a>from cryptography.hazmat.primitives import hashes</span>
-<span id="fig-decrypt-16"><a href="#fig-decrypt-16"></a>from cryptography.hazmat.primitives.asymmetric import dh</span>
-<span id="fig-decrypt-17"><a href="#fig-decrypt-17"></a>import os</span>
-<span id="fig-decrypt-18"><a href="#fig-decrypt-18"></a>from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes</span>
-<span id="fig-decrypt-19"><a href="#fig-decrypt-19"></a>import base64</span>
-<span id="fig-decrypt-20"><a href="#fig-decrypt-20"></a></span>
-<span id="fig-decrypt-21"><a href="#fig-decrypt-21"></a></span>
-<span id="fig-decrypt-22"><a href="#fig-decrypt-22"></a>app_ui = ui.page_fluid(</span>
-<span id="fig-decrypt-23"><a href="#fig-decrypt-23"></a>    ui.layout_sidebar(</span>
-<span id="fig-decrypt-24"><a href="#fig-decrypt-24"></a>        ui.sidebar(</span>
-<span id="fig-decrypt-25"><a href="#fig-decrypt-25"></a>    ui.input_slider(id="shared_secret",label="Shared secret",min=10,max=3000,value=31,step=1),</span>
-<span id="fig-decrypt-26"><a href="#fig-decrypt-26"></a>    ui.input_text(id='text',label="Message to decrypt",value="8968d20bbc5b"),</span>
-<span id="fig-decrypt-27"><a href="#fig-decrypt-27"></a>            ),</span>
-<span id="fig-decrypt-28"><a href="#fig-decrypt-28"></a></span>
-<span id="fig-decrypt-29"><a href="#fig-decrypt-29"></a>        ui.output_table("result"),</span>
-<span id="fig-decrypt-30"><a href="#fig-decrypt-30"></a>    ),</span>
-<span id="fig-decrypt-31"><a href="#fig-decrypt-31"></a>)</span>
-<span id="fig-decrypt-32"><a href="#fig-decrypt-32"></a></span>
-<span id="fig-decrypt-33"><a href="#fig-decrypt-33"></a>def server(input, output, session):</span>
-<span id="fig-decrypt-34"><a href="#fig-decrypt-34"></a>    </span>
-<span id="fig-decrypt-35"><a href="#fig-decrypt-35"></a></span>
-<span id="fig-decrypt-36"><a href="#fig-decrypt-36"></a></span>
-<span id="fig-decrypt-37"><a href="#fig-decrypt-37"></a>    </span>
-<span id="fig-decrypt-38"><a href="#fig-decrypt-38"></a>    def decrypt_message(key, iv, ciphertext):</span>
-<span id="fig-decrypt-39"><a href="#fig-decrypt-39"></a>        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))</span>
-<span id="fig-decrypt-40"><a href="#fig-decrypt-40"></a>        decryptor = cipher.decryptor()</span>
-<span id="fig-decrypt-41"><a href="#fig-decrypt-41"></a>        plaintext = decryptor.update(ciphertext) + decryptor.finalize()</span>
-<span id="fig-decrypt-42"><a href="#fig-decrypt-42"></a>        return plaintext</span>
-<span id="fig-decrypt-43"><a href="#fig-decrypt-43"></a></span>
-<span id="fig-decrypt-44"><a href="#fig-decrypt-44"></a></span>
-<span id="fig-decrypt-45"><a href="#fig-decrypt-45"></a></span>
-<span id="fig-decrypt-46"><a href="#fig-decrypt-46"></a>    @render.table</span>
-<span id="fig-decrypt-47"><a href="#fig-decrypt-47"></a>    def result():</span>
-<span id="fig-decrypt-48"><a href="#fig-decrypt-48"></a>        # list of strings</span>
-<span id="fig-decrypt-49"><a href="#fig-decrypt-49"></a>        shared_secret=int(input.shared_secret())</span>
-<span id="fig-decrypt-50"><a href="#fig-decrypt-50"></a>        encrypted_text=str(input.text())</span>
-<span id="fig-decrypt-51"><a href="#fig-decrypt-51"></a></span>
-<span id="fig-decrypt-52"><a href="#fig-decrypt-52"></a>        encrypted_text=bytes.fromhex(encrypted_text)</span>
-<span id="fig-decrypt-53"><a href="#fig-decrypt-53"></a></span>
-<span id="fig-decrypt-54"><a href="#fig-decrypt-54"></a></span>
-<span id="fig-decrypt-55"><a href="#fig-decrypt-55"></a></span>
-<span id="fig-decrypt-56"><a href="#fig-decrypt-56"></a></span>
-<span id="fig-decrypt-57"><a href="#fig-decrypt-57"></a>        #text=text.encode(encoding="utf-8")</span>
-<span id="fig-decrypt-58"><a href="#fig-decrypt-58"></a>        #encrypted_text = encrypted_text.encode('ISO-8859-1')</span>
-<span id="fig-decrypt-59"><a href="#fig-decrypt-59"></a></span>
-<span id="fig-decrypt-60"><a href="#fig-decrypt-60"></a>        shared_secret_bytes=shared_secret.to_bytes(16,'big')</span>
-<span id="fig-decrypt-61"><a href="#fig-decrypt-61"></a>        derived_key = HKDF(</span>
-<span id="fig-decrypt-62"><a href="#fig-decrypt-62"></a>            algorithm=hashes.SHA256(),</span>
-<span id="fig-decrypt-63"><a href="#fig-decrypt-63"></a>            length=32,</span>
-<span id="fig-decrypt-64"><a href="#fig-decrypt-64"></a>            salt=None,</span>
-<span id="fig-decrypt-65"><a href="#fig-decrypt-65"></a>            info=b"diffie-hellman-key-exchange",</span>
-<span id="fig-decrypt-66"><a href="#fig-decrypt-66"></a>        ).derive(shared_secret_bytes)</span>
-<span id="fig-decrypt-67"><a href="#fig-decrypt-67"></a>        </span>
-<span id="fig-decrypt-68"><a href="#fig-decrypt-68"></a>        </span>
-<span id="fig-decrypt-69"><a href="#fig-decrypt-69"></a>        iv=5</span>
-<span id="fig-decrypt-70"><a href="#fig-decrypt-70"></a>        iv=iv.to_bytes(16, 'big')</span>
-<span id="fig-decrypt-71"><a href="#fig-decrypt-71"></a>                </span>
-<span id="fig-decrypt-72"><a href="#fig-decrypt-72"></a>        decrypted_message = decrypt_message(derived_key, iv, encrypted_text)</span>
-<span id="fig-decrypt-73"><a href="#fig-decrypt-73"></a></span>
-<span id="fig-decrypt-74"><a href="#fig-decrypt-74"></a>       </span>
-<span id="fig-decrypt-75"><a href="#fig-decrypt-75"></a>        data_dict = {</span>
-<span id="fig-decrypt-76"><a href="#fig-decrypt-76"></a>            'Decrypted Message':[decrypted_message]</span>
-<span id="fig-decrypt-77"><a href="#fig-decrypt-77"></a>            }</span>
-<span id="fig-decrypt-78"><a href="#fig-decrypt-78"></a></span>
-<span id="fig-decrypt-79"><a href="#fig-decrypt-79"></a>        # Create a DataFrame</span>
-<span id="fig-decrypt-80"><a href="#fig-decrypt-80"></a>        df = pd.DataFrame(data_dict)</span>
-<span id="fig-decrypt-81"><a href="#fig-decrypt-81"></a>        # Calling DataFrame constructor on list</span>
-<span id="fig-decrypt-82"><a href="#fig-decrypt-82"></a>        return df</span>
-<span id="fig-decrypt-83"><a href="#fig-decrypt-83"></a></span>
-<span id="fig-decrypt-84"><a href="#fig-decrypt-84"></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a></a>#| standalone: true</span>
+<span id="cb6-2"><a></a>#| components: [viewer]</span>
+<span id="cb6-3"><a></a>#| viewerHeight: 300</span>
+<span id="cb6-4"><a></a></span>
+<span id="cb6-5"><a></a>from shiny import App, Inputs, Outputs, Session, render, ui</span>
+<span id="cb6-6"><a></a>from shiny import reactive</span>
+<span id="cb6-7"><a></a></span>
+<span id="cb6-8"><a></a>import numpy as np</span>
+<span id="cb6-9"><a></a>from pathlib import Path</span>
+<span id="cb6-10"><a></a>import matplotlib.pyplot as plt</span>
+<span id="cb6-11"><a></a>from scipy.integrate import odeint</span>
+<span id="cb6-12"><a></a>import sympy as sp</span>
+<span id="cb6-13"><a></a>import pandas as pd</span>
+<span id="cb6-14"><a></a>from cryptography.hazmat.primitives.kdf.hkdf import HKDF</span>
+<span id="cb6-15"><a></a>from cryptography.hazmat.primitives import hashes</span>
+<span id="cb6-16"><a></a>from cryptography.hazmat.primitives.asymmetric import dh</span>
+<span id="cb6-17"><a></a>import os</span>
+<span id="cb6-18"><a></a>from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes</span>
+<span id="cb6-19"><a></a>import base64</span>
+<span id="cb6-20"><a></a></span>
+<span id="cb6-21"><a></a></span>
+<span id="cb6-22"><a></a>app_ui = ui.page_fluid(</span>
+<span id="cb6-23"><a></a>    ui.layout_sidebar(</span>
+<span id="cb6-24"><a></a>        ui.sidebar(</span>
+<span id="cb6-25"><a></a>    ui.input_slider(id="shared_secret",label="Shared secret",min=10,max=3000,value=31,step=1),</span>
+<span id="cb6-26"><a></a>    ui.input_text(id='text',label="Message to decrypt",value="8968d20bbc5b"),</span>
+<span id="cb6-27"><a></a>            ),</span>
+<span id="cb6-28"><a></a></span>
+<span id="cb6-29"><a></a>        ui.output_table("result"),</span>
+<span id="cb6-30"><a></a>    ),</span>
+<span id="cb6-31"><a></a>)</span>
+<span id="cb6-32"><a></a></span>
+<span id="cb6-33"><a></a>def server(input, output, session):</span>
+<span id="cb6-34"><a></a>    </span>
+<span id="cb6-35"><a></a></span>
+<span id="cb6-36"><a></a></span>
+<span id="cb6-37"><a></a>    </span>
+<span id="cb6-38"><a></a>    def decrypt_message(key, iv, ciphertext):</span>
+<span id="cb6-39"><a></a>        cipher = Cipher(algorithms.AES(key), modes.CFB(iv))</span>
+<span id="cb6-40"><a></a>        decryptor = cipher.decryptor()</span>
+<span id="cb6-41"><a></a>        plaintext = decryptor.update(ciphertext) + decryptor.finalize()</span>
+<span id="cb6-42"><a></a>        return plaintext</span>
+<span id="cb6-43"><a></a></span>
+<span id="cb6-44"><a></a></span>
+<span id="cb6-45"><a></a></span>
+<span id="cb6-46"><a></a>    @render.table</span>
+<span id="cb6-47"><a></a>    def result():</span>
+<span id="cb6-48"><a></a>        # list of strings</span>
+<span id="cb6-49"><a></a>        shared_secret=int(input.shared_secret())</span>
+<span id="cb6-50"><a></a>        encrypted_text=str(input.text())</span>
+<span id="cb6-51"><a></a></span>
+<span id="cb6-52"><a></a>        encrypted_text=bytes.fromhex(encrypted_text)</span>
+<span id="cb6-53"><a></a></span>
+<span id="cb6-54"><a></a></span>
+<span id="cb6-55"><a></a></span>
+<span id="cb6-56"><a></a></span>
+<span id="cb6-57"><a></a>        #text=text.encode(encoding="utf-8")</span>
+<span id="cb6-58"><a></a>        #encrypted_text = encrypted_text.encode('ISO-8859-1')</span>
+<span id="cb6-59"><a></a></span>
+<span id="cb6-60"><a></a>        shared_secret_bytes=shared_secret.to_bytes(16,'big')</span>
+<span id="cb6-61"><a></a>        derived_key = HKDF(</span>
+<span id="cb6-62"><a></a>            algorithm=hashes.SHA256(),</span>
+<span id="cb6-63"><a></a>            length=32,</span>
+<span id="cb6-64"><a></a>            salt=None,</span>
+<span id="cb6-65"><a></a>            info=b"diffie-hellman-key-exchange",</span>
+<span id="cb6-66"><a></a>        ).derive(shared_secret_bytes)</span>
+<span id="cb6-67"><a></a>        </span>
+<span id="cb6-68"><a></a>        </span>
+<span id="cb6-69"><a></a>        iv=5</span>
+<span id="cb6-70"><a></a>        iv=iv.to_bytes(16, 'big')</span>
+<span id="cb6-71"><a></a>                </span>
+<span id="cb6-72"><a></a>        decrypted_message = decrypt_message(derived_key, iv, encrypted_text)</span>
+<span id="cb6-73"><a></a></span>
+<span id="cb6-74"><a></a>       </span>
+<span id="cb6-75"><a></a>        data_dict = {</span>
+<span id="cb6-76"><a></a>            'Decrypted Message':[decrypted_message]</span>
+<span id="cb6-77"><a></a>            }</span>
+<span id="cb6-78"><a></a></span>
+<span id="cb6-79"><a></a>        # Create a DataFrame</span>
+<span id="cb6-80"><a></a>        df = pd.DataFrame(data_dict)</span>
+<span id="cb6-81"><a></a>        # Calling DataFrame constructor on list</span>
+<span id="cb6-82"><a></a>        return df</span>
+<span id="cb6-83"><a></a></span>
+<span id="cb6-84"><a></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-decrypt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6
@@ -1234,15 +1036,15 @@ Figure&nbsp;6
 <li>Implement algorithms</li>
 </ul>
 
-<div class="quarto-auto-generated-content">
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
 <p><img src="logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
 
 </div>
-</div>
-</section></section>
-    </div>
-  </div>
+</div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
   <script src="../../site_libs/revealjs/dist/reveal.js"></script>
@@ -1272,7 +1074,8 @@ Figure&nbsp;6
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'chalkboard': {"buttons":true},
 'smaller': false,
  
@@ -1454,192 +1257,172 @@ Figure&nbsp;6
       });
     </script>
     <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
-        } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
-        }
-      }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
-        }
-      }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
-          }
-        }
-        return false;
-      }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
-          }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
             }
           }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        // For code content inside modals, clipBoardJS needs to be initialized with a container option
-        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/dundeemath\.github\.io\/Admissions\/");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          return false;
         }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
             }
-          }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
         }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
-          }
-        } else {
-          return undefined;
-        }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
+        const getTextToCopy = function(trigger) {
+            const codeEl = trigger.previousElementSibling.cloneNode(true);
+            for (const childEl of codeEl.children) {
+              if (isCodeAnnotation(childEl)) {
+                childEl.remove();
               }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
+            }
+            return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/dundeemath\.github\.io\/Admissions\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
           });
         }
-      }
-    });
-    </script>
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
     
 
 </body></html>
