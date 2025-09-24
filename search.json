@@ -378,11 +378,11 @@
     "text": "2 Estimating an integral\nConsider Figure 2. Here we have plotted the function \\[\ny=x^2, \\quad x \\in [0,1].\n\\]\nThe shaded ‘area under the curve’ can be represented by the integral \\[\nI=\\int_0^1 x^2 \\textrm{d}x.\n\\]\nTo estimate the integral we again uniformly sample points from within the circumscribed square. By counting how many points fall inside the shaded region we can estimate the integral to be \\[\n\\hat{I}=\\textrm{Area square} \\times \\textrm{Frac points in shaded region} = 1\\times \\frac{N_R}{N_S}\n\\]\n\nHold a small number of rice grains above the square in Figure 2 drop onto the page.\nCount the total number of rice grains that fall inside the square, \\(N_S\\), and the shaded region, \\(N_R\\).\nInput data into Table 2 and compute the quantity \\[\n\\frac{N_R}{N_S}.\n\\]\nRepeat Steps 1-3.\nCompute the mean of the samples.\nExplore computationally using the ‘Monte Carlo integration’ app.\n\n\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\n\n\n\nTable 2: A table to record counts.\n\n\n\n\n\nIteration\n\\(N_S\\)\n\\(N_R\\)\n\\(\\hat{I}=N_R/N_S\\)\n\n\n\n\n1\n\n\n\n\n\n2\n\n\n\n\n\n3\n\n\n\n\n\n4\n\n\n\n\n\n5\n\n\n\n\n\n6\n\n\n\n\n\n—\n———\n—–\n——\n\n\nMean\nN/A\nN/A"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#pattern-formation-in-the-wild",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#pattern-formation-in-the-wild",
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#animal-coats---patterns-in-the-wild",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#animal-coats---patterns-in-the-wild",
     "title": "How the zebra got its stripes?",
-    "section": "Pattern formation in the wild",
-    "text": "Pattern formation in the wild\n\nImage from Maini and Wooley (2019)."
+    "section": "Animal coats - patterns in the wild",
+    "text": "Animal coats - patterns in the wild\n\nImage from Maini and Wooley (2019)."
   },
   {
     "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#where-do-animal-coat-patterns-come-from",
@@ -396,119 +396,91 @@
     "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#but-its-developmental-biology-maths-week-scotland",
     "title": "How the zebra got its stripes?",
     "section": "But it’s Developmental Biology Maths Week Scotland!!",
-    "text": "But it’s Developmental Biology Maths Week Scotland!!\nWe can use mathematics to\n\ndevelop conceptual models\nrun simulations to try to understand system behaviour\npredict behaviour of complex systems\n\n\n\n\n\n\n\n\nAim for today\n\n\nDevelop and simulate a model of a pattern forming system"
+    "text": "But it’s Developmental Biology Maths Week Scotland!!\n\nWe can use mathematics to\n\ndevelop conceptual models\ntest hypotheses\nrun simulations to try to understand system behaviour\npredict behaviour of complex systems\n\n\n\nIn turn, studying complex systems can result in the discovery of new mathematics.\n\n\n\n\n\n\n\n\nAim for today\n\n\nDevelop and simulate a model of a pattern forming system"
   },
   {
     "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#developing-a-mathematical-model",
     "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#developing-a-mathematical-model",
     "title": "How the zebra got its stripes?",
     "section": "Developing a mathematical model",
-    "text": "Developing a mathematical model\n\n\nQuestion\nVariables\nWhat processes are important?\nHow can I test if the model is correct?"
+    "text": "Developing a mathematical model\n\n\nWhat is the question?\nVariables\nWhat processes are important?\nWhat kind of model is suitable?\nHow would I know if the model was correct?"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#a-model-of-rumour-spreading-in-the-school-assembly-hall",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#a-model-of-rumour-spreading-in-the-school-assembly-hall",
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#excessive-rumour-spreading-in-the-school-assembly-hall",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#excessive-rumour-spreading-in-the-school-assembly-hall",
     "title": "How the zebra got its stripes?",
-    "section": "A model of rumour spreading in the school assembly hall",
-    "text": "A model of rumour spreading in the school assembly hall\n\nA somewhat controlling headteacher is concerned about the spread of rumours in the assembly hall.\nThey think there is a pattern to how rumours spread?\n\n\n\n\n\n\n\nHypotheses\n\n\n\nA few bad ’uns\nPattern is an emergent phenomenon"
-  },
-  {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#head-teachers-observations",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#head-teachers-observations",
-    "title": "How the zebra got its stripes?",
-    "section": "Head teacher’s observations",
-    "text": "Head teacher’s observations\n\nStudents interact in localised groups\nWithin groups, find mix of rumour activators (A), rumour inhibitors (I) and passive students (P).\nSome groups are the source of the worst rumours\nMembership of small groups changes from day to day."
+    "section": "Excessive rumour spreading in the school assembly hall",
+    "text": "Excessive rumour spreading in the school assembly hall\n\nHead teacher is concerned\nStudents interact within small groups\nPattern in which some groups have high levels of rumour spreading.\nWithin groups, a mix of rumour activators (A), inhibitors (I) and passive students (P).\nMembership of groups changes over time.\n\n\n\n\n\n\n\n\nHypotheses in the staff room\n\n\n\nA few bad ’uns\nPattern is an emergent phenomenon"
   },
   {
     "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#variables",
     "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#variables",
     "title": "How the zebra got its stripes?",
     "section": "Variables",
-    "text": "Variables\nStudent have position: \\[x_{i}(t)\\]\nStudents can be one of three types:\n\nRumour activators (A)\nRumour inhibitors (I)\nPassive (P)"
+    "text": "Variables\nStudent have position: \\[x_{i}(t)\\]\n\nStudents can be in one of three states:\n\nRumour activators (A)\nRumour inhibitors (I)\nPassive (P)\n\n\\[\ns_i(t)\\in \\{A,I,P\\}.\n\\]"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#within-group-rules",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#within-group-rules",
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#process-1-state-transitions",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#process-1-state-transitions",
     "title": "How the zebra got its stripes?",
-    "section": "Within group rules",
-    "text": "Within group rules\nActivators - activate rumours Inhibitors - inhibit rumours spreading Passive - can become activators/inhibitors"
+    "section": "Process 1: state transitions",
+    "text": "Process 1: state transitions\n\n\nProbability of passive (P) person becoming:\n\nan activator (A) is \\[\n\\propto \\frac{ \\bar{A}^2}{1+\\bar{I}}\n\\]\nan inhibitor (I) is \\[\n\\propto \\bar{A}^2.\n\\]\n\n\n\n\n\nActivator/inhibitor states are transient.\n\n\\(\\bar{A}\\) is the local density of activators."
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#activators-on-a-grid",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#activators-on-a-grid",
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#process-2---random-walk",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#process-2---random-walk",
     "title": "How the zebra got its stripes?",
-    "section": "Activators on a grid",
-    "text": "Activators on a grid\nActivators:\n\nperform a random walk\ncan cause further activation of passive individuals who are nearby\nbecome deactivated after some time"
+    "section": "Process 2 - random walk",
+    "text": "Process 2 - random walk\n\n\n\nAll students perform a random walk.\nmake up of groups mix over time."
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#introduce-inhibitors",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#introduce-inhibitors",
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#running-a-simulation",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#running-a-simulation",
     "title": "How the zebra got its stripes?",
-    "section": "Introduce inhibitors",
-    "text": "Introduce inhibitors\n\npassive individuals become inhibitors in presence of activators\ninhibitors reduce further activators"
+    "section": "Running a simulation",
+    "text": "Running a simulation\n\nInitialise: no pattern in space or state.\nDefine time (e.g. 0,1,…..,T)\nLoop over time, apply processes to update the variables"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#small-number-of-a-activator",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#small-number-of-a-activator",
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#unpicking-the-simulations---state-transitions-random-walk",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#unpicking-the-simulations---state-transitions-random-walk",
     "title": "How the zebra got its stripes?",
-    "section": "Small number of a activator",
-    "text": "Small number of a activator"
+    "section": "Unpicking the simulations - state transitions + random walk",
+    "text": "Unpicking the simulations - state transitions + random walk\nVideo\n\nCell density is low here to help visualisation"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#random-walk",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#random-walk",
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#formation-of-spotted-pattern",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#formation-of-spotted-pattern",
     "title": "How the zebra got its stripes?",
-    "section": "Random walk",
-    "text": "Random walk\nVideo"
+    "section": "Formation of spotted pattern",
+    "text": "Formation of spotted pattern\nVideo\n\nLocalised region of high activator and inhibitors levels\nDiffusion of inhibitors is faster"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#behaviour-of-small-numbers-of-individuals",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#behaviour-of-small-numbers-of-individuals",
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#differential-equations-and-the-turing-model",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#differential-equations-and-the-turing-model",
     "title": "How the zebra got its stripes?",
-    "section": "Behaviour of small numbers of individuals",
-    "text": "Behaviour of small numbers of individuals\nVideo"
+    "section": "Differential equations and the Turing model",
+    "text": "Differential equations and the Turing model\n\n\n\nLet \\(u\\) and \\(v\\) represent concentrations of chemicals rather than people! \\[\nu=u(\\mathbf{r},t) \\quad v=v(\\mathbf{r},t)\n\\]\n\n\\[\n\\begin{aligned}\n\\frac{\\partial u }{\\partial t}&=D_u\\nabla^2 u +f(u,v) \\\\\n\\frac{\\partial v }{\\partial t}&=D_v\\nabla^2 v +g(u,v)\n\\end{aligned}\n\\]"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#population-behaviour",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#population-behaviour",
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#breaking-the-pattern-formation-conditions",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#breaking-the-pattern-formation-conditions",
     "title": "How the zebra got its stripes?",
-    "section": "Population behaviour",
-    "text": "Population behaviour"
-  },
-  {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#equal-random-movement",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#equal-random-movement",
-    "title": "How the zebra got its stripes?",
-    "section": "Equal random movement",
-    "text": "Equal random movement"
-  },
-  {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#differential-equations",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#differential-equations",
-    "title": "How the zebra got its stripes?",
-    "section": "Differential equations",
-    "text": "Differential equations\n\\[\nu=u(\\mathbf{r},t) \\quad v=v(\\mathbf{r},t)\n\\]\n\\[\n\\begin{aligned}\n\\frac{\\partial u }{\\partial t}&=D_u\\nabla^2 u +f(u,v) \\\\\n\\frac{\\partial v }{\\partial t}&=D_v\\nabla^2 v +g(u,v)\n\\end{aligned}\n\\]"
-  },
-  {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#coat-patterns",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#coat-patterns",
-    "title": "How the zebra got its stripes?",
-    "section": "Coat patterns",
-    "text": "Coat patterns\n\nTuring models can produce a wide variety of patterns and have"
+    "section": "Breaking the pattern formation conditions",
+    "text": "Breaking the pattern formation conditions\nVideo"
   },
   {
     "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#turing-patterns",
     "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#turing-patterns",
     "title": "How the zebra got its stripes?",
     "section": "Turing patterns",
-    "text": "Turing patterns\n\ncan produce a wide variety of patterns\nhave been proposed as model in many different patterning systems\npatterns are sensitive to parameter values and initial conditions"
+    "text": "Turing patterns\n\nImage from Maini and Wooley (2019).\nproduce a wide variety of patterns\nproposed in many different patterning systems\nsensitive to parameter values and initial conditions"
   },
   {
     "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#conclusions",
     "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#conclusions",
     "title": "How the zebra got its stripes?",
     "section": "Conclusions",
-    "text": "Conclusions"
+    "text": "Conclusions\n\nWe can use mathematics to study pattern formation in the wild!\nComplex behaviours/ patterns can emerge when interactive individuals follow simple rules\nThe extent to which evolution uses Turing patterns is an open scientific question\n\nVideo"
   },
   {
     "objectID": "MathsWeekScotland2024/Worksheet.html",

@@ -149,22 +149,28 @@ Philip Murray
 </div>
 
 </section>
-<section id="pattern-formation-in-the-wild" class="slide level2">
-<h2>Pattern formation in the wild</h2>
+<section id="animal-coats---patterns-in-the-wild" class="slide level2">
+<h2>Animal coats - patterns in the wild</h2>
 
 <img data-src="MainiWooleyMontage.png" class="r-stretch quarto-figure-center"><p class="caption">Image from Maini and Wooley (2019).</p></section>
-<section id="where-do-animal-coat-patterns-come-from" class="slide level2">
+<section id="where-do-animal-coat-patterns-come-from" class="slide level2 smaller">
 <h2>Where do animal coat patterns come from?</h2>
 
 <img data-src="HHseries.png" class="r-stretch"></section>
 <section id="but-its-developmental-biology-maths-week-scotland" class="slide level2">
 <h2>But it’s <del>Developmental Biology</del> Maths Week Scotland!!</h2>
+<div class="fragment">
 <p>We can use mathematics to</p>
 <ul>
 <li>develop conceptual models</li>
+<li>test hypotheses</li>
 <li>run simulations to try to understand system behaviour</li>
 <li>predict behaviour of complex systems</li>
 </ul>
+</div>
+<div class="fragment">
+<p>In turn, studying complex systems can result in the discovery of new mathematics.</p>
+</div>
 <div class="fragment">
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -185,26 +191,31 @@ Philip Murray
 <h2>Developing a mathematical model</h2>
 <div class="fragment">
 <ul>
-<li>Question</li>
+<li>What is the question?</li>
 <li>Variables</li>
 <li>What processes are important?</li>
-<li>How can I test if the model is <em>correct</em>?</li>
+<li>What kind of model is suitable?</li>
+<li>How would I know if the model was <em>correct</em>?</li>
 </ul>
 </div>
 </section>
-<section id="a-model-of-rumour-spreading-in-the-school-assembly-hall" class="slide level2">
-<h2>A model of rumour spreading in the school assembly hall</h2>
+<section id="excessive-rumour-spreading-in-the-school-assembly-hall" class="slide level2 smaller">
+<h2>Excessive rumour spreading in the school assembly hall</h2>
 <ul>
-<li>A somewhat controlling headteacher is concerned about the spread of rumours in the assembly hall.</li>
-<li>They think there is a pattern to how rumours spread?</li>
+<li><p>Head teacher is concerned</p></li>
+<li><p>Students <em>interact</em> within small groups</p></li>
+<li><p>Pattern in which some groups have high levels of rumour spreading.</p></li>
+<li><p>Within groups, a mix of rumour activators (A), inhibitors (I) and passive students (P).</p></li>
+<li><p>Membership of groups changes over time.</p></li>
 </ul>
+<div class="fragment">
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Hypotheses</strong></p>
+<p><strong>Hypotheses in the staff room</strong></p>
 </div>
 <div class="callout-content">
 <ul>
@@ -214,92 +225,119 @@ Philip Murray
 </div>
 </div>
 </div>
-</section>
-<section id="head-teachers-observations" class="slide level2">
-<h2>Head teacher’s observations</h2>
-<ul>
-<li><p>Students interact in localised groups</p></li>
-<li><p>Within groups, find mix of rumour activators (A), rumour inhibitors (I) and passive students (P).</p></li>
-<li><p>Some groups are the source of the worst rumours</p></li>
-<li><p>Membership of small groups changes from day to day.</p></li>
-</ul>
+</div>
 </section>
 <section id="variables" class="slide level2">
 <h2>Variables</h2>
 <p>Student have position: <span class="math display">\[x_{i}(t)\]</span></p>
-<p>Students can be one of three types:</p>
+<div class="fragment">
+<p>Students can be in one of three states:</p>
 <ul>
 <li>Rumour activators (A)</li>
 <li>Rumour inhibitors (I)</li>
 <li>Passive (P)</li>
 </ul>
-</section>
-<section id="within-group-rules" class="slide level2">
-<h2>Within group rules</h2>
-<p>Activators - activate rumours Inhibitors - inhibit rumours spreading Passive - can become activators/inhibitors</p>
-</section>
-<section id="activators-on-a-grid" class="slide level2">
-<h2>Activators on a grid</h2>
-<p>Activators:</p>
-<ul>
-<li>perform a random walk</li>
-<li>can cause further activation of passive individuals who are nearby</li>
-<li>become deactivated after some time</li>
-</ul>
-</section>
-<section id="introduce-inhibitors" class="slide level2">
-<h2>Introduce inhibitors</h2>
-<ul>
-<li>passive individuals become inhibitors in presence of activators</li>
-<li>inhibitors reduce further activators</li>
-</ul>
-</section>
-<section id="small-number-of-a-activator" class="slide level2">
-<h2>Small number of a activator</h2>
-
-<img data-src="NiceSpots.png" class="r-stretch"></section>
-<section id="random-walk" class="slide level2">
-<h2>Random walk</h2>
-<p><video data-src="NiceSpotsLowDensityRandomWalkOnlyNoAI.mp4" controls=""><a href="NiceSpotsLowDensityRandomWalkOnlyNoAI.mp4">Video</a></video></p>
-</section>
-<section id="behaviour-of-small-numbers-of-individuals" class="slide level2">
-<h2>Behaviour of small numbers of individuals</h2>
-<p><video data-src="NiceSpotsLowDensity.mp4" controls=""><a href="NiceSpotsLowDensity.mp4">Video</a></video></p>
-</section>
-<section id="population-behaviour" class="slide level2">
-<h2>Population behaviour</h2>
-</section>
-<section id="equal-random-movement" class="slide level2">
-<h2>Equal random movement</h2>
-</section>
-<section id="differential-equations" class="slide level2">
-<h2>Differential equations</h2>
 <p><span class="math display">\[
-u=u(\mathbf{r},t) \quad v=v(\mathbf{r},t)
+s_i(t)\in \{A,I,P\}.
 \]</span></p>
+</div>
+</section>
+<section id="process-1-state-transitions" class="slide level2">
+<h2>Process 1: state transitions</h2>
+<div class="columns">
+<div class="column" style="width:90%;">
+<p>Probability of passive (P) person becoming:</p>
+<ul>
+<li><p>an activator (A) is <span class="math display">\[
+\propto \frac{ \bar{A}^2}{1+\bar{I}}
+\]</span></p></li>
+<li><p>an inhibitor (I) is <span class="math display">\[
+\propto \bar{A}^2.
+\]</span></p></li>
+</ul>
+</div><div class="column" style="width:10%;">
+
+</div></div>
+<ul>
+<li>Activator/inhibitor states are transient.</li>
+</ul>
+<p><span class="math inline">\(\bar{A}\)</span> is the local density of activators.</p>
+</section>
+<section id="process-2---random-walk" class="slide level2">
+<h2>Process 2 - random walk</h2>
+<div class="columns">
+<div class="column" style="width:40%;">
+<ul>
+<li>All students perform a random walk.</li>
+<li>make up of groups mix over time.</li>
+</ul>
+</div><div class="column" style="width:60%;">
+<p><img data-src="Plot-of-a-two-dimensional-lattice-random-walk-It-requires-all-walking-steps-to-exactly.png"></p>
+</div></div>
+</section>
+<section id="running-a-simulation" class="slide level2">
+<h2>Running a simulation</h2>
+<ul>
+<li><p>Initialise: no pattern in space or state.</p></li>
+<li><p>Define time (e.g.&nbsp;0,1,…..,T)</p></li>
+<li><p>Loop over time, apply processes to update the variables</p></li>
+</ul>
+</section>
+<section id="unpicking-the-simulations---state-transitions-random-walk" class="slide level2">
+<h2>Unpicking the simulations - state transitions + random walk</h2>
+<p><video data-src="NiceSpotsLowDensity.mp4" controls=""><a href="NiceSpotsLowDensity.mp4">Video</a></video></p>
+<ul>
+<li>Cell density is low here to help visualisation</li>
+</ul>
+</section>
+<section id="formation-of-spotted-pattern" class="slide level2">
+<h2>Formation of spotted pattern</h2>
+<p><video data-src="NiceSpots.mp4" controls=""><a href="NiceSpots.mp4">Video</a></video></p>
+<ul>
+<li>Localised region of high activator and inhibitors levels</li>
+<li>Diffusion of inhibitors is faster</li>
+</ul>
+</section>
+<section id="differential-equations-and-the-turing-model" class="slide level2">
+<h2>Differential equations and the Turing model</h2>
+<div class="columns">
+<div class="column" style="width:70%;">
+<ul>
+<li>Let <span class="math inline">\(u\)</span> and <span class="math inline">\(v\)</span> represent concentrations of chemicals rather than people! <span class="math display">\[
+u=u(\mathbf{r},t) \quad v=v(\mathbf{r},t)
+\]</span></li>
+</ul>
 <p><span class="math display">\[
 \begin{aligned}
 \frac{\partial u }{\partial t}&amp;=D_u\nabla^2 u +f(u,v) \\
 \frac{\partial v }{\partial t}&amp;=D_v\nabla^2 v +g(u,v)
 \end{aligned}
 \]</span></p>
+</div><div class="column" style="width:20%;">
+<p><img data-src="Alan_turing.png"></p>
+</div></div>
 </section>
-<section id="coat-patterns" class="slide level2">
-<h2>Coat patterns</h2>
-<ul>
-<li>Turing models can produce a wide variety of patterns and have</li>
-</ul>
+<section id="breaking-the-pattern-formation-conditions" class="slide level2">
+<h2>Breaking the pattern formation conditions</h2>
+<p><video data-src="NiceSpots_DiffusionEqualHmm.mp4" controls=""><a href="NiceSpots_DiffusionEqualHmm.mp4">Video</a></video></p>
 </section>
 <section id="turing-patterns" class="slide level2">
 <h2>Turing patterns</h2>
-<ul>
-<li>can produce a wide variety of patterns</li>
-<li>have been proposed as model in many different patterning systems</li>
-<li>patterns are sensitive to parameter values and initial conditions</li>
+
+<img data-src="MainiWooleyMontage.png" class="r-stretch quarto-figure-center"><p class="caption">Image from Maini and Wooley (2019).</p><ul>
+<li><p>produce a wide variety of patterns</p></li>
+<li><p>proposed in many different patterning systems</p></li>
+<li><p>sensitive to parameter values and initial conditions</p></li>
 </ul>
 </section>
 <section id="conclusions" class="slide level2">
 <h2>Conclusions</h2>
+<ul>
+<li>We can use mathematics to study pattern formation in the wild!</li>
+<li>Complex behaviours/ patterns can emerge when interactive individuals follow simple rules</li>
+<li>The extent to which evolution uses Turing patterns is an open scientific question</li>
+</ul>
+<p><video data-src="1315416111_sm04.mov" controls=""><a href="1315416111_sm04.mov">Video</a></video></p>
 
 
 </section>
