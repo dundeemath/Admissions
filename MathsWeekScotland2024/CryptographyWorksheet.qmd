@@ -68,9 +68,9 @@ $$
 a^x = 3^2 = 9.
 $$
 
-So $a^x \pmod{p}$ is just
+So 
 $$
-9\pmod{7} \equiv 2.
+9 \equiv 2 \pmod{7}.
 $$
 :::
 
@@ -80,26 +80,15 @@ Compute
 
 1. $4 \times 3 \pmod{4}$ 
 2. $5^2 \pmod{4}$
-3. $8^2 \pmod{5}$
-4. $2^9 \pmod{5}$.
+3. $(2^3)^2 \pmod{5}$
+4. $(2^2)^3 \pmod{5}$.
 
 :::{.callout-note}
-Did you get the same answer for (c) and (d)?
+Did you get the same answer for (3) and (4)?
 
-This is because we can write $8=2^3$ and $4=2^2$.
-
-So (b) can be written as
+This is because in general
 $$
-(2^3)^2 \pmod{5}
-$$
-whilst (c) is  written as
-$$
-2^{3^2} \pmod{5}
-$$
-
-In general
-$$
-a^{(b^c)}={(a^b)}^c \pmod{p}
+(a^b)^c \sim (a^c)^b  \pmod{p}
 $$
 :::
 
@@ -137,7 +126,7 @@ Can you use the cipher to
 
 1.  encrypt the message *tall*?
 
-2. decrypt the word *dbrdprpm*?
+2. decrypt the word *dbrdprpt*?
 
 <br><br>
 

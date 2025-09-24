@@ -1,0 +1,113 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Graduate employment\"\n",
+        "format: html \n",
+        "---\n",
+        "\n",
+        "\n",
+        "A mathematics degree will enable you to become a *logical numerate problem solver*. Over the course of your degree you will develop\n",
+        "\n",
+        "* core mathematical skills\n",
+        "* programming skills\n",
+        "* transferable skills (e.g. report writing, presentation skills)\n",
+        "\n",
+        "\n",
+        "## Career earnings \n",
+        "\n",
+        "Mathematics degrees are associated with higher career earnings compared with many other disciplines. In the table below median salaries are compared across different disciplines. In this dataset mathematical sciences degrees have the fourth highest median salary."
+      ],
+      "id": "c5e6bcdf"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| echo: false\n",
+        "#| label: tab-medsalary\n",
+        "#| fig-cap: Data provided by HESA (2020/2021)\n",
+        "\n",
+        "import pandas as pd\n",
+        "import matplotlib.pyplot as plt\n",
+        "\n",
+        "subjectdict= {\"Medicine and dentistry\": 35000,\n",
+        "\"Subjects allied to medicine\"\t:\t26000,\n",
+        "\"Biological and sport sciences\": 24000, \n",
+        "\"Psychology\": 23000, \n",
+        "\"Veterinary sciences\":32000, \n",
+        "\"Agriculture, food and related studies\":\t24000, \n",
+        "\"Physical sciences\": 27000, \n",
+        "\"Mathematical sciences\":29000, \n",
+        "\"Engineering and technology\": \t29500, \n",
+        "\"Computing\": 29000, \n",
+        "\"Architecture, building and planning\": 26000, \n",
+        "\"Geography, earth and environmental studies (natural sciences)\": 25000, \n",
+        "\"Social sciences\"\t: 26000, \n",
+        "\"Law\": 23000, \n",
+        "\"Business and management\"\t: 25000, \n",
+        "\"Language and area studies\"\t: 25000, \n",
+        "\"Historical, philosophical and religious studies\"\t:\t25000, \n",
+        "\"Education and teaching\":\t25500, \n",
+        "\"Combined and general studies\":\t26500, \n",
+        "\"Media, journalism and communications\": 23000, \n",
+        "\"Design, and creative and performing arts\": \t22500, \n",
+        "\"Geography, earth and environmental studies (social sciences)\": 26000 \n",
+        "}\n",
+        "#df=pd.DataFrame(list(subjectdict.items()))\n",
+        "#df=pd.DataFrame(subjectdict,index=(subjectdict.items()))\n",
+        "df=pd.DataFrame.from_dict(subjectdict,orient='index',columns=['Salary'])\n",
+        "df.rename(index=lambda x: x[:25], inplace=True) #this will truncate the column name. Then print the dataframe\n",
+        "df=df.sort_values(by='Salary')\n",
+        "plot_table = df.plot.barh()\n",
+        "plot_table.set_xlabel('Median salary of new graduates (£)')\n",
+        "plt.show()"
+      ],
+      "id": "tab-medsalary",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Where our graduates get employed?\n",
+        "\n",
+        "* Data analyst\n",
+        "* Actuary\n",
+        "* Accountant\n",
+        "* PhD\n",
+        "* Data scientist\n",
+        "* Transport engineer\n",
+        "* Management consultant\n",
+        "* Teacher\n",
+        "* Operations analyst\n",
+        "* Financial engineer\n",
+        "* Operations research\n",
+        "* Tax consultant\n",
+        "* Energy risk analyst\n",
+        "* Insurance underwriter\n",
+        "* Software engineer\n",
+        "* Credit risk analyst\n",
+        "* Hedge fund analyst\n",
+        "\n",
+        "\n",
+        "You can find lots of interesting information about mathematics careers [here](https://ima.org.uk/support/careers/)."
+      ],
+      "id": "6de06c54"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/Users/pmurray/anaconda3/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

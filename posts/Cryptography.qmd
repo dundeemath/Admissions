@@ -20,7 +20,7 @@ Suppose you happen upon the encrypted message:
 
 92ff0e9b25c797469785ce73ba4ded76d7d4ba6154c84926aa52038a3cf06da800d36b68cb
 
-If you paste the message into  @fig-decrypt, you can decrypt it if you can guess the *shared secret* used to encrypt the original message (Hint: use the slider to try different values of the shared secret ... it is smaller than 100 for this example).
+If you paste the message into  @fig-decrypt, you can decrypt it if you can guess the *shared secret* used to encrypt the original message (Hint: use the slider to try different values of the shared secret ... it is smaller than 110 for this example).
 
 Note it may take a few moments for the code needed to run the app below to get installed via your web browser. It is advised to do this on a computer rather than a phone as it requires an approx. 20 MB download.
 
@@ -145,7 +145,7 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.sidebar(
-    ui.input_slider(id="shared_secret",label="shared secret",min=10,max=3000,value=23,step=1),
+    ui.input_slider(id="shared_secret",label="shared secret",min=10,max=400,value=23,step=1),
     ui.input_text(id='text',label="Message to encrypt",value="Yarrrr"),
          
      
@@ -299,8 +299,8 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.sidebar(
-    ui.input_slider(id="p",label="p",min=10,max=3000,value=23,step=1),
-    ui.input_slider(id="g",label="g (generator)",min=0,max=15.0,value=5,step=1),
+    ui.input_slider(id="p",label="p",min=10,max=500,value=23,step=1),
+    ui.input_slider(id="g",label="g (generator)",min=0,max=30,value=5,step=1),
     ui.input_slider(id="a",label="Private key Bob",min=1,max=10,value=2,step=1),
     ui.input_slider(id="b",label="Private key Alice",min=1,max=10,value=3,step=1), 
     
@@ -327,8 +327,8 @@ def server(input, output, session):
         # Step 1: Generate Diffie-Hellman Parameters and 
 
 
-        alice_public_key=int(np.mod(g**(a),p))
-        bob_public_key=int(np.mod(g**(b),p))
+        bob_public_key=int(np.mod(g**(a),p))
+        alice_public_key=int(np.mod(g**(b),p))
 
         shared_secret=int(np.mod(g**(a*b),p))
         
@@ -470,7 +470,7 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.sidebar(
-    ui.input_slider(id="p",label="p (prime number)",min=10,max=3000,value=23,step=1),
+    ui.input_slider(id="p",label="p (prime number)",min=10,max=300,value=23,step=1),
     ui.input_slider(id="g",label="g (generator)",min=0,max=15.0,value=5,step=1),
     ui.input_slider(id="a",label="Private key Bob",min=1,max=10,value=2,step=1),
     ui.input_slider(id="b",label="Private key Alice",min=1,max=10,value=3,step=1), 
@@ -576,7 +576,7 @@ f04ed308495b04694943d414e0444151fe141d05581b3eb2a4f168
 Suppose that we know that it has been encrypted using Diffie Helman algorithm. The encryptors have been a little slap dash and used the following values for publicly available information:
 
 p=31
-q=23
+g=23
 
 Can you use @fig-diffiehelmanndecrypt to decrypt the message using the available information?
 
@@ -607,10 +607,10 @@ import base64
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.sidebar(
-    ui.input_slider(id="p",label="p",min=10,max=3000,value=23,step=1),
+    ui.input_slider(id="p",label="p",min=10,max=300,value=23,step=1),
     ui.input_slider(id="g",label="g (generator)",min=0,max=33,value=5,step=1),
     ui.input_slider(id="a",label="Private key Bob",min=1,max=10,value=2,step=1),
-    ui.input_slider(id="b",label="Private key Sue",min=1,max=10,value=3,step=1),
+    ui.input_slider(id="b",label="Private key Alice",min=1,max=10,value=3,step=1),
  
     ui.input_text(id='text',label="Message to decrypt",value="8968d20bbc5b"),
             ),

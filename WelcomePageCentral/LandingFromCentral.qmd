@@ -1,0 +1,23 @@
+---
+title: "Welcome"
+format: html 
+---
+
+
+Hi! You have likely landed on this page after meeting one of our Admissions staff. Welcome to the Dundee Maths app page.
+
+
+Click on the links below to learn about:
+
+[Cryptography](../posts/Cryptography.qmd)
+
+[Integration](../posts/MonteCarloIntegration.qmd)
+
+[Estimating Pi](../posts/EstimatingPi.qmd)
+
+[Distorting images](../posts/Mappings2D.qmd)
+
+[Differential equations](../posts/SecondOrderODEs.qmd)
+
+
+See this [video](../posts/MathsUndergradPosterSession.qmd) of last year's final year undergraduate presenting posters of their honours' projects.
