@@ -1,5 +1,5 @@
 ---
-title: "How the zebra got its stripes?"
+title: "How did the zebra get its stripes?"
 author: "Philip Murray"
 
 format:
@@ -26,8 +26,8 @@ format:
 We can use mathematics to
 
 *  develop conceptual models 
-*  run simulations to try to understand system behaviour 
-*  predict behaviour of complex systems
+*  test hypotheses in silico 
+*  understand and predict behaviour of complex systems
 
 . . . 
 
@@ -48,7 +48,7 @@ Develop and simulate a model of a pattern forming system
 . . . 
 
 - What is the question?
-- Variables
+- What are the variables?
 - What processes are important?
 - What kind of model is suitable?
 - How would I know if the model was *correct*?
@@ -155,14 +155,14 @@ $\bar{A}$ is the local density of activators.
 
 ![](NiceSpotsLowDensity.mp4)
 
-* Cell density is low here to help visualisation
+*  Density is low here to help visualisation
 
 
 ## Formation of spotted pattern
 
 ![](NiceSpots.mp4)
 
-* Localised region of high activator and inhibitors levels
+* Localised region of high activator and inhibitor 
 * Diffusion of inhibitors is faster
 
 
@@ -203,11 +203,12 @@ $$
 ![](NiceSpots_DiffusionEqualHmm.mp4)
  
 
-## Turing patterns
+## Turing patterns ?
 
 ![Image from Maini and Wooley (2019).](MainiWooleyMontage.png)
 
 
+Turing models
 
 - produce a wide variety of patterns 
 
@@ -221,6 +222,22 @@ $$
 - The extent to which evolution uses Turing patterns is an open scientific question 
 
 ![](1315416111_sm04.mov)
+
+## Our mathematics degrees
+
+* become a logical, numerate problem solver
+* high career diversity (e.g. data analysts, actuaries, accountants, logistics, security services, teachers, software engineers, consultants) 
+* develop mathematical + transferable skills
+* small class sizes
+
+## Next up today
+
+* D'Arcy Thompson (see slides)
+* Activities
+
+
+
+
 
 
 

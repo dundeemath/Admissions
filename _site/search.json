@@ -378,135 +378,107 @@
     "text": "2 Estimating an integral\nConsider Figure 2. Here we have plotted the function \\[\ny=x^2, \\quad x \\in [0,1].\n\\]\nThe shaded ‘area under the curve’ can be represented by the integral \\[\nI=\\int_0^1 x^2 \\textrm{d}x.\n\\]\nTo estimate the integral we again uniformly sample points from within the circumscribed square. By counting how many points fall inside the shaded region we can estimate the integral to be \\[\n\\hat{I}=\\textrm{Area square} \\times \\textrm{Frac points in shaded region} = 1\\times \\frac{N_R}{N_S}\n\\]\n\nHold a small number of rice grains above the square in Figure 2 drop onto the page.\nCount the total number of rice grains that fall inside the square, \\(N_S\\), and the shaded region, \\(N_R\\).\nInput data into Table 2 and compute the quantity \\[\n\\frac{N_R}{N_S}.\n\\]\nRepeat Steps 1-3.\nCompute the mean of the samples.\nExplore computationally using the ‘Monte Carlo integration’ app.\n\n\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\n\n\n\nTable 2: A table to record counts.\n\n\n\n\n\nIteration\n\\(N_S\\)\n\\(N_R\\)\n\\(\\hat{I}=N_R/N_S\\)\n\n\n\n\n1\n\n\n\n\n\n2\n\n\n\n\n\n3\n\n\n\n\n\n4\n\n\n\n\n\n5\n\n\n\n\n\n6\n\n\n\n\n\n—\n———\n—–\n——\n\n\nMean\nN/A\nN/A"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#pattern-formation-in-the-wild",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#pattern-formation-in-the-wild",
-    "title": "How the zebra got its stripes?",
-    "section": "Pattern formation in the wild",
-    "text": "Pattern formation in the wild\n\nImage from Maini and Wooley (2019)."
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#animal-coats---patterns-in-the-wild",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#animal-coats---patterns-in-the-wild",
+    "title": "How did the zebra get its stripes?",
+    "section": "",
+    "text": "Image from Maini and Wooley (2019)."
   },
   {
     "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#where-do-animal-coat-patterns-come-from",
     "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#where-do-animal-coat-patterns-come-from",
-    "title": "How the zebra got its stripes?",
+    "title": "How did the zebra get its stripes?",
     "section": "Where do animal coat patterns come from?",
     "text": "Where do animal coat patterns come from?"
   },
   {
     "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#but-its-developmental-biology-maths-week-scotland",
     "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#but-its-developmental-biology-maths-week-scotland",
-    "title": "How the zebra got its stripes?",
+    "title": "How did the zebra get its stripes?",
     "section": "But it’s Developmental Biology Maths Week Scotland!!",
-    "text": "But it’s Developmental Biology Maths Week Scotland!!\n\nWe can use mathematics to\n\ndevelop conceptual models\nrun simulations to try to understand system behaviour\npredict behaviour of complex systems\n\n\n\nIn turn, studying complex systems can result in the discovery of new mathematics.\n\n\n\n\n\n\n\n\nAim for today\n\n\nDevelop and simulate a model of a pattern forming system"
+    "text": "But it’s Developmental Biology Maths Week Scotland!!\n. . .\nWe can use mathematics to\n\ndevelop conceptual models\ntest hypotheses in silico\nunderstand and predict behaviour of complex systems\n\n. . .\nIn turn, studying complex systems can result in the discovery of new mathematics.\n. . .\n\n\n\n\n\n\nAim for today\n\n\n\nDevelop and simulate a model of a pattern forming system"
   },
   {
     "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#developing-a-mathematical-model",
     "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#developing-a-mathematical-model",
-    "title": "How the zebra got its stripes?",
+    "title": "How did the zebra get its stripes?",
     "section": "Developing a mathematical model",
-    "text": "Developing a mathematical model\n\n\nWhat is the question?\nVariables\nWhat processes are important?\nWhat kind of model is suitable?\nHow would I know if the model was correct?"
+    "text": "Developing a mathematical model\n. . .\n\nWhat is the question?\nWhat are the variables?\nWhat processes are important?\nWhat kind of model is suitable?\nHow would I know if the model was correct?"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#a-model-of-rumour-spreading-in-the-school-assembly-hall",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#a-model-of-rumour-spreading-in-the-school-assembly-hall",
-    "title": "How the zebra got its stripes?",
-    "section": "A model of rumour spreading in the school assembly hall",
-    "text": "A model of rumour spreading in the school assembly hall\n\nA somewhat controlling headteacher is concerned about the spread of rumours in the assembly hall.\nThey think there is a pattern to how rumours spread?"
-  },
-  {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#head-teachers-observations",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#head-teachers-observations",
-    "title": "How the zebra got its stripes?",
-    "section": "Head teacher’s observations",
-    "text": "Head teacher’s observations\n\nStudents interact in localised groups\nWithin groups, find mix of rumour activators (A), rumour inhibitors (I) and passive students (P).\nSome groups are the source of the worst rumours\nMembership of small groups changes from day to day.\n\n\n\n\n\n\n\n\nHypotheses\n\n\n\nA few bad ’uns\nPattern is an emergent phenomenon"
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#excessive-rumour-spreading-in-the-school-assembly-hall",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#excessive-rumour-spreading-in-the-school-assembly-hall",
+    "title": "How did the zebra get its stripes?",
+    "section": "Excessive rumour spreading in the school assembly hall",
+    "text": "Excessive rumour spreading in the school assembly hall\n\nHead teacher is concerned\nStudents interact within small groups\nPattern in which some groups have high levels of rumour spreading.\nWithin groups, a mix of rumour activators (A), inhibitors (I) and passive students (P).\nMembership of groups changes over time.\n\n. . .\n\n\n\n\n\n\nHypotheses in the staff room\n\n\n\n\nA few bad ’uns\nPattern is an emergent phenomenon"
   },
   {
     "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#variables",
     "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#variables",
-    "title": "How the zebra got its stripes?",
+    "title": "How did the zebra get its stripes?",
     "section": "Variables",
-    "text": "Variables\nStudent have position: \\[x_{i}(t)\\]\n\nStudents can be in one of three states:\n\nRumour activators (A)\nRumour inhibitors (I)\nPassive (P)\n\n\\[\ns_i(t)\\in \\{A,I,P\\}.\n\\]"
+    "text": "Variables\nStudent have position: \\[x_{i}(t)\\]\n. . .\nStudents can be in one of three states:\n\nRumour activators (A)\nRumour inhibitors (I)\nPassive (P)\n\n\\[\ns_i(t)\\in \\{A,I,P\\}.\n\\]"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#within-group-rules",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#within-group-rules",
-    "title": "How the zebra got its stripes?",
-    "section": "Within group rules",
-    "text": "Within group rules\nProbability of passive (P) person becoming an activator (A) is \\[\n\\propto \\frac{ \\bar{A}^2}{1+\\bar{I}}\n\\]\nand an inhibitor (I) is \\[\n\\propto \\bar{A}^2.\n\\]\n\\(\\bar{A}\\) is the local density of activators."
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#process-1-state-transitions",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#process-1-state-transitions",
+    "title": "How did the zebra get its stripes?",
+    "section": "Process 1: state transitions",
+    "text": "Process 1: state transitions\n\n\nProbability of passive (P) person becoming:\n\nan activator (A) is \\[\n\\propto \\frac{ \\bar{A}^2}{1+\\bar{I}}\n\\]\nan inhibitor (I) is \\[\n\\propto \\bar{A}^2.\n\\]\n\n\n\n\n\n\nActivator/inhibitor states are transient.\n\n\\(\\bar{A}\\) is the local density of activators."
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#activators-on-a-grid",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#activators-on-a-grid",
-    "title": "How the zebra got its stripes?",
-    "section": "Activators on a grid",
-    "text": "Activators on a grid\nActivators:\n\nperform a random walk\ncan cause further activation of passive individuals who are nearby\nbecome deactivated after some time"
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#process-2---random-walk",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#process-2---random-walk",
+    "title": "How did the zebra get its stripes?",
+    "section": "Process 2 - random walk",
+    "text": "Process 2 - random walk\n\n\n\nAll students perform a random walk.\nmake up of groups mix over time."
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#introduce-inhibitors",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#introduce-inhibitors",
-    "title": "How the zebra got its stripes?",
-    "section": "Introduce inhibitors",
-    "text": "Introduce inhibitors\n\npassive individuals become inhibitors in presence of activators\ninhibitors reduce further activators"
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#running-a-simulation",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#running-a-simulation",
+    "title": "How did the zebra get its stripes?",
+    "section": "Running a simulation",
+    "text": "Running a simulation\n\nInitialise: no pattern in space or state.\nDefine time (e.g. 0,1,…..,T)\nLoop over time, apply processes to update the variables"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#small-number-of-a-activator",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#small-number-of-a-activator",
-    "title": "How the zebra got its stripes?",
-    "section": "Small number of a activator",
-    "text": "Small number of a activator"
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#unpicking-the-simulations---state-transitions-random-walk",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#unpicking-the-simulations---state-transitions-random-walk",
+    "title": "How did the zebra get its stripes?",
+    "section": "Unpicking the simulations - state transitions + random walk",
+    "text": "Unpicking the simulations - state transitions + random walk\nVideo\n\nDensity is low here to help visualisation"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#random-walk",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#random-walk",
-    "title": "How the zebra got its stripes?",
-    "section": "Random walk",
-    "text": "Random walk\nVideo"
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#formation-of-spotted-pattern",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#formation-of-spotted-pattern",
+    "title": "How did the zebra get its stripes?",
+    "section": "Formation of spotted pattern",
+    "text": "Formation of spotted pattern\nVideo\n\nLocalised region of high activator and inhibitor\nDiffusion of inhibitors is faster"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#behaviour-of-small-numbers-of-individuals",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#behaviour-of-small-numbers-of-individuals",
-    "title": "How the zebra got its stripes?",
-    "section": "Behaviour of small numbers of individuals",
-    "text": "Behaviour of small numbers of individuals\nVideo"
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#differential-equations-and-the-turing-model",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#differential-equations-and-the-turing-model",
+    "title": "How did the zebra get its stripes?",
+    "section": "Differential equations and the Turing model",
+    "text": "Differential equations and the Turing model\n\n\n\nLet \\(u\\) and \\(v\\) represent concentrations of chemicals rather than people! \\[\nu=u(\\mathbf{r},t) \\quad v=v(\\mathbf{r},t)\n\\]\n\n\\[\n\\begin{aligned}\n\\frac{\\partial u }{\\partial t}&=D_u\\nabla^2 u +f(u,v) \\\\\n\\frac{\\partial v }{\\partial t}&=D_v\\nabla^2 v +g(u,v)\n\\end{aligned}\n\\]"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#population-behaviour",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#population-behaviour",
-    "title": "How the zebra got its stripes?",
-    "section": "Population behaviour",
-    "text": "Population behaviour"
-  },
-  {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#equal-random-movement",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#equal-random-movement",
-    "title": "How the zebra got its stripes?",
-    "section": "Equal random movement",
-    "text": "Equal random movement"
-  },
-  {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#differential-equations",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#differential-equations",
-    "title": "How the zebra got its stripes?",
-    "section": "Differential equations",
-    "text": "Differential equations\n\\[\nu=u(\\mathbf{r},t) \\quad v=v(\\mathbf{r},t)\n\\]\n\n\n\\[\n\\begin{aligned}\n\\frac{\\partial u }{\\partial t}&=D_u\\nabla^2 u +f(u,v) \\\\\n\\frac{\\partial v }{\\partial t}&=D_v\\nabla^2 v +g(u,v)\n\\end{aligned}\n\\]\n\n\n\n\n\\(u\\) and \\(v\\) represent concentrations of chemicals rather than people!"
-  },
-  {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#coat-patterns",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#coat-patterns",
-    "title": "How the zebra got its stripes?",
-    "section": "Coat patterns",
-    "text": "Coat patterns\n\nTuring models can produce a wide variety of patterns and have"
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#breaking-the-pattern-formation-conditions",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#breaking-the-pattern-formation-conditions",
+    "title": "How did the zebra get its stripes?",
+    "section": "Breaking the pattern formation conditions",
+    "text": "Breaking the pattern formation conditions\nVideo"
   },
   {
     "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#turing-patterns",
     "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#turing-patterns",
-    "title": "How the zebra got its stripes?",
-    "section": "Turing patterns",
-    "text": "Turing patterns\n\nImage from Maini and Wooley (2019).\nproduce a wide variety of patterns\nproposed in many different patterning systems\nsensitive to parameter values and initial conditions"
+    "title": "How did the zebra get its stripes?",
+    "section": "Turing patterns ?",
+    "text": "Turing patterns ?\n\n\n\nImage from Maini and Wooley (2019).\n\n\nTuring models\n\nproduce a wide variety of patterns\nproposed in many different patterning systems\nsensitive to parameter values and initial conditions"
   },
   {
     "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#conclusions",
     "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#conclusions",
-    "title": "How the zebra got its stripes?",
+    "title": "How did the zebra get its stripes?",
     "section": "Conclusions",
     "text": "Conclusions\n\nWe can use mathematics to study pattern formation in the wild!\nComplex behaviours/ patterns can emerge when interactive individuals follow simple rules\nThe extent to which evolution uses Turing patterns is an open scientific question\n\nVideo"
   },
@@ -1505,157 +1477,220 @@
     "text": "These pages are hosted by Mathematics staff at the University of Dundee. They are intended to support ongoing student recruitment and outreach activities."
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#small-numbers-of-a-activator",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#small-numbers-of-a-activator",
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#darcy-thompson-powerpoint",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#darcy-thompson-powerpoint",
     "title": "How the zebra got its stripes?",
-    "section": "Small numbers of a activator",
-    "text": "Small numbers of a activator\nVideo"
+    "section": "D’Arcy Thompson Powerpoint",
+    "text": "D’Arcy Thompson Powerpoint"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#processes---influence-of-the-crowd-on-state-transitions",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#processes---influence-of-the-crowd-on-state-transitions",
-    "title": "How the zebra got its stripes?",
-    "section": "Processes - Influence of the crowd on state transitions",
-    "text": "Processes - Influence of the crowd on state transitions\nProbability of passive (P) person becoming an activator (A) is \\[\n\\propto \\frac{ \\bar{A}^2}{1+\\bar{I}}\n\\]\nand an inhibitor (I) is \\[\n\\propto \\bar{A}^2.\n\\]\n\\(\\bar{A}\\) is the local density of activators."
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#next-up-today",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#next-up-today",
+    "title": "How did the zebra get its stripes?",
+    "section": "Next up today",
+    "text": "Next up today\n\nD’Arcy Thompson (see slides)\nActivities"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#processes---random-walk",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#processes---random-walk",
-    "title": "How the zebra got its stripes?",
-    "section": "Processes - random walk",
-    "text": "Processes - random walk\n\nStudents can perform a random walk. So groups mix from day to day."
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#our-mathematics-degrees",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#our-mathematics-degrees",
+    "title": "How did the zebra get its stripes?",
+    "section": "Our mathematics degrees",
+    "text": "Our mathematics degrees\n\nbecome a logical, numerate problem solver\nhigh career diversity (e.g. data analysts, actuaries, accountants, logistics, security services, teachers, software engineers, consultants)\ndevelop mathematical + transferable skills\nsmall class sizes"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#results---a-small-numbers-of-activators",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#results---a-small-numbers-of-activators",
-    "title": "How the zebra got its stripes?",
-    "section": "Results - a small numbers of activators",
-    "text": "Results - a small numbers of activators\nVideo"
+    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html",
+    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html",
+    "title": "How did the zebra get its stripes?",
+    "section": "",
+    "text": "Image from Maini and Wooley (2019)."
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#rumour-spreading-in-the-school-assembly-hall",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#rumour-spreading-in-the-school-assembly-hall",
-    "title": "How the zebra got its stripes?",
-    "section": "Rumour spreading in the school assembly hall",
-    "text": "Rumour spreading in the school assembly hall\n\nHead teacher is concerned\nStudents interact within small groups\nPattern in which some groups have high levels of rumour spreading.\nWithin groups, a mix of rumour activators (A), inhibitors (I) and passive students (P).\nMembership of groups changes over time.\n\n\n\n\n\n\n\n\nHypotheses in the staff room\n\n\n\nA few bad ’uns\nPattern is an emergent phenomenon"
+    "objectID": "Slides/OPenDay2025/OpenDay2025.html#estimate-pi-using-monte-carlo-techniques",
+    "href": "Slides/OPenDay2025/OpenDay2025.html#estimate-pi-using-monte-carlo-techniques",
+    "title": "Open Day 2025",
+    "section": "Estimate \\(\\pi\\) using Monte Carlo techniques",
+    "text": "Estimate \\(\\pi\\) using Monte Carlo techniques\n\n\nProbability of uniformly sampled point falling in circle is\n\\[\n\\frac{\\textrm{Area circle}}{\\textrm{Area square}}=\\frac{\\pi}{4}\n\\]\n\n\n\n\n\n\n\n\n\nFigure 1"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#pattern-formation",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#pattern-formation",
-    "title": "How the zebra got its stripes?",
-    "section": "Pattern formation",
-    "text": "Pattern formation\nVideo"
+    "objectID": "Slides/OPenDay2025/OpenDay2025.html#estimate-definite-integral-using-monte-carlo-method",
+    "href": "Slides/OPenDay2025/OpenDay2025.html#estimate-definite-integral-using-monte-carlo-method",
+    "title": "Open Day 2025",
+    "section": "Estimate definite integral using Monte Carlo method",
+    "text": "Estimate definite integral using Monte Carlo method\n\n\nEstimate the definite integral \\[\n\\int_a^b f(x)\\textrm{d}x.\n\\]\nProb. of uniformly sampled point falling in shaded region \\[\n\\frac{\\textrm{Area shaded}}{\\textrm{Area square}}\n\\]\n\n\n\n\n\n\n\n\n\nFigure 2"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#unpicking-the-simulations---random-walk",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#unpicking-the-simulations---random-walk",
-    "title": "How the zebra got its stripes?",
-    "section": "Unpicking the simulations - random walk",
-    "text": "Unpicking the simulations - random walk\nVideo"
+    "objectID": "Slides/OPenDay2025/OpenDay2025.html#method",
+    "href": "Slides/OPenDay2025/OpenDay2025.html#method",
+    "title": "Open Day 2025",
+    "section": "Method",
+    "text": "Method\n\nReal life sampling (rice grains)\nGet a computer to generate samples\n\nSee printed worksheet for further details."
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#unpicking-the-simulations---state-transitions",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#unpicking-the-simulations---state-transitions",
-    "title": "How the zebra got its stripes?",
-    "section": "Unpicking the simulations - state transitions",
-    "text": "Unpicking the simulations - state transitions\nVideo"
+    "objectID": "Slides/OPenDay2025/OpenDay2025.html#what-have-we-learned",
+    "href": "Slides/OPenDay2025/OpenDay2025.html#what-have-we-learned",
+    "title": "Open Day 2025",
+    "section": "What have we learned?",
+    "text": "What have we learned?\n\nWe can study mathematics using experiential learning\nWe can program algorithms to help understand mathematical concepts"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#no-spots-form-upon-equal-random-movement",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#no-spots-form-upon-equal-random-movement",
-    "title": "How the zebra got its stripes?",
-    "section": "No spots form upon equal random movement",
-    "text": "No spots form upon equal random movement"
+    "objectID": "Slides/OPenDay2025/Worksheet.html",
+    "href": "Slides/OPenDay2025/Worksheet.html",
+    "title": "Open Day 2025",
+    "section": "",
+    "text": "This worksheet is accompanied by web apps that can be found here (https://dundeemath.github.io/Admissions/, also see QR code)."
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#state-transitions",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#state-transitions",
-    "title": "How the zebra got its stripes?",
-    "section": "State transitions",
-    "text": "State transitions\nProbability of passive (P) person becoming:\n\nan activator (A) is \\[\n\\propto \\frac{ \\bar{A}^2}{1+\\bar{I}}\n\\]\nan inhibitor (I) is \\[\n\\propto \\bar{A}^2.\n\\]\n\n\\(\\bar{A}\\) is the local density of activators."
+    "objectID": "Slides/OPenDay2025/Worksheet.html#estimating-pi",
+    "href": "Slides/OPenDay2025/Worksheet.html#estimating-pi",
+    "title": "Open Day 2025",
+    "section": "1 Estimating \\(\\pi\\)",
+    "text": "1 Estimating \\(\\pi\\)\nConsider Figure 1. The ratio of the area of the circle to that of the circumscribed square is\n\\[\n\\frac{\\textrm{Area circle}}{\\textrm{Area square}}=\\frac{\\pi}{4}.\n\\]\nSuppose we uniformly sample points from within the square. The probability of a point landing in the circle is proportional to the relative area of the circle, i.e. \\[\n\\frac{\\pi}{4}.\n\\]\nHence we can estimate \\(\\pi\\) by counting the number of uniformly sampled points that fall within the circle.\nTo sample the points:\n\nHold a small number of rice grains above the circle in Figure 1 and drop onto the page. Vary the dropping height to ensure the rice grains land approximately uniformly in the square.\n\nDrop rice grains on to the square.\nCount the total number of rice grains that fall inside the square, \\(N_S\\), and the circle, \\(N_C\\).\nInput the data into Table 1 and compute the quantity \\[\n\\hat{\\pi}=4\\frac{N_C}{N_S}.\n\\]\nRepeat Steps (i)-(iii).\n\nCompute the mean of the samples.\nExplore computationally using the ‘Estimating \\(\\pi\\)’ app.\n\n\n\n\n\n\n\n\n\nFigure 1\n\n\n\n\n\n\n\n\nTable 1: A table to record counts.\n\n\n\n\n\nIteration\n\\(N_S\\)\n\\(N_C\\)\n\\(\\hat{\\pi}=4N_C/N_S\\)\n\n\n\n\n1\n\n\n\n\n\n2\n\n\n\n\n\n3\n\n\n\n\n\n4\n\n\n\n\n\n5\n\n\n\n\n\n6\n\n\n\n\n\n—\n———\n—–\n——\n\n\nMean\nN/A\nN/A"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#process-1-state-transitions",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#process-1-state-transitions",
-    "title": "How the zebra got its stripes?",
-    "section": "Process 1: state transitions",
-    "text": "Process 1: state transitions\n\n\nProbability of passive (P) person becoming:\n\nan activator (A) is \\[\n\\propto \\frac{ \\bar{A}^2}{1+\\bar{I}}\n\\]\nan inhibitor (I) is \\[\n\\propto \\bar{A}^2.\n\\]\n\n\n\n\n\nActivator/inhibitor states are transient.\n\n\\(\\bar{A}\\) is the local density of activators."
+    "objectID": "Slides/OPenDay2025/Worksheet.html#estimating-an-integral",
+    "href": "Slides/OPenDay2025/Worksheet.html#estimating-an-integral",
+    "title": "Open Day 2025",
+    "section": "2 Estimating an integral",
+    "text": "2 Estimating an integral\nConsider Figure 2. Here we have plotted the function \\[\ny=x^2, \\quad x \\in [0,1].\n\\]\nThe shaded ‘area under the curve’ can be represented by the integral \\[\nI=\\int_0^1 x^2 \\textrm{d}x.\n\\]\nTo estimate the integral we again uniformly sample points from within the circumscribed square. By counting how many points fall inside the shaded region we can estimate the integral to be \\[\n\\hat{I}=\\textrm{Area square} \\times \\textrm{Frac points in shaded region} = 1\\times \\frac{N_R}{N_S}\n\\]\n\nHold a small number of rice grains above the square in Figure 2 drop onto the page.\nCount the total number of rice grains that fall inside the square, \\(N_S\\), and the shaded region, \\(N_R\\).\nInput data into Table 2 and compute the quantity \\[\n\\frac{N_R}{N_S}.\n\\]\nRepeat Steps 1-3.\nCompute the mean of the samples.\nExplore computationally using the ‘Monte Carlo integration’ app.\n\n\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\n\n\n\nTable 2: A table to record counts.\n\n\n\n\n\nIteration\n\\(N_S\\)\n\\(N_R\\)\n\\(\\hat{I}=N_R/N_S\\)\n\n\n\n\n1\n\n\n\n\n\n2\n\n\n\n\n\n3\n\n\n\n\n\n4\n\n\n\n\n\n5\n\n\n\n\n\n6\n\n\n\n\n\n—\n———\n—–\n——\n\n\nMean\nN/A\nN/A"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#processes-2---random-walk",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#processes-2---random-walk",
-    "title": "How the zebra got its stripes?",
-    "section": "Processes 2 - random walk",
-    "text": "Processes 2 - random walk\n\nAll students perform a random walk.\nmake up of groups mix over time."
+    "objectID": "Slides/StemNov2025/worksheet.html",
+    "href": "Slides/StemNov2025/worksheet.html",
+    "title": "Transformation in the plane",
+    "section": "",
+    "text": "You might have come across functions of one variable. For example, suppose that \\[\nf(x)=x+2, \\ \\ \\ x \\in \\Re.\n\\]\nIn this session we will represent transformation in the form \\[\nx'=x+2,\n\\] i.e. an old point, \\(x\\), gets mapped to a new point, \\(x'\\).\nIn the above example, for a given input value of \\(x\\), we add \\(2\\) to get the output, \\(x'\\).\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nx=np.linspace(0,5,20)\n\nx_p=x+2\n\nfig,ax=plt.subplots()\nax.plot(x,x)\nax.plot(x,x_p)\nax.set_xlabel('$x$')\nax.set_ylabel('$x\\'$')\nplt.show()"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#formation-of-spotted-pattern",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#formation-of-spotted-pattern",
-    "title": "How the zebra got its stripes?",
-    "section": "Formation of spotted pattern",
-    "text": "Formation of spotted pattern\nVideo\n\nLocalised region of high activator and inhibitors levels\nDiffusion of inhibitors is faster"
+    "objectID": "Slides/StemNov2025/worksheet.html#functions-of-one-variable",
+    "href": "Slides/StemNov2025/worksheet.html#functions-of-one-variable",
+    "title": "Transformation in the plane",
+    "section": "",
+    "text": "You might have come across functions of one variable. For example, suppose that \\[\nf(x)=x+2, \\ \\ \\ x \\in \\Re.\n\\]\nIn this session we will represent transformation in the form \\[\nx'=x+2,\n\\] i.e. an old point, \\(x\\), gets mapped to a new point, \\(x'\\).\nIn the above example, for a given input value of \\(x\\), we add \\(2\\) to get the output, \\(x'\\).\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nx=np.linspace(0,5,20)\n\nx_p=x+2\n\nfig,ax=plt.subplots()\nax.plot(x,x)\nax.plot(x,x_p)\nax.set_xlabel('$x$')\nax.set_ylabel('$x\\'$')\nplt.show()"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#simulations",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#simulations",
-    "title": "How the zebra got its stripes?",
-    "section": "Simulations",
-    "text": "Simulations\n\nInitialise individuals uniformly from the different states\nUniformly distribute students in the room\nDefine time (0,1,…..,T)\nLoop over time and apply models of the different processes to track how variables change"
+    "objectID": "Slides/StemNov2025/worksheet.html#coordinate-geometry",
+    "href": "Slides/StemNov2025/worksheet.html#coordinate-geometry",
+    "title": "Transformation in the plane",
+    "section": "2 Coordinate geometry",
+    "text": "2 Coordinate geometry"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#process-2---random-walk",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#process-2---random-walk",
-    "title": "How the zebra got its stripes?",
-    "section": "Process 2 - random walk",
-    "text": "Process 2 - random walk\n\n\n\nAll students perform a random walk.\nmake up of groups mix over time."
+    "objectID": "Slides/StemNov2025/worksheet.html#translations",
+    "href": "Slides/StemNov2025/worksheet.html#translations",
+    "title": "Transformation in the plane",
+    "section": "3 Translations",
+    "text": "3 Translations\nConsider the mapping: \\[\nx\\rightarrow x+2\n\\]\nand\n\\[\ny\\rightarrow y+3.\n\\]\n\nSketch the point (1,1) in the plane.\nSketch where the point (1,1) gets mapped to.\nSketch where the point (2,2) gets mapped to.\nNow try (3,3). (1,1), (2,2) and (3,3) sit on a straight line with slope one. Can you spot a pattern in where they get mapped to?\n\nNow we will try and show that, in general straight lines, get mapped onto straight lines with the same slope.\nConsider a set of points given by $$\n\\[y=mx+c\\].\nApplying the translation above, \\[\nx'=x+2\n\\] and\n\\[\ny'=y+3.\n\\]\nLets subsitute in the original straight line. Hence\n\\[\ny'=y+3=mx+c+3.\n\\]\nWe also have that \\[\nx'=x+2 \\implies x=x'-2.\n\\]\nHence\n\\[\ny'=mx+c+3 =m(x'-2)+c+3 = mx'+(c+3-2).\n\\]\nHence the translation maps a straight line with slope \\(m\\) onto another straight line that also has slope \\(m\\) but a modified intercept.\nCould this true for a general translation \\[\nx'=  x+a\ny'=  y+b\n\\]"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#unpicking-the-simulations---state-transitions-random-walk",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#unpicking-the-simulations---state-transitions-random-walk",
-    "title": "How the zebra got its stripes?",
-    "section": "Unpicking the simulations - state transitions + random walk",
-    "text": "Unpicking the simulations - state transitions + random walk\nVideo\n\nCell density is low here to help visualisation"
+    "objectID": "Slides/StemNov2025/worksheet.html#coorindate-in-the-plane",
+    "href": "Slides/StemNov2025/worksheet.html#coorindate-in-the-plane",
+    "title": "Transformation in the plane",
+    "section": "2 Coorindate in the plane",
+    "text": "2 Coorindate in the plane\nNow consider a point (x,y) that sits in the plane. We want to consider functions that map \\((x,y)\\) to other points in the plane."
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#running-a-simulation",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#running-a-simulation",
-    "title": "How the zebra got its stripes?",
-    "section": "Running a simulation",
-    "text": "Running a simulation\n\nInitialise: no pattern in space or state.\nDefine time (e.g. 0,1,…..,T)\nLoop over time, apply processes to update the variables"
+    "objectID": "Slides/StemNov2025/worksheet.html#mapping-coorindates-in-the-plane",
+    "href": "Slides/StemNov2025/worksheet.html#mapping-coorindates-in-the-plane",
+    "title": "Transformation in the plane",
+    "section": "2 Mapping coorindates in the plane",
+    "text": "2 Mapping coorindates in the plane\nNow consider a point (x,y) that sits in the plane. We want to consider functions that map \\((x,y)\\) to other points in the plane.\n\n2.1 Translations\nConsider the mapping: \\[\nx\\rightarrow x+2\n\\]\nand\n\\[\ny\\rightarrow y+3.\n\\]\n\nSketch the point (1,1) in the plane.\nSketch where the point (1,1) gets mapped to.\nSketch where the point (2,2) gets mapped to.\nNow try (3,3). (1,1), (2,2) and (3,3) sit on a straight line with slope one. Can you spot a pattern in where they get mapped to?\n\nNow we will try and show that, in general straight lines, get mapped onto straight lines with the same slope.\nConsider a set of points given by $$\n\\[y=mx+c\\].\nApplying the translation above, \\[\nx'=x+2\n\\] and\n\\[\ny'=y+3.\n\\]\nLets subsitute in the original straight line. Hence\n\\[\ny'=y+3=mx+c+3.\n\\]\nWe also have that \\[\nx'=x+2 \\implies x=x'-2.\n\\]\nHence\n\\[\ny'=mx+c+3 =m(x'-2)+c+3 = mx'+(c+3-2).\n\\]\nHence the translation maps a straight line with slope \\(m\\) onto another straight line that also has slope \\(m\\) but a modified intercept.\nCould you show that this is true for a general translation \\[\nx'=  x+a\ny'=  y+b\n\\]\n\n\n2.2 Scalings\nLet’s consider a scaling translation. We want to take the cooordinates of a point and multiply them by a scalar, \\(d\\).\nWe can write this as \\[\nx'=dx, y'=dy\n\\]\nApply the same steps as in the translation to this formation:\n\nSketch where individual points get mapped to for a scaling where \\(d=3\\).\nUse sketch to show that a line of points maps on to another line of points.\nShow in that in general scalings do not preserve the slope.\n\n\n\n2.3 Rotations\nNow consider an anticlockswise rotation about the origin.\nThis can be described by\n\\[\n\\begin{aligned}\nx'&=\\cos(\\theta)x-\\sin(\\theta)y \\\\\ny'&=\\sin(\\theta)x+\\cos(\\theta)y\n\\end{aligned}\n\\]\n\nConsider a rotation given by \\(\\theta=\\pi/4\\). Subsitute into the transformation and calculate and sketch where a point (1,1) transforms to.\nWhere do the the points (2,2) and (3,3) map to? Can you sketch these in the plane? Do rotations map straight lines onto straight lines.\nCan you show that for a general rotation \\(\\theta\\), a straight line of points maps onto a different straight line of points?"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#animal-coat-patterns-in-the-wild",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#animal-coat-patterns-in-the-wild",
-    "title": "How the zebra got its stripes?",
-    "section": "Animal coat patterns in the wild",
-    "text": "Animal coat patterns in the wild\n\nImage from Maini and Wooley (2019)."
+    "objectID": "Slides/StemNov2025/worksheet.html#mapping-coordinates-in-the-plane",
+    "href": "Slides/StemNov2025/worksheet.html#mapping-coordinates-in-the-plane",
+    "title": "Transformation in the plane",
+    "section": "2 Mapping coordinates in the plane",
+    "text": "2 Mapping coordinates in the plane\nNow consider a point (\\(x,y\\)) that sits in the plane. We want to consider transformations that map \\((x,y)\\) to other points in the plane (\\(x',y'\\)).\n\n2.1 Translations\nConsider the mapping: \\[\nx'= x+2\n\\]\nand\n\\[\ny'= y+3.\n\\]\n\nConfirm that the transformation of (1,1) is consistent.\nCompute where the point (2,2) gets mapped to and add this to the figure.\nNow try (3,3). (1,1), (2,2) and (3,3) sit on a straight line with slope one. Can you spot a pattern in where they get mapped to?\n\n\n\nCode\nold_coordinates=[[1,1]]\nold_coordinates=np.array(old_coordinates)\nnew_coordinates=old_coordinates.copy()\n\nfig,ax=plt.subplots()\nfor i in range(1):\n    ax.plot(old_coordinates[i,0],old_coordinates[i,1],'k.',alpha=0.15+old_coordinates[i,1]/6.0,markersize=24 )\nax.set_xlim([0,14])\nax.set_ylim([0,14])\nax.grid()\nax.set_xticks(np.linspace(0,12,13))\nax.set_yticks(np.linspace(0,12,13))\n\nfor i in range(old_coordinates.shape[0]):\n\n    homog_vec=np.array(old_coordinates[i,:]).copy()\n    new_coordinates[i,:]=homog_vec #+np.array([2,3])\n    new_coordinates[i,1]=new_coordinates[i,1]+3\n    new_coordinates[i,0]=new_coordinates[i,0]+2\nfor i in range(1):\n    ax.plot(new_coordinates[i,0],new_coordinates[i,1],'b.',markersize=24 )\n\n\n\n\n\n\n\n\n\nNow we will try and show that, in general straight lines, get mapped onto straight lines with the same slope.\n\n\n\n\n\n\nTranslations map straight lines to straight lines of equal slope\n\n\n\nConsider a set of points given by \\[\ny=mx+c\n\\] where \\(m\\) and \\(c\\) are real constants. We want to show that translations map straight lines onto straight lines.\nTo do this, let’s substitute in the parametric form of the straight line into the definition of the transformation, i.e.\n\\[\ny'=y+3=mx+c+3.\n\\]\nWe also have that \\[\nx'=x+2 \\implies x=x'-2.\n\\]\nHence \\[\ny'=mx+c+3 =m(x'-2)+c+3 = mx'+(c+3-2).\n\\]\nHence the translation maps a straight line with slope \\(m\\) onto another straight line that also has slope \\(m\\) but a modified intercept.\nIs this result consistent with the sketched points above?\n\n\nCould you show that this is true for a general translation \\[\nx'=  x+a\ny'=  y+b\n\\] where \\(a\\) and \\(b\\) are real constants.\n\n\n2.2 Scalings\nLet’s consider a different type of transformaiton. the idea is to take each of the coordinates of a point and multiply them by a scalar, \\(d\\).\nWe can write this as \\[\n\\begin{aligned}\nx'&=dx, \\\\\ny'&=dy\n\\end{aligned}\n\\]\nCan you apply the same steps as in the translation case to this transformation:\n\nSketch where individual points get mapped to for a scaling where \\(d=3\\).\nUse the sketch to show that a line of points maps on to another line of points.\nShow that, in contrast to translations, in general scalings do not preserve the slope.\n\n\n\n2.3 Rotations\nNow let’s consider an anti-clockwise rotation about the origin.\nThis can be represented by\n\\[\n\\begin{aligned}\nx'&=\\cos \\theta x-\\sin\\theta y \\\\\ny'&=\\sin\\theta x+\\cos\\theta y\n\\end{aligned}\n\\]\n\nConsider a rotation given by \\(\\theta=\\pi/4\\). Substitute into the transformation and calculate and sketch where a point (1,1) transforms to. Note \\(\\cos{\\pi/4}=\\sin{\\pi/4}=1/\\sqrt{2}\\).\nWhere do the points (2,2) and (3,3) map to under this rotation? Can you sketch these in the plane? Do rotations map straight lines onto straight lines.\nCan you show that for a general rotation \\(\\theta\\), a straight line of points maps onto a different straight line of points?\n\n\n\n2.4 General linear transformations in the plane\nWith a little more work it can be shown that a family of transformations (rotations, translations, shear, scaling) can be represented by a single matrix multiplication. This technique is a powerful tool used in computer graphics.\n\nFollow the link in this QR code\n\n\n\nGo to the Affine transformations in the plane app.\nExplore combining the different linear transformations described above."
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#animal-coats---patterns-in-the-wild",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#animal-coats---patterns-in-the-wild",
-    "title": "How the zebra got its stripes?",
-    "section": "Animal coats - patterns in the wild",
-    "text": "Animal coats - patterns in the wild\n\nImage from Maini and Wooley (2019)."
+    "objectID": "Slides/StemNov2025/worksheet.html#transforming-images",
+    "href": "Slides/StemNov2025/worksheet.html#transforming-images",
+    "title": "Transformation in the plane",
+    "section": "3 Transforming images",
+    "text": "3 Transforming images\nA 2D grayscale image is represented by matrix of numbers. The numerical values at each voxel represents the intensity.\nSo, for example, an image with a central spot could be represented by a matrix:\n\\[\n\\begin{matrix}\n0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 1 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 \\\\\n0 & 0 & 0 & 0 & 0 \\\\\n\\end{matrix}\n\\]\nLet’s consider a 3x3 grid with coordinates on an integer lattice (see below). The shading represents the intensity values in an image (i.e. there is vertical gradient in the image).\n\n\nCode\nold_coordinates=[[0,0],[0,1],[0,2],[1,0],[1,1],\n        [1,2],[2,0],[2,1],[2,2]]\nold_coordinates=np.array(old_coordinates)\nnew_coordinates=old_coordinates.copy()\n\nfig,ax=plt.subplots()\nfor i in range(9):\n    ax.plot(old_coordinates[i,0],old_coordinates[i,1],'k.',alpha=0.15+old_coordinates[i,1]/6.0,markersize=24 )\nax.set_xlim([-6,6])\nax.set_ylim([-6,6])\nax.grid()\nax.set_xticks(np.linspace(-5,5,11))\nax.set_yticks(np.linspace(-5,5,11))\n\nfor i in range(old_coordinates.shape[0]):\n\n    homog_vec=np.array(old_coordinates[i,:]).copy()\n    new_coordinates[i,:]=homog_vec+np.array([2,3])\n\n\n\n\n\n\n\n\n\n\nLet’s apply a translation given by \\[\nx'=x+2\ny'=y+3\n\\] to the image. To do this, transform each coordinate and ‘carry’ the shading. What properties does the transformed image have?\nNow rotate the image anticlockwise about the origin by \\(\\pi/4\\) radians (i.e. 45 degrees). Describe what has happened to the image’s orientation?\n\n\n\n\n\n\n\nNote\n\n\n\nWe have learned that a simple image can be transformed using linear transformations. Each voxel of the image ‘carries’ the intensity value to a new location in the transformed image."
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#breaking-the-pattern-formation-conditions",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#breaking-the-pattern-formation-conditions",
-    "title": "How the zebra got its stripes?",
-    "section": "Breaking the pattern formation conditions",
-    "text": "Breaking the pattern formation conditions\nVideo"
+    "objectID": "Slides/StemNov2025/worksheet.html#nonlinear-transformations",
+    "href": "Slides/StemNov2025/worksheet.html#nonlinear-transformations",
+    "title": "Transformation in the plane",
+    "section": "4 Nonlinear transformations",
+    "text": "4 Nonlinear transformations\nAll the transformations considered above have been linear (\\(x'\\) and \\(y'\\) are some linear functions of \\(x\\) and \\(y\\)). It can be shown that this linearity results in certain properties always holding in the transformed image (e.g. straight lines map onto straight lines).\nWe can consider nonlinear image mappings. Suppose that \\[\n\\begin{aligned}\n    x' &=x+3 \\\\\n    y'&=y \\sqrt{x^2+y^2}.\n\\end{aligned}\n\\] Here the mapping of the \\(y\\) coordinate depends on how close the original point is to the origin.\n\n\nCode\nold_coordinates=[[1,1],[1,2],[1,3],[2,1],[2,2],\n        [2,3],[3,1],[3,2],[3,3]]\nold_coordinates=np.array(old_coordinates).astype(float)\nnew_coordinates=old_coordinates.copy()\n\nfig,ax=plt.subplots()\nfor i in range(9):\n    ax.plot(old_coordinates[i,0],old_coordinates[i,1],'k.',alpha=0.15+old_coordinates[i,1]/6.0,markersize=24 )\nax.set_xlim([0,14])\nax.set_ylim([0,14])\nax.grid()\nax.set_xticks(np.linspace(0,12,13))\nax.set_yticks(np.linspace(0,12,13))\n\nfor i in range(old_coordinates.shape[0]):\n\n    homog_vec=np.array(old_coordinates[i,:]).copy()\n    new_coordinates[i,:]=homog_vec #+np.array([2,3])\n    new_coordinates[i,1]=new_coordinates[i,1]*np.sqrt(old_coordinates[i,1]**2+old_coordinates[i,0]**2)\n    new_coordinates[i,0]=new_coordinates[i,0]+3\nfor i in range(9):\n    ax.plot(new_coordinates[i,0],new_coordinates[i,1],'b.',alpha=0.15+old_coordinates[i,1]/6.0,markersize=24 )\n\n\n\n\n\n\n\n\n\nThe original grid (image) now gets distorted under the transformation. With more complicated nonlinear functions, we can begin to generate more complex distortions.\nUse the QR code above to find another interactive demo called D’Arcy Thompson and 2D mappings"
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#differential-equations-and-the-turing-model",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#differential-equations-and-the-turing-model",
-    "title": "How the zebra got its stripes?",
-    "section": "Differential equations and the Turing model",
-    "text": "Differential equations and the Turing model\n\n\n\nLet \\(u\\) and \\(v\\) represent concentrations of chemicals rather than people! \\[\nu=u(\\mathbf{r},t) \\quad v=v(\\mathbf{r},t)\n\\]\n\n\\[\n\\begin{aligned}\n\\frac{\\partial u }{\\partial t}&=D_u\\nabla^2 u +f(u,v) \\\\\n\\frac{\\partial v }{\\partial t}&=D_v\\nabla^2 v +g(u,v)\n\\end{aligned}\n\\]"
+    "objectID": "Slides/StemNov2025/worksheet.html#general-linear-transformations-in-the-plane",
+    "href": "Slides/StemNov2025/worksheet.html#general-linear-transformations-in-the-plane",
+    "title": "Transformation in the plane",
+    "section": "3 General linear transformations in the plane",
+    "text": "3 General linear transformations in the plane\nWith a little more work it can be shown that a family of transformations (rotations, translations, shear, scaling) can be represented by a single matrix multiplication. This technique is a powerful tool used in computer graphics."
   },
   {
-    "objectID": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#excessive-rumour-spreading-in-the-school-assembly-hall",
-    "href": "Slides/Howthezebragotitsstripes/Howthezebragotitsstripes.html#excessive-rumour-spreading-in-the-school-assembly-hall",
-    "title": "How the zebra got its stripes?",
-    "section": "Excessive rumour spreading in the school assembly hall",
-    "text": "Excessive rumour spreading in the school assembly hall\n\nHead teacher is concerned\nStudents interact within small groups\nPattern in which some groups have high levels of rumour spreading.\nWithin groups, a mix of rumour activators (A), inhibitors (I) and passive students (P).\nMembership of groups changes over time.\n\n\n\n\n\n\n\n\nHypotheses in the staff room\n\n\n\nA few bad ’uns\nPattern is an emergent phenomenon"
+    "objectID": "Slides/StemNov2025/DiscoveringDegreesApril2025.html#skills-developed-in-maths-degrees",
+    "href": "Slides/StemNov2025/DiscoveringDegreesApril2025.html#skills-developed-in-maths-degrees",
+    "title": "STEM Day 2025",
+    "section": "Skills developed in maths degrees",
+    "text": "Skills developed in maths degrees\n\nStudents become logical numerate problem solvers\nDevelop technical mathematical skills\nLearn how to apply mathematics to different problems\nDevelop computer programming skills\nDevelop communication skills"
+  },
+  {
+    "objectID": "Slides/StemNov2025/DiscoveringDegreesApril2025.html#stem-skills-are-valuable",
+    "href": "Slides/StemNov2025/DiscoveringDegreesApril2025.html#stem-skills-are-valuable",
+    "title": "STEM Day 2025",
+    "section": "STEM skills are valuable",
+    "text": "STEM skills are valuable"
+  },
+  {
+    "objectID": "Slides/StemNov2025/DiscoveringDegreesApril2025.html#teaching-delivery",
+    "href": "Slides/StemNov2025/DiscoveringDegreesApril2025.html#teaching-delivery",
+    "title": "STEM Day 2025",
+    "section": "Teaching delivery",
+    "text": "Teaching delivery\n\nTwo teaching semesters in the academic year\n3 or 4 modules in each semester\nIn each module (some combination of):\n\nlectures\ntutorials\nworkshops\ncomputer classes"
+  },
+  {
+    "objectID": "Slides/StemNov2025/DiscoveringDegreesApril2025.html#final-year-project",
+    "href": "Slides/StemNov2025/DiscoveringDegreesApril2025.html#final-year-project",
+    "title": "STEM Day 2025",
+    "section": "Final year project",
+    "text": "Final year project\n\ndevelop independent problem solving skills\nwork on an exciting mathematical topic\ndevelop programming and presentation skills\nTopics include:\n\nThe $25,000,000,000 eigenvector\nThe Mathematics of monopoly\nHow Sat Navs work?"
+  },
+  {
+    "objectID": "Slides/StemNov2025/DiscoveringDegreesApril2025.html#estimate-pi-using-monte-carlo-techniques",
+    "href": "Slides/StemNov2025/DiscoveringDegreesApril2025.html#estimate-pi-using-monte-carlo-techniques",
+    "title": "STEM Day 2025",
+    "section": "Estimate \\(\\pi\\) using Monte Carlo techniques",
+    "text": "Estimate \\(\\pi\\) using Monte Carlo techniques\n\n\nProbability of uniformly sampled point falling in circle is\n\\[\n\\frac{\\textrm{Area circle}}{\\textrm{Area square}}=\\frac{\\pi}{4}\n\\]\n\n\n\n\n\n\n\n\n\nFigure 1"
+  },
+  {
+    "objectID": "Slides/StemNov2025/DiscoveringDegreesApril2025.html#estimate-definite-integral-using-monte-carlo-method",
+    "href": "Slides/StemNov2025/DiscoveringDegreesApril2025.html#estimate-definite-integral-using-monte-carlo-method",
+    "title": "STEM Day 2025",
+    "section": "Estimate definite integral using Monte Carlo method",
+    "text": "Estimate definite integral using Monte Carlo method\n\n\nEstimate the definite integral \\[\n\\int_a^b f(x)\\textrm{d}x.\n\\]\nProb. of uniformly sampled point falling in shaded region \\[\n\\frac{\\textrm{Area shaded}}{\\textrm{Area square}}\n\\]\n\n\n\n\n\n\n\n\n\nFigure 2"
+  },
+  {
+    "objectID": "Slides/StemNov2025/DiscoveringDegreesApril2025.html#method",
+    "href": "Slides/StemNov2025/DiscoveringDegreesApril2025.html#method",
+    "title": "STEM Day 2025",
+    "section": "Method",
+    "text": "Method\n\nReal life sampling (rice grains)\nGet a computer to generate samples\n\nSee printed worksheet for further details."
+  },
+  {
+    "objectID": "Slides/StemNov2025/DiscoveringDegreesApril2025.html#what-have-we-learned",
+    "href": "Slides/StemNov2025/DiscoveringDegreesApril2025.html#what-have-we-learned",
+    "title": "STEM Day 2025",
+    "section": "What have we learned?",
+    "text": "What have we learned?\n\nWe can study mathematics using experiential learning\nWe can program algorithms to help understand mathematical concepts"
+  },
+  {
+    "objectID": "Slides/StemNov2025/DiscoveringDegreesApril2025.html#aims-for-today",
+    "href": "Slides/StemNov2025/DiscoveringDegreesApril2025.html#aims-for-today",
+    "title": "STEM Day 2025",
+    "section": "Aims for today",
+    "text": "Aims for today\nUse coordinate transformations to demonstrate some key tools used in mathematics:\n\nexamples to develop intuition\nproof to make general statements\ncomputer programming to help solve and visualise"
+  },
+  {
+    "objectID": "Slides/StemNov2025/DiscoveringDegreesApril2025.html#section",
+    "href": "Slides/StemNov2025/DiscoveringDegreesApril2025.html#section",
+    "title": "STEM Day 2025",
+    "section": "",
+    "text": "Key ideas in algebra and geometry developed in Core Maths modules in Levels 1 and 2\nKey programming languages used by mathematicians embedded in many modules\nDifferential geometry (generalise many of ideas to curved surfaces).\nHonours projects allow focus on specific topics of interest."
   }
 ]

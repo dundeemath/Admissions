@@ -84,7 +84,7 @@
         "\n",
         "::: {.column width=\"50%\"}"
       ],
-      "id": "c7795c1f"
+      "id": "74fb5037"
     },
     {
       "cell_type": "code",
@@ -146,7 +146,7 @@
         ":::\n",
         "::: {.column width=\"50%\"}"
       ],
-      "id": "4aea3b09"
+      "id": "8dfe2eea"
     },
     {
       "cell_type": "code",
@@ -211,7 +211,7 @@
         "\n",
         "* We can program algorithms to help understand mathematical concepts \n"
       ],
-      "id": "e34f11f5"
+      "id": "94dd6c08"
     }
   ],
   "metadata": {

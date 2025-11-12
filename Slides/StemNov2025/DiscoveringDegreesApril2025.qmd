@@ -1,0 +1,79 @@
+---
+title: "STEM Day 2025"
+author: "Philip Murray"
+
+format:
+  revealjs:
+    chalkboard: true
+    logo: UoD_logo_RGB.png
+
+    footer: "Mathematics, University of Dundee"
+---
+
+
+
+## Skills developed in maths degrees
+
+* Students become *logical numerate problem solvers*
+* Develop technical mathematical skills 
+* Learn how to apply mathematics to different problems
+* Develop computer programming skills
+* Develop communication skills
+
+
+
+## STEM skills are valuable
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](../../Images/MathsCareers.png)
+
+
+:::
+
+::: {.column width="50%"}
+![](../../Images/IFSCareerEarningsTable.png)
+:::
+::::
+
+
+## Teaching delivery
+
+* Two teaching semesters in the academic year
+* 3 or 4 modules in each semester
+* In each module (some combination of):
+    - lectures
+    - tutorials
+    - workshops
+    - computer classes
+
+## Final year project 
+
+- develop independent problem solving skills
+- work on an exciting mathematical topic
+- develop programming and presentation skills
+- Topics include: 
+
+    * The $25,000,000,000 eigenvector
+    * The Mathematics of monopoly
+    * How Sat Navs work?
+
+
+## Aims for today
+
+Use coordinate transformations to demonstrate some key tools used in mathematics:
+
+- examples to develop intuition
+- proof to make general statements
+- computer programming to help solve and visualise 
+
+##  How today's topic fits into our syllabus
+
+* Key ideas in algebra and geometry developed in Core Maths modules in Levels 1 and 2
+* Key programming languages used by mathematicians embedded in many modules
+* Differential geometry (generalises many of ideas to curved surfaces).
+- Honours projects allow focus on specific topics of interest.
+
+
+
