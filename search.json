@@ -1533,39 +1533,53 @@
     "text": "Mathematics degrees\n\nBecome a logical numerate problem solver\nLearn about exciting new areas of mathematics\nLearn how to apply mathematics to real world problems\nDevelop computer programming skills\nDevelop communication skills"
   },
   {
-    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#career-opportunities",
-    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#career-opportunities",
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#types-of-careers-graduates-have",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#types-of-careers-graduates-have",
     "title": "From linear recurrence relations to chaos",
-    "section": "Career opportunities",
-    "text": "Career opportunities"
+    "section": "Types of careers graduates have",
+    "text": "Types of careers graduates have"
   },
   {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#mathematics-degrees-1",
     "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#mathematics-degrees-1",
     "title": "From linear recurrence relations to chaos",
     "section": "Mathematics degrees",
-    "text": "Mathematics degrees\n\nSingle honours Mathematics degrees\nJoint Honours (e.g. with Accountancy, Economics, Physics, Life Sciences, Psychology)\nFlexibility in structure of degree pathways"
+    "text": "Mathematics degrees\n\nSingle honours Mathematics degrees (almost all mathematics modules)\nJoint Honours (50% modules in mathematics, e.g. with Accountancy, Economics, Physics, Life Sciences, Psychology)\nMathematics with flavours (e.g. Mathematics with Data Science)\nFlexibility in structure of degree pathways"
   },
   {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#what-mathematics-would-you-learn",
     "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#what-mathematics-would-you-learn",
     "title": "From linear recurrence relations to chaos",
     "section": "What mathematics would you learn?",
-    "text": "What mathematics would you learn?\n\nCore maths, building from knowledge of algebra, calculus and geometry\nNew mathematics (e.g. topic in pure mathematics, differential geometry, analysis, vector calculus, statistics)\nApplying mathematics to problems from physics, biology and finance"
+    "text": "What mathematics would you learn?\n\nCore mathematics, building from your knowledge of algebra, calculus and geometry\n\n\n\nNew mathematics (e.g. topics in pure mathematics, differential geometry, analysis, vector calculus, statistics)\n\n\n\n\nApplying mathematics (e.g. to physics, biology, finance, data science)"
   },
   {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#what-transferable-skills-would-you-learn",
     "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#what-transferable-skills-would-you-learn",
     "title": "From linear recurrence relations to chaos",
     "section": "What transferable skills would you learn?",
-    "text": "What transferable skills would you learn?\n\nProblem solving\nWriting computer programs to solve mathematical problems\nTeamwork\nCommunication skills (presentations, writing reports etc.)"
+    "text": "What transferable skills would you learn?\n\nProblem solving\n\n\n\nComputer programs for mathematical problems\n\n\n\n\nTeamwork\n\n\n\n\nCommunication skills (presentations, writing reports etc.)"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#final-year-project",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#final-year-project",
+    "title": "From linear recurrence relations to chaos",
+    "section": "Final year project",
+    "text": "Final year project\nVideo"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#mathematics-entry-requirements-at-uod",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#mathematics-entry-requirements-at-uod",
+    "title": "From linear recurrence relations to chaos",
+    "section": "Mathematics entry requirements at UoD",
+    "text": "Mathematics entry requirements at UoD\nHigher Mathematics\nMathematics, Physics, Engineering, Computer Science, Accountancy and Finance\n(note: this is not exhaustive)\nIf up to Nat 5 Mathematics required\nApplications for Mathematics is accepted for most degrees (but not Medicine and Dentistry)."
   },
   {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#example-recurrence-relations",
     "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#example-recurrence-relations",
     "title": "From linear recurrence relations to chaos",
     "section": "Example: recurrence relations",
-    "text": "Example: recurrence relations\nThe value of an endowment policy increases at the rate of 5 % per annum. The initial value is £7000. How much is the policy worth after two years?\n\n\\[\nu_0=7000\n\\]\n. . . \\[\nu_1=1.05 \\times 7000= 7350\n\\]\n. . . \\[\nu_2 =1.05 u_1 = 1.05 \\times  7350 =   7717\n\\]"
+    "text": "Example: recurrence relations\nThe value of an endowment policy increases at the rate of 5 \\(\\%\\) per annum. The initial value is £7000. How much is the policy worth after two years?\n\n\\[\nu_0=7000\n\\]\n. . . \\[\nu_1=1.05 \\times 7000= 7350\n\\]\n. . . \\[\nu_2 =1.05 u_1 = 1.05 \\times  7350 =   7717\n\\]"
   },
   {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#a-general-equation",
@@ -1636,6 +1650,13 @@
     "title": "From linear recurrence relations to chaos",
     "section": "Summary",
     "text": "Summary\n\nRelatively simple systems can exhibit complex behaviours\nStudying chaos in simplified settings allows us to understand behaviour in more complex settings (e.g. climate modelling, weather forecasting, financial markets)\nStudying mathematics enable us to become logical numerate problem solvers"
+  },
+  {
+    "objectID": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#section",
+    "href": "Slides/ApplicantVisitOnlineMarch2025/LogisticMapPres.html#section",
+    "title": "From linear recurrence relations to chaos",
+    "section": "",
+    "text": "Pen and paper calculation\nWriting code to solve problems"
   },
   {
     "objectID": "Slides/ApplicantVisitOnlineMarch2025/OpenDay2025.html#explore-how-mathematics-underpins-cryptography",
