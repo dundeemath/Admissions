@@ -295,8 +295,8 @@
 <h4 id="if-up-to-nat-5-mathematics-required">If up to Nat 5 Mathematics required</h4>
 <p>Applications for Mathematics is accepted for most degrees (but not Medicine and Dentistry).</p>
 </section>
-<section id="activity" class="slide level2">
-<h2>Activity</h2>
+<section id="some-apps-to-explore" class="slide level2">
+<h2>Some apps to explore</h2>
 
 <img data-src="DundeeMathsAdmissionsQRCode.png" class="r-stretch"></section>
 <section id="example-recurrence-relations" class="slide level2">
@@ -351,7 +351,7 @@ u_0=P, \quad r&gt;0.
 <span id="cb1-13"><a></a>app_ui = ui.page_fluid(</span>
 <span id="cb1-14"><a></a>    ui.layout_sidebar(</span>
 <span id="cb1-15"><a></a>        ui.sidebar(</span>
-<span id="cb1-16"><a></a>    ui.input_slider(id="a",label="Interest rate (%)",min=1.0,max=5.0,value=1.05,step=0.001),</span>
+<span id="cb1-16"><a></a>    ui.input_slider(id="a",label="Interest rate (%)",min=0.0,max=100.0,value=5,step=0.001),</span>
 <span id="cb1-17"><a></a>            </span>
 <span id="cb1-18"><a></a>     </span>
 <span id="cb1-19"><a></a>    ui.input_slider(id="u0",label="Initial amount (£)",min=2500.0,max=10000.0,value=3000.0,step=500),</span>
@@ -371,7 +371,7 @@ u_0=P, \quad r&gt;0.
 <span id="cb1-33"><a></a>        # Filter fata</span>
 <span id="cb1-34"><a></a>        </span>
 <span id="cb1-35"><a></a>        </span>
-<span id="cb1-36"><a></a>        a=float(input.a())</span>
+<span id="cb1-36"><a></a>        a=float(input.a())/100.0+1.0</span>
 <span id="cb1-37"><a></a>        b=0.0</span>
 <span id="cb1-38"><a></a>        u0=float(input.u0())</span>
 <span id="cb1-39"><a></a>        T=int(input.T())</span>
