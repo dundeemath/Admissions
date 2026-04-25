@@ -41,9 +41,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <meta name="shinylive:serviceworker_dir" content="..">
-<script src="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/shinylive.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/shinylive-0.10.7/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.10.7/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.10.7/shinylive/shinylive.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -175,7 +175,7 @@ window.Quarto = {
 <div id="fig-hmm" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hmm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="c21e95c2" class="cell" data-fig-width="1" data-execution_count="1">
+<div id="22f6605e" class="cell" data-fig-width="1" data-execution_count="1">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -201,7 +201,7 @@ x^2+y^2=R^2.
 <div id="fig-squarecircle" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-squarecircle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div id="c9b42c6d" class="cell" data-execution_count="2">
+<div id="a7948d1c" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -236,7 +236,7 @@ x_i^2+y_i^2&lt; R^2.
 \hat{\pi}\sim 4\frac{N_c}{N_s}.
 \]</span></p>
 <p>In <a href="#fig-apppi" class="quarto-xref">Figure&nbsp;3</a> we use an app to explore the approximation of <span class="math inline">\(\pi\)</span>. Here you can explore how the estimate for <span class="math inline">\(\pi\)</span> depends on the number of samples and consider circles of different radii.</p>
-<p>In the top plot the distribution of sampled points is plotted for a given realisation with the parameter values as you have chosen. In the bottom plot the estimate of <span class="math inline">\(\pi\)</span> is averaged over 100 realisations and plotted against the number of sampled points, <span class="math inline">\(N\)</span>.</p>
+<p>In the top plot the distribution of sampled points is plotted for a given realisation with the parameter values as you have chosen. In the bottom plot the estimate of <span class="math inline">\(\pi\)</span> is averaged over different numbers of realisations and plotted against the number of sampled points, <span class="math inline">\(N\)</span>.</p>
 <div id="fig-apppi" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-apppi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -255,10 +255,10 @@ from scipy.integrate import odeint
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.sidebar(
-    ui.input_slider(id="N",label="Num points per experiment",min=10,max=3000,value=10,step=1),
-    ui.input_slider(id="R",label="Radius",min=2.0,max=15.0,value=10.0,step=1),
-    ui.input_slider(id="L",label="Square side length",min=15.0,max=30.0,value=20.0,step=1),  
-    ui.input_slider(id="N_Exp",label="Num experiments",min=1,max=300,value=1,step=1),           
+    ui.input_slider(id="N",label="Num points per experiment (N)",min=10,max=30000,value=10,step=1),
+    ui.input_slider(id="R",label="Radius (R)",min=2.0,max=15.0,value=10.0,step=1),
+    ui.input_slider(id="L",label="Square side length (L)",min=15.0,max=30.0,value=20.0,step=1),  
+    ui.input_slider(id="N_Exp",label="Num repeats",min=1,max=300,value=1,step=1),           
      
               
           
@@ -272,21 +272,20 @@ def server(input, output, session):
     
 
     def estimate_pi(N,R,L): 
-        x = np.random.uniform(0,L,N)
-        y = np.random.uniform(0,L,N)
+        x = np.random.uniform(0, L, N)
+        y = np.random.uniform(0, L, N)
 
-        radius=((x-L/2)**2+(y-L/2)**2)**(0.5)
-        num_points_inside_circle=len(radius[radius&lt;=R])
+        radius_sq = (x - L/2)**2 + (y - L/2)**2
 
-        pi_est=(L/R)**2*(num_points_inside_circle/N)
+        num_points_inside_circle = np.sum(radius_sq &lt;= R**2)
 
+        pi_est = (L/R)**2 * (num_points_inside_circle / N)
         return x,y,pi_est
 
     @render.plot
     def plot():
         fig, ax = plt.subplots(2,1)
-        #ax.set_ylim([-2, 2])
-        # Filter fata
+        
         
         
         N=int(input.N())
@@ -298,30 +297,42 @@ def server(input, output, session):
         x,y,pi_est=estimate_pi(N,R,L)
 
         radius=((x-L/2)**2+(y-L/2)**2)**(0.5)
-        
         ax[0].plot(x[radius&lt;R],y[radius&lt;R],'b.')
         ax[0].plot(x[radius&gt;R],y[radius&gt;R],'k.')
-
         ax[0].set_xlabel('$x$')
         ax[0].set_ylabel('$y$')
+        ax[0].set_box_aspect(1)
+        ax[0].set_xlim([0,L])
+        ax[0].set_ylim([0,L])
 
         theta=np.linspace(0,2*np.pi,1000)
         ax[0].plot(R*np.cos(theta)+L/2.0,R*np.sin(theta)+L/2.0,'r')
-        ax[0].set_title('$\hat{\pi}$='+str(pi_est))
-
-        
-        N_vec=np.linspace(10,3000,80,dtype=int)
+        ax[0].set_title('Single realisation, $\hat{\pi}$='+str(round(pi_est,4)))
+    
+        N_vec=np.linspace(3,N,30,dtype=int)
         pi_est_vec=np.zeros_like(N_vec,dtype=float)
-        for i in range(len(N_vec)):
-            pi_est_i=np.zeros((n_samples,1),dtype=float)
+
+        # loop over N_vec number of sample points in domain
+        for i,N_samp_i in enumerate(N_vec):
+            
+            # Try a different sample estimate
+            pi_est_i_vec=np.zeros((n_samples,1),dtype=float)
+            # Sample pi and store in vector
+        
             for j in range(n_samples):
-                x,y,pi_est=estimate_pi(N_vec[i],R,L)
-                pi_est_i[j]=pi_est
-            pi_est_vec[i]=np.mean(pi_est_i)
+                x,y,pi_est_ij=estimate_pi(N_samp_i,R,L)
+                pi_est_i_vec[j]=(pi_est_ij)
+            pi_est_vec[i]=np.mean(pi_est_i_vec)
 
         ax[1].plot(N_vec,pi_est_vec,'.',N_vec,np.pi*np.ones_like(N_vec))
-        ax[1].set_xlabel('$N$')
+        ax[1].plot([N,N],[2.5,3.5],'--')
+        ax[1].plot(N_vec,np.pi+1/np.sqrt(N_vec),':')
+        ax[1].plot(N_vec,np.pi-1/np.sqrt(N_vec),':')
+    
+        ax[1].set_xlabel('Num. points per experiment ($N$)')
         ax[1].set_ylabel('$\hat{\pi}$')
+        ax[1].set_ylim([2.9,3.3])
+        ax[1].set_title('$\hat{\pi}$ average over '+str(n_samples) + ' repeats')
         #plt.Circle([0.0, 0.0 ],R,fill = False,axis=ax)
         #ax.Circle((0.0, 0.0 ),R,fill = False )
 
@@ -332,8 +343,8 @@ def server(input, output, session):
     
 app = App(app_ui, server)</code></pre>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-apppi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-apppi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: An app to estimate <span class="math inline">\(pi\)</span> using Monte Carlo sampling. Top: <span class="math inline">\(\hat{\pi}\)</span> is estimated for single realisation. Bottom: A plot of <span class="math inline">\(\hat{\pi}\)</span> against the number of sampled points, <span class="math inline">\(N\)</span>. Dotted lines: expected convergence when the number of repeats is 1.
 </figcaption>
 </figure>
 </div>
