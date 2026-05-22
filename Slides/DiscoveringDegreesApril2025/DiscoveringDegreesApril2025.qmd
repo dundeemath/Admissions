@@ -1,5 +1,5 @@
 ---
-title: "Discovering degrees 2025"
+title: "Discovering degrees 2026"
 author: "Philip Murray"
 
 format:
@@ -61,6 +61,41 @@ format:
 
 
 # Aims for today
+
+## Probability and geometry
+
+- Estimate areas using probabilistic sampling of random numbers (Monte Carlo Method)
+
+## Probability
+
+Celtic winning the Premier League: 
+
+ - odds 8/11
+ - implied probability = $\frac{11}{8+11}$= 0.58
+
+Hearts winning the Premier League: 
+
+- odds 5/4
+- implied probability: 0.44
+
+## Summing probabilities
+
+Celtic or Hearts to win Premier League: 
+
+- Implied probability 0.58+0.44=1.02
+
+
+But the true probability of Celtic or Aberdeen winning is 1.
+
+Lesson: the bookie always wins!
+
+
+## Monte Carlo sampling
+
+
+- Generate random numbers in order to estimate some quantity of interest
+
+
 
 ## Estimate $\pi$ using Monte Carlo techniques
 

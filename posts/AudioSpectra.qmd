@@ -1,0 +1,845 @@
+
+---
+title: "Making and recording sounds"
+format: html 
+
+categories: [calculus, music]
+filters:
+  - shinylive
+---
+
+## 
+
+The goal of this page is to explore how sounds can be represented mathematically.
+
+- Why does the pitch of a string change as we adjust the tuning heads?
+- Why does the pitch change when string length changes (e.g. by clamping strings on frets)?
+- Why do some notes sound *nice* together?
+- Why does an expensive musical instrument sound *nicer* than a cheaper one? 
+
+
+## A mathematical model of a stretched string
+
+
+### Formulation 
+
+Consider a stretched string of length $L$ (e.g. a guitar string). Suppose that the string holds a certain amount of tension, $T$, and has a certain line density, $\mu$. The thicker guitar strings will have a larger line density ($\mu$ is bigger). Similarly, we can increase tension in the string by twisting the tuning head.
+
+Let $u(x,t)$ represent the displacement of the string at a given position, $x$, at time, $t$.
+
+If the string is initially displaced (e.g. plucking a guitar string) we expect it to vibrate; this vibration generates the sound.
+
+From a mathematical perspective, we can represent the string as a series of connected small elements.  We can then describe the forces exerted on an element by its neighbours and use Newton's Second Law to connect forces to acceleration (i.e. movement).
+
+
+### The wave equation
+
+A governing equation,  known as the *wave equation*, can be written as
+
+$$
+\frac{\partial ^2 u}{\partial t^2}=c^2 \frac{\partial ^2 u}{\partial x^2},
+$$
+where the wavespeed
+$$
+c=\sqrt{\frac{T}{\mu}},
+$$
+depends on the string tension and density.
+
+As the boundaries of the string are fixed, the displacements there must be zero. This information is encoded via the *boundary conditions*
+$$
+u(x=0,t)=0, \quad u(x=L,t)=0, \quad \forall \quad  t.
+$$
+
+We assume that the initial displacement is
+$$
+u(x,t=0)=f(x), \quad x \in [0,L].
+$$
+Here $f(.)$ is a function that represents the shape of the string at the instant it is plucked.
+
+We also assume that the string is not moving initially, i.e. the initial velocity is zero
+$$
+\frac{\partial u}{\partial t}\bigg|_{(x,t=0)}=0.
+$$
+
+
+### Solutions of the wave equation
+
+In @fig-weqn we can explore how the vibrations (frequency) of the string depend on parameters such as the string length, thickness and tension. The solutions are a special type of solution to the wave equation that are known as *stationary waves*. A formula for the frequency of a vibration is given by
+$$
+f=\frac{n}{2L}\sqrt{\frac{T}{\mu}}, \quad n =1,2,...
+$$
+
+
+:::{#fig-weqn}
+
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 950
+
+from shiny import App, ui, render, reactive
+from shinywidgets import output_widget, render_widget
+import numpy as np
+import plotly.graph_objects as go
+from scipy.signal import spectrogram
+import matplotlib.pyplot as plt
+
+# ============================================================
+# UI
+# ============================================================
+
+app_ui = ui.page_fluid(
+
+    ui.h2("Wave Equation on a Vibrating String"),
+
+    ui.p(
+        "Interactive solution of the 1D wave equation."
+    ),
+
+    ui.layout_sidebar(
+
+        ui.sidebar(
+
+            ui.input_slider(
+                "L",
+                "String Length L (m)",
+                min=0.5,
+                max=5.0,
+                value=1.0,
+                step=0.1,
+            ),
+
+            ui.input_slider(
+                "T",
+                "Tension T (N)",
+                min=1,
+                max=500,
+                value=100,
+                step=1,
+            ),
+
+            ui.input_slider(
+                "mu",
+                "Linear Density μ (kg/m)",
+                min=0.001,
+                max=0.05,
+                value=0.01,
+                step=0.001,
+            ),
+
+            ui.input_slider(
+                "n",
+                "Mode Number n",
+                min=1,
+                max=6,
+                value=1,
+                step=1,
+            ),
+
+            ui.input_slider(
+                "A",
+                "Amplitude A",
+                min=0.1,
+                max=2.0,
+                value=1.0,
+                step=0.1,
+            ),
+
+            ui.input_slider(
+                "time",
+                "Time t (s)",
+                min=0.0,
+                max=2.0,
+                value=0.0,
+                step=0.01,
+                animate=True,
+            ),
+        ),
+
+        ui.div(
+
+            ui.h4("Computed Quantities"),
+
+            ui.output_text_verbatim("summary"),
+
+            ui.hr(),
+
+            ui.h4("Wave Motion"),
+
+            output_widget("wave_plot"),
+
+            ui.hr(),
+
+            ui.h4("Spectrogram of displacement"),
+
+            ui.output_plot("freq_plot"),
+        ),
+    ),
+)
+
+# ============================================================
+# Server
+# ============================================================
+
+def server(input, output, session):
+
+    # --------------------------------------------------------
+    # Wave speed
+    # --------------------------------------------------------
+
+    @reactive.calc
+    def wave_speed():
+
+        return np.sqrt(
+            input.T() / input.mu()
+        )
+
+    # --------------------------------------------------------
+    # Frequency
+    # --------------------------------------------------------
+
+    @reactive.calc
+    def frequency():
+
+        return (
+            input.n()
+            * wave_speed()
+            / (2 * input.L())
+        )
+
+    # --------------------------------------------------------
+    # Summary
+    # --------------------------------------------------------
+
+    @output
+    @render.text
+    def summary():
+
+        return (
+            f"Wave speed c = {wave_speed():.2f} m/s\n"
+            f"Frequency f = {frequency():.2f} Hz\n\n"
+            f"Wave equation:\n"
+            f"u_tt = c² u_xx"
+        )
+
+    # --------------------------------------------------------
+    # Time-dependent wave solution
+    # --------------------------------------------------------
+
+    @output
+    @render_widget
+    def wave_plot():
+
+        L = input.L()
+
+        n = input.n()
+
+        A = input.A()
+
+        c = wave_speed()
+
+        t = input.time()
+
+        x = np.linspace(0, L, 400)
+
+        # Exact standing-wave solution
+        y = (
+            A
+            * np.sin(n * np.pi * x / L)
+            * np.cos(n * np.pi * c * t / L)
+        )
+
+        fig = go.Figure()
+
+        fig.add_scatter(
+            x=x,
+            y=y,
+            mode="lines",
+        )
+
+        fig.update_layout(
+            height=450,
+            title=(
+                f"Standing Wave "
+                f"(t = {t:.2f} s)"
+            ),
+            xaxis_title="Position x (m)",
+            yaxis_title="Displacement",
+        )
+
+        fig.update_yaxes(
+            range=[-2.1, 2.2]
+        )
+
+        return fig
+
+    # --------------------------------------------------------
+    # Frequency dependence
+    # --------------------------------------------------------
+
+    @render.plot
+    def freq_plot():
+
+        
+        window = 1024
+
+        overlap_fraction = 0.5
+
+        noverlap = int(
+            window * overlap_fraction
+        )
+        L = input.L()
+
+        n = input.n()
+
+        A = input.A()
+
+        c = wave_speed()
+
+
+        SAMPLE_RATE=1000.0
+        T=10.0
+
+        t = np.linspace(0,T,int(SAMPLE_RATE*T))
+
+        x_samp = L*0.333
+
+        # Exact standing-wave solution
+        y = (
+            A
+            * np.sin(n * np.pi * x_samp / L)
+            * np.cos(n * np.pi * c * t / L)
+        )
+
+
+        freqs, times, Sxx = spectrogram(
+            y,
+            fs=SAMPLE_RATE,
+            nperseg=window,
+            noverlap=noverlap,
+        )
+
+        # Convert to dB
+        Sxx_db = 10 * np.log10(
+            Sxx + 1e-10
+        )
+
+        fig, ax = plt.subplots(
+            figsize=(10, 5)
+        )
+
+        mesh = ax.pcolormesh(
+            times,
+            freqs,
+            Sxx_db,
+            shading="gouraud",
+        )
+
+        ax.set_yscale("log")
+        ax.set_xlabel("Time (s)")
+        ax.set_ylabel("Frequency (Hz)")
+        ax.set_title(
+            "Spectrogram"
+        )
+
+
+        fig.colorbar(
+                mesh,
+                ax=ax,
+                label="Power (dB)"
+            )
+
+        plt.show()
+
+# ============================================================
+# App
+# ============================================================
+
+app = App(app_ui, server)
+
+
+```
+:::
+
+The solution of the wave equation can be written as a sum of different terms that oscillate at particular frequencies. This information is presented in the *spectrogram*.  
+
+
+### What we've learned?
+
+
+## Representing general sounds 
+
+Sound waves are pressure/density disturbances that propagate through a medium (e.g. air). A microphone detects pressure waves recorded at a given point in space and saves as a signal. 
+
+We can represent a signal as a sum of terms of different frequencies. This information can also be presented in a spectrogram. We expect noise to have a messy spectrogram as there are components with lots of frequencies.
+
+In @fig-integapp there is an app that allows you to record a 10 sec audio clip (assuming that your device has a microphone). The app then uses the recorded sound clip to generate a *spectrogram*. This picture represents how the recorded sound at a given time can be represented as a sum  of oscillations of different frequencies.
+
+- Play a monotone sound (e.g. the note A that is close to middle C on the piano has a frequency of 440 Hz). If you play the [note A](https://www.youtube.com/watch?v=xGXYFJmvIvk) you should see this frequency on the spectrogram. Note that you might have to disable background noise cancellation software on your device! Alternatively, you could get around this by making the sound variable (e.g. turn off and on repeatedly). 
+- Play some [white noise](https://www.youtube.com/watch?v=aVkU7XQKgzY). What does the spectrum look like?
+- If you play or a sing a scale ([Do-Re-Mi-Fa](https://www.youtube.com/watch?v=edScGrfl50M) etc.), can you see the step changes in the spectrogram?
+- The chord of C major is made of the notes C, E and G. Examine the spectrogram when you play combinations of these notes (C and E) or C and G. Can you spot a relationship between the frequencies of these notes?
+
+::: {#fig-integapp}
+
+
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 750
+#| 
+# app.py
+#
+# Record microphone audio for 10 seconds
+# then compute and display spectrogram
+#
+# Features:
+# - Record audio
+# - Re-record / overwrite previous recording
+# - Spectrogram display
+# - Works in Shinylive
+#
+# Run locally:
+#   pip install shiny numpy matplotlib scipy
+#   shiny run app.py
+#
+# Export to Shinylive:
+#   pip install shinylive
+#   shinylive export . docs
+
+from shiny import App, ui, reactive, render
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import spectrogram
+
+# app.py
+#
+# Interactive microphone spectrogram dashboard
+# for Shiny for Python / Shinylive
+#
+# Features
+# --------
+# - Record 10 seconds from microphone
+# - Re-record / overwrite
+# - Interactive spectrogram controls
+# - Linear or log-frequency axis
+# - Adjustable frequency range
+# - Adjustable FFT window
+# - Works in Shinylive
+#
+# Run locally:
+#   pip install shiny numpy matplotlib scipy
+#   shiny run app.py
+#
+# Export to Shinylive:
+#   pip install shinylive
+#   shinylive export . docs
+
+from shiny import App, ui, reactive, render
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import spectrogram
+
+# =====================================================
+# CONSTANTS
+# =====================================================
+
+SAMPLE_RATE = 44100
+RECORD_SECONDS = 10
+MAX_SAMPLES = SAMPLE_RATE * RECORD_SECONDS
+
+# =====================================================
+# UI
+# =====================================================
+
+app_ui = ui.page_fluid(
+
+    ui.tags.head(
+
+        ui.tags.script(
+            f"""
+            let audioContext;
+            let microphone;
+            let processor;
+
+            let recording = false;
+
+            async function startRecording() {{
+
+                if (recording) {{
+                    return;
+                }}
+
+                recording = true;
+
+                console.log("Recording started");
+
+                const stream =
+                    await navigator.mediaDevices.getUserMedia({{
+                        audio: true
+                    }});
+
+                audioContext =
+                    new AudioContext();
+
+                microphone =
+                    audioContext.createMediaStreamSource(stream);
+
+                processor =
+                    audioContext.createScriptProcessor(
+                        2048,
+                        1,
+                        1
+                    );
+
+                microphone.connect(processor);
+
+                processor.connect(
+                    audioContext.destination
+                );
+
+                const startTime = Date.now();
+
+                processor.onaudioprocess = function(e) {{
+
+                    if (!recording) {{
+                        return;
+                    }}
+
+                    const input =
+                        e.inputBuffer.getChannelData(0);
+
+                    const arr = Array.from(input);
+
+                    Shiny.setInputValue(
+                        "audio_chunk",
+                        arr,
+                        {{priority: "event"}}
+                    );
+
+                    const elapsed =
+                        (Date.now() - startTime) / 1000;
+
+                    Shiny.setInputValue(
+                        "recording_time",
+                        elapsed,
+                        {{priority: "event"}}
+                    );
+
+                    if (elapsed >= {RECORD_SECONDS}) {{
+
+                        recording = false;
+
+                        processor.disconnect();
+                        microphone.disconnect();
+
+                        stream.getTracks().forEach(
+                            track => track.stop()
+                        );
+
+                        console.log("Recording finished");
+
+                        Shiny.setInputValue(
+                            "recording_done",
+                            Math.random(),
+                            {{priority: "event"}}
+                        );
+                    }}
+                }};
+            }}
+
+            document.addEventListener(
+                "DOMContentLoaded",
+                function() {{
+
+                    const btn =
+                        document.getElementById("start");
+
+                    btn.onclick = async function() {{
+
+                        try {{
+
+                            await startRecording();
+
+                        }} catch(err) {{
+
+                            console.error(err);
+
+                            alert(
+                                "Microphone error: " + err
+                            );
+                        }}
+                    }};
+                }}
+            );
+            """
+        ),
+    ),
+
+    ui.h2("Interactive Audio Spectrogram"),
+
+    ui.layout_sidebar(
+
+        ui.sidebar(
+
+            ui.input_action_button(
+                "start",
+                "Record / Re-record"
+            ),
+
+            ui.hr(),
+
+            ui.input_slider(
+                "freq_lim",
+                "Frequency limits (Hz)",
+                min=50,
+                max=22050,
+                value=[50,2000],
+                step=20,
+            ),
+
+            ui.input_select(
+                "scale",
+                "Frequency Scale",
+                choices={
+                    "linear": "Linear",
+                    "log": "Logarithmic",
+                },
+                selected="linear",
+            ),
+
+            ui.input_slider(
+                "window",
+                "FFT Window Size",
+                min=256,
+                max=4096,
+                value=1024,
+                step=256,
+            ),
+
+            ui.input_slider(
+                "overlap",
+                "Overlap (%)",
+                min=0,
+                max=95,
+                value=50,
+                step=5,
+            ),
+
+            ui.input_checkbox(
+                "show_colorbar",
+                "Show Colorbar",
+                value=True,
+            ),
+        ),
+
+        ui.card(
+            ui.card_header("Status"),
+            ui.output_text_verbatim("status"),
+        ),
+
+        ui.card(
+            ui.card_header("Spectrogram"),
+            ui.output_plot("spectrogram_plot"),
+        ),
+    ),
+)
+
+# =====================================================
+# SERVER
+# =====================================================
+
+def server(input, output, session):
+
+    # Audio storage
+    recorded_audio = reactive.value(
+        np.array([], dtype=np.float32)
+    )
+
+    recording_complete = reactive.value(False)
+
+    # -------------------------------------------------
+    # Reset recording
+    # -------------------------------------------------
+
+    @reactive.effect
+    @reactive.event(input.start)
+    def _():
+
+        recorded_audio.set(
+            np.array([], dtype=np.float32)
+        )
+
+        recording_complete.set(False)
+
+    # -------------------------------------------------
+    # Receive audio chunks
+    # -------------------------------------------------
+
+    @reactive.effect
+    @reactive.event(input.audio_chunk)
+    def _():
+
+        if recording_complete.get():
+            return
+
+        chunk = np.array(
+            input.audio_chunk(),
+            dtype=np.float32
+        )
+
+        current = recorded_audio.get()
+
+        updated = np.concatenate([
+            current,
+            chunk
+        ])
+
+        updated = updated[:MAX_SAMPLES]
+
+        recorded_audio.set(updated)
+
+    # -------------------------------------------------
+    # Recording complete
+    # -------------------------------------------------
+
+    @reactive.effect
+    @reactive.event(input.recording_done)
+    def _():
+
+        recording_complete.set(True)
+
+    # -------------------------------------------------
+    # Status text
+    # -------------------------------------------------
+
+    @output
+    @render.text
+    def status():
+
+        if recording_complete.get():
+
+            seconds = (
+                len(recorded_audio.get())
+                / SAMPLE_RATE
+            )
+
+            return (
+                f"Recording complete.\n"
+                f"{seconds:.1f} seconds captured."
+            )
+
+        rt = input.recording_time()
+
+        if rt is None:
+            return (
+                "Press Record to begin."
+            )
+
+        return (
+            f"Recording... "
+            f"{rt:.1f} sec"
+        )
+
+    # -------------------------------------------------
+    # Spectrogram
+    # -------------------------------------------------
+
+    @output
+    @render.plot
+    def spectrogram_plot():
+
+        if not recording_complete.get():
+
+            fig, ax = plt.subplots()
+
+            ax.text(
+                0.5,
+                0.5,
+                "No recording yet",
+                ha="center",
+                va="center",
+            )
+
+            ax.axis("off")
+
+            return fig
+
+        audio = recorded_audio.get()
+
+        window = input.window()
+
+        overlap_fraction = (
+            input.overlap() / 100
+        )
+
+        noverlap = int(
+            window * overlap_fraction
+        )
+
+        freqs, times, Sxx = spectrogram(
+            audio,
+            fs=SAMPLE_RATE,
+            nperseg=window,
+            noverlap=noverlap,
+        )
+
+        # Convert to dB
+        Sxx_db = 10 * np.log10(
+            Sxx + 1e-10
+        )
+
+        fig, ax = plt.subplots(
+            figsize=(10, 5)
+        )
+
+        mesh = ax.pcolormesh(
+            times,
+            freqs,
+            Sxx_db,
+            shading="gouraud",
+        )
+
+        # Frequency range
+        ax.set_ylim(
+            input.freq_lim()[0],
+            input.freq_lim()[1]
+        )
+
+        # Linear / log scale
+        if input.scale() == "log":
+
+            ax.set_yscale("log")
+
+        ax.set_xlabel("Time (s)")
+        ax.set_ylabel("Frequency (Hz)")
+
+        ax.set_title(
+            "Spectrogram"
+        )
+
+        if input.show_colorbar():
+
+            fig.colorbar(
+                mesh,
+                ax=ax,
+                label="Power (dB)"
+            )
+
+        return fig
+
+# =====================================================
+# APP
+# =====================================================
+
+app = App(app_ui, server)
+
+
+```
+:::
+
+## Outlook
+
+- We have investigated a real world phenomenon mathematically and used a combination of analyis and computer programming to understand behaviour. These principles could equally well be applied to other problems (e.g. financial markets, signals from medical devices etc.)
+- The wave equation occurs in many areas of mathematics (e.g. fluid dynamics, light propagation, quantum mechanics).
+- It is usually a good strategy to study simpler versions of hard problems!

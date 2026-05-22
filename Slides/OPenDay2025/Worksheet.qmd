@@ -1,5 +1,5 @@
 ---
-title: "Open Day 2025"
+title: "Applicant Visit Day 2026"
 format: 
     html:
         number-sections: true

@@ -1,7 +1,7 @@
 ---
 title: "From linear recurrence relations to chaos"
 institute: "University of Dundee"
-date: 03-20-2025
+date: 11-20-2025
 author: "Dr. Philip Murray"
 format: 
   revealjs:
@@ -9,8 +9,6 @@ format:
     theme: [default, resources/custom.scss]
     logo: logo.png
     chalkboard: true
-
-    
 
     template-partials:
       - resources/title-slide.html
@@ -20,11 +18,93 @@ filters:
   - shinylive
 ---
 
+## Mathematics degrees
+
+*  Become a *logical numerate problem solver*
+* Learn about exciting new areas of mathematics
+* Learn how to apply mathematics to real world problems
+* Develop computer programming skills
+* Develop communication skills
 
 
-## Recurrence relations - example 
 
-The value of an endowment policy increases at the rate of 5 \% per annum. The initial value is £7000. How much is it worth after two years?
+## Types of careers graduates have
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](../../Images/MathsCareers.png)
+
+
+:::
+
+::: {.column width="50%"}
+![](../../Images/IFSCareerEarningsTable.png)
+:::
+::::
+
+## Mathematics degrees 
+
+* Single honours Mathematics degrees (almost all mathematics modules)
+* Joint Honours (50% modules in mathematics, e.g. with Accountancy, Economics, Physics, Life Sciences, Psychology)
+* Mathematics with flavours (e.g. Mathematics with Data Science)
+* Flexibility in structure of degree pathways
+
+## What mathematics would you learn?
+
+* Core mathematics, building from your knowledge of algebra, calculus and geometry
+
+. . . 
+
+* New mathematics (e.g. topics in pure mathematics, differential geometry, analysis, vector calculus, statistics)
+
+. . .
+
+* Applying mathematics (e.g.  to physics, biology, finance, data science)
+
+## What transferable skills would you learn?
+
+* Problem solving
+
+. . .
+
+*  Computer programs for  mathematical problems
+
+. . .
+
+* Teamwork
+
+. . . 
+
+* Communication skills (presentations, writing reports etc.)
+
+## Final year project 
+
+
+![](PosterSessionApril2025.mp4)
+
+## Mathematics entry requirements at UoD
+
+#### Higher Mathematics
+
+Mathematics, Physics, Engineering, Computer Science, Accountancy and Finance
+
+(note: this is not exhaustive)
+
+####  If up to Nat 5 Mathematics required
+
+Applications for Mathematics is accepted for most degrees (but not Medicine and Dentistry).
+
+
+
+
+## Some apps to explore 
+
+![](DundeeMathsAdmissionsQRCode.png)
+
+## Example: recurrence relations  
+
+The value of an endowment policy increases at the rate of 5 $\%$ per annum. The initial value is £7000. How much is the policy worth after two years?
 
 . . .
 
@@ -43,9 +123,30 @@ u_2 =1.05 u_1 = 1.05 \times  7350 =   7717
 $$
  
 
+## A general equation
+
+$$
+u_n=(1+r)u_{n-1}, \quad n=1,..,N
+$$
+
+. . . 
+
+$$
+u_0=P, \quad r>0.
+$$
+
+. . .
+
+Does a solution exist?
+
+Does the solution converge?
+
+Is there more than one solution?
 
 
-## Simulating the accumulation
+
+
+## Writing a computer program to simulate the solution
 
 https://dundeemath.github.io/Admissions/posts/RecurrenceRelations.html
 
@@ -68,7 +169,7 @@ from scipy.integrate import odeint
 app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.sidebar(
-    ui.input_slider(id="a",label="Interest rate (%)",min=1.0,max=5.0,value=1.05,step=0.001),
+    ui.input_slider(id="a",label="Interest rate (%)",min=0.0,max=100.0,value=5,step=0.001),
             
      
     ui.input_slider(id="u0",label="Initial amount (£)",min=2500.0,max=10000.0,value=3000.0,step=500),
@@ -88,7 +189,7 @@ def server(input, output, session):
         # Filter fata
         
         
-        a=float(input.a())
+        a=float(input.a())/100.0+1.0
         b=0.0
         u0=float(input.u0())
         T=int(input.T())
@@ -131,7 +232,7 @@ app = App(app_ui, server)
 ```
 :::
 
-## General form for a recurrence relation
+## What about a more general form?
 $$u_{n+1}=r u_n+b$$
 
 . . . 
@@ -344,7 +445,7 @@ app = App(app_ui, server)
 ```
 :::
 
-## A nonlinear recurrence relation
+## The logistic map: a nonlinear recurrence relation
 
 $$
 u_{n+1}=ru_n(1-u_n)
@@ -579,33 +680,15 @@ app = App(app_ui, server)
 :::
 
 
-## Mathematics degrees
+## Summary
 
-*  Become a *logical numerate problem solver*
-* Learn about exciting new areas of mathematics
-* Learn how to apply mathematics to real world problems
-* Develop computer programming skills
-* Develop communication skills
+* Relatively simple systems can exhibit complex behaviours
 
+* Studying chaos in simplified settings allows us to understand behaviour in more complex settings (e.g. climate modelling, weather forecasting, financial markets)
 
+* Studying mathematics enable us to become *logical numerate problem solvers*
 
-## Logical numerate problem solvers are valued
+## 
 
-:::: {.columns}
-
-::: {.column width="50%"}
-![](../../Images/MathsCareers.png)
-
-
-:::
-
-::: {.column width="50%"}
-![](../../Images/IFSCareerEarningsTable.png)
-:::
-::::
-
-## Mathematics degrees 
-
-* Single honours Mathematics degrees 
-* Joint Honours (e.g. with Accountancy, Economics, Physics, Life Sciences, Psychology)
-* Flexibility in structure of degree pathways
+* Pen and paper calculation
+* Writing code to solve problems

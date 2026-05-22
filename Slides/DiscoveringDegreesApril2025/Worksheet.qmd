@@ -1,5 +1,5 @@
 ---
-title: "Discovering Degrees 2025"
+title: "Discovering Degrees 2026"
 format: 
     html:
         number-sections: true
