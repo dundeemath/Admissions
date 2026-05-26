@@ -840,6 +840,6 @@ app = App(app_ui, server)
 
 ## Outlook
 
-- We have investigated a real world phenomenon mathematically and used a combination of analyis and computer programming to understand behaviour. These principles could equally well be applied to other problems (e.g. financial markets, signals from medical devices etc.)
+- We have investigated a real world phenomenon mathematically and used a combination of analyis and computer programming to understand behaviour. This approach could equally well be applied to other problems (e.g. financial markets, signals from medical devices etc.)
 - The wave equation occurs in many areas of mathematics (e.g. fluid dynamics, light propagation, quantum mechanics).
 - It is usually a good strategy to study simpler versions of hard problems!
