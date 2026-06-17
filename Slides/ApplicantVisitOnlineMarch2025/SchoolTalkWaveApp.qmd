@@ -1,16 +1,146 @@
-
 ---
-title: "Making and recording sounds"
-format: html 
+title: "Carnoustie High Talk"
+institute: "University of Dundee"
+date: 06-15-2026
+author: "Dr. Philip Murray"
+format: 
+  revealjs:
+    html-math-method: mathjax
+    theme: [default, resources/custom.scss]
+    logo: logo.png
+    chalkboard: true
 
-categories: [calculus, music]
+    
+
+    template-partials:
+      - resources/title-slide.html
+    footnotes-hover: true
+    slide-number: True
 filters:
   - shinylive
 ---
 
-## 
+## Why Mathematics?
 
-The goal of this page is to explore how sounds can be represented mathematically.
+* route into many numerate professions
+* diverse career opportunities
+* learn a *language* that can be applied in many contexts
+* well paid jobs
+* learn skills for the digital age
+
+
+. . .
+
+* Because you enjoy it!
+
+
+## What happens on a Mathematics degree?
+:::: {.columns}
+
+::: {.column width="60%"}
+
+* Build from Higher/Advanced Higher Mathematics
+* Learn how to apply mathematics to real world problems
+* Develop programming skills needed to solve mathematical problems
+* Develop communication skills
+
+:::
+
+::: {.column width="40%"}
+![](NSSREsults2024.png)
+:::
+
+::::
+
+. . .
+
+ Learn to become a *logical numerate problem solver*
+
+
+
+## Logical numerate problem solvers are valued
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](../../Images/MathsCareers.png)
+
+
+:::
+
+::: {.column width="50%"}
+![](../../Images/IFSCareerEarningsTable.png)
+:::
+::::
+
+www.ima.org
+
+
+## What have recent Dundee graduates gone on to do?
+
+:::: {.columns}
+
+::: {.column width="50%"}
+* Actuaries
+* Accountants
+* Data analysts
+* Engineers
+* Trade analysts
+:::
+
+::: {.column width="50%"}
+
+* App. developers
+* Teachers
+* Academia
+* Programmers
+:::
+::::
+
+
+## How is Mathematics taught at Uni?
+
+* develop core syllabus (e.g. algebra and calculus) 
+* learn about new mathematical topics (e.g. statistics, dynamical systems, differential geometry, operational research ...)
+
+* lectures (50 minute, twice a week)
+* weekly tutorials (usually associated with worksheets)
+* computer labs (develop programming skills)
+
+
+## Flex your mathematical muscles with a final year project 
+
+- develop independent problem solving skills
+- develop programming and presentation skills
+
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+* The $25,000,000,000 eigenvector
+* The mathematics of monopoly
+* How sat. navs work?
+:::
+::: {.column width="50%"}
+
+![](PrintGallery.png)
+
+:::
+::::
+
+
+# Today's activity
+
+## Mathematical modelling
+
+- Formulate problem
+- Define variables
+- Governing equations
+- Calculate solutions
+- Insight
+
+## Musical notes {.smaller} 
 
 - Why does the pitch of a string change as we adjust the tuning heads?
 - Why does the pitch change when string length changes (e.g. by clamping strings on frets)?
@@ -23,71 +153,51 @@ The goal of this page is to explore how sounds can be represented mathematically
 
 ### Formulation 
 
-Consider a stretched string of length $L$ (e.g. a guitar string). Suppose that the string holds a certain amount of tension, $T$, and has a certain line density, $\mu$. 
+- a stretched string of length $L$ (e.g. a guitar string).
+- tension, $T$, and line density, $\mu$. 
 
-The thicker guitar strings will have a larger line density ($\mu$ is bigger). Similarly, we can increase tension in the string by twisting the tuning head.
+- Let $u(x,t)$ represent the displacement of the string at a given position, $x$, at time, $t$.
 
-Let $u(x,t)$ represent the displacement of the string at a given position, $x$, at time, $t$. When the string is at rest $u$ is zero everywhere.
-
-If the string is initially displaced (e.g. plucking a guitar string) we expect it to oscillate; this vibration generates the sound.
-
-From a mathematical perspective, we can represent the string as a series of connected small elements.  We can then describe the forces exerted on an element by its neighbours and use Newton's Second Law to connect forces to acceleration (i.e. movement).
+- Plucking initiates the vibration which generates the sound.
 
 
-### The wave equation
+## The wave equation
 
-A governing equation, known as the *wave equation*, can be written as
-
+- The equation is
 $$
 \frac{\partial ^2 u}{\partial t^2}=c^2 \frac{\partial ^2 u}{\partial x^2},
-$$ {#eq-waveqn}
-where the wave speed
+$$
+
+-  The wavespeed
 $$
 c=\sqrt{\frac{T}{\mu}},
 $$
-depends on the string tension and density.
-
-As the boundaries of the string are fixed, the displacements there must be zero. This information is encoded via the *boundary conditions*
-$$
-u(x=0,t)=0, \quad u(x=L,t)=0, \quad \forall \quad  t.
-$$
-
-We assume that the initial displacement is
-$$
-u(x,t=0)=f(x), \quad x \in [0,L].
-$$
-Here $f(.)$ is a function that represents the shape of the string at the instant it is plucked.
-
-We also assume that the string is not moving initially, i.e. the initial velocity is zero
-$$
-\frac{\partial u}{\partial t}\bigg|_{(x,t=0)}=0.
-$$
 
 
-### Solutions of the wave equation
+- Assume *static clamped string* boundary and initial  conditions
 
-The above system has solution known as a standing wave. It can be represented as
-$$
-u(x,t)=\sin(\frac{n\pi x}{L})\cos(\frac{n\pi ct}{L}), \quad n=1,2,...
-$$ {#eq-waveqnsoln}
 
-In @fig-weqn we can explore how the vibrations (frequency) of the string depend on parameters (i.e. $L$, $\mu$ and $T$). The solutions are a special type of solution to the wave equation that are known as *stationary waves*. A formula for the frequency of a vibration (i.e. pitch) is given by
+## Standing wave solutions 
+
+- Standing waves
+ $$
+ u(x,t)=\sin(\frac{n\pi x}{L})\cos(\frac{n\pi c t}{L}), \quad n=1,2,...
+ $$
+ 
+
+- The frequency is
 $$
 f=\frac{n}{2L}\sqrt{\frac{T}{\mu}}, \quad n =1,2,...
-$$ {#eq-pitch}
+$$
 
-
-Exercises:
-1. Verify that @eq-waveqnsoln is a solution to @eq-waveqn. Hint: substitute the solution into the governing equation.
-2.  Use @eq-pitch to explore how the pitch of a note depends on model parameters. For example, sketch the  formula against one parameter (holding the others at fixed values).
-3. To double the frequency of a note using the tuning head (i.e. move up an octave), what factor to I have to increase the tension by (don't try this on your instrument in standard tuning).
+## Computing a solution
 
 :::{#fig-weqn}
 
 ```{shinylive-python}
 #| standalone: true
 #| components: [viewer]
-#| viewerHeight: 950
+#| viewerHeight: 650
 
 from shiny import App, ui, render, reactive
 from shinywidgets import output_widget, render_widget
@@ -96,18 +206,13 @@ import plotly.graph_objects as go
 from scipy.signal import spectrogram
 import matplotlib.pyplot as plt
 
-# ============================================================
-# UI
-# ============================================================
 
 app_ui = ui.page_fluid(
 
     ui.h2("Wave Equation on a Vibrating String"),
-
     ui.p(
         "Interactive solution of the 1D wave equation."
     ),
-
     ui.layout_sidebar(
 
         ui.sidebar(
@@ -116,9 +221,9 @@ app_ui = ui.page_fluid(
                 "L",
                 "String Length L (m)",
                 min=0.5,
-                max=5.0,
+                max=2.0,
                 value=1.0,
-                step=0.1,
+                step=0.05,
             ),
 
             ui.input_slider(
@@ -178,26 +283,12 @@ app_ui = ui.page_fluid(
 
             ui.h4("Wave Motion"),
 
-            output_widget("wave_plot"),
-
-            ui.hr(),
-
-            ui.h4("Spectrogram of displacement"),
-
-            ui.output_plot("freq_plot"),
+            output_widget("wave_plot"),        
         ),
     ),
 )
 
-# ============================================================
-# Server
-# ============================================================
-
 def server(input, output, session):
-
-    # --------------------------------------------------------
-    # Wave speed
-    # --------------------------------------------------------
 
     @reactive.calc
     def wave_speed():
@@ -206,9 +297,6 @@ def server(input, output, session):
             input.T() / input.mu()
         )
 
-    # --------------------------------------------------------
-    # Frequency
-    # --------------------------------------------------------
 
     @reactive.calc
     def frequency():
@@ -218,10 +306,6 @@ def server(input, output, session):
             * wave_speed()
             / (2 * input.L())
         )
-
-    # --------------------------------------------------------
-    # Summary
-    # --------------------------------------------------------
 
     @output
     @render.text
@@ -275,6 +359,8 @@ def server(input, output, session):
                 f"Standing Wave "
                 f"(t = {t:.2f} s)"
             ),
+            xaxis=dict(range=[0, 2]),
+            yaxis=dict(range=[-2, 2]),
             xaxis_title="Position x (m)",
             yaxis_title="Displacement",
         )
@@ -285,9 +371,205 @@ def server(input, output, session):
 
         return fig
 
-    # --------------------------------------------------------
-    # Frequency dependence
-    # --------------------------------------------------------
+app = App(app_ui, server)
+
+```
+:::
+
+
+
+## Representing general sounds 
+
+- Sound waves are pressure/density disturbances that propagate through a medium (e.g. air). 
+- A microphone detects pressure waves recorded at a given point in space.
+
+- We can represent a signal as a sum of terms of different frequencies. 
+- This information can also be presented in a spectrogram. We expect noise to have a messy spectrogram as there are components with lots of frequencies.
+
+## Spectrogram of wave equation solution
+
+:::{#fig-weqn}
+
+```{shinylive-python}
+#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 650
+
+from shiny import App, ui, render, reactive
+from shinywidgets import output_widget, render_widget
+import numpy as np
+import plotly.graph_objects as go
+from scipy.signal import spectrogram
+import matplotlib.pyplot as plt
+
+# ============================================================
+# UI
+# ============================================================
+
+app_ui = ui.page_fluid(
+
+    ui.h2("Wave Equation on a Vibrating String"),
+
+    ui.p(
+        "Interactive solution of the 1D wave equation."
+    ),
+
+    ui.layout_sidebar(
+
+        ui.sidebar(
+
+            ui.input_slider(
+                "L",
+                "String Length L (m)",
+                min=0.5,
+                max=5.0,
+                value=1.0,
+                step=0.1,
+            ),
+
+            ui.input_slider(
+                "T",
+                "Tension T (N)",
+                min=100,
+                max=5000,
+                value=4000,
+                step=1,
+            ),
+
+            ui.input_slider(
+                "mu",
+                "Linear Density μ (kg/m)",
+                min=0.001,
+                max=0.05,
+                value=0.01,
+                step=0.001,
+            ),
+
+            ui.input_slider(
+                "n",
+                "Mode Number n",
+                min=1,
+                max=6,
+                value=1,
+                step=1,
+            ),
+
+            ui.input_slider(
+                "A",
+                "Amplitude A",
+                min=0.1,
+                max=2.0,
+                value=1.0,
+                step=0.1,
+            ),
+
+            ui.input_slider(
+                "time",
+                "Time t (s)",
+                min=0.0,
+                max=2.0,
+                value=0.0,
+                step=0.01,
+                animate=True,
+            ),
+        ),
+
+        ui.div(
+
+            
+
+            ui.h4("Wave Motion"),
+
+            output_widget("wave_plot"),
+
+            ui.hr(),
+            ui.output_plot("freq_plot"),
+            ui.h4("Computed Quantities"),
+
+            ui.output_text_verbatim("summary"),
+
+            ui.hr(),
+        ),
+    ),
+)
+
+def server(input, output, session):
+
+    @reactive.calc
+    def wave_speed():
+
+        return np.sqrt(
+            input.T() / input.mu()
+        )
+
+    @reactive.calc
+    def frequency():
+
+        return (
+            input.n()
+            * wave_speed()
+            / (2 * input.L())
+        )
+
+    @output
+    @render.text
+    def summary():
+
+        return (
+            f"Wave speed c = {wave_speed():.2f} m/s\n"
+            f"Frequency f = {frequency():.2f} Hz\n\n"
+            f"Wave equation:\n"
+            f"u_tt = c² u_xx"
+        )
+
+    @output
+    @render_widget
+    def wave_plot():
+
+        L = input.L()
+
+        n = input.n()
+
+        A = input.A()
+
+        c = wave_speed()
+
+        t = input.time()
+
+        x = np.linspace(0, L, 400)
+
+        # Exact standing-wave solution
+        y = (
+            A
+            * np.sin(n * np.pi * x / L)
+            * np.cos(n * np.pi * c * t / L)
+        )
+
+        fig = go.Figure()
+
+        fig.add_scatter(
+            x=x,
+            y=y,
+            mode="lines",
+        )
+
+        fig.update_layout(
+            height=150,
+            title=(
+                f"Standing Wave "
+                f"(t = {t:.2f} s)"
+            ),
+            xaxis=dict(range=[0, 2]),
+            yaxis=dict(range=[-2, 2]),
+            xaxis_title="Position x (m)",
+            yaxis_title="Displacement",
+        )
+
+        fig.update_yaxes(
+            range=[-2.1, 2.2]
+        )
+
+        return fig
 
     @render.plot
     def freq_plot():
@@ -353,118 +635,41 @@ def server(input, output, session):
         ax.set_title(
             "Spectrogram"
         )
-
-
         fig.colorbar(
                 mesh,
                 ax=ax,
                 label="Power (dB)"
             )
-
         plt.show()
 
-# ============================================================
-# App
-# ============================================================
-
 app = App(app_ui, server)
-
 
 ```
 :::
 
-The solution of the wave equation can be written as a sum of different terms that oscillate at particular frequencies. This information is presented in the *spectrogram*.  
+## Now we look at the spectograms of different sounds
 
+- Play a single monotone note
+- White noise
+- A scale 
+- A major chord
 
-
-
-## Representing general sounds 
-
-Sound waves are pressure/density disturbances that propagate through a medium (e.g. air). A microphone detects pressure waves recorded at a given point in space and saves as a signal. 
-
-We can represent a signal (e.g. recorded by a microphone) as a sum of terms of different frequencies. What we think of as a noise will usually be composed of lots of unrelated frequencies. In contrast, a musical note will include specific frequencies with particular mathematical relationships. 
-
-
-
-In @fig-integapp there is an app that allows you to record a 10 sec audio clip (assuming that your device has a microphone). The app then uses the recorded sound clip to generate a *spectrogram*. This picture represents how the recorded sound at a given time can be represented as a sum  of oscillations of different frequencies.
-
-- Play a monotone sound (e.g. the note A that is close to middle C on the piano has a frequency of 440 Hz). If you play the [note A](https://www.youtube.com/watch?v=xGXYFJmvIvk) you should see this frequency on the spectrogram. Note that you might have to disable background noise cancellation software on your device! Alternatively, you could get around this by making the sound variable (e.g. turn off and on repeatedly). 
-- Play some [white noise](https://www.youtube.com/watch?v=aVkU7XQKgzY). What does the spectrum look like?
-- If you play or a sing a scale ([Do-Re-Mi-Fa](https://www.youtube.com/watch?v=edScGrfl50M) etc.), can you see the step changes in the spectrogram?
-- The chord of C major is made of the notes C, E and G. Examine the spectrogram when you play combinations of these notes (C and E) or C and G. Can you spot a relationship between the frequencies of these notes?
-
+## Sound recording app
 ::: {#fig-integapp}
-
 
 ```{shinylive-python}
 #| standalone: true
 #| components: [viewer]
-#| viewerHeight: 750
+#| viewerHeight: 650
 #| 
-# app.py
-#
-# Record microphone audio for 10 seconds
-# then compute and display spectrogram
-#
-# Features:
-# - Record audio
-# - Re-record / overwrite previous recording
-# - Spectrogram display
-# - Works in Shinylive
-#
-# Run locally:
-#   pip install shiny numpy matplotlib scipy
-#   shiny run app.py
-#
-# Export to Shinylive:
-#   pip install shinylive
-#   shinylive export . docs
-
 from shiny import App, ui, reactive, render
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import spectrogram
-
-# app.py
-#
-# Interactive microphone spectrogram dashboard
-# for Shiny for Python / Shinylive
-#
-# Features
-# --------
-# - Record 10 seconds from microphone
-# - Re-record / overwrite
-# - Interactive spectrogram controls
-# - Linear or log-frequency axis
-# - Adjustable frequency range
-# - Adjustable FFT window
-# - Works in Shinylive
-#
-# Run locally:
-#   pip install shiny numpy matplotlib scipy
-#   shiny run app.py
-#
-# Export to Shinylive:
-#   pip install shinylive
-#   shinylive export . docs
-
-from shiny import App, ui, reactive, render
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy.signal import spectrogram
-
-# =====================================================
-# CONSTANTS
-# =====================================================
 
 SAMPLE_RATE = 44100
 RECORD_SECONDS = 10
 MAX_SAMPLES = SAMPLE_RATE * RECORD_SECONDS
-
-# =====================================================
-# UI
-# =====================================================
-
 app_ui = ui.page_fluid(
 
     ui.tags.head(
@@ -684,11 +889,9 @@ def server(input, output, session):
         )
 
         recording_complete.set(False)
-
     # -------------------------------------------------
     # Receive audio chunks
     # -------------------------------------------------
-
     @reactive.effect
     @reactive.event(input.audio_chunk)
     def _():
@@ -853,6 +1056,7 @@ app = App(app_ui, server)
 
 ## Outlook
 
-- We have investigated a real world phenomenon mathematically and used a combination of analysis and computer programming to understand its behaviour. This approach could equally well be applied to other problems (e.g. financial markets, signals from medical devices etc.)
-- The wave equation occurs in many areas of mathematics (e.g. fluid dynamics, light propagation, quantum mechanics).
+- investigated a real world phenomenon mathematically and used a combination of analysis and computer programming to understand behaviour. 
+-  can apply approach to other problems (e.g. financial markets, signals from medical devices etc.)
+- The wave equation appears in many areas of mathematics (e.g. fluid dynamics, light propagation, quantum mechanics).
 - It is usually a good strategy to study simpler versions of hard problems!
