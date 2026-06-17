@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Making and recording sounds – University of Dundee Mathematics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content="..">
+<script src="../site_libs/quarto-contrib/shinylive-0.10.10/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.10.10/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.10.10/shinylive/shinylive.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-MQD60ZZ43S"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MQD60ZZ43S', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../UoD_logo_RGB.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">University of Dundee Mathematics</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Making and recording sounds</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">calculus</div>
+                <div class="quarto-category">music</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<p>The goal of this page is to explore how sounds can be represented mathematically.</p>
+<ul>
+<li>Why does the pitch of a string change as we adjust the tuning heads?</li>
+<li>Why does the pitch change when string length changes (e.g.&nbsp;by clamping strings on frets)?</li>
+<li>Why do some notes sound <em>nice</em> together?</li>
+<li>Why does an expensive musical instrument sound <em>nicer</em> than a cheaper one?</li>
+</ul>
+</section>
+<section id="a-mathematical-model-of-a-stretched-string" class="level2">
+<h2 class="anchored" data-anchor-id="a-mathematical-model-of-a-stretched-string">A mathematical model of a stretched string</h2>
+<section id="formulation" class="level3">
+<h3 class="anchored" data-anchor-id="formulation">Formulation</h3>
+<p>Consider a stretched string of length <span class="math inline">\(L\)</span> (e.g.&nbsp;a guitar string). Suppose that the string holds a certain amount of tension, <span class="math inline">\(T\)</span>, and has a certain line density, <span class="math inline">\(\mu\)</span>.</p>
+<p>The thicker guitar strings will have a larger line density (<span class="math inline">\(\mu\)</span> is bigger). Similarly, we can increase tension in the string by twisting the tuning head.</p>
+<p>Let <span class="math inline">\(u(x,t)\)</span> represent the displacement of the string at a given position, <span class="math inline">\(x\)</span>, at time, <span class="math inline">\(t\)</span>. When the string is at rest <span class="math inline">\(u\)</span> is zero everywhere.</p>
+<p>If the string is initially displaced (e.g.&nbsp;plucking a guitar string) we expect it to oscillate; this vibration generates the sound.</p>
+<p>From a mathematical perspective, we can represent the string as a series of connected small elements. We can then describe the forces exerted on an element by its neighbours and use Newton’s Second Law to connect forces to acceleration (i.e.&nbsp;movement).</p>
+</section>
+<section id="the-wave-equation" class="level3">
+<h3 class="anchored" data-anchor-id="the-wave-equation">The wave equation</h3>
+<p>A governing equation, known as the <em>wave equation</em>, can be written as</p>
+<p><span id="eq-waveqn"><span class="math display">\[
+\frac{\partial ^2 u}{\partial t^2}=c^2 \frac{\partial ^2 u}{\partial x^2},
+\tag{1}\]</span></span> where the wave speed <span class="math display">\[
+c=\sqrt{\frac{T}{\mu}},
+\]</span> depends on the string tension and density.</p>
+<p>As the boundaries of the string are fixed, the displacements there must be zero. This information is encoded via the <em>boundary conditions</em> <span class="math display">\[
+u(x=0,t)=0, \quad u(x=L,t)=0, \quad \forall \quad  t.
+\]</span></p>
+<p>We assume that the initial displacement is <span class="math display">\[
+u(x,t=0)=f(x), \quad x \in [0,L].
+\]</span> Here <span class="math inline">\(f(.)\)</span> is a function that represents the shape of the string at the instant it is plucked.</p>
+<p>We also assume that the string is not moving initially, i.e.&nbsp;the initial velocity is zero <span class="math display">\[
+\frac{\partial u}{\partial t}\bigg|_{(x,t=0)}=0.
+\]</span></p>
+</section>
+<section id="solutions-of-the-wave-equation" class="level3">
+<h3 class="anchored" data-anchor-id="solutions-of-the-wave-equation">Solutions of the wave equation</h3>
+<p>The above system has solution known as a standing wave. It can be represented as <span id="eq-waveqnsoln"><span class="math display">\[
+u(x,t)=\sin(\frac{n\pi x}{L})\cos(\frac{n\pi ct}{L}), \quad n=1,2,...
+\tag{2}\]</span></span></p>
+<p>In <a href="#fig-weqn" class="quarto-xref">Figure&nbsp;1</a> we can explore how the vibrations (frequency) of the string depend on parameters (i.e.&nbsp;<span class="math inline">\(L\)</span>, <span class="math inline">\(\mu\)</span> and <span class="math inline">\(T\)</span>). The solutions are a special type of solution to the wave equation that are known as <em>stationary waves</em>. A formula for the frequency of a vibration (i.e.&nbsp;pitch) is given by <span id="eq-pitch"><span class="math display">\[
+f=\frac{n}{2L}\sqrt{\frac{T}{\mu}}, \quad n =1,2,...
+\tag{3}\]</span></span></p>
+<p>Exercises: 1. Verify that <a href="#eq-waveqnsoln" class="quarto-xref">Equation&nbsp;2</a> is a solution to <a href="#eq-waveqn" class="quarto-xref">Equation&nbsp;1</a>. Hint: substitute the solution into the governing equation. 2. Use <a href="#eq-pitch" class="quarto-xref">Equation&nbsp;3</a> to explore how the pitch of a note depends on model parameters. For example, sketch the formula against one parameter (holding the others at fixed values). 3. To double the frequency of a note using the tuning head (i.e.&nbsp;move up an octave), what factor to I have to increase the tension by (don’t try this on your instrument in standard tuning).</p>
+<div id="fig-weqn" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-weqn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 950
+
+from shiny import App, ui, render, reactive
+from shinywidgets import output_widget, render_widget
+import numpy as np
+import plotly.graph_objects as go
+from scipy.signal import spectrogram
+import matplotlib.pyplot as plt
+
+# ============================================================
+# UI
+# ============================================================
+
+app_ui = ui.page_fluid(
+
+    ui.h2("Wave Equation on a Vibrating String"),
+
+    ui.p(
+        "Interactive solution of the 1D wave equation."
+    ),
+
+    ui.layout_sidebar(
+
+        ui.sidebar(
+
+            ui.input_slider(
+                "L",
+                "String Length L (m)",
+                min=0.5,
+                max=5.0,
+                value=1.0,
+                step=0.1,
+            ),
+
+            ui.input_slider(
+                "T",
+                "Tension T (N)",
+                min=1,
+                max=500,
+                value=100,
+                step=1,
+            ),
+
+            ui.input_slider(
+                "mu",
+                "Linear Density μ (kg/m)",
+                min=0.001,
+                max=0.05,
+                value=0.01,
+                step=0.001,
+            ),
+
+            ui.input_slider(
+                "n",
+                "Mode Number n",
+                min=1,
+                max=6,
+                value=1,
+                step=1,
+            ),
+
+            ui.input_slider(
+                "A",
+                "Amplitude A",
+                min=0.1,
+                max=2.0,
+                value=1.0,
+                step=0.1,
+            ),
+
+            ui.input_slider(
+                "time",
+                "Time t (s)",
+                min=0.0,
+                max=2.0,
+                value=0.0,
+                step=0.01,
+                animate=True,
+            ),
+        ),
+
+        ui.div(
+
+            ui.h4("Computed Quantities"),
+
+            ui.output_text_verbatim("summary"),
+
+            ui.hr(),
+
+            ui.h4("Wave Motion"),
+
+            output_widget("wave_plot"),
+
+            ui.hr(),
+
+            ui.h4("Spectrogram of displacement"),
+
+            ui.output_plot("freq_plot"),
+        ),
+    ),
+)
+
+# ============================================================
+# Server
+# ============================================================
+
+def server(input, output, session):
+
+    # --------------------------------------------------------
+    # Wave speed
+    # --------------------------------------------------------
+
+    @reactive.calc
+    def wave_speed():
+
+        return np.sqrt(
+            input.T() / input.mu()
+        )
+
+    # --------------------------------------------------------
+    # Frequency
+    # --------------------------------------------------------
+
+    @reactive.calc
+    def frequency():
+
+        return (
+            input.n()
+            * wave_speed()
+            / (2 * input.L())
+        )
+
+    # --------------------------------------------------------
+    # Summary
+    # --------------------------------------------------------
+
+    @output
+    @render.text
+    def summary():
+
+        return (
+            f"Wave speed c = {wave_speed():.2f} m/s\n"
+            f"Frequency f = {frequency():.2f} Hz\n\n"
+            f"Wave equation:\n"
+            f"u_tt = c² u_xx"
+        )
+
+    # --------------------------------------------------------
+    # Time-dependent wave solution
+    # --------------------------------------------------------
+
+    @output
+    @render_widget
+    def wave_plot():
+
+        L = input.L()
+
+        n = input.n()
+
+        A = input.A()
+
+        c = wave_speed()
+
+        t = input.time()
+
+        x = np.linspace(0, L, 400)
+
+        # Exact standing-wave solution
+        y = (
+            A
+            * np.sin(n * np.pi * x / L)
+            * np.cos(n * np.pi * c * t / L)
+        )
+
+        fig = go.Figure()
+
+        fig.add_scatter(
+            x=x,
+            y=y,
+            mode="lines",
+        )
+
+        fig.update_layout(
+            height=450,
+            title=(
+                f"Standing Wave "
+                f"(t = {t:.2f} s)"
+            ),
+            xaxis_title="Position x (m)",
+            yaxis_title="Displacement",
+        )
+
+        fig.update_yaxes(
+            range=[-2.1, 2.2]
+        )
+
+        return fig
+
+    # --------------------------------------------------------
+    # Frequency dependence
+    # --------------------------------------------------------
+
+    @render.plot
+    def freq_plot():
+
+        
+        window = 1024
+
+        overlap_fraction = 0.5
+
+        noverlap = int(
+            window * overlap_fraction
+        )
+        L = input.L()
+
+        n = input.n()
+
+        A = input.A()
+
+        c = wave_speed()
+
+
+        SAMPLE_RATE=1000.0
+        T=10.0
+
+        t = np.linspace(0,T,int(SAMPLE_RATE*T))
+
+        x_samp = L*0.333
+
+        # Exact standing-wave solution
+        y = (
+            A
+            * np.sin(n * np.pi * x_samp / L)
+            * np.cos(n * np.pi * c * t / L)
+        )
+
+
+        freqs, times, Sxx = spectrogram(
+            y,
+            fs=SAMPLE_RATE,
+            nperseg=window,
+            noverlap=noverlap,
+        )
+
+        # Convert to dB
+        Sxx_db = 10 * np.log10(
+            Sxx + 1e-10
+        )
+
+        fig, ax = plt.subplots(
+            figsize=(10, 5)
+        )
+
+        mesh = ax.pcolormesh(
+            times,
+            freqs,
+            Sxx_db,
+            shading="gouraud",
+        )
+
+        ax.set_yscale("log")
+        ax.set_xlabel("Time (s)")
+        ax.set_ylabel("Frequency (Hz)")
+        ax.set_title(
+            "Spectrogram"
+        )
+
+
+        fig.colorbar(
+                mesh,
+                ax=ax,
+                label="Power (dB)"
+            )
+
+        plt.show()
+
+# ============================================================
+# App
+# ============================================================
+
+app = App(app_ui, server)
+
+</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-weqn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+<p>The solution of the wave equation can be written as a sum of different terms that oscillate at particular frequencies. This information is presented in the <em>spectrogram</em>.</p>
+</section>
+</section>
+<section id="representing-general-sounds" class="level2">
+<h2 class="anchored" data-anchor-id="representing-general-sounds">Representing general sounds</h2>
+<p>Sound waves are pressure/density disturbances that propagate through a medium (e.g.&nbsp;air). A microphone detects pressure waves recorded at a given point in space and saves as a signal.</p>
+<p>We can represent a signal (e.g.&nbsp;recorded by a microphone) as a sum of terms of different frequencies. What we think of as a noise will usually be composed of lots of unrelated frequencies. In contrast, a musical note will include specific frequencies with particular mathematical relationships.</p>
+<p>In <a href="#fig-integapp" class="quarto-xref">Figure&nbsp;2</a> there is an app that allows you to record a 10 sec audio clip (assuming that your device has a microphone). The app then uses the recorded sound clip to generate a <em>spectrogram</em>. This picture represents how the recorded sound at a given time can be represented as a sum of oscillations of different frequencies.</p>
+<ul>
+<li>Play a monotone sound (e.g.&nbsp;the note A that is close to middle C on the piano has a frequency of 440 Hz). If you play the <a href="https://www.youtube.com/watch?v=xGXYFJmvIvk">note A</a> you should see this frequency on the spectrogram. Note that you might have to disable background noise cancellation software on your device! Alternatively, you could get around this by making the sound variable (e.g.&nbsp;turn off and on repeatedly).</li>
+<li>Play some <a href="https://www.youtube.com/watch?v=aVkU7XQKgzY">white noise</a>. What does the spectrum look like?</li>
+<li>If you play or a sing a scale (<a href="https://www.youtube.com/watch?v=edScGrfl50M">Do-Re-Mi-Fa</a> etc.), can you see the step changes in the spectrogram?</li>
+<li>The chord of C major is made of the notes C, E and G. Examine the spectrogram when you play combinations of these notes (C and E) or C and G. Can you spot a relationship between the frequencies of these notes?</li>
+</ul>
+<div id="fig-integapp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-integapp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 750
+#| 
+# app.py
+#
+# Record microphone audio for 10 seconds
+# then compute and display spectrogram
+#
+# Features:
+# - Record audio
+# - Re-record / overwrite previous recording
+# - Spectrogram display
+# - Works in Shinylive
+#
+# Run locally:
+#   pip install shiny numpy matplotlib scipy
+#   shiny run app.py
+#
+# Export to Shinylive:
+#   pip install shinylive
+#   shinylive export . docs
+
+from shiny import App, ui, reactive, render
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import spectrogram
+
+# app.py
+#
+# Interactive microphone spectrogram dashboard
+# for Shiny for Python / Shinylive
+#
+# Features
+# --------
+# - Record 10 seconds from microphone
+# - Re-record / overwrite
+# - Interactive spectrogram controls
+# - Linear or log-frequency axis
+# - Adjustable frequency range
+# - Adjustable FFT window
+# - Works in Shinylive
+#
+# Run locally:
+#   pip install shiny numpy matplotlib scipy
+#   shiny run app.py
+#
+# Export to Shinylive:
+#   pip install shinylive
+#   shinylive export . docs
+
+from shiny import App, ui, reactive, render
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import spectrogram
+
+# =====================================================
+# CONSTANTS
+# =====================================================
+
+SAMPLE_RATE = 44100
+RECORD_SECONDS = 10
+MAX_SAMPLES = SAMPLE_RATE * RECORD_SECONDS
+
+# =====================================================
+# UI
+# =====================================================
+
+app_ui = ui.page_fluid(
+
+    ui.tags.head(
+
+        ui.tags.script(
+            f"""
+            let audioContext;
+            let microphone;
+            let processor;
+
+            let recording = false;
+
+            async function startRecording() {{
+
+                if (recording) {{
+                    return;
+                }}
+
+                recording = true;
+
+                console.log("Recording started");
+
+                const stream =
+                    await navigator.mediaDevices.getUserMedia({{
+                        audio: true
+                    }});
+
+                audioContext =
+                    new AudioContext();
+
+                microphone =
+                    audioContext.createMediaStreamSource(stream);
+
+                processor =
+                    audioContext.createScriptProcessor(
+                        2048,
+                        1,
+                        1
+                    );
+
+                microphone.connect(processor);
+
+                processor.connect(
+                    audioContext.destination
+                );
+
+                const startTime = Date.now();
+
+                processor.onaudioprocess = function(e) {{
+
+                    if (!recording) {{
+                        return;
+                    }}
+
+                    const input =
+                        e.inputBuffer.getChannelData(0);
+
+                    const arr = Array.from(input);
+
+                    Shiny.setInputValue(
+                        "audio_chunk",
+                        arr,
+                        {{priority: "event"}}
+                    );
+
+                    const elapsed =
+                        (Date.now() - startTime) / 1000;
+
+                    Shiny.setInputValue(
+                        "recording_time",
+                        elapsed,
+                        {{priority: "event"}}
+                    );
+
+                    if (elapsed &gt;= {RECORD_SECONDS}) {{
+
+                        recording = false;
+
+                        processor.disconnect();
+                        microphone.disconnect();
+
+                        stream.getTracks().forEach(
+                            track =&gt; track.stop()
+                        );
+
+                        console.log("Recording finished");
+
+                        Shiny.setInputValue(
+                            "recording_done",
+                            Math.random(),
+                            {{priority: "event"}}
+                        );
+                    }}
+                }};
+            }}
+
+            document.addEventListener(
+                "DOMContentLoaded",
+                function() {{
+
+                    const btn =
+                        document.getElementById("start");
+
+                    btn.onclick = async function() {{
+
+                        try {{
+
+                            await startRecording();
+
+                        }} catch(err) {{
+
+                            console.error(err);
+
+                            alert(
+                                "Microphone error: " + err
+                            );
+                        }}
+                    }};
+                }}
+            );
+            """
+        ),
+    ),
+
+    ui.h2("Interactive Audio Spectrogram"),
+
+    ui.layout_sidebar(
+
+        ui.sidebar(
+
+            ui.input_action_button(
+                "start",
+                "Record / Re-record"
+            ),
+
+            ui.hr(),
+
+            ui.input_slider(
+                "freq_lim",
+                "Frequency limits (Hz)",
+                min=50,
+                max=22050,
+                value=[50,2000],
+                step=20,
+            ),
+
+            ui.input_select(
+                "scale",
+                "Frequency Scale",
+                choices={
+                    "linear": "Linear",
+                    "log": "Logarithmic",
+                },
+                selected="linear",
+            ),
+
+            ui.input_slider(
+                "window",
+                "FFT Window Size",
+                min=256,
+                max=4096,
+                value=1024,
+                step=256,
+            ),
+
+            ui.input_slider(
+                "overlap",
+                "Overlap (%)",
+                min=0,
+                max=95,
+                value=50,
+                step=5,
+            ),
+
+            ui.input_checkbox(
+                "show_colorbar",
+                "Show Colorbar",
+                value=True,
+            ),
+        ),
+
+        ui.card(
+            ui.card_header("Status"),
+            ui.output_text_verbatim("status"),
+        ),
+
+        ui.card(
+            ui.card_header("Spectrogram"),
+            ui.output_plot("spectrogram_plot"),
+        ),
+    ),
+)
+
+# =====================================================
+# SERVER
+# =====================================================
+
+def server(input, output, session):
+
+    # Audio storage
+    recorded_audio = reactive.value(
+        np.array([], dtype=np.float32)
+    )
+
+    recording_complete = reactive.value(False)
+
+    # -------------------------------------------------
+    # Reset recording
+    # -------------------------------------------------
+
+    @reactive.effect
+    @reactive.event(input.start)
+    def _():
+
+        recorded_audio.set(
+            np.array([], dtype=np.float32)
+        )
+
+        recording_complete.set(False)
+
+    # -------------------------------------------------
+    # Receive audio chunks
+    # -------------------------------------------------
+
+    @reactive.effect
+    @reactive.event(input.audio_chunk)
+    def _():
+
+        if recording_complete.get():
+            return
+
+        chunk = np.array(
+            input.audio_chunk(),
+            dtype=np.float32
+        )
+
+        current = recorded_audio.get()
+
+        updated = np.concatenate([
+            current,
+            chunk
+        ])
+
+        updated = updated[:MAX_SAMPLES]
+
+        recorded_audio.set(updated)
+
+    # -------------------------------------------------
+    # Recording complete
+    # -------------------------------------------------
+
+    @reactive.effect
+    @reactive.event(input.recording_done)
+    def _():
+
+        recording_complete.set(True)
+
+    # -------------------------------------------------
+    # Status text
+    # -------------------------------------------------
+
+    @output
+    @render.text
+    def status():
+
+        if recording_complete.get():
+
+            seconds = (
+                len(recorded_audio.get())
+                / SAMPLE_RATE
+            )
+
+            return (
+                f"Recording complete.\n"
+                f"{seconds:.1f} seconds captured."
+            )
+
+        rt = input.recording_time()
+
+        if rt is None:
+            return (
+                "Press Record to begin."
+            )
+
+        return (
+            f"Recording... "
+            f"{rt:.1f} sec"
+        )
+
+    # -------------------------------------------------
+    # Spectrogram
+    # -------------------------------------------------
+
+    @output
+    @render.plot
+    def spectrogram_plot():
+
+        if not recording_complete.get():
+
+            fig, ax = plt.subplots()
+
+            ax.text(
+                0.5,
+                0.5,
+                "No recording yet",
+                ha="center",
+                va="center",
+            )
+
+            ax.axis("off")
+
+            return fig
+
+        audio = recorded_audio.get()
+
+        window = input.window()
+
+        overlap_fraction = (
+            input.overlap() / 100
+        )
+
+        noverlap = int(
+            window * overlap_fraction
+        )
+
+        freqs, times, Sxx = spectrogram(
+            audio,
+            fs=SAMPLE_RATE,
+            nperseg=window,
+            noverlap=noverlap,
+        )
+
+        # Convert to dB
+        Sxx_db = 10 * np.log10(
+            Sxx + 1e-10
+        )
+
+        fig, ax = plt.subplots(
+            figsize=(10, 5)
+        )
+
+        mesh = ax.pcolormesh(
+            times,
+            freqs,
+            Sxx_db,
+            shading="gouraud",
+        )
+
+        # Frequency range
+        ax.set_ylim(
+            input.freq_lim()[0],
+            input.freq_lim()[1]
+        )
+
+        # Linear / log scale
+        if input.scale() == "log":
+
+            ax.set_yscale("log")
+
+        ax.set_xlabel("Time (s)")
+        ax.set_ylabel("Frequency (Hz)")
+
+        ax.set_title(
+            "Spectrogram"
+        )
+
+        if input.show_colorbar():
+
+            fig.colorbar(
+                mesh,
+                ax=ax,
+                label="Power (dB)"
+            )
+
+        return fig
+
+# =====================================================
+# APP
+# =====================================================
+
+app = App(app_ui, server)
+
+</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-integapp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="outlook" class="level2">
+<h2 class="anchored" data-anchor-id="outlook">Outlook</h2>
+<ul>
+<li>We have investigated a real world phenomenon mathematically and used a combination of analysis and computer programming to understand its behaviour. This approach could equally well be applied to other problems (e.g.&nbsp;financial markets, signals from medical devices etc.)</li>
+<li>The wave equation occurs in many areas of mathematics (e.g.&nbsp;fluid dynamics, light propagation, quantum mechanics).</li>
+<li>It is usually a good strategy to study simpler versions of hard problems!</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/dundeemath\.github\.io\/Admissions\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
