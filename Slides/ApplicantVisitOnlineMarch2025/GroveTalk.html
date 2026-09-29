@@ -6,13 +6,13 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <meta name="shinylive:serviceworker_dir" content="../..">
-<script src="../../site_libs/quarto-contrib/shinylive-0.10.10/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../../site_libs/quarto-contrib/shinylive-0.10.10/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../../site_libs/quarto-contrib/shinylive-0.10.10/shinylive/shinylive.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/shinylive-0.10.14/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../../site_libs/quarto-contrib/shinylive-0.10.14/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../../site_libs/quarto-contrib/shinylive-0.10.14/shinylive/shinylive.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+  <meta name="generator" content="quarto-1.9.38">
 
   <meta name="author" content="Dr.&nbsp;Philip Murray">
   <meta name="dcterms.date" content="2025-03-26">
@@ -23,6 +23,9 @@
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -101,7 +104,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-2095e1a2b15cef3f028023a6c3e93c6c.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-1deb88328151a7c94d2b3f11d957c739.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-MQD60ZZ43S"></script>
 
   <script type="text/javascript">
@@ -332,7 +335,7 @@
 <div id="fig-decrypt" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-decrypt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="cb1" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a></a>#| standalone: true</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a></a>#| standalone: true</span>
 <span id="cb1-2"><a></a>#| components: [viewer]</span>
 <span id="cb1-3"><a></a>#| viewerHeight: 300</span>
 <span id="cb1-4"><a></a></span>
@@ -415,7 +418,7 @@
 <span id="cb1-81"><a></a>        # Calling DataFrame constructor on list</span>
 <span id="cb1-82"><a></a>        return df</span>
 <span id="cb1-83"><a></a></span>
-<span id="cb1-84"><a></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-84"><a></a>app = App(app_ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-decrypt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1
@@ -430,7 +433,7 @@ Figure&nbsp;1
 <div id="fig-encrypt" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-encrypt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="cb2" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a></a>#| standalone: true</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a></a>#| standalone: true</span>
 <span id="cb2-2"><a></a>#| components: [viewer]</span>
 <span id="cb2-3"><a></a>#| viewerHeight: 300</span>
 <span id="cb2-4"><a></a></span>
@@ -511,7 +514,7 @@ Figure&nbsp;1
 <span id="cb2-79"><a></a>        return df</span>
 <span id="cb2-80"><a></a></span>
 <span id="cb2-81"><a></a>   </span>
-<span id="cb2-82"><a></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-82"><a></a>app = App(app_ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-encrypt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2
@@ -607,7 +610,7 @@ y_B=g^{\textcolor{blue}{x_B}} \pmod p
 <div id="fig-sharedsecret" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-sharedsecret-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="cb3" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a></a>#| standalone: true</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a></a>#| standalone: true</span>
 <span id="cb3-2"><a></a>#| components: [viewer]</span>
 <span id="cb3-3"><a></a>#| viewerHeight: 650</span>
 <span id="cb3-4"><a></a></span>
@@ -677,7 +680,7 @@ y_B=g^{\textcolor{blue}{x_B}} \pmod p
 <span id="cb3-68"><a></a>        # Calling DataFrame constructor on list</span>
 <span id="cb3-69"><a></a>        return df</span>
 <span id="cb3-70"><a></a></span>
-<span id="cb3-71"><a></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-71"><a></a>app = App(app_ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-sharedsecret-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3
@@ -722,7 +725,7 @@ g^{x_A}=y_A \pmod p.
 <div id="fig-discretlog" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-discretlog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="cb4" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a></a>#| standalone: true</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a></a>#| standalone: true</span>
 <span id="cb4-2"><a></a>#| components: [viewer]</span>
 <span id="cb4-3"><a></a>#| viewerHeight: 400</span>
 <span id="cb4-4"><a></a></span>
@@ -781,7 +784,7 @@ g^{x_A}=y_A \pmod p.
 <span id="cb4-57"><a></a>        plt.grid()</span>
 <span id="cb4-58"><a></a>        plt.show()</span>
 <span id="cb4-59"><a></a>    </span>
-<span id="cb4-60"><a></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-60"><a></a>app = App(app_ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-discretlog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4
@@ -794,7 +797,7 @@ Figure&nbsp;4
 <div id="fig-dhelmanencryption" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-dhelmanencryption-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="cb5" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a></a>#| standalone: true</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a></a>#| standalone: true</span>
 <span id="cb5-2"><a></a>#| components: [viewer]</span>
 <span id="cb5-3"><a></a>#| viewerHeight: 500</span>
 <span id="cb5-4"><a></a></span>
@@ -906,7 +909,7 @@ Figure&nbsp;4
 <span id="cb5-110"><a></a>        return df</span>
 <span id="cb5-111"><a></a></span>
 <span id="cb5-112"><a></a>   </span>
-<span id="cb5-113"><a></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-113"><a></a>app = App(app_ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-dhelmanencryption-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5
@@ -919,7 +922,7 @@ Figure&nbsp;5
 <div id="fig-decrypt" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-decrypt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="cb6" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a></a>#| standalone: true</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a></a>#| standalone: true</span>
 <span id="cb6-2"><a></a>#| components: [viewer]</span>
 <span id="cb6-3"><a></a>#| viewerHeight: 300</span>
 <span id="cb6-4"><a></a></span>
@@ -1002,7 +1005,7 @@ Figure&nbsp;5
 <span id="cb6-81"><a></a>        # Calling DataFrame constructor on list</span>
 <span id="cb6-82"><a></a>        return df</span>
 <span id="cb6-83"><a></a></span>
-<span id="cb6-84"><a></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-84"><a></a>app = App(app_ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-decrypt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;6
@@ -1304,13 +1307,14 @@ Figure&nbsp;6
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

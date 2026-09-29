@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Crossing the current: vectors in the water – University of Dundee Mathematics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content="..">
+<script src="../site_libs/quarto-contrib/shinylive-0.10.14/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.10.14/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.10.14/shinylive/shinylive.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-MQD60ZZ43S"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MQD60ZZ43S', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../UoD_logo_RGB.png" alt="" class="navbar-logo light-content">
+    <img src="../UoD_logo_RGB.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">University of Dundee Mathematics</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Crossing the current: vectors in the water</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Vectors</div>
+                <div class="quarto-category">Mechanics</div>
+                <div class="quarto-category">Trigonometry</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>Imagine you’re standing on the bank of a wide river, and you want to swim to the point directly opposite – straight across, no detour. The obvious plan is to just swim straight ahead, aimed at that exact point. It doesn’t work. If the river has any current at all, aiming straight across sweeps you downstream, and you land well short of where you meant to.</p>
+<p>This is one of the cleanest real demonstrations of vector addition there is, because the two velocities involved are so easy to picture: your own swimming velocity (a speed and a direction, entirely under your control) and the river’s current (a speed and direction you can’t change, fixed by the water). What actually happens – the path you trace across the river – is neither of those on its own. It’s their sum:</p>
+<p><span class="math display">\[\vec{R} = \vec{u}_{\text{swim}} + \vec{v}_{\text{current}}\]</span></p>
+<p>Your resultant velocity <span class="math inline">\(\vec{R}\)</span> is what a bystander on the bank would actually see: two velocities, added tip-to-tail, giving a single path over the ground.</p>
+<p><strong>The fix is counterintuitive: aim upstream.</strong> If you angle your swimming effort partly against the current, that upstream component can exactly cancel the current’s sideways push, leaving a resultant that points straight across after all – even though you, personally, are never aimed straight at the target. The app below draws exactly this vector triangle live: your swim vector, the current vector tacked onto its tip, and the resultant they add up to.</p>
+<p><strong>The exact angle has a clean formula.</strong> If your swim speed (relative to the water) is <span class="math inline">\(u\)</span> and the current’s speed is <span class="math inline">\(v_c\)</span>, the heading <span class="math inline">\(\theta\)</span> (measured from straight across, aimed upstream) that cancels the current exactly satisfies</p>
+<p><span class="math display">\[\sin\theta = \frac{v_c}{u} \quad\Longrightarrow\quad \theta = \arcsin\!\left(\frac{v_c}{u}\right)\]</span></p>
+<p>Try matching this in the app: the dashed line marks where “directly opposite” is, and ticking the box overlays exactly the heading this formula predicts. Turn your own heading slider until your solid trajectory line lands right on top of it.</p>
+<p><strong>But notice this only has a solution when <span class="math inline">\(v_c \le u\)</span>.</strong> If the current is faster than you can swim, no heading – however cleverly chosen – ever produces zero drift. You can reduce the drift by aiming further upstream, but you can never cancel it, because your maximum possible sideways (upstream) contribution is capped at your own swim speed <span class="math inline">\(u\)</span>, and no angle lets you exceed it. This isn’t just a maths curiosity – it’s exactly why lifeguards and open-water safety training teach never to swim directly against a strong current or rip: the current wins that contest outright. The safer response, in the real case a straight crossing is impossible, is to swim at an angle that at least minimises drift while still making progress across – itself a nice extension of this problem for anyone who wants to differentiate the drift formula and find where it’s minimised, rather than merely zero.</p>
+<div id="fig-river" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-river-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 780
+
+## file: app.py
+import math
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+
+# ---------------------------------------------------------------------------
+# Setup: a swimmer starts on the near bank of a river of width W and wants
+# to land directly opposite their start point, on the far bank. The river
+# flows downstream at speed v_c (a current parallel to both banks). The
+# swimmer's own velocity, relative to the water, has a fixed speed u and a
+# heading angle theta measured from "straight across" -- positive theta
+# means aiming upstream, to compensate for the current.
+#
+# Coordinates: +y is across the river (bank to bank), +x is downstream (the
+# direction the current flows).
+# ---------------------------------------------------------------------------
+
+RIVER_WIDTH = 100.0  # metres -- fixed, so the two requested parameters
+                       # (the swimmer's own vector, and the current) are what
+                       # the sliders control
+
+
+def swim_vector(u: float, theta_deg: float):
+    theta = math.radians(theta_deg)
+    return (-u * math.sin(theta), u * math.cos(theta))
+
+
+def current_vector(v_c: float):
+    return (v_c, 0.0)
+
+
+def resultant_vector(u: float, theta_deg: float, v_c: float):
+    sx, sy = swim_vector(u, theta_deg)
+    cx, cy = current_vector(v_c)
+    return (sx + cx, sy + cy)
+
+
+def crossing_outcome(u: float, theta_deg: float, v_c: float, width: float = RIVER_WIDTH):
+    """Returns (time, drift, reaches_far_bank: bool)."""
+    rx, ry = resultant_vector(u, theta_deg, v_c)
+    if ry &lt;= 1e-6:
+        return None, None, False
+    t = width / ry
+    drift = rx * t
+    return t, drift, True
+
+
+def required_heading_deg(u: float, v_c: float):
+    """Heading (degrees, aimed upstream) that cancels the current exactly,
+    landing directly opposite. Returns None if the current is too strong
+    for this swim speed to ever cancel, however it's aimed."""
+    if u &lt;= 0:
+        return None
+    ratio = v_c / u
+    if ratio &gt; 1.0:
+        return None
+    return math.degrees(math.asin(ratio))
+
+
+app_ui = ui.page_sidebar(
+    ui.sidebar(
+        ui.h5("Your swimming vector"),
+        ui.input_slider("speed", "Your swim speed, relative to the water (m/s)", min=0.2, max=3.0, value=1.0, step=0.1),
+        ui.input_slider("heading", "Heading, from straight across (degrees, + = aimed upstream)", min=-60, max=85, value=0, step=1),
+        ui.hr(),
+        ui.h5("The river"),
+        ui.input_slider("current", "Current speed (m/s)", min=0.0, max=3.0, value=0.8, step=0.1),
+        ui.input_checkbox("show_optimal", "Show the heading that lands you directly opposite", value=True),
+        ui.hr(),
+        ui.output_ui("summary"),
+        width=380,
+    ),
+    ui.output_plot("river_plot", height="420px"),
+    ui.output_plot("vector_plot", height="300px"),
+)
+
+
+def server(input: Inputs, output: Outputs, session: Session):
+    @output
+    @render.plot
+    def river_plot():
+        u = input.speed()
+        theta = input.heading()
+        v_c = input.current()
+        width = RIVER_WIDTH
+
+        t, drift, reaches = crossing_outcome(u, theta, v_c, width)
+        theta_star = required_heading_deg(u, v_c)
+
+        fig, ax = plt.subplots(figsize=(7, 4.2))
+
+        # river banks and flow
+        ax.axhline(0, color="#5c4a3a", linewidth=3, zorder=2)
+        ax.axhline(width, color="#5c4a3a", linewidth=3, zorder=2)
+        span = max(width * 0.9, abs(drift) * 1.3 if drift else 0, 60)
+        ax.set_xlim(-span * 0.6, span)
+        ax.fill_between([-span, span * 1.5], 0, width, color="#bfe3f0", alpha=0.5, zorder=0)
+
+        for y0 in np.linspace(width * 0.15, width * 0.85, 4):
+            ax.annotate(
+                "", xy=(span * 0.55, y0), xytext=(span * 0.4, y0),
+                arrowprops=dict(arrowstyle="-&gt;", color="#3d8bbd", lw=1.3, alpha=0.7),
+            )
+        ax.text(span * 0.62, width * 0.5, "current", color="#3d8bbd", fontsize=9, va="center")
+
+        # target: directly opposite the start
+        ax.plot([0], [width], "*", color="#2a2a2a", markersize=14, zorder=5)
+        ax.annotate("directly opposite", (0, width), xytext=(6, -14), textcoords="offset points", fontsize=9)
+
+        # optimal heading overlay
+        if input.show_optimal() and theta_star is not None:
+            ax.plot([0, 0], [0, width], "--", color="#2a9d8f", linewidth=2, zorder=3, label="required heading (zero drift)")
+
+        # actual trajectory
+        if reaches:
+            landing_x = drift
+            ax.plot([0, landing_x], [0, width], "-", color="#e07a5f", linewidth=2.5, zorder=4, label="your trajectory")
+            ax.plot([landing_x], [width], "o", color="#e07a5f", markersize=8, zorder=5)
+        else:
+            # heading too far upstream to make any progress across
+            ax.annotate(
+                "this heading never reaches\nthe far bank", (0, width * 0.5),
+                fontsize=10, color="#e07a5f", ha="left",
+            )
+
+        ax.plot([0], [0], "o", color="#264653", markersize=8, zorder=5)
+        ax.annotate("start", (0, 0), xytext=(6, 6), textcoords="offset points", fontsize=9)
+
+        ax.set_ylim(-width * 0.08, width * 1.12)
+        ax.set_xlabel("downstream distance (m)")
+        ax.set_ylabel("across the river (m)")
+        if reaches or (input.show_optimal() and theta_star is not None):
+            ax.legend(loc="lower right", fontsize=9, frameon=False)
+        fig.tight_layout()
+        return fig
+
+    @output
+    @render.plot
+    def vector_plot():
+        u = input.speed()
+        theta = input.heading()
+        v_c = input.current()
+
+        sx, sy = swim_vector(u, theta)
+        cx, cy = current_vector(v_c)
+        rx, ry = resultant_vector(u, theta, v_c)
+
+        fig, ax = plt.subplots(figsize=(7, 3))
+
+        # swim vector, from origin
+        ax.annotate("", xy=(sx, sy), xytext=(0, 0), arrowprops=dict(arrowstyle="-|&gt;", color="#264653", lw=2.5))
+        ax.text(sx * 0.5 - 0.15, sy * 0.5, "swim", color="#264653", fontsize=9)
+
+        # current vector, tacked onto the tip of the swim vector (tip-to-tail addition)
+        ax.annotate("", xy=(sx + cx, sy + cy), xytext=(sx, sy), arrowprops=dict(arrowstyle="-|&gt;", color="#3d8bbd", lw=2.5))
+        ax.text(sx + cx * 0.5 + 0.05, sy + cy * 0.5, "current", color="#3d8bbd", fontsize=9)
+
+        # resultant, from origin to the combined tip
+        ax.annotate("", xy=(rx, ry), xytext=(0, 0), arrowprops=dict(arrowstyle="-|&gt;", color="#e07a5f", lw=3))
+        ax.text(rx + 0.05, ry + 0.05, "resultant", color="#e07a5f", fontsize=9, fontweight="bold")
+
+        lim = max(abs(sx), abs(cx), abs(rx), abs(sy), abs(cy), abs(ry), 0.5) * 1.4
+        ax.set_xlim(-lim, lim)
+        ax.set_ylim(-lim * 0.3, lim)
+        ax.axhline(0, color="#ccc", lw=0.6)
+        ax.axvline(0, color="#ccc", lw=0.6)
+        ax.set_aspect("equal")
+        ax.set_title("swim + current = resultant", fontsize=10)
+        ax.set_xlabel("downstream (m/s)")
+        ax.set_ylabel("across (m/s)")
+        fig.tight_layout()
+        return fig
+
+    @output
+    @render.ui
+    def summary():
+        u = input.speed()
+        theta = input.heading()
+        v_c = input.current()
+
+        t, drift, reaches = crossing_outcome(u, theta, v_c)
+        theta_star = required_heading_deg(u, v_c)
+
+        lines = []
+        if not reaches:
+            lines.append(
+                "**This heading makes no progress across the river** -- "
+                "you're aimed too far upstream, so your across-river speed "
+                "is zero or negative."
+            )
+        else:
+            lines.append(f"**Time to cross:** {t:.0f} s")
+            if abs(drift) &lt; 0.5:
+                lines.append("**Landing point:** directly opposite -- spot on.")
+            else:
+                side = "downstream" if drift &gt; 0 else "upstream"
+                lines.append(f"**Landing point:** {abs(drift):.0f} m {side} of directly opposite")
+
+        if theta_star is None:
+            lines.append(
+                "The current is faster than you can swim, so **no heading "
+                "gets you there directly** -- some downstream drift is "
+                "unavoidable, whichever way you aim."
+            )
+        else:
+            lines.append(f"**Heading needed for zero drift:** {theta_star:.1f} deg upstream")
+            if abs(theta - theta_star) &lt; 1:
+                lines.append("You're aimed correctly.")
+
+        return ui.markdown("\n\n".join(lines))
+
+
+app = App(app_ui, server)
+</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-river-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Set a swim speed and a current speed, then hunt for the heading that lands your trajectory (solid) exactly on the dashed “directly opposite” line – then check it against the formula’s prediction in the panel on the left. Push the current speed above your swim speed and see what happens to that dashed line.
+</figcaption>
+</figure>
+</div>
+<p><strong>Note:</strong> this connects directly to material in our vectors and mechanics modules – resolving a vector into components, adding vectors tip-to-tail, and solving a simple trigonometric equation for an unknown angle – applied to a situation almost everyone has an intuition for already, whether or not they’d have put a formula to it.</p>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/dundeemath\.github\.io\/Admissions\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

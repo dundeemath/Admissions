@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Welcome – University of Dundee Mathematics</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -38,10 +41,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c1fac2584b48ed01fb6e278e36375074.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -109,7 +112,7 @@ gtag('config', 'G-MQD60ZZ43S', { 'anonymize_ip': true});
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -122,7 +125,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -149,7 +152,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./UoD_logo_RGB.png" alt="" class="navbar-logo">
+    <img src="./UoD_logo_RGB.png" alt="" class="navbar-logo light-content">
+    <img src="./UoD_logo_RGB.png" alt="" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">University of Dundee Mathematics</span>
@@ -183,7 +187,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(16)</span></div><div class="category" data-category="QWxnZWJyYQ==">Algebra <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Q2FsY3VsdXM=">Calculus <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Y2FsY3VsdXM=">calculus <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q2hhb3M=">Chaos <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y3J5cHRvZ3JhcGh5">cryptography <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGlmZmVyZW50aWFsJTIwRXF1YXRpb25z">Differential Equations <span class="quarto-category-count">(4)</span></div><div class="category" data-category="RGlzY3JldGUlMjBtYXRocw==">Discrete maths <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Rm91cmllcg==">Fourier <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z2VvbWV0cnk=">geometry <span class="quarto-category-count">(2)</span></div><div class="category" data-category="R2VvbWV0cnk=">Geometry <span class="quarto-category-count">(4)</span></div><div class="category" data-category="R3Jvd3RoJTIwYW5kJTIwZm9ybQ==">Growth and form <span class="quarto-category-count">(2)</span></div><div class="category" data-category="SW5mZWN0aW91cyUyMGRpc2Vhc2Vz">Infectious diseases <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aW50ZWdyYXRpb24=">integration <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TWFwcGluZ3M=">Mappings <span class="quarto-category-count">(2)</span></div><div class="category" data-category="bXVzaWM=">music <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bnVtYmVyJTIwdGhlb3J5">number theory <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UG9seW5vbWlhbHM=">Polynomials <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UG9wdWxhdGlvbiUyMGR5bmFtaWNz">Population dynamics <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UmVjdXJyZW5jZSUyMHJlbGF0aW9ucw==">Recurrence relations <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VHJpZ29ub21ldHJ5">Trigonometry <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(20)</span></div><div class="category" data-category="QWxnZWJyYQ==">Algebra <span class="quarto-category-count">(2)</span></div><div class="category" data-category="QWxnb3JpdGhtcw==">Algorithms <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q2FsY3VsdXM=">Calculus <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Y2FsY3VsdXM=">calculus <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q2hhb3M=">Chaos <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Q29tYmluYXRvcmljcw==">Combinatorics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y3J5cHRvZ3JhcGh5">cryptography <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RGlmZmVyZW50aWFsJTIwRXF1YXRpb25z">Differential Equations <span class="quarto-category-count">(4)</span></div><div class="category" data-category="RGlmZmVyZW50aWFsJTIwZXF1YXRpb25z">Differential equations <span class="quarto-category-count">(2)</span></div><div class="category" data-category="RGlzY3JldGUlMjBtYXRocw==">Discrete maths <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Rm91cmllcg==">Fourier <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z2VvbWV0cnk=">geometry <span class="quarto-category-count">(2)</span></div><div class="category" data-category="R2VvbWV0cnk=">Geometry <span class="quarto-category-count">(5)</span></div><div class="category" data-category="R3Jvd3RoJTIwYW5kJTIwZm9ybQ==">Growth and form <span class="quarto-category-count">(2)</span></div><div class="category" data-category="SW5mZWN0aW91cyUyMGRpc2Vhc2Vz">Infectious diseases <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aW50ZWdyYXRpb24=">integration <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TWFwcGluZ3M=">Mappings <span class="quarto-category-count">(2)</span></div><div class="category" data-category="TWVjaGFuaWNz">Mechanics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bXVzaWM=">music <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bnVtYmVyJTIwdGhlb3J5">number theory <span class="quarto-category-count">(1)</span></div><div class="category" data-category="T3B0aW1pc2F0aW9u">Optimisation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UGh5c2ljcw==">Physics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UG9seW5vbWlhbHM=">Polynomials <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UG9wdWxhdGlvbiUyMGR5bmFtaWNz">Population dynamics <span class="quarto-category-count">(2)</span></div><div class="category" data-category="UmVjdXJyZW5jZSUyMHJlbGF0aW9ucw==">Recurrence relations <span class="quarto-category-count">(1)</span></div><div class="category" data-category="VHJpZ29ub21ldHJ5">Trigonometry <span class="quarto-category-count">(2)</span></div><div class="category" data-category="VmVjdG9ycw==">Vectors <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -258,7 +262,63 @@ You may have previously come across definite integrals of the form
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="UG9seW5vbWlhbHMlMkNBbGdlYnJh" data-listing-file-modified-sort="1740522138444" data-listing-reading-time-sort="5" data-listing-word-count-sort="855">
+<div class="quarto-post image-right" data-index="2" data-categories="RGlmZmVyZW50aWFsJTIwZXF1YXRpb25zJTJDR2VvbWV0cnklMkNDYWxjdWx1cw==" data-listing-file-modified-sort="1788950588802" data-listing-reading-time-sort="14" data-listing-word-count-sort="2656">
+<div class="thumbnail"><a href="./posts/LeafGrowth.html" class="no-external">
+
+<img loading="lazy" src="./posts/leaf_preview.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/LeafGrowth.html" class="no-external">Why leaves crinkle: differential growth in a disc</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGlmZmVyZW50aWFsJTIwZXF1YXRpb25z'); return false;">Differential equations</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('R2VvbWV0cnk='); return false;">Geometry</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q2FsY3VsdXM='); return false;">Calculus</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/LeafGrowth.html" class="no-external">
+A flat, round piece of paper can only stretch into another flat shape – to make it curve into a dome or ripple into a wave, you have to cut it, fold it, or force extra…
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/LeafGrowth.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-categories="Q2FsY3VsdXMlMkNEaWZmZXJlbnRpYWwlMjBlcXVhdGlvbnMlMkNQaHlzaWNz" data-listing-file-modified-sort="1788882862878" data-listing-reading-time-sort="17" data-listing-word-count-sort="3283">
+<div class="thumbnail"><a href="./posts/AerodynamicLift.html" class="no-external">
+
+<img loading="lazy" src="./posts/lift_preview.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/AerodynamicLift.html" class="no-external">Taking off: the mathematics of lift</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q2FsY3VsdXM='); return false;">Calculus</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGlmZmVyZW50aWFsJTIwZXF1YXRpb25z'); return false;">Differential equations</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UGh5c2ljcw=='); return false;">Physics</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/AerodynamicLift.html" class="no-external">
+Watch a plane take off and there’s a strange pause built into the whole event: it doesn’t simply lift off the tarmac. It accelerates down a runway for the best part of a…
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/AerodynamicLift.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-categories="UG9seW5vbWlhbHMlMkNBbGdlYnJh" data-listing-file-modified-sort="1740522138444" data-listing-reading-time-sort="5" data-listing-word-count-sort="855">
 <div class="thumbnail"><a href="./posts/QuadraticCubicRoots.html" class="no-external">
 
 <img loading="lazy" src="./posts/CubicAppImage.png" class="thumbnail-image">
@@ -286,7 +346,7 @@ ax^3+bx^2+cx+d=0, \ \ \quad a,b,c, d \in \Re.
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="Y3J5cHRvZ3JhcGh5JTJDbnVtYmVyJTIwdGhlb3J5" data-listing-file-modified-sort="1750161072829" data-listing-reading-time-sort="19" data-listing-word-count-sort="3722">
+<div class="quarto-post image-right" data-index="5" data-categories="Y3J5cHRvZ3JhcGh5JTJDbnVtYmVyJTIwdGhlb3J5" data-listing-file-modified-sort="1750161072829" data-listing-reading-time-sort="19" data-listing-word-count-sort="3722">
 <div class="thumbnail"><a href="./posts/Cryptography.html" class="no-external">
 
 <img loading="lazy" src="./posts/EncryptionImage.png" class="thumbnail-image">
@@ -312,7 +372,35 @@ Cryptography is the practice and study of techniques for securing communication 
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="VHJpZ29ub21ldHJ5JTJDR2VvbWV0cnklMkNGb3VyaWVy" data-listing-file-modified-sort="1740525446286" data-listing-reading-time-sort="10" data-listing-word-count-sort="1922">
+<div class="quarto-post image-right" data-index="6" data-categories="VmVjdG9ycyUyQ01lY2hhbmljcyUyQ1RyaWdvbm9tZXRyeQ==" data-listing-file-modified-sort="1788884402960" data-listing-reading-time-sort="14" data-listing-word-count-sort="2609">
+<div class="thumbnail"><a href="./posts/RiverCrossing.html" class="no-external">
+
+<img loading="lazy" src="./posts/river_preview.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/RiverCrossing.html" class="no-external">Crossing the current: vectors in the water</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('VmVjdG9ycw=='); return false;">Vectors</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWVjaGFuaWNz'); return false;">Mechanics</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VHJpZ29ub21ldHJ5'); return false;">Trigonometry</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/RiverCrossing.html" class="no-external">
+Imagine you’re standing on the bank of a wide river, and you want to swim to the point directly opposite – straight across, no detour. The obvious plan is to just swim…
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/RiverCrossing.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="7" data-categories="VHJpZ29ub21ldHJ5JTJDR2VvbWV0cnklMkNGb3VyaWVy" data-listing-file-modified-sort="1740525446286" data-listing-reading-time-sort="10" data-listing-word-count-sort="1922">
 <div class="thumbnail"><a href="./posts/TrigonometricIdentities.html" class="no-external">
 
 <img loading="lazy" src="./posts/sawtoothfourier.png" class="thumbnail-image">
@@ -340,7 +428,7 @@ Trigonometric functions appear throughout mathematics (e.g.&nbsp;geometry, calcu
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="UmVjdXJyZW5jZSUyMHJlbGF0aW9ucyUyQ0Rpc2NyZXRlJTIwbWF0aHMlMkNDaGFvcw==" data-listing-file-modified-sort="1742394089244" data-listing-reading-time-sort="11" data-listing-word-count-sort="2158">
+<div class="quarto-post image-right" data-index="8" data-categories="UmVjdXJyZW5jZSUyMHJlbGF0aW9ucyUyQ0Rpc2NyZXRlJTIwbWF0aHMlMkNDaGFvcw==" data-listing-file-modified-sort="1742394089244" data-listing-reading-time-sort="11" data-listing-word-count-sort="2158">
 <div class="thumbnail"><a href="./posts/RecurrenceRelations.html" class="no-external">
 
 <img loading="lazy" src="./posts/logisticmapsolscreenshot.png" class="thumbnail-image">
@@ -368,7 +456,37 @@ You might have previously encountered a recurrence relation of the form
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="6" data-categories="R2VvbWV0cnklMkNHcm93dGglMjBhbmQlMjBmb3JtJTJDTWFwcGluZ3M=" data-listing-file-modified-sort="1744217492365" data-listing-reading-time-sort="17" data-listing-word-count-sort="3398">
+<div class="quarto-post image-right" data-index="9" data-categories="Q29tYmluYXRvcmljcyUyQ0FsZ29yaXRobXMlMkNEaXNjcmV0ZSUyMG1hdGhzJTJDT3B0aW1pc2F0aW9u" data-listing-file-modified-sort="1788534558542" data-listing-reading-time-sort="27" data-listing-word-count-sort="5373">
+<div class="thumbnail"><a href="./posts/TravellingSalesman.html" class="no-external">
+
+<img loading="lazy" src="./posts/botanicmap.png" class="thumbnail-image">
+
+</a></div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/TravellingSalesman.html" class="no-external">The Travelling Botanist problem</a>
+</h3>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q29tYmluYXRvcmljcw=='); return false;">Combinatorics</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QWxnb3JpdGhtcw=='); return false;">Algorithms</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGlzY3JldGUlMjBtYXRocw=='); return false;">Discrete maths</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('T3B0aW1pc2F0aW9u'); return false;">Optimisation</div>
+
+</div>
+<div class="delink listing-description"><a href="./posts/TravellingSalesman.html" class="no-external">
+Imagine an exhibition trail around the Botanic Gardens, with a fixed set of stops – numbered markers a visitor could walk round. If you wanted to visit every stop and come…
+</a></div>
+</div>
+<div class="metadata">
+<a href="./posts/TravellingSalesman.html" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="10" data-categories="R2VvbWV0cnklMkNHcm93dGglMjBhbmQlMjBmb3JtJTJDTWFwcGluZ3M=" data-listing-file-modified-sort="1744217492365" data-listing-reading-time-sort="17" data-listing-word-count-sort="3398">
 <div class="thumbnail"><a href="./posts/Mappings2D.html" class="no-external">
 
 <img loading="lazy" src="./posts/www/DTArgyropelecusOlfersi.png" class="thumbnail-image">
@@ -396,7 +514,7 @@ In D’Arcy Thompson’s book ‘On Growth and Form’ he considers how the shap
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="7" data-categories="aW50ZWdyYXRpb24lMkNnZW9tZXRyeQ==" data-listing-file-modified-sort="1775644612034" data-listing-reading-time-sort="6" data-listing-word-count-sort="1032">
+<div class="quarto-post image-right" data-index="11" data-categories="aW50ZWdyYXRpb24lMkNnZW9tZXRyeQ==" data-listing-file-modified-sort="1775644612034" data-listing-reading-time-sort="6" data-listing-word-count-sort="1032">
 <div class="thumbnail"><a href="./posts/EstimatingPi.html" class="no-external">
 
 <img loading="lazy" src="./posts/EstimatingPi.png" class="thumbnail-image">
@@ -422,7 +540,7 @@ Consider a circle of radius <span class="math inline">\(R\)</span> centred at th
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="8" data-categories="UG9wdWxhdGlvbiUyMGR5bmFtaWNzJTJDQ2FsY3VsdXMlMkNEaWZmZXJlbnRpYWwlMjBFcXVhdGlvbnM=" data-listing-file-modified-sort="1740522122308" data-listing-reading-time-sort="8" data-listing-word-count-sort="1425">
+<div class="quarto-post image-right" data-index="12" data-categories="UG9wdWxhdGlvbiUyMGR5bmFtaWNzJTJDQ2FsY3VsdXMlMkNEaWZmZXJlbnRpYWwlMjBFcXVhdGlvbnM=" data-listing-file-modified-sort="1740522122308" data-listing-reading-time-sort="8" data-listing-word-count-sort="1425">
 <div class="thumbnail"><a href="./posts/PopulationDynamicsIntro.html" class="no-external">
 
 <img loading="lazy" src="./posts/PopDynamicsDEmoImage.png" class="thumbnail-image">
@@ -450,7 +568,7 @@ We can use calculus to study how populations change in time. In the examples bel
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="9" data-categories="R2VvbWV0cnklMkNHcm93dGglMjBhbmQlMjBmb3JtJTJDTWFwcGluZ3M=" data-listing-file-modified-sort="1740521846537" data-listing-reading-time-sort="3" data-listing-word-count-sort="483">
+<div class="quarto-post image-right" data-index="13" data-categories="R2VvbWV0cnklMkNHcm93dGglMjBhbmQlMjBmb3JtJTJDTWFwcGluZ3M=" data-listing-file-modified-sort="1740521846537" data-listing-reading-time-sort="3" data-listing-word-count-sort="483">
 <div class="thumbnail"><a href="./posts/AffineTransformation.html" class="no-external">
 
 <img loading="lazy" src="./posts/www/DTArgyropelecusOlfersi.png" class="thumbnail-image">
@@ -478,7 +596,7 @@ An affine transformation is a geometric transformation that preserves lines and 
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="10" data-categories="SW5mZWN0aW91cyUyMGRpc2Vhc2VzJTJDUG9wdWxhdGlvbiUyMGR5bmFtaWNzJTJDQ2FsY3VsdXMlMkNEaWZmZXJlbnRpYWwlMjBFcXVhdGlvbnM=" data-listing-file-modified-sort="1740525221359" data-listing-reading-time-sort="6" data-listing-word-count-sort="1109">
+<div class="quarto-post image-right" data-index="14" data-categories="SW5mZWN0aW91cyUyMGRpc2Vhc2VzJTJDUG9wdWxhdGlvbiUyMGR5bmFtaWNzJTJDQ2FsY3VsdXMlMkNEaWZmZXJlbnRpYWwlMjBFcXVhdGlvbnM=" data-listing-file-modified-sort="1740525221359" data-listing-reading-time-sort="6" data-listing-word-count-sort="1109">
 <div class="thumbnail"><a href="./posts/TheSIRModel.html" class="no-external">
 
 <img loading="lazy" src="./posts/SIRAppImage.png" class="thumbnail-image">
@@ -508,7 +626,7 @@ Infectious diseases can have severe health outcomes for individuals who contract
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="11" data-categories="Y2FsY3VsdXMlMkNtdXNpYw==" data-listing-file-modified-sort="1781678009918" data-listing-reading-time-sort="36" data-listing-word-count-sort="7026">
+<div class="quarto-post image-right" data-index="15" data-categories="Y2FsY3VsdXMlMkNtdXNpYw==" data-listing-file-modified-sort="1781686320188" data-listing-reading-time-sort="36" data-listing-word-count-sort="7026">
 <div class="thumbnail"><a href="./posts/AudioSpectra.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -534,7 +652,7 @@ The goal of this page is to explore how sounds can be represented mathematically
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="12" data-categories="RGlmZmVyZW50aWFsJTIwRXF1YXRpb25zJTJDQ2FsY3VsdXM=" data-listing-file-modified-sort="1738494378185" data-listing-reading-time-sort="6" data-listing-word-count-sort="1056">
+<div class="quarto-post image-right" data-index="16" data-categories="RGlmZmVyZW50aWFsJTIwRXF1YXRpb25zJTJDQ2FsY3VsdXM=" data-listing-file-modified-sort="1738494378185" data-listing-reading-time-sort="6" data-listing-word-count-sort="1056">
 <div class="thumbnail"><a href="./posts/SecondOrderODEs.html" class="no-external">
 
 <img loading="lazy" src="./posts/DampedOscillation.png" class="thumbnail-image">
@@ -560,7 +678,7 @@ We can use calculus to study how quantities change in time. In the examples belo
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="13" data-categories="R2VvbWV0cnklMkNBbGdlYnJh" data-listing-file-modified-sort="1740521954318" data-listing-reading-time-sort="10" data-listing-word-count-sort="1991">
+<div class="quarto-post image-right" data-index="17" data-categories="R2VvbWV0cnklMkNBbGdlYnJh" data-listing-file-modified-sort="1740521954318" data-listing-reading-time-sort="10" data-listing-word-count-sort="1991">
 <div class="thumbnail"><a href="./posts/IntersectingLines.html" class="no-external">
 
 <img loading="lazy" src="./posts/Lines2DDemo.png" class="thumbnail-image">
@@ -590,10 +708,10 @@ y=m_2x+c_2,
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="14" data-listing-file-modified-sort="1730377106316" data-listing-reading-time-sort="2" data-listing-word-count-sort="244">
+<div class="quarto-post image-right" data-index="18" data-listing-file-modified-sort="1730377106316" data-listing-reading-time-sort="2" data-listing-word-count-sort="244">
 <div class="thumbnail"><a href="./posts/GraduateEmployment.html" class="no-external">
 
-<p class="card-img-top"><img src="posts/GraduateEmployment_files/figure-html/tab-medsalary-output-1.png"  class="thumbnail-image card-img"/></p>
+<p class="card-img-top"><img loading='lazy' src="posts/GraduateEmployment_files/figure-html/tab-medsalary-output-1.png"  class="thumbnail-image card-img"/></p>
 
 </a></div>
 <div class="body">
@@ -609,7 +727,7 @@ A mathematics degree will enable you to become a <em>logical numerate problem so
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="15" data-listing-file-modified-sort="1748712415218" data-listing-reading-time-sort="1" data-listing-word-count-sort="61">
+<div class="quarto-post image-right" data-index="19" data-listing-file-modified-sort="1748712415218" data-listing-reading-time-sort="1" data-listing-word-count-sort="61">
 <div class="thumbnail"><a href="./posts/MathsUndergradPosterSession.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -682,13 +800,14 @@ A mathematics degree will enable you to become a <em>logical numerate problem so
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Taking off: the mathematics of lift – University of Dundee Mathematics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content="..">
+<script src="../site_libs/quarto-contrib/shinylive-0.10.14/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.10.14/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.10.14/shinylive/shinylive.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-MQD60ZZ43S"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-MQD60ZZ43S', { 'anonymize_ip': true});
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../UoD_logo_RGB.png" alt="" class="navbar-logo light-content">
+    <img src="../UoD_logo_RGB.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">University of Dundee Mathematics</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Taking off: the mathematics of lift</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">Calculus</div>
+                <div class="quarto-category">Differential equations</div>
+                <div class="quarto-category">Physics</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<p>Watch a plane take off and there’s a strange pause built into the whole event: it doesn’t simply lift off the tarmac. It accelerates down a runway for the best part of a minute, engines at full power, going nowhere but forward – and only once it’s built up real speed does it leave the ground at all. Why does it need that runway? Why can’t a fully-powered aircraft just lift straight up from a standing start?</p>
+<p>The answer is sitting inside one equation. The lift a wing generates is</p>
+<p><span class="math display">\[L = \tfrac{1}{2}\,\rho\, v^2\, A\, C_L(\alpha)\]</span></p>
+<p>where <span class="math inline">\(\rho\)</span> is the air density, <span class="math inline">\(v\)</span> is the aircraft’s airspeed, <span class="math inline">\(A\)</span> is the wing area, and <span class="math inline">\(C_L(\alpha)\)</span> – the <em>lift coefficient</em> – depends on the wing’s angle of attack <span class="math inline">\(\alpha\)</span>: how sharply it’s tilted into the oncoming air. Everything a pilot can actually control on takeoff is hiding in just two of those symbols, <span class="math inline">\(v\)</span> and <span class="math inline">\(\alpha\)</span>, and the app below lets you play with exactly those two.</p>
+<p><strong>Why speed first.</strong> Notice that <span class="math inline">\(v\)</span> appears <em>squared</em>. Double the airspeed and you don’t double the lift – you quadruple it. At a standstill, <span class="math inline">\(v=0\)</span>, and no angle of attack in the world produces any lift at all: the “lift versus speed” curve in the app starts flat on the ground and only turns upward once real airspeed builds. A runway isn’t bureaucracy – it’s the aircraft physically climbing that curve until lift finally catches up to weight.</p>
+<p><strong>Why angle matters, up to a point.</strong> Tilt the wing more steeply into the airflow and <span class="math inline">\(C_L\)</span> rises too – for small angles, very close to linearly, which is why even a small stick movement noticeably changes how a plane climbs. But push the angle too far and the airflow over the top of the wing can no longer follow the surface: it separates, lift collapses even as the angle keeps increasing, and the wing <strong>stalls</strong>. The app models this honestly – push the angle-of-attack slider far enough and you’ll watch the lift curve break and fall, exactly as a real wing’s does.</p>
+<p><strong>Why the wing’s shape itself changes on takeoff.</strong> If you’ve ever watched a plane depart from a window seat, you’ll have seen panels unfold from the trailing edge of the wing just before liftoff – flaps, sometimes slats at the leading edge too. Deploying them effectively adds camber (curvature) to the wing, and that shifts the whole lift curve upward: more lift at any given speed, which means a <em>lower</em> speed is enough to fly. It’s a direct trade against efficiency – flown deployed at cruising speed, flaps create far more drag than they’re worth – so they come out only for the low-speed phases, takeoff and landing, where the extra lift is worth the cost. Tick the flaps checkbox in the app and watch both the wing’s shape and the required takeoff speed change together.</p>
+<p><strong>A note on what’s really happening in the airflow.</strong> It’s tempting to reach for the popular explanation that air has to travel <em>faster</em> over the curved top of a wing to “meet up” with the air going under it at the trailing edge, and that this alone explains the lower pressure and hence the lift (via Bernoulli’s principle). That specific story – equal transit time – isn’t actually correct, and real aerodynamics doesn’t need it. What actually happens is that the wing deflects the oncoming air downward as it passes; by Newton’s third law, the air pushes back on the wing with an equal and opposite force – upward lift. The precise, rigorous version of this is written in the <strong>Euler equations</strong> for an inviscid fluid, and solving them for flow around a wing shape shows that the airfoil sets up a <em>circulation</em> of air around itself which, combined with the free-stream flow, produces exactly the pressure difference (faster, lower-pressure flow over the top; slower, higher-pressure flow underneath) that Bernoulli’s principle then correctly relates to lift. Bernoulli isn’t wrong here – the popular shortcut for <em>why</em> the speeds differ in the first place is.</p>
+<p>The model used in the app below is a further simplification of all this – <strong>thin-airfoil theory</strong>, which predicts <span class="math inline">\(C_L(\alpha) \approx 2\pi\sin\alpha\)</span> for small angles – plus a hand-built stall curve, rather than genuine wind-tunnel data. It’s accurate enough to demonstrate both qualitative facts this page is built around – that lift needs speed <em>and</em> angle together, and that too much angle defeats itself – without pretending to be a real aircraft’s flight-test numbers.</p>
+<div id="fig-lift" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| components: [viewer]
+#| viewerHeight: 780
+
+## file: app.py
+import math
+
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.patches import FancyArrow
+
+from shiny import App, Inputs, Outputs, Session, render, ui
+
+# ---------------------------------------------------------------------------
+# A deliberately simplified aerodynamic model. This is a teaching tool, not
+# a design tool: it uses thin-airfoil theory (lift coefficient rises as
+# 2*pi*sin(angle of attack)) plus a hand-built stall break, not a real wind
+# -tunnel polar. It's accurate enough to show the two qualitative facts the
+# app is built to teach -- lift needs both angle AND speed, and pushing the
+# angle too far causes a stall -- without pretending to be flight-test data.
+# ---------------------------------------------------------------------------
+
+RHO = 1.225  # air density at sea level, kg/m^3 (fixed -- not a control)
+WING_AREA = 16.0  # m^2, roughly a small single-engine aircraft's wing area
+
+CLEAN_STALL_DEG = 14.0
+FLAP_STALL_DEG = 10.0
+FLAP_CL_OFFSET = 0.55
+FLAP_DEFLECTION_DEG = 25.0
+POST_STALL_DECAY_DEG = 8.0
+POST_STALL_PLATEAU_FRAC = 0.55
+
+
+def lift_coefficient(alpha_deg: float, flap: bool):
+    """Returns (C_L, stalled: bool) for a given angle of attack."""
+    alpha_rad = math.radians(alpha_deg)
+    offset = FLAP_CL_OFFSET if flap else 0.0
+    stall_deg = FLAP_STALL_DEG if flap else CLEAN_STALL_DEG
+
+    cl_thin = 2 * math.pi * math.sin(alpha_rad) + offset
+
+    if alpha_deg &lt;= stall_deg:
+        return cl_thin, False
+
+    stall_rad = math.radians(stall_deg)
+    cl_peak = 2 * math.pi * math.sin(stall_rad) + offset
+    cl_plateau = cl_peak * POST_STALL_PLATEAU_FRAC
+    excess = min(alpha_deg - stall_deg, POST_STALL_DECAY_DEG)
+    frac = excess / POST_STALL_DECAY_DEG
+    cl = cl_peak + (cl_plateau - cl_peak) * frac
+    return cl, True
+
+
+def lift_force(alpha_deg: float, speed: float, flap: bool):
+    cl, stalled = lift_coefficient(alpha_deg, flap)
+    L = 0.5 * RHO * speed**2 * WING_AREA * cl
+    return L, cl, stalled
+
+
+def takeoff_speed(alpha_deg: float, flap: bool, weight_n: float):
+    cl, _ = lift_coefficient(alpha_deg, flap)
+    if cl &lt;= 0:
+        return None
+    return math.sqrt(weight_n / (0.5 * RHO * WING_AREA * cl))
+
+
+# ---------------------------------------------------------------------------
+# Airfoil geometry: a simple cambered NACA-style cross-section, generated
+# parametrically so no image file needs to be bundled with the app.
+# ---------------------------------------------------------------------------
+
+def _thickness(x, t=0.12):
+    return 5 * t * (
+        0.2969 * np.sqrt(x)
+        - 0.1260 * x
+        - 0.3516 * x**2
+        + 0.2843 * x**3
+        - 0.1015 * x**4
+    )
+
+
+def _camber(x, m=0.025, p=0.4):
+    return np.where(
+        x &lt; p,
+        (m / p**2) * (2 * p * x - x**2),
+        (m / (1 - p) ** 2) * ((1 - 2 * p) + 2 * p * x - x**2),
+    )
+
+
+def airfoil_surfaces(flap: bool, n=120):
+    """Returns (upper_xy, lower_xy) as (2, n) arrays in chord-fraction units,
+    with the trailing 25% deflected downward if flap is True."""
+    x = np.linspace(0, 1, n)
+    yc = _camber(x)
+    yt = _thickness(x)
+    upper = np.stack([x, yc + yt])
+    lower = np.stack([x, yc - yt])
+
+    if flap:
+        hinge_x = 0.75
+        hinge_y = np.interp(hinge_x, x, yc)
+        theta = math.radians(FLAP_DEFLECTION_DEG)
+        cos_t, sin_t = math.cos(theta), math.sin(theta)
+
+        def deflect(surface):
+            sx, sy = surface
+            mask = sx &gt;= hinge_x
+            dx = sx[mask] - hinge_x
+            dy = sy[mask] - hinge_y
+            sx = sx.copy()
+            sy = sy.copy()
+            # rotate the flap segment downward (positive theta = trailing
+            # edge drops) about the hinge point
+            sx[mask] = hinge_x + dx * cos_t + dy * sin_t
+            sy[mask] = hinge_y - dx * sin_t + dy * cos_t
+            return np.stack([sx, sy])
+
+        upper = deflect(upper)
+        lower = deflect(lower)
+
+    return upper, lower
+
+
+def rotate_about(points, pivot, angle_rad):
+    x, y = points
+    px, py = pivot
+    dx, dy = x - px, y - py
+    cos_a, sin_a = math.cos(angle_rad), math.sin(angle_rad)
+    x2 = px + dx * cos_a - dy * sin_a
+    y2 = py + dx * sin_a + dy * cos_a
+    return np.stack([x2, y2])
+
+
+# ---------------------------------------------------------------------------
+# UI
+# ---------------------------------------------------------------------------
+
+app_ui = ui.page_sidebar(
+    ui.sidebar(
+        ui.h5("Controls"),
+        ui.input_slider("alpha", "Angle of attack (degrees)", min=-5, max=20, value=5, step=0.5),
+        ui.input_slider("speed", "Airspeed (m/s)", min=0, max=90, value=0, step=1),
+        ui.input_slider("mass", "Aircraft mass (kg)", min=500, max=2000, value=1000, step=50),
+        ui.input_checkbox("flap", "Flaps / slats deployed (takeoff configuration)", value=False),
+        ui.hr(),
+        ui.output_ui("summary"),
+        width=340,
+    ),
+    ui.output_plot("wing_plot", height="380px"),
+    ui.output_plot("curve_plot", height="320px"),
+)
+
+
+def server(input: Inputs, output: Outputs, session: Session):
+    @output
+    @render.plot
+    def wing_plot():
+        alpha = input.alpha()
+        flap = input.flap()
+        speed = input.speed()
+        weight_n = input.mass() * 9.81
+
+        L, cl, stalled = lift_force(alpha, speed, flap)
+
+        upper, lower = airfoil_surfaces(flap)
+        pivot = (0.25, float(np.interp(0.25, upper[0], _camber(upper[0]))))
+        angle_rad = math.radians(-alpha)  # pitch nose up as alpha increases
+        upper_r = rotate_about(upper, pivot, angle_rad)
+        lower_r = rotate_about(lower, pivot, angle_rad)
+
+        fig, ax = plt.subplots(figsize=(7, 4))
+
+        # freestream flow arrows, upstream of the wing
+        for y0 in np.linspace(-0.35, 0.35, 5):
+            ax.annotate(
+                "", xy=(-0.15, y0), xytext=(-0.55, y0),
+                arrowprops=dict(arrowstyle="-&gt;", color="#6c9bd1", lw=1.5),
+            )
+
+        wing_colour = "#e07a5f" if stalled else "#3d5a80"
+        ax.fill(
+            np.concatenate([upper_r[0], lower_r[0][::-1]]),
+            np.concatenate([upper_r[1], lower_r[1][::-1]]),
+            color=wing_colour, alpha=0.85, zorder=3, edgecolor="#1d1d1d", linewidth=1,
+        )
+
+        # lift vector: always vertical, perpendicular to the (horizontal)
+        # freestream, regardless of how the wing itself is pitched
+        ref_lift = weight_n  # normalise arrow length against the aircraft's weight
+        arrow_len = 0.0
+        if ref_lift &gt; 0:
+            arrow_len = 0.6 * max(-1.0, min(1.0, L / ref_lift))
+        if abs(arrow_len) &gt; 0.02:
+            ax.annotate(
+                "", xy=(0.25, 0.15 + arrow_len), xytext=(0.25, 0.15),
+                arrowprops=dict(arrowstyle="-|&gt;", color="#2a9d8f", lw=2.5),
+            )
+            ax.text(0.3, 0.15 + arrow_len, "lift", color="#2a9d8f", fontsize=10, va="center")
+
+        ax.set_xlim(-0.7, 1.1)
+        ax.set_ylim(-0.5, 0.6)
+        ax.set_aspect("equal")
+        ax.axis("off")
+        title = f"angle of attack = {alpha:.1f} deg, speed = {speed:.0f} m/s"
+        if stalled:
+            title += "  --  STALLED"
+        ax.set_title(title, fontsize=11)
+
+        return fig
+
+    @output
+    @render.plot
+    def curve_plot():
+        alpha = input.alpha()
+        flap = input.flap()
+        speed = input.speed()
+        weight_n = input.mass() * 9.81
+
+        speeds = np.linspace(0, 90, 200)
+        lifts = np.array([lift_force(alpha, v, flap)[0] for v in speeds])
+        v_takeoff = takeoff_speed(alpha, flap, weight_n)
+
+        fig, ax = plt.subplots(figsize=(7, 3.2))
+        ax.plot(speeds, lifts / 1000, color="#3d5a80", linewidth=2.5, label="lift at this angle")
+        ax.axhline(weight_n / 1000, color="#e07a5f", linestyle="--", linewidth=1.5, label="aircraft weight")
+
+        if v_takeoff is not None and v_takeoff &lt;= 90:
+            ax.axvline(v_takeoff, color="#adb5bd", linestyle=":", linewidth=1.5)
+            ax.plot([v_takeoff], [weight_n / 1000], "o", color="#e07a5f", zorder=5)
+            ax.annotate(
+                f"liftoff at {v_takeoff:.0f} m/s",
+                xy=(v_takeoff, weight_n / 1000), xytext=(v_takeoff + 3, weight_n / 1000 + 1.5),
+                fontsize=9,
+            )
+
+        cur_lift, _, _ = lift_force(alpha, speed, flap)
+        ax.plot([speed], [cur_lift / 1000], "o", color="#2a9d8f", zorder=6, markersize=8)
+
+        ax.set_xlabel("airspeed (m/s)")
+        ax.set_ylabel("force (kN)")
+        ax.set_xlim(0, 90)
+        ax.set_ylim(bottom=min(0, lifts.min() / 1000 - 1))
+        ax.legend(loc="upper left", fontsize=9, frameon=False)
+        fig.tight_layout()
+        return fig
+
+    @output
+    @render.ui
+    def summary():
+        alpha = input.alpha()
+        flap = input.flap()
+        speed = input.speed()
+        weight_n = input.mass() * 9.81
+
+        L, cl, stalled = lift_force(alpha, speed, flap)
+        v_takeoff = takeoff_speed(alpha, flap, weight_n)
+
+        lines = [
+            f"**Lift coefficient (C_L):** {cl:.2f}",
+            f"**Lift force:** {L/1000:.1f} kN",
+            f"**Aircraft weight:** {weight_n/1000:.1f} kN",
+        ]
+        if stalled:
+            lines.append(
+                "**STALLED** -- airflow has separated from the upper "
+                "surface; lift is collapsing even though the angle of "
+                "attack is still increasing."
+            )
+        elif v_takeoff is None:
+            lines.append(
+                "This angle of attack produces no useful lift (zero or "
+                "negative) -- no speed will help."
+            )
+        else:
+            lines.append(f"**Speed needed to lift this weight:** {v_takeoff:.0f} m/s")
+            if speed &gt;= v_takeoff:
+                lines.append("Fast enough: airborne.")
+            else:
+                lines.append(f"{v_takeoff - speed:.0f} m/s short of liftoff.")
+
+        return ui.markdown("\n\n".join(lines))
+
+
+app = App(app_ui, server)
+</code></pre>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lift-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Drag the angle-of-attack and airspeed sliders independently, and watch the lift force – and whether the wing has stalled – respond in real time. Try finding the takeoff speed for a few different angles, then tick the flaps checkbox and see how much that speed drops.
+</figcaption>
+</figure>
+</div>
+<p><strong>Note:</strong> this connects to material covered in our calculus and differential equations modules – particularly how a single governing equation (here, a simplified stand-in for the Euler equations of fluid flow) can be explored numerically and visually long before it can be solved by hand, and why engineers rely on exactly this kind of computational exploration in practice.</p>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/dundeemath\.github\.io\/Admissions\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

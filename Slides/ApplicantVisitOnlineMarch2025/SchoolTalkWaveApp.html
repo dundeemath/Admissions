@@ -6,23 +6,26 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <meta name="shinylive:serviceworker_dir" content="../..">
-<script src="../../site_libs/quarto-contrib/shinylive-0.10.10/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../../site_libs/quarto-contrib/shinylive-0.10.10/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../../site_libs/quarto-contrib/shinylive-0.10.10/shinylive/shinylive.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/shinylive-0.10.14/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../../site_libs/quarto-contrib/shinylive-0.10.14/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../../site_libs/quarto-contrib/shinylive-0.10.14/shinylive/shinylive.css" rel="stylesheet">
 <link href="../../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+  <meta name="generator" content="quarto-1.9.38">
 
   <meta name="author" content="Dr.&nbsp;Philip Murray">
   <meta name="dcterms.date" content="2026-06-15">
-  <title>University of Dundee Mathematics – Carnoustie High Talk</title>
+  <title>University of Dundee Mathematics – Greenfields Academy</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -101,7 +104,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-2095e1a2b15cef3f028023a6c3e93c6c.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-1deb88328151a7c94d2b3f11d957c739.css">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-MQD60ZZ43S"></script>
 
   <script type="text/javascript">
@@ -212,7 +215,7 @@
 <section id="title-slide" class="title-page center">
   <img class="logo" src="resources/rev_logo.png" alt="University of Dundee Logo">
   <br>
-  <h1 class="title">Carnoustie High Talk</h1>
+  <h1 class="title">Greenfields Academy</h1>
   <br>
   <p class="author">Dr.&nbsp;Philip Murray</p>
   <p class="institute">University of Dundee</p>
@@ -315,25 +318,24 @@
 <section id="mathematical-modelling" class="slide level2">
 <h2>Mathematical modelling</h2>
 <ul>
-<li>Formulate problem</li>
-<li>Define variables</li>
-<li>Governing equations</li>
+<li>Describe problem in words</li>
+<li>Define variables and parameters</li>
+<li>Core mathematical tools</li>
 <li>Calculate solutions</li>
 <li>Insight</li>
 </ul>
 </section>
-<section id="musical-notes" class="slide level2 smaller">
-<h2>Musical notes</h2>
+<section id="the-problem-understanding-musical-notes" class="slide level2 smaller">
+<h2>The problem: understanding musical notes</h2>
 <ul>
 <li>Why does the pitch of a string change as we adjust the tuning heads?</li>
 <li>Why does the pitch change when string length changes (e.g.&nbsp;by clamping strings on frets)?</li>
 <li>Why do some notes sound <em>nice</em> together?</li>
 <li>Why does an expensive musical instrument sound <em>nicer</em> than a cheaper one?</li>
 </ul>
-</section>
-<section id="a-mathematical-model-of-a-stretched-string" class="slide level2">
-<h2>A mathematical model of a stretched string</h2>
-<h3 id="formulation">Formulation</h3>
+</section></section>
+<section id="variables-and-parameters" class="title-slide slide level1 center">
+<h1>Variables and parameters</h1>
 <ul>
 <li><p>a stretched string of length <span class="math inline">\(L\)</span> (e.g.&nbsp;a guitar string).</p></li>
 <li><p>tension, <span class="math inline">\(T\)</span>, and line density, <span class="math inline">\(\mu\)</span>.</p></li>
@@ -341,35 +343,286 @@
 <li><p>Plucking initiates the vibration which generates the sound.</p></li>
 </ul>
 </section>
-<section id="the-wave-equation" class="slide level2">
+
+<section>
+<section id="core-mathematical-tools" class="title-slide slide level1 center">
+<h1>Core mathematical tools</h1>
+
+</section>
+<section id="function-introduction---nat-5" class="slide level2">
+<h2>Function introduction - Nat 5</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="Nat5FunctionExample.png"></p>
+</div><div class="column" style="width:50%;">
+<div id="9904b381" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="SchoolTalkWaveApp_files/figure-revealjs/cell-2-output-1.png" width="948" height="468"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="calculus-introductionrecap" class="slide level2">
+<h2>Calculus introduction/recap</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Suppose that <span class="math display">\[
+u(x)=3x+7.
+\]</span></p>
+<p>The slope of the line is constant 3.</p>
+</div><div class="column" style="width:50%;">
+<div id="69321d3d" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="SchoolTalkWaveApp_files/figure-revealjs/cell-3-output-1.png" width="809" height="449"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="calculus-introduction" class="slide level2">
+<h2>Calculus introduction</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p>Consider the function <span class="math display">\[
+u(x)=x^2.
+\]</span></p>
+<p>Now the slope of the tangent changes with <span class="math inline">\(x\)</span>.</p>
+<p>This is known as a <em>derivative</em> and represented by the notation <span class="math display">\[
+\frac{du}{dx}.
+\]</span></p>
+</div><div class="column" style="width:40%;">
+<div id="2acc160c" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="SchoolTalkWaveApp_files/figure-revealjs/cell-4-output-1.png" width="1140" height="372"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="calculus-introductionrecap-1" class="slide level2">
+<h2>Calculus introduction/recap</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Suppose that <span class="math display">\[
+u(x)=2x.
+\]</span></p>
+<p>We say that <span class="math display">\[
+\frac{du}{dx}=2,
+\]</span> i.e.&nbsp;the slope is constant value 2.</p>
+</div><div class="column" style="width:50%;">
+<div id="0bcf9e17" class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="SchoolTalkWaveApp_files/figure-revealjs/cell-5-output-1.png" width="822" height="449"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="a-function-can-depend-on-two-variables" class="slide level2">
+<h2>A function can depend on two variables</h2>
+<p>But what if <span class="math inline">\(u\)</span> depends on two variables, i.e. <span class="math display">\[
+u=u(x,t).
+\]</span></p>
+<p>Then <span class="math inline">\(u\)</span> can change as we change the variable <span class="math inline">\(x\)</span> or the variable <span class="math inline">\(t\)</span>. This introduces the notation <span class="math display">\[
+\frac{\partial u}{\partial t}, \quad \textrm{and} \quad \frac{\partial u}{\partial x}.
+\]</span></p>
+</section>
+<section id="calculus-on-a-function-of-two-variables" class="slide level2">
+<h2>Calculus on a function of two variables</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p>Suppose that <span class="math display">\[
+u(x,t)=x+t.
+\]</span></p>
+<p>Now we need to introduce what are known as partial <em>derivatives</em>?</p>
+<p><span class="math display">\[
+\frac{\partial u}{\partial x} = 1
+\]</span></p>
+<p><span class="math display">\[
+\frac{\partial u}{\partial t}= 1
+\]</span></p>
+</div><div class="column" style="width:50%;">
+<div id="467d6d4d" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="SchoolTalkWaveApp_files/figure-revealjs/cell-6-output-1.png" width="556" height="566"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="so-what-has-any-of-this-got-to-do-with-guitar-strings" class="slide level2">
+<h2>So what has any of this got to do with guitar strings!</h2>
+<div id="be475002" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="SchoolTalkWaveApp_files/figure-revealjs/cell-7-output-1.png" width="922" height="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="the-wave-equation" class="slide level2 smaller">
 <h2>The wave equation</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
 <ul>
-<li><p>The equation is <span class="math display">\[
+<li><p>curvature proportional to acceleration</p></li>
+<li><p>Given by <span class="math display">\[
 \frac{\partial ^2 u}{\partial t^2}=c^2 \frac{\partial ^2 u}{\partial x^2},
 \]</span></p></li>
-<li><p>The wavespeed <span class="math display">\[
-c=\sqrt{\frac{T}{\mu}},
+<li><p>The wave speed, <span class="math inline">\(c\)</span>, is given by <span class="math display">\[
+c=\sqrt{\frac{T}{\mu}}.
 \]</span></p></li>
-<li><p>Assume <em>static clamped string</em> boundary and initial conditions</p></li>
 </ul>
+</div><div class="column" style="width:50%;">
+<div id="6c1a00b9" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="SchoolTalkWaveApp_files/figure-revealjs/cell-8-output-1.png" width="833" height="449"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
 </section>
-<section id="standing-wave-solutions" class="slide level2">
-<h2>Standing wave solutions</h2>
+<section id="solution-of-the-wave-equation" class="slide level2">
+<h2>Solution of the wave equation</h2>
+</section>
+<section id="core-maths-sinusoid-in-nat-5" class="slide level2">
+<h2>Core maths: sinusoid in Nat 5</h2>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 66.7%;justify-content: center;">
+<p><img data-src="Nat5Sinusoid.png"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<p><img data-src="sinedefn.png"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-sine-function" class="slide level2">
+<h2>The sine function</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
 <ul>
-<li><p>Standing waves <span class="math display">\[
-u(x,t)=\sin(\frac{n\pi x}{L})\cos(\frac{n\pi c t}{L}), \quad n=1,2,...
-\]</span></p></li>
-<li><p>The frequency is <span class="math display">\[
-f=\frac{n}{2L}\sqrt{\frac{T}{\mu}}, \quad n =1,2,...
-\]</span></p></li>
+<li>Consider the sine function <span class="math display">\[
+u(x)=A\sin(\omega x).
+\]</span></li>
+<li>It is periodic with period <span class="math inline">\(2\pi/\omega\)</span>.</li>
+<li>the derivative is <span class="math display">\[
+\frac{du}{dx}=\omega \cos(\omega x).
+\]</span></li>
 </ul>
+</div><div class="column" style="width:50%;">
+<div id="4c9598b7" class="cell" data-execution_count="8">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="SchoolTalkWaveApp_files/figure-revealjs/cell-9-output-1.png" width="948" height="468"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>What about the function <span class="math display">\[
+u(x,t)=\sin(x)\cos(t)
+\]</span></li>
+<li>periodic along both <span class="math inline">\(x\)</span> and <span class="math inline">\(t\)</span> axes</li>
+<li>partial derivatives <span class="math display">\[
+\frac{\partial u}{\partial x}=\cos(x)\cos(t)
+\]</span> <span class="math display">\[
+\frac{\partial u}{\partial t}=-\sin(x)\sin(t)
+\]</span></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div id="c81b2145" class="cell" data-execution_count="9">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="SchoolTalkWaveApp_files/figure-revealjs/cell-10-output-1.png" width="561" height="566"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="standing-wave-solutions" class="slide level2 smaller">
+<h2>Standing wave solutions</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<ul>
+<li>Wave equation for guitar string problem has <em>standing wave</em> solutions <span class="math display">\[
+u(x,t)=\sin(\frac{n\pi x}{L})\cos(\frac{n\pi c t}{L}), \quad n=1,2,...
+\]</span></li>
+<li>periodic in <span class="math inline">\(x\)</span> and <span class="math inline">\(t\)</span></li>
+<li>infinite family of solutions.</li>
+</ul>
+</div><div class="column" style="width:40%;">
+<div id="f82bc2d1" class="cell" data-execution_count="10">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="SchoolTalkWaveApp_files/figure-revealjs/cell-11-output-1.png" width="291" height="582"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="a-formula-for-the-pitch-of-a-note" class="slide level2">
+<h2>A formula for the pitch of a note</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>The frequency/pitch of the note is <span class="math display">\[
+f=\frac{n}{2L}\sqrt{\frac{T}{\mu}}, \quad n =1,2,...
+\]</span></li>
+<li>Shorter/thinner string lengths have higher pitch/frequency</li>
+<li>More tension, higher frequency</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div id="72ecbcf9" class="cell" data-execution_count="11">
+<div class="cell-output cell-output-display">
+<div>
+<figure>
+<p><img data-src="SchoolTalkWaveApp_files/figure-revealjs/cell-12-output-1.png" width="825" height="431"></p>
+</figure>
+</div>
+</div>
+</div>
+</div></div>
 </section>
 <section id="computing-a-solution" class="slide level2">
 <h2>Computing a solution</h2>
 <div id="fig-weqn" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-weqn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="cb1" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a></a>#| standalone: true</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a></a>#| standalone: true</span>
 <span id="cb1-2"><a></a>#| components: [viewer]</span>
 <span id="cb1-3"><a></a>#| viewerHeight: 650</span>
 <span id="cb1-4"><a></a></span>
@@ -442,7 +695,7 @@ f=\frac{n}{2L}\sqrt{\frac{T}{\mu}}, \quad n =1,2,...
 <span id="cb1-71"><a></a>                min=0.0,</span>
 <span id="cb1-72"><a></a>                max=2.0,</span>
 <span id="cb1-73"><a></a>                value=0.0,</span>
-<span id="cb1-74"><a></a>                step=0.01,</span>
+<span id="cb1-74"><a></a>                step=0.001,</span>
 <span id="cb1-75"><a></a>                animate=True,</span>
 <span id="cb1-76"><a></a>            ),</span>
 <span id="cb1-77"><a></a>        ),</span>
@@ -545,7 +798,7 @@ f=\frac{n}{2L}\sqrt{\frac{T}{\mu}}, \quad n =1,2,...
 <span id="cb1-174"><a></a></span>
 <span id="cb1-175"><a></a>        return fig</span>
 <span id="cb1-176"><a></a></span>
-<span id="cb1-177"><a></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-177"><a></a>app = App(app_ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-weqn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1
@@ -556,18 +809,23 @@ Figure&nbsp;1
 <section id="representing-general-sounds" class="slide level2">
 <h2>Representing general sounds</h2>
 <ul>
-<li><p>Sound waves are pressure/density disturbances that propagate through a medium (e.g.&nbsp;air).</p></li>
-<li><p>A microphone detects pressure waves recorded at a given point in space.</p></li>
-<li><p>We can represent a signal as a sum of terms of different frequencies.</p></li>
-<li><p>This information can also be presented in a spectrogram. We expect noise to have a messy spectrogram as there are components with lots of frequencies.</p></li>
+<li>Sound waves are pressure/density disturbances that propagate through a medium (e.g.&nbsp;air).</li>
+<li>A microphone detects pressure waves recorded at a given point in space.</li>
+<li>Recorded sounds are complex combinations of different frequencies.</li>
 </ul>
 </section>
-<section id="spectrogram-of-wave-equation-solution" class="slide level2">
-<h2>Spectrogram of wave equation solution</h2>
+<section id="spectrogram-of-pure-tone" class="slide level2">
+<h2>Spectrogram of pure tone</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><audio data-src="freesound_community-tone-82830.mp3" controls=""><a href="freesound_community-tone-82830.mp3">Audio</a></audio></p>
+<figcaption>Monotone</figcaption>
+</figure>
+</div>
 <div id="fig-weqn" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-weqn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="cb2" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a></a>#| standalone: true</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a></a>#| standalone: true</span>
 <span id="cb2-2"><a></a>#| components: [viewer]</span>
 <span id="cb2-3"><a></a>#| viewerHeight: 650</span>
 <span id="cb2-4"><a></a></span>
@@ -818,7 +1076,7 @@ Figure&nbsp;1
 <span id="cb2-249"><a></a>            )</span>
 <span id="cb2-250"><a></a>        plt.show()</span>
 <span id="cb2-251"><a></a></span>
-<span id="cb2-252"><a></a>app = App(app_ui, server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-252"><a></a>app = App(app_ui, server)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-weqn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2
@@ -834,13 +1092,14 @@ Figure&nbsp;2
 <li>A scale</li>
 <li>A major chord</li>
 </ul>
+<p><a href="https://www.szynalski.com/tone-generator/">Website with monotone generator</a></p>
 </section>
-<section id="sound-recording-app" class="slide level2">
-<h2>Sound recording app</h2>
+<section id="spectrogram-of-complex-sound" class="slide level2">
+<h2>Spectrogram of complex sound</h2>
 <div id="fig-integapp" class="quarto-float quarto-figure quarto-figure-center">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-integapp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode" id="cb3" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a></a>#| standalone: true</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-engine="python"><pre class="sourceCode numberSource shinylive-python number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a></a>#| standalone: true</span>
 <span id="cb3-2"><a></a>#| components: [viewer]</span>
 <span id="cb3-3"><a></a>#| viewerHeight: 650</span>
 <span id="cb3-4"><a></a>#| </span>
@@ -1231,7 +1490,7 @@ Figure&nbsp;2
 <span id="cb3-389"><a></a># =====================================================</span>
 <span id="cb3-390"><a></a></span>
 <span id="cb3-391"><a></a>app = App(app_ui, server)</span>
-<span id="cb3-392"><a></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-392"><a></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-integapp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3
@@ -1516,13 +1775,14 @@ Figure&nbsp;3
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy
