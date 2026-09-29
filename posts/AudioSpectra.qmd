@@ -78,8 +78,11 @@ $$ {#eq-pitch}
 
 
 Exercises:
+
 1. Verify that @eq-waveqnsoln is a solution to @eq-waveqn. Hint: substitute the solution into the governing equation.
+
 2.  Use @eq-pitch to explore how the pitch of a note depends on model parameters. For example, sketch the  formula against one parameter (holding the others at fixed values).
+
 3. To double the frequency of a note using the tuning head (i.e. move up an octave), what factor to I have to increase the tension by (don't try this on your instrument in standard tuning).
 
 :::{#fig-weqn}
