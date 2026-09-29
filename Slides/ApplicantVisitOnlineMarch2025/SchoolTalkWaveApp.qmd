@@ -1,5 +1,5 @@
 ---
-title: "Carnoustie High Talk"
+title: "Greenfields Academy"
 institute: "University of Dundee"
 date: 06-15-2026
 author: "Dr. Philip Murray"
@@ -134,13 +134,13 @@ www.ima.org
 
 ## Mathematical modelling
 
-- Formulate problem
-- Define variables
-- Governing equations
+- Describe problem in words
+- Define variables and parameters
+- Core mathematical tools
 - Calculate solutions
 - Insight
 
-## Musical notes {.smaller} 
+## The problem: understanding musical notes {.smaller} 
 
 - Why does the pitch of a string change as we adjust the tuning heads?
 - Why does the pitch change when string length changes (e.g. by clamping strings on frets)?
@@ -148,10 +148,7 @@ www.ima.org
 - Why does an expensive musical instrument sound *nicer* than a cheaper one? 
 
 
-## A mathematical model of a stretched string
-
-
-### Formulation 
+# Variables and parameters
 
 - a stretched string of length $L$ (e.g. a guitar string).
 - tension, $T$, and line density, $\mu$. 
@@ -161,34 +158,522 @@ www.ima.org
 - Plucking initiates the vibration which generates the sound.
 
 
-## The wave equation
+# Core mathematical tools
 
-- The equation is
+## Function introduction - Nat 5
+:::: {.columns}
+::: {.column width="50%"}
+
+![](Nat5FunctionExample.png)
+:::
+
+::: {.column width="50%"}
+```{python}
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+def fun(x):
+    f=3*x+7
+    return f
+
+x_samp=6.0
+x=np.linspace(0,10)
+fig,ax=plt.subplots()
+ax.plot(x,fun(x),x_samp,fun(x_samp),'rx')
+ax.set_xlabel('$x$')
+ax.set_title('Function')
+ax.set_ylabel('$f(x)$')
+fig.tight_layout()
+plt.show()
+
+```
+
+
+:::
+
+:::
+
+## Calculus introduction/recap
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+Suppose that 
+$$
+u(x)=3x+7.
+$$
+
+
+The slope of the line is constant 3. 
+
+
+
+:::
+
+
+::: {.column width="50%"}
+
+```{python}
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+x=np.linspace(0,10)
+fig,ax=plt.subplots(1,2)
+ax[0].plot(x,3*x+7,x_samp,3*x_samp+7,'rx')
+ax[1].plot(x,3*np.ones_like(x),x_samp,3,'rx')
+ax[0].set_xlabel('$x$')
+ax[0].set_ylabel('$u(x)$')
+ax[1].set_xlabel('$x$')
+ax[1].set_ylabel('$du/dx$')
+ax[0].set_title('Function')
+ax[1].set_title('Derivative')
+
+plt.show()
+
+```
+:::
+
+:::
+
+
+## Calculus introduction
+
+:::: {.columns}
+
+::: {.column width="60%"}
+
+Consider the function 
+$$
+u(x)=x^2.
+$$
+
+Now the slope of the tangent changes with $x$. 
+
+This is known as a *derivative* and represented by the notation 
+$$
+\frac{du}{dx}.
+$$
+
+
+
+:::
+
+
+::: {.column width="40%"}
+
+```{python}
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+x_samp=0.5
+x=np.linspace(0,1)
+fig,ax=plt.subplots(1,2,figsize=(12,4))
+ax[0].plot(x,x**2,x_samp,x_samp**2,'rx',x,2*x_samp*(x-x_samp)+x_samp**2,'--')
+ax[1].plot(x,2*x,x_samp,2*x_samp,'rx')
+ax[0].set_xlabel('$x$')
+ax[0].set_title('Function')
+
+ax[0].set_ylabel('$u(x)$')
+ax[1].set_xlabel('$x$')
+ax[1].set_ylabel('$du/dx$')
+ax[1].set_title('Derivative')
+fig.tight_layout()
+plt.show()
+
+```
+:::
+
+:::
+
+## Calculus introduction/recap
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+Suppose that 
+$$
+u(x)=2x.
+$$
+
+We say that
+$$
+\frac{du}{dx}=2,
+$$
+i.e. the slope is constant value 2.
+
+
+
+:::
+
+
+::: {.column width="50%"}
+
+```{python}
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+x=np.linspace(0,1)
+fig,ax=plt.subplots(1,2)
+ax[0].plot(x,2*x)
+ax[1].plot(x,2*np.ones_like(x))
+ax[0].set_xlabel('$x$')
+ax[0].set_ylabel('$u(x)$')
+ax[1].set_xlabel('$x$')
+ax[1].set_ylabel('$du/dx$')
+ax[0].set_title('Function')
+ax[1].set_title('Derivative')
+
+plt.show()
+
+```
+:::
+
+:::
+
+
+## A function can depend on two variables
+
+But what if $u$ depends on two variables, i.e.
+$$
+u=u(x,t).
+$$
+
+Then $u$ can change as we change the variable $x$ or the variable $t$. This introduces the notation
+$$
+\frac{\partial u}{\partial t}, \quad \textrm{and} \quad \frac{\partial u}{\partial x}.
+$$
+
+## Calculus on a function of two variables
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+Suppose that 
+$$
+u(x,t)=x+t.
+$$
+
+Now we need to introduce what are known as partial *derivatives*?
+
+$$
+\frac{\partial u}{\partial x} = 1
+$$
+
+$$
+\frac{\partial u}{\partial t}= 1
+$$
+
+:::
+
+
+::: {.column width="50%"}
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 2 * np.pi, 100)
+t = np.linspace(0, 2 * np.pi, 100)
+X, T = np.meshgrid(x, t)
+Z = X+T
+
+fig = plt.figure(figsize=(10, 6))
+ax = fig.add_subplot(111, projection='3d')
+ax.plot_surface(X, T, Z, cmap='viridis', alpha=0.9)
+
+ax.set_xlabel('x')
+ax.set_ylabel('t')
+ax.set_zlabel('u(x,t)')
+ax.set_title('u(x,t) = x+t')
+
+plt.tight_layout()
+plt.show()
+
+```
+
+:::
+
+:::
+
+
+
+## So what has any of this got to do with guitar strings!
+
+```{python}
+x=np.linspace(0,1)
+
+L=1.0
+n=1.0
+
+fig,ax=plt.subplots()
+ax.plot(x,np.sin(n*np.pi*x/L))
+ax.plot(x,np.zeros_like(x),'r--')
+ax.plot(x,-np.sin(n*np.pi*x/L),'m:')
+ax.plot([0.5,0.5],[0,1.0],'k--')
+ax.text(0.53,0.5,'u')
+ax.set_xlabel('$x$')
+ax.set_ylabel('$u(x,t)$')
+
+ax.set_title('Displacement of a guitar string')
+fig.legend(['Plucked','At rest','Released'])
+
+```
+
+## The wave equation {.smaller}
+
+::: {.columns}
+
+::: {.column width="50%"}
+- curvature proportional to acceleration
+- Given by
 $$
 \frac{\partial ^2 u}{\partial t^2}=c^2 \frac{\partial ^2 u}{\partial x^2},
 $$
 
--  The wavespeed
+-  The wave speed, $c$, is given by
 $$
-c=\sqrt{\frac{T}{\mu}},
+c=\sqrt{\frac{T}{\mu}}.
 $$
 
+:::
 
-- Assume *static clamped string* boundary and initial  conditions
+::: {.column width="50%"}
+```{python}
+x=np.linspace(0,1)
+
+L=1.0
+n=1.0
+
+fig,ax=plt.subplots(2,1)
+ax[0].plot(x,np.zeros_like(x),'r--')
+ax[0].set_xlabel('$x$')
+ax[0].set_ylabel('$u(x,t)$')
+ax[0].set_title('No curvature')
 
 
-## Standing wave solutions 
+ax[1].plot(x,np.sin(n*np.pi*x/L))
+ax[1].plot([0.5,0.5],[0,1.0],'k--')
+ax[1].text(0.53,0.5,'u')
+ax[1].set_xlabel('$x$')
+ax[1].set_ylabel('$u(x,t)$')
+ax[1].set_title('Curvature')
 
-- Standing waves
+
+fig.show()
+```
+
+:::
+
+:::
+
+
+## Solution of the wave equation
+
+
+## Core maths: sinusoid in Nat 5
+
+::: {layout-ncol=2}
+![](Nat5Sinusoid.png){width=60%}
+
+![](sinedefn.png){width=30%}
+:::
+
+## The sine function
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- Consider the sine function
+$$
+u(x)=A\sin(\omega x).
+$$
+- It is periodic with period $2\pi/\omega$.
+- the derivative is
+$$
+\frac{du}{dx}=\omega \cos(\omega x).
+$$
+
+:::
+
+::: {.column width="50%"}
+
+```{python}
+
+fig,ax=plt.subplots()
+
+x=np.linspace(0,10*np.pi,500)
+ax.plot(x,np.sin(x))
+ax.set_xlabel('$x$')
+ax.set_ylabel('$u(x)$')
+fig.tight_layout()
+plt.show()
+
+```
+
+:::
+
+:::
+
+##
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+- What about the function
+$$
+u(x,t)=\sin(x)\cos(t)
+$$
+- periodic along both $x$ and $t$ axes 
+- partial derivatives
+$$
+\frac{\partial u}{\partial x}=\cos(x)\cos(t)
+$$
+$$
+\frac{\partial u}{\partial t}=-\sin(x)\sin(t)
+$$
+
+:::
+
+::: {.column width="50%"}
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(0, 2 * np.pi, 100)
+t = np.linspace(0, 2 * np.pi, 100)
+X, T = np.meshgrid(x, t)
+Z = np.sin(X) * np.cos(T)
+
+fig = plt.figure(figsize=(10, 6))
+ax = fig.add_subplot(111, projection='3d')
+ax.plot_surface(X, T, Z, cmap='viridis', alpha=0.9)
+
+ax.set_xlabel('x')
+ax.set_ylabel('t')
+ax.set_zlabel('u(x,t)')
+ax.set_title('u(x,t) = sin(x)cos(t)')
+
+plt.tight_layout()
+plt.show()
+
+```
+
+:::
+
+:::
+
+
+## Standing wave solutions {.smaller} 
+
+:::: {.columns}
+::: {.column width="60%"}
+
+- Wave equation for guitar string problem has *standing wave* solutions
  $$
  u(x,t)=\sin(\frac{n\pi x}{L})\cos(\frac{n\pi c t}{L}), \quad n=1,2,...
  $$
+ - periodic in $x$ and $t$
+ - infinite family of solutions.
  
 
-- The frequency is
+
+:::
+
+::: {.column width="40%"}
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+fig = plt.figure(figsize=(10, 6))
+ax = fig.add_subplot(211, projection='3d')
+
+
+n=2
+L=1
+c=100.0
+
+x = np.linspace(0, L, 100)
+t = np.linspace(0, 0.01, 1000)
+X, T = np.meshgrid(x, t)
+Z = np.sin(n*np.pi*X/L) * np.cos(n*np.pi*c*T/L)
+
+ax.plot_surface(X, T, Z, cmap='viridis', alpha=0.9)
+
+ax.set_xlabel('$x$')
+ax.set_ylabel('$t$')
+ax.set_zlabel('$u(x,t)$')
+ax.set_title('$n$=2')
+
+n=6
+
+
+Z = np.sin(n*np.pi*X/L) * np.cos(n*np.pi*c*T/L)
+
+ax2 = fig.add_subplot(212, projection='3d')
+
+ax2.plot_surface(X, T, Z, cmap='viridis', alpha=0.9)
+
+ax2.set_xlabel('$x$')
+ax2.set_ylabel('$t$')
+ax2.set_zlabel('$u(x,t)$')
+ax2.set_title('$n$=6')
+
+
+plt.tight_layout()
+plt.show()
+
+```
+
+:::
+
+:::
+
+## A formula for the pitch of a note
+
+:::: {.columns}
+::: {.column width="50%"}
+- The frequency/pitch of the note is
 $$
 f=\frac{n}{2L}\sqrt{\frac{T}{\mu}}, \quad n =1,2,...
 $$
+- Shorter/thinner string lengths have higher pitch/frequency
+- More tension,  higher frequency
+:::
+
+::: {.column width="50%"}
+
+```{python}
+T=100
+mu=1
+
+f=n/(2*L)*np.sqrt(T/mu)
+
+L_vec=np.linspace(0,1,100)
+f_vec=n/(2*L_vec)*np.sqrt(T/mu)
+
+fig,ax=plt.subplots()
+ax.plot(L_vec,f_vec)
+ax.set_xlabel('String length ($L$)')
+ax.set_ylabel('Frequency (f)')
+plt.show()
+
+```
+:::
+
+:::
+
 
 ## Computing a solution
 
@@ -268,7 +753,7 @@ app_ui = ui.page_fluid(
                 min=0.0,
                 max=2.0,
                 value=0.0,
-                step=0.01,
+                step=0.001,
                 animate=True,
             ),
         ),
@@ -382,11 +867,12 @@ app = App(app_ui, server)
 
 - Sound waves are pressure/density disturbances that propagate through a medium (e.g. air). 
 - A microphone detects pressure waves recorded at a given point in space.
+- Recorded sounds are complex combinations of   different frequencies. 
 
-- We can represent a signal as a sum of terms of different frequencies. 
-- This information can also be presented in a spectrogram. We expect noise to have a messy spectrogram as there are components with lots of frequencies.
 
-## Spectrogram of wave equation solution
+## Spectrogram of pure tone
+
+![Monotone](freesound_community-tone-82830.mp3)
 
 :::{#fig-weqn}
 
@@ -654,7 +1140,9 @@ app = App(app_ui, server)
 - A scale 
 - A major chord
 
-## Sound recording app
+[Website with monotone generator](https://www.szynalski.com/tone-generator/)
+
+## Spectrogram of complex sound
 ::: {#fig-integapp}
 
 ```{shinylive-python}
